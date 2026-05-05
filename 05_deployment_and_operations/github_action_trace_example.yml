@@ -1,0 +1,72 @@
+name: Traceable AI Deployment Workflow (The Sandbox)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches:
+      - main
+
+jobs:
+  validate-ai-traceability:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Assert Epic ID Trace (Strategy Lead Sync)
+        id: epic-check
+        run: |
+          # This connects the final deployment strictly to the Strategy Lead's Semantic Blueprint.
+          # If the AI Agent generated code without a valid Epic ID, it goes no further.
+          
+          echo "Validating PR commits for Epic Traceability..."
+          if ! git log -1 --pretty=%B | grep -q '\[EPIC-[0-9]\+\]'; then
+            echo "::error::Missing [EPIC-ID] trace in the latest commit message."
+            echo "Security Audit Failed: Cannot merge untraced AI code."
+            exit 1
+          fi
+          echo "Traceability validated."
+
+      - name: Assert ADR Compliance Link (Builder Sync)
+        id: adr-check
+        run: |
+          # Validate the Builder agent adhered to the architecture standards.
+          if ! git log -1 --pretty=%B | grep -q '\[ADR-[0-9]\+\]'; then
+            echo "::warning::No [ADR-ID] found in the commit message."
+          fi
+
+      - name: Emit DORA & SPACE Core Telemetry
+        run: |
+          # This step exports data to the Agile Coaching dashboard.
+          # Calculate PR Size (Lines of code changed)
+          PR_SIZE=$(git diff --stat origin/main | tail -n1)
+          
+          # Calculate Lead Time Proxy (Time since first commit on branch)
+          FIRST_COMMIT_TIME=$(git log $(git merge-base origin/main HEAD)..HEAD --format=%ct | tail -1)
+          CURRENT_TIME=$(date +%s)
+          LEAD_TIME=$((CURRENT_TIME - FIRST_COMMIT_TIME))
+          
+          echo "Emitting Telemetry -> PR_SIZE: $PR_SIZE | LEAD_TIME_SEC: $LEAD_TIME"
+          # ./scripts/emit-metrics.sh --epic=$EPIC_ID --lead-time=$LEAD_TIME --size=$PR_SIZE
+
+      - name: Run Validated Contract Tests (Validation Lead Sync)
+        # Execute the testing suites that were generated strictly against the contracts.
+        run: npm run test:contract
+
+  deploy-traceable-infrastructure:
+    needs: validate-ai-traceability
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Staging Integration
+        # Passes the extracted metadata into the deployment logs for the Release Train auditing.
+        run: |
+          EPIC_ID=$(git log -1 --pretty=%B | grep -o '\[EPIC-[0-9]\+\]')
+          echo "Deploying features associated with $EPIC_ID to staging..."
+          # ./deploy.sh --trace-id=$EPIC_ID

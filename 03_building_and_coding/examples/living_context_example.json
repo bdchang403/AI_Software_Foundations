@@ -1,0 +1,72 @@
+{
+  "compiled_at": "2026-10-17T22:30:00Z",
+  "compiler_version": "3.4.0",
+  "active_models": {
+    "flagship_debate": "anthropic/claude-3-7-sonnet-20250219",
+    "forensic_auditor": "deepseek/deepseek-r1",
+    "fast_triage": "google/gemini-2.0-flash-001"
+  },
+  "table_dto_map": {
+    "cost_logs": {
+      "model": "CostEntry",
+      "file": "src/v3/pipeline/cost_ledger.py",
+      "primary_key": "id"
+    },
+    "event_logs": {
+      "model": "EventPayload",
+      "file": "src/v3/schemas/events.py",
+      "primary_key": "event_uuid"
+    },
+    "consensus": {
+      "model": "ConsensusVerdict",
+      "file": "src/v3/schemas/debate.py",
+      "primary_key": "ticker"
+    },
+    "consensus_quarantine": {
+      "model": "QuarantineRecord",
+      "file": "src/v3/utils/quarantine_manager.py",
+      "primary_key": "quarantine_id"
+    },
+    "daily_prices": {
+      "model": "DailyPriceDTO",
+      "file": "src/v3/schemas/daily_prices.py",
+      "primary_key": ["ticker", "date"]
+    },
+    "paper_portfolio_ledger": {
+      "model": "PaperPortfolioPosition",
+      "file": "src/v3/analytics/paper_portfolio_tracker.py",
+      "primary_key": "position_id"
+    },
+    "bandit_policy_state": {
+      "model": "BanditPolicyStateRecord",
+      "file": "src/v3/schemas/bandit_policy.py",
+      "primary_key": "arm_id"
+    }
+  },
+  "canonical_math_algorithms": {
+    "Alg_03_HalfLifeDecay": {
+      "file": "src/v3/horizon/scope.py",
+      "symbol": "calculate_decayed_polarity",
+      "equation": "w(Delta t) = w0 * (1/2)^(Delta t / t_half)",
+      "test": "tests/unit/test_multi_horizon_modules.py"
+    },
+    "Alg_42_PlausibilityBand": {
+      "file": "src/v3/execution/execution_gateway.py",
+      "symbol": "ExecutionGateway.validate_order",
+      "equation": "|P_exec - EMA_5| <= max(3*ATR_14, 0.08*EMA_5)",
+      "test": "tests/unit/test_execution_guardrail.py"
+    },
+    "Alg_89_ZCAWhitening": {
+      "file": "src/v3/math/whitening.py",
+      "symbol": "anchor_preserving_zca_whitening",
+      "equation": "X_whitened = (X - mu) @ W_ZCA.T + mu",
+      "test": "tests/unit/test_whitening_invariants.py"
+    }
+  },
+  "inviolable_rules": [
+    "ADR-016: 400 LOC ceiling across all files. Refactor trigger at 350 LOC.",
+    "Rule 14: Anti-Feature-Erasure bans deleting retries, fallbacks, or assertions.",
+    "Zero-Mock: Return None or raise on unverified telemetry. Zero synthetic defaults.",
+    "Compensatory Confluence: >=2 of 4 pillars unblock BUY unless Fatal Contagion."
+  ]
+}

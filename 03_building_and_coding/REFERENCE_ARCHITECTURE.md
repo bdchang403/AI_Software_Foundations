@@ -1,64 +1,121 @@
 # Builder Reference Architecture: The Context-First Repository
 
-To succeed in the Context Factory, your repository must be organized for **Machine Readability**. This structure ensures that an AI Agent can find the "Strategic Guardrails" without you needing to paste them into the prompt.
+In the Enterprise Context Factory, a repository is not merely an arbitrary collection of folders for human developers. To an autonomous AI agent, **your repository is an active, machine-readable Knowledge Graph and Context Map**. 
 
-## 📂 Standardized Folder Structure
+If the repository layout is unconstrained, agents spend thousands of tokens traversing directory trees, guess foreign imports, and suffer context collapse. The **Context-First Reference Architecture** organizes the filesystem so an agent can locate authoritative domain truth, active schemas, and architectural invariants in a single 1-hop execution.
+
+---
+
+## 📂 Standardized Context-First Folder Structure
 
 ```text
-root/
-├── .github/
-│   ├── copilot-instructions.md    <-- Tier 1: The Global Router (Direct Pointers)
-│   └── agents/                    <-- Agent configurations (YAML/JSON)
-├── docs/
-│   ├── context/                   <-- Tier 2: Surgical Payload (boundaries + ADRs)
-│   │   ├── billing.md             <-- Domain Rules + Architectural Truth
-│   │   └── security.md
-│   └── stories/                   <-- Context-Enriched Stories (The Input)
-│       └── LOYALTY-101.md
-├── src/
-│   ├── domain_a/                  <-- Bounded Contexts
-│   │   ├── services/
-│   │   └── registry.json          <-- Local Function Registry
+enterprise-repo/
+├── ⚙️ .github/
+│   ├── copilot-instructions.md          <-- Tier 1: The Global Router (~50 lines)
+│   └── workflows/
+│       └── drift-monitor.yml            <-- CI Sentinel: Verifies zero AST/schema drift
+├── 📘 docs/
+│   ├── context/                         <-- Tier 2: Surgical Domain Knowledge
+│   │   ├── billing.md                   <-- Domain boundaries, business rules, local ADRs
+│   │   ├── order_execution.md
+│   │   ├── patient_monitoring.md
+│   │   └── flight_controls.md
+│   ├── registries/                      <-- Deterministic Machine-Generated Registries
+│   │   ├── STATE_REGISTRY.md            <-- AST Repo Topography (<5,000 tokens)
+│   │   └── MATHEMATICAL_REGISTRY.md     <-- 100 Canonical Algorithms & AST coordinates
+│   └── stories/                         <-- Active Context-Enriched Semantic Blueprints
+│       ├── FEAT-101-execution-gate.md   <-- Active task with 20 edge-case pre-conditions
+│       └── BUG-204-concurrency-lock.md
+├── 📦 data/
+│   └── openrouter_context.json          <-- Living Context (<1,500 tokens, D1 table-to-DTO map)
+├── 🛠️ scripts/
+│   ├── update_state_registry.py         <-- Native ast.parse over git ls-files
+│   ├── update_math_registry.py          <-- Line resolution & fail-closed test assertion
+│   ├── generate_living_context.py       <-- Dual-schema parity compiler
+│   └── verify_code_invariants.py        <-- SHA1 Invariant Anchor verification
+├── 🏗️ src/                              <-- Bounded Domain Modules (ADR-016 <= 400 LOC)
+│   ├── domain_billing/
+│   │   ├── models.py                    <-- Pydantic / Dataclass DTOs
+│   │   ├── service.py                   <-- Domain state machine with SHA1 Invariant Anchors
+│   │   └── registry.json                <-- Local Function Registry (Tool definitions)
 │   └── shared/
-└── tests/
-    ├── adversarial/               <-- Validation Lead toxic prompts
-    └── contracts/                 <-- AI-enforced interface tests
+│       ├── exceptions.py                <-- Fail-closed domain exception hierarchy
+│       └── event_bus.py
+└── 🧪 tests/
+    ├── conftest.py                      <-- Hermetic socket isolation (SocketBlockedError)
+    ├── unit/
+    │   ├── test_context_freshness.py    <-- In-memory zero-drift verification
+    │   └── test_math_invariants.py
+    └── contracts/                       <-- Schema & Invariant verification suites
 ```
 
 ---
 
-## 🛠️ The "Machine Entry Point" Pattern
+## 🧭 The Machine Entry Point Pattern across Toolchains
 
-Every repository MUST have a `.github/copilot-instructions.md` (or equivalent for your IDE). This file acts as the **Bootstrap Code** for the AI.
+Every repository must establish an authoritative **Tier 1 Bootstrap Entry Point**. This file acts as the agent's initial operating instructions and contains hardcoded pointers to domain contexts.
 
-### Recommended Content for `.github/copilot-instructions.md`:
+| AI Toolchain | Canonical Entry Point Path | Purpose & Content |
+| :--- | :--- | :--- |
+| **GitHub Copilot** | `.github/copilot-instructions.md` | Auto-loaded system prompt; points agent to `docs/context/*.md` based on active file path. |
+| **Cursor** | `.cursorrules` (Repository Root) | Binds IDE agent to 80-line surgical slice protocol and ADR-016 400-LOC limits. |
+| **Claude Code** | `CLAUDE.md` (Repository Root) | Configures CLI agent environment, pre-commit command chains, and testing mandates. |
+| **Antigravity** | `.antigravity/instructions.md` | Configures autonomous agent subagents, memory boundaries, and skill attachments. |
+
+### Canonical Tier 1 Bootstrap Instruction Example
 ```markdown
-# AI Bootstrapping Rules (Tier 1)
-1. ALWAYS identify the domain of the files you are modifying.
-2. If working in `src/billing/`, you MUST load `docs/context/billing.md` (Tier 2).
-3. If working on security logic, you MUST load `docs/context/security.md` (Tier 2).
-4. Adhere to all ADRs contained within the domain context.
-5. Use the local `registry.json` for all external tool calls.
+# Enterprise Repository Architecture Rules (Tier 1)
+
+1. DOMAIN BOUNDARIES: You operate in a strictly bounded architecture. Before modifying any code, identify the domain from the file path and load the Tier 2 Domain Context from `docs/context/{domain}.md`.
+2. ADR-016 MODULAR CEILING: No file in `src/`, `workers/`, or `tests/` may exceed 400 lines of code. Any file >= 350 lines must be refactored into domain submodules BEFORE adding new features.
+3. RULE 14 ANTI-FEATURE-ERASURE: You are strictly forbidden from truncating, commenting out, or deleting existing retry cascades, fallback pricing, or assertions to meet line limits.
+4. ZERO-MOCK MANDATE: NEVER emit synthetic constants, positive numeric defaults in arguments (ZM005), or fallback constants in `except` blocks (ZM001). Fail closed (return None or raise).
+5. INVARIANT ANCHORS: Critical methods must maintain their `# === INVARIANT-BLOCK` with verified SHA1 checksums.
+6. PRE-COMMIT CHAIN: All changes must pass `git diff --exit-code` against generated AST registries.
 ```
 
 ---
 
 ## 🧩 Local Function Registries
 
-Instead of one giant registry, keep them close to the code.
+Instead of maintaining a single monolithic tool registry that consumes thousands of tokens, high-performance repositories place **Localized Function Registries** directly within domain folders:
 
-**Example: `src/billing/registry.json`**
+**Example: `src/domain_billing/registry.json`**
 ```json
 {
   "domain": "Billing",
+  "version": "2.4.0",
   "tools": [
     {
-      "name": "calculate_tax",
-      "description": "Calculates regional tax. Use this instead of hardcoding percentage logic.",
-      "parameters": { ... }
+      "name": "calculate_regional_tax",
+      "description": "Calculates regional tax. Use this tool exclusively instead of hardcoding percentage logic.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "amount_cents": {"type": "integer"},
+          "jurisdiction_code": {"type": "string"}
+        },
+        "required": ["amount_cents", "jurisdiction_code"]
+      }
     }
   ]
 }
 ```
 
-**Downstream Influence:** When the AI enters the `src/billing/` folder, it reads this local registry and realizes it is restricted to using the `calculate_tax` tool for all financial math.
+When an agent enters `src/domain_billing/`, it reads this localized registry and recognizes that tax calculation logic is restricted to the `calculate_regional_tax` tool, preventing speculative arithmetic implementations.
+
+---
+
+## ⚖️ Dual-Use Regulated Callout Box: Reference Architecture Across Industries
+
+::: tip DUAL-USE ANALYSIS: CONTEXT-FIRST TOPOLOGY IN REGULATED ENTERPRISES
+| Architectural Layer | Quantitative Asset Management (`StockAnalysis V3`) | FDA Class III Medical Device Firmware | Aerospace Avionics (RTCA DO-178C Level A) |
+| :--- | :--- | :--- | :--- |
+| **Tier 1 Global Router** | `.github/copilot-instructions.md` routing to quant strategies, execution gateways, risk stops. | `.cursorrules` routing to pump motor control, glucose sensing, hazard mitigations. | `CLAUDE.md` routing to flight control laws, sensor voting, air data computers. |
+| **Tier 2 Domain Context** | `docs/context/quant_engine.md` detailing ADR-024 Compensatory Confluence and Plausibility Bands. | `docs/context/titration.md` detailing 21 CFR Part 820.30 design controls and basal limits. | `docs/context/autopilot.md` detailing DO-178C Level A flight envelope limiters and fault recovery. |
+| **Living Context Schema** | `data/openrouter_context.json` mapping 29 D1 SQL tables to Pydantic models. | Hardware register maps binding memory-mapped I/O addresses to C struct types. | ARINC 424 navigation database schemas binding binary records to flight plan structs. |
+| **Quality Gate** | Pre-commit zero-drift gate asserting AST registry and math symbol synchronization. | Device Master Record (DMR) compilation gate asserting firmware binaries match hazard traces. | Software Configuration Index (SCI) gate asserting source code matches low-level requirements. |
+:::
+
+---
+[**Proceed to System Prompt Skills Catalog →**](./skills.md)

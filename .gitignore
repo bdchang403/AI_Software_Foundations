@@ -17,3 +17,12 @@ logs
 
 # OS files
 .DS_Store
+
+# Python & Testing Caches
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+
+# Agent Orchestration Scratch
+.agents/

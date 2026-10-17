@@ -1,58 +1,77 @@
-# Example: The Semantic Blueprint
+# Concrete Production Examples: Context-Enriched Semantic Blueprints
 
-Requirements Leads must translate soft English requirements into boolean, structural contracts that AI Agents (and Validation Leads) can map to the Function Registry.
+Business Analysts must translate abstract business requirements into boolean, structural contracts that autonomous AI agents and validation test harnesses can execute deterministically.
 
-## ❌ The BAD Example: Soft Requirements
-**Story:** The User Login Flow
-- **Description:** "The user should be able to log in with their email and password. Sometimes they use Google. If they type the wrong password, give them an error nicely. Also, make sure it is secure."
-
-### Why this fails:
-"Make sure it is secure" means nothing to an LLM. It will likely hallucinate a generic `bcrypt` implementation locally instead of using your enterprise authentication provider (like Okta/Auth0), violating your entire security architecture.
+Below are two exhaustive production-grade Semantic Blueprint examples from high-stakes regulated domains:
+1. **Regulated Domain A: Quantitative Algorithmic Trading Safeguards (`STORY-FIN-109`)**
+2. **Regulated Domain B: FDA Class III Medical Device Hemodynamic Safety Gate (`STORY-MED-402`)**
 
 ---
 
-## ✅ The GOOD Example: Semantic Function Mapping
-**Story:** The User Login Flow
+## 🏛️ Example 1: Quantitative Algorithmic Trading Safeguards (`STORY-FIN-109`)
 
-### 1. Bounded Sub-System Execution Map
-| Business Domain | Required Code Pattern (Must Exist) | Restricted Search Path (Sandbox) |
-| --- | --- | --- |
-| `[Auth Core]` | `[Auth0 JWT Validator]` | `[/src/auth/auth0_service.ts]` |
-| `[Database]` | `[Prisma User Repository]` | `[/src/database/repos/user.ts]` |
+### 1. Execution Metadata
+- **Story ID**: `STORY-FIN-109`
+- **Epic ID**: `EPIC-RISK-02`
+- **Bounded Subsystem**: `02_requirements_and_specifications`, `src/execution/guardrails.py`
+- **Max Token Budget**: `3,200 tokens`
+- **Target File LOC**: `280 lines of code (ADR-016 <= 400)`
+- **Governing Invariants**: `I01, I02, I04, I07, I15`
+- **Required Skill Level**: `EXPERT_PYTHON_QUANT_SYSTEM_PROMPT`
 
-*(The Agent Router will lock the AI completely out of any files except these two).*
+### 2. Bounded Subsystem Execution Map
+| Business Domain Concept | Required Code Pattern (Must Exist) | Restricted Search Path (Sandbox) | Forbidden Traversal Paths |
+| :--- | :--- | :--- | :--- |
+| **"Execution Plausibility Gate"** | `ExecutionGuardrail.verify_order` | `src/execution/*` | `legacy/*`, `src/synthetic/*` |
+| **"Daily Volatility Envelope"** | `VolatilityCalculator.compute_bands`| `src/math/volatility.py` | `tests/fixtures/*` |
+| **"Quarantine Manager"** | `QuarantineLedger.archive_rejection` | `src/storage/quarantine.py` | Raw SQL `DELETE` calls |
 
-### 2. Boolean Acceptance Criteria
-- `[BOOLEAN: TRUE]` User provides `email` and `password`.
-- `[BOOLEAN: TRUE]` Request is routed to `FunctionRegistry::Auth0ProviderTool`.
-- `[BOOLEAN: FALSE]` Local `bcrypt` comparison. (DO NOT compute passwords locally).
-- **Expected Return Contract:** `HTTP 200` with JWT scoped to `role: user`.
-- **Expected Failure Contract:** `HTTP 401` with strict payload `{"error": "INVALID_CREDENTIALS"}`.
+> **AGENT ROUTING DIRECTIVE**: Do NOT invoke `grep_search` or `view_file` on paths outside `src/execution/*`, `src/math/volatility.py`, and `src/storage/quarantine.py`.
 
-### Why this succeeds:
-The builder's AI agent now has a strict API contract to fulfill. It cannot hallucinate security; it must find the `Auth0ProviderTool` in the registry and execute it or the compilation will intentionally fail.
+### 3. Mathematical Contracts
+The proposed order execution price $P_{\text{exec}}$ must lie within the dynamic volatility band:
+$$|P_{\text{exec}} - \text{EMA}_5| \le \max(3.0 \times \text{ATR}_{14}, \; 0.08 \times \text{EMA}_5)$$
+Weekend and off-session orders must match Friday close within 1.0%:
+$$\frac{|P_{\text{exec}} - P_{\text{Friday}}|}{|P_{\text{Friday}}|} \le 0.01$$
+
+### 4. Boolean Acceptance Criteria
+- `[BOOLEAN: TRUE]` Execution price $|P_{\text{exec}} - \text{EMA}_5| \le \max(3\text{ATR}_{14}, 0.08\text{EMA}_5)$.
+- `[BOOLEAN: TRUE]` Spot price telemetry originates from `VERIFIED_PROVENANCE_ALLOWLIST` ($I_{01}$).
+- `[BOOLEAN: FALSE]` Synthetic price imputation in exception handlers (e.g., `price or 200.0` is banned per ZM007).
+- `[BOOLEAN: FALSE]` Raw SQL `DELETE` calls on failed executions (Invariant $I_{04}$).
+- **Expected Return Contract**: `OrderAuthorizationVerdict(authorized=True, fill_limit=float, trace_id=UUIDv4)`.
+- **Expected Failure Contract**: Reject order with `OrderAuthorizationVerdict(authorized=False, reason="REJECTED_EXECUTION_GUARDRAIL")`; archive to `quarantine_executions`.
 
 ---
 
-## ✅ Another GOOD Example: E-Commerce Checkout
+## 🏥 Example 2: FDA Class III Medical Device Hemodynamic Safety Gate (`STORY-MED-402`)
 
-**Story:** Processing an Order Payment
+### 1. Execution Metadata
+- **Story ID**: `STORY-MED-402`
+- **Epic ID**: `EPIC-CLIN-03`
+- **Bounded Subsystem**: `src/clinical/titration_guardrail.py`
+- **Max Token Budget**: `3,500 tokens`
+- **Target File LOC**: `310 lines of code (ADR-016 <= 400)`
+- **Governing Invariants**: `I01, I02, I03, I04, I05, I07, I15`
+- **Required Skill Level**: `EXPERT_EMBEDDED_SAFETY_SYSTEM_PROMPT`
 
-### 1. Bounded Sub-System Execution Map
-| Business Domain | Required Code Pattern (Must Exist) | Restricted Search Path (Sandbox) |
-| --- | --- | --- |
-| `[Payment Processing]` | `[Stripe Billing Service]` | `[/src/payments/stripe/]` |
-| `[Order Management]` | `[Order State Machine]` | `[/src/orders/state_machine.ts]` |
-| `[Inventory]` | `[Inventory Reservation]` | `[/src/inventory/reserve.ts]` |
+### 2. Bounded Subsystem Execution Map
+| Business Domain Concept | Required Code Pattern (Must Exist) | Restricted Search Path (Sandbox) | Forbidden Traversal Paths |
+| :--- | :--- | :--- | :--- |
+| **"Titration Guardrail"** | `TitrationSafetyGate.validate_titration`| `src/clinical/titration_guardrail.py` | `src/billing/*`, `src/export/*` |
+| **"Arterial Catheter SQI"** | `ArterialSensor.get_signal_quality` | `src/sensors/arterial_line.py` | `tests/mocks/*` |
+| **"Clinical Black Box"** | `ClinicalAuditLedger.archive_event` | `src/storage/clinical_quarantine.py` | Raw SQL `DELETE` calls |
 
-> **AGENT ROUTING DIRECTIVE:** If `Stripe Billing Service` is unavailable, you MUST fall back to `[/src/payments/paypal/]`. DO NOT write a custom credit card processor.
+### 3. Mathematical Contracts
+The vasopressor dose adjustment $|\Delta R|$ is strictly bounded relative to patient baseline:
+$$|\text{Rate}_{\text{exec}} - \text{Rate}_{\text{baseline}}| \le \max(3.0 \times \sigma_{\text{patient}}, \; 0.10 \times \text{Rate}_{\text{baseline}})$$
+Absolute rate is hard-clamped to safe physiological limits:
+$$\text{Rate}_{\text{exec}} \in [0.01, \; 0.50]\,\mu\text{g/kg/min}$$
 
-### 2. Boolean Acceptance Criteria
-- `[BOOLEAN: TRUE]` Inventory is reserved via `Inventory Reservation` *before* attempting payment.
-- `[BOOLEAN: TRUE]` Payment request is routed to `Stripe Billing Service`.
-- `[BOOLEAN: FALSE]` Storing credit card numbers in the local database.
-- **Expected Return Contract:** `HTTP 201` with `order_id` and status `PAYMENT_SUCCESS`.
-- **Expected Failure Contract:** If payment fails, `[BOOLEAN: TRUE]` release the inventory lock immediately. `HTTP 402` with `{"error": "PAYMENT_DECLINED"}`.
-
-### Why this succeeds:
-This blueprint forces the AI to consider the *sequence* of operations (inventory before payment) and explicitly outlaws dangerous behaviors (storing credit cards). It maps business logic directly to physical folders, ensuring the AI only operates within the bounds of the existing architecture.
+### 4. Boolean Acceptance Criteria
+- `[BOOLEAN: TRUE]` Arterial line Signal Quality Index (SQI) $\ge 0.85$ ($I_{01}$).
+- `[BOOLEAN: TRUE]` Titration rate delta $|\Delta R| \le 0.05\,\mu\text{g/kg/min}$ per 5-minute interval ($I_{02}$).
+- `[BOOLEAN: FALSE]` Maintaining high titration rates when telemetry drops for $> 15\text{ minutes}$ ($I_{05}$).
+- `[BOOLEAN: FALSE]` Overwriting or deleting historical telemetry records ($I_{04}$).
+- **Expected Return Contract**: `TitrationVerdict(authorized=True, approved_rate=float, trace_id=UUIDv4)`.
+- **Expected Failure Contract**: Latch pump to baseline basal infusion rate, activate dual audible/visual alarms, and write sensor fault frame to `clinical_quarantine_ledger`.

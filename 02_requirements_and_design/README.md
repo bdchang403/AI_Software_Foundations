@@ -1,37 +1,115 @@
-# Requirements Lead Hub: Translating Context
+# Requirements Lead & Business Analyst Hub: Deterministic Machine Contracts
 
-As a Requirements Lead, you are the "Translator" in the Context Factory. Your job is to take the Strategy Lead's high-level **Semantic Blueprint** and translate it into a **context-enriched story**.
+In the enterprise Context Pipeline, the **Business Analyst (BA) / Requirements Lead** serves as the translation bridge between human strategic intent and autonomous software execution. When an autonomous AI builder agent writes code from traditional natural language requirements, it interprets lexical ambiguity through unconstrained statistical probability, frequently introducing security vulnerabilities, synthetic mock data, and architectural drift.
 
-## 🤝 The Context Handshake
-
-| Inbound | Role Action | Outbound |
-| :--- | :--- | :--- |
-| **Semantic Blueprint** | **Semantic Translation** | **Context-Enriched User Story** |
-| (Strategic Bounding) | (Technical Mapping) | (AI-Ready Requirements) |
-
----
-
-## 📚 Learning Path
-
-Follow these modules in order. Each module focuses on a specific step of the translation process.
-
-### 1. Theory Modules
-1.  [**Module 1: The 3-Part Directive**](./01_3_part_directives.md)
-    *   Structuring Acceptance Criteria so an AI can automatically generate tests.
-2.  [**Module 2: Adversarial Thinking**](./02_adversarial_thinking.md)
-    *   Hunting for terminology that an AI will misunderstand or hallucinate on.
-3.  [**Module 3: Feature-Level Decomposition**](./03_decomposition.md)
-    *   Breaking the Epic into token-sized workflows (User Stories).
-4.  [**Module 4: Semantic Context Engineering**](./04_context_engineering.md)
-    *   Mapping English business terms directly into the repository's architectural terminology.
-    *   **Resource:** [Context-Enriched Story Template](../templates_and_resources/stories/context_enriched_story_template.md)
-
-### 2. Hands-On Application
-*   [**Lab Workbook: Semantic Blueprints & Directives**](./LAB_WORKBOOK.md)
-    *   Apply all 4 modules to translate an Epic into a Story in this repository.
+In autonomous software engineering, a requirement is not a conversational story; it is a **Machine-Ingestible Semantic Contract**. The Requirements Lead is responsible for:
+1. Converting Epic directives into **3-Part Directives with Invariant Bindings**.
+2. Constructing the **Context-Enriched Semantic Blueprint** with **20 Pre-condition Boundary Edge Cases**.
+3. Enforcing the **ADR-030 Epistemic Air-Gap** and the **80% Commercial Funnel Discount** on all external unstructured data ingestion.
+4. Defining **Closed-World Fallback Schemas ($I_{05}$)** to ensure systems fail closed rather than hallucinating synthetic defaults.
 
 ---
 
-## 🏁 The Finish Line
-Once you have completed the Lab Workbook, you are ready to see how your stories are orchestrated into an agent.
-*   [**Phase 4: Agent Orchestration & Assembly**](../09_ai_agent_orchestration/01_anatomy_of_an_agent.md)
+## 🤝 The BA Context Handshake
+
+The Requirements Lead orchestrates the critical interface between the Product Owner and the Software Architect/Builder:
+
+| Inbound Artifact | Role Operational Action | Outbound Artifact | Target Recipient |
+| :--- | :--- | :--- | :--- |
+| **Epic Semantic Blueprint** (from Strategy Lead / PO) | Deconstruct into token-bounded user stories (< 4k tokens); identify terminology ambiguities | **3-Part Directives with Invariant Bindings** | Autonomous Coding Agents / Builders |
+| **Domain Data Schemas & Business Rules** | Systematically generate the 20-edge-case boundary matrix; define typed validation predicates | **Context-Enriched Semantic Blueprint** | System Architects & Quality Engineers |
+| **External Telemetry & Vendor Inputs** | Classify sources into `OBSERVED_CLAIM` vs `GROUND_TRUTH_FACT`; enforce 80% discount | **Sanitized Telemetry Contract (ADR-030)** | Ingestion & Quant Engineers |
+
+---
+
+## 🔄 Visual Architecture: The BA-to-Engineer Semantic Blueprint Lifecycle
+
+The following diagram illustrates how the Requirements Lead translates strategic intent into machine-executable code contracts verified by automated test harnesses:
+
+```mermaid
+flowchart TD
+    subgraph StrategyIntake ["Strategy Lead & Product Owner Intake"]
+        EPIC["Epic Semantic Blueprint: Bounded Subsystem (< 50k tokens)"]
+        INV["Governing Canonical Invariants: I_01 through I_22"]
+        EPIC & INV --> BA_INPUT["BA Context Intake"]
+    end
+
+    subgraph BARequirementsEngine ["Business Analyst Semantic Contract Engine"]
+        BA_INPUT --> DIRECTIVE["3-Part Directive Authoring: Role, Task, Format"]
+        DIRECTIVE --> AIRGAP["Epistemic Air-Gap & 80% Commercial Funnel Filter: ADR-030"]
+        AIRGAP --> EDGE_MATRIX["20-Edge-Case Pre-condition Matrix Enumeration"]
+        EDGE_MATRIX --> BLUEPRINT["Compile Semantic Blueprint: SEMANTIC_BLUEPRINT_SPECIFICATION.md"]
+    end
+
+    subgraph DownstreamHandoff ["Downstream Engineering & Quality Assurance"]
+        BLUEPRINT --> BUILDER["Architect & Software Engineer: ADR-016 <= 400 LOC Implementation"]
+        BLUEPRINT --> QE["Quality Engineer: Zero-Mock AST Verification & Hermetic Tests"]
+        BUILDER --> CI_GATE{"Zero-Drift CI Sentinel: drift-monitor.yml"}
+        QE --> CI_GATE
+        CI_GATE -->|"All 82 Tests Pass"| PROD["Production Deployment with AI-SBOM"]
+        CI_GATE -->|"Assertion Failure"| FAIL_CLOSED["Fail-Closed Quarantine Ledger: ADR-027"]
+    end
+
+    style StrategyIntake fill:#e1f5fe,stroke:#0288d1,stroke-width:2px;
+    style BARequirementsEngine fill:#fff3e0,stroke:#e65100,stroke-width:2px;
+    style DownstreamHandoff fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
+```
+
+---
+
+## 🏛️ Core BA Responsibilities in Autonomous Systems
+
+### 1. 3-Part Directives with Invariant Bindings
+User stories must explicitly bind to the 22 Canonical System Invariants ($I_{01}-I_{22}$). Instead of *"Calculate customer credit score"*, the BA writes:
+> *"Role: Credit Scoring Worker. Task: Compute Debt-to-Income and Refinancing Stress Score. Constraint: Bind to $I_{01}$ (Zero-Simulated-Data: no mock credit scores); bind to $I_{07}$ (Div-by-Zero Safety: assert Income $> 0$ before division); bind to $I_{04}$ (Immutable Quarantine: archive rejected applications without deletion)."*
+
+### 2. The 20 Pre-condition Boundary Edge Cases
+An autonomous agent will find every edge case you fail to define—and resolve it via statistical interpolation. Requirements Leads must systematically enumerate 20 deterministic boundary conditions across:
+- Numerical extrema (NaN, infinity, negative values, division-by-zero).
+- Telemetry timing anomalies (out-of-order timestamps, latency spikes, weekend gaps).
+- Schema corruptions (missing fields, boolean smuggling, unexpected payload types).
+- Fail-closed sinks (graceful degradation without synthetic constants).
+
+### 3. Epistemic Air-Gapping & The 80% Commercial Funnel Discount
+When business requirements involve ingesting external media or market transcripts, the BA enforces ADR-030. Unstructured sources are firewalled from internal execution state and discounted by 80%:
+$$W_{\text{eff}} = W_{\text{Brier}} \times 0.20, \quad \text{Polarity}_{\text{stored}} = \text{round}(\text{Polarity}_{\text{raw}} \times 0.20, \; 2)$$
+
+---
+
+## 🔬 Dual-Use Regulated Callout Boxes
+
+### Callout 1: Real-Time Algorithmic Trading Safeguards
+In algorithmic trading systems, a BA specifying the execution engine must define pre-trade plausibility bands ($I_{02}$):
+$$|P_{\text{exec}} - \text{EMA}_5| \le \max(3.0 \times \text{ATR}_{14}, \; 0.08 \times \text{EMA}_5)$$
+If an order execution price spikes beyond this envelope, the blueprint specifies immediate order cancellation (`REJECTED_EXECUTION_GUARDRAIL`) and routing to the quarantine ledger ($I_{04}$).
+
+### Callout 2: FDA Class III Medical Device Decision Pipeline
+In an automated closed-loop intravenous insulin infusion pump (FDA 21 CFR Part 820/11), the BA defines continuous glucose monitoring (CGM) telemetry ingestion:
+- **Boundary Pre-conditions**: If sensor glucose $G \le 40\,\text{mg/dL}$ (severe hypoglycemia) or rate of drop $dG/dt < -3\,\text{mg/dL/min}$, the blueprint commands an immediate suspension of insulin delivery.
+- **Fail-Closed Doctrine ($I_{01}, I_{05}$)**: If the wireless CGM sensor drops packets for $> 15\text{ minutes}$, the pump must not interpolate blood glucose or maintain previous high titration rates. It must fail closed to the predetermined safe basal rate and activate dual auditory/haptic alarms.
+
+### Callout 3: Aerospace Fly-by-Wire Avionics (DO-178C Level A)
+In digital flight control systems, the BA specifies autopilot control laws:
+- **Boundary Pre-conditions**: If airspeed readings from Triple Modular Redundant (TMR) pitot sensors diverge by $> 10\text{ knots}$, the system must not compute an arithmetic average.
+- **Fail-Closed Doctrine ($I_{03}$)**: Asymmetric pitot sensor disagreement triggers an immediate Fatal-Contagion Veto, disengaging autopilot and switching flight control laws to Direct Law, transferring sovereign control to the human pilot.
+
+---
+
+## 📚 Curriculum Navigation & Learning Path
+
+Business Analysts and Requirements Leads should master these modules in order:
+
+1. [**Module 1: The BA 3-Part Directive & Invariant Binding**](./01_3_part_directives.md)  
+   *Writing machine-executable requirements with explicit invariant links ($I_{01}-I_{22}$).*
+2. [**Module 2: Adversarial Thinking & The 20 Edge-Case Matrix**](./02_adversarial_thinking.md)  
+   *Enumerating boundary conditions, numerical limits, and Case Study 5 forensic takeaways.*
+3. [**Module 3: Feature-Level Decomposition & Blast Radius**](./03_decomposition.md)  
+   *Slicing Epics into context-bounded user stories adhering to the ADR-016 400-LOC ceiling.*
+4. [**Module 4: Semantic Context Engineering & Closed-World Schemas**](./04_context_engineering.md)  
+   *Authoring Semantic Blueprints, mapping business terms to AST paths, and defining fallback sinks ($I_{05}$).*
+5. [**Module 5: Prompt Injection Defense & Epistemic Sanitization**](./05_prompt_injection_defense.md)  
+   *Defending autonomous requirements pipelines against indirect prompt injections and payload smuggling.*
+6. [**Semantic Blueprint Master Specification**](./SEMANTIC_BLUEPRINT_SPECIFICATION.md)  
+   *The canonical, machine-ingestible 20-edge-case contract template.*
+7. [**Lab Workbook: Practical BA Exercises**](./LAB_WORKBOOK.md)  
+   *Hands-on labs: Authoring 3-part directives, populating the 20-edge-case matrix, and compiling blueprints.*

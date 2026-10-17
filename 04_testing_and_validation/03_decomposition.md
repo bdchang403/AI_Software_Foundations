@@ -1,27 +1,112 @@
-# Module 3: Test Suite Decomposition
+# Module 3: Test Suite Decomposition & Hermetic Socket Isolation
 
-## Theory: Chunking the Test Context
-Just like Builders cannot feed a 500k LOC repo to an AI, you cannot feed an entire E2E test suite (which could be hundreds of files and page objects) to an AI.
+## 🧠 Theory: Bounded Context Slicing & The Danger of Monolithic Test Suites
 
-You must decompose the automated testing instructions by **Contextual Sandbox**. 
+In large-scale enterprise systems, automated test suites frequently suffer from the same architectural degradation as production code. When quality engineers allow test files to grow into 1,000+ line monoliths containing hundreds of assertions, page objects, and fixtures, autonomous AI refactoring agents suffer severe attention degradation.
 
-## Verbose Example
-If you want the AI to write Cypress E2E tests for the "Shopping Cart":
-* **Test PR 1:** "Generate the Page Object Model (POM) for the Shopping Cart ONLY. Do not write test logic. Context allowed: `cart.html`."
-* **Test PR 2:** "Generate the positive Add-to-Cart tests using the POM created in PR 1." 
-* **Test PR 3:** "Generate the adversarial network interception tests (e.g., Mock a 500 API response) for the Cart."
+Under the transformer's $O(N^2)$ attention mechanism and the U-shaped positional attention curve, an AI modifying a monolithic test file loses track of earlier mock setups, accidentally deletes shared fixtures, and introduces unasserted side effects.
 
-By decomposing, the AI holds a small, perfectly accurate mental model of your testing framework.
+### The ADR-016 Modular Test Ceiling
+To maintain deterministic test quality, the **ADR-016 400-LOC Modular Ceiling** applies equally to test code:
+1. **Hard 400-LOC Ceiling**: No single test file in `tests/` may exceed 400 physical non-anchor lines of code.
+2. **350-LOC Refactoring Trigger**: When a test file reaches 350 lines, it must be decomposed into cohesive, isolated sub-suites before adding new test cases.
+3. **80-Line Surgical Test Slices**: Test authoring directives must operate within targeted 80-line focus windows.
 
-## Exercise: Slice the Automation
-
-**Scenario:** You need to automate testing for a new "User Profile Setup" wizard (3 screens: Info, Avatar, Preferences).
-
-**Your Action:**
-Slice the test suite generation into 3 prompts that an AI can handle within a tight token budget.
-1. **Prompt 1 Context:** [...]
-2. **Prompt 2 Context:** [...]
-3. **Prompt 3 Context:** [...]
+```
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                     DECOMPOSITION OF TEST SUITES BY BOUNDED CONTEXT                              │
+├──────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                                  │
+│   ❌ MONOLITHIC TEST SUITE (COLLAPSE RISK)                                                       │
+│   ┌──────────────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ test_orders_all.py (1,250 LOC)                                                           │   │
+│   │ • Unit logic + DB queries + Network HTTP + UI E2E + Auth fixtures                         │   │
+│   │ • Attention decay leads to silent fixture deletion & test flakiness                      │   │
+│   └──────────────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                                  │
+│   ✅ DECOMPOSED HERMETIC TEST PYRAMID (ADR-016 COMPLIANT)                                        │
+│   ┌────────────────────────┐  ┌────────────────────────┐  ┌────────────────────────┐             │
+│   │ test_order_math.py     │  │ test_guardrails.py     │  │ test_conformal_fuzz.py │             │
+│   │ (Pure math, <250 LOC)  │  │ (Fail-closed, <300 LOC)│  │ (Fault inject, <350 LOC)│            │
+│   └────────────────────────┘  └────────────────────────┘  └────────────────────────┘             │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
 
 ---
-[**Next Module: Context Engineering (Traceability) →**](./04_context_engineering.md)
+
+## 🔒 Hermetic Socket Isolation: OS-Level Network Interception
+
+One of the most insidious testing failure modes in autonomous engineering is **Network Egress Leakage**. If a unit test suite makes outbound HTTP requests to live production or staging APIs:
+1. Tests become non-deterministic and flaky due to transient network latency or rate limits (HTTP 429).
+2. Live API keys risk credential leakage into logs.
+3. AI coding agents can silently bypass zero-mock rules by calling external endpoints during test execution.
+
+To guarantee 100% hermetic isolation, network egress is blocked at the operating system system call boundary using `pytest-socket`.
+
+### The Hermetic Socket Architecture
+In `tests/conftest.py`, the Python `socket.socket.connect` system call is intercepted at fixture initialization:
+
+```python
+# tests/conftest.py: Hermetic OS-Level Socket Interception
+import os
+import socket
+import pytest
+
+class SocketBlockedError(RuntimeError):
+    """Raised when an unauthorized outbound network socket connection is attempted."""
+    pass
+
+def guard_socket_connect(*args, **kwargs):
+    raise SocketBlockedError(
+        "NETWORK EGRESS BLOCKED: Unit tests must execute under 100% hermetic isolation. "
+        "Outbound network socket calls are strictly forbidden."
+    )
+
+@pytest.fixture(autouse=True)
+def block_outbound_sockets(monkeypatch):
+    """Intercept socket system calls unless explicitly overridden by ALLOW_NET=true."""
+    if os.getenv("ALLOW_NET", "").lower() != "true":
+        monkeypatch.setattr(socket.socket, "connect", guard_socket_connect)
+```
+
+### Why SocketBlockedError Is Superior to Synthetic Mocks
+Traditional unit testing advises developers to use `unittest.mock.patch` to mock HTTP clients. However, when an AI agent generates code, it often mocks the wrong interface or invents synthetic responses that do not reflect live API schemas.
+
+Under Hermetic Socket Isolation:
+* Code under test cannot reach the external network.
+* If the code attempts an unauthorized outbound socket call, the test framework halts instantly in $<2\text{ms}$ with `SocketBlockedError`.
+* Developers are forced to design decoupled architectures where functions accept pure data inputs rather than instantiating external network clients within business logic.
+
+---
+
+## 📦 Golden Recorded Telemetry vs. Synthetic Mocks
+
+The Zero-Mock Mandate ($I_{01}$) does not mean systems cannot be tested against offline data. Instead, it creates a vital distinction between **Synthetic Mocks** and **Golden Recorded Telemetry**:
+
+```
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                 SYNTHETIC MOCKS vs. GOLDEN RECORDED TELEMETRY                                    │
+├──────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                                  │
+│   SYNTHETIC MOCK (BANNED UNDER ZM001–ZM007)                                                      │
+│   • Authored by an LLM or developer using arbitrary constants.                                   │
+│   • Example: `{"dark_pool_ratio": 0.50, "spot_price": 200.0, "fed_funds": 5.25}`                 │
+│   • Disconnected from physical market distributions, cross-table integrity, and schema timestamps.│
+│                                                                                                  │
+│   GOLDEN RECORDED TELEMETRY (PERMITTED UNDER INVARIANT I01)                                      │
+│   • Exact, byte-for-byte capture of live market/sensor telemetry recorded from verified source. │
+│   • Immutably signed with SHA256 checksum and provenance metadata.                               │
+│   • Example: `SEC_EDGAR_RAW` Form 10-K Item 8 JSON payload captured on 2026-09-15.               │
+│   • Preserves all real-world quirks: irregular timestamps, decimal fractions, and missing fields.│
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🔬 Dual-Use Regulated Callout Box
+
+### 🛡️ Dual-Use Callout Box: Hermetic Test Isolation
+> **Algorithmic Asset Management**: Outbound network interception via `pytest-socket` guarantees that backtests and unit test suites do not query live exchanges, preventing lookahead data leakage, rate-limiting IP bans, and unrepeatable execution results.  
+> **Aerospace Hardware-in-the-Loop (HIL) Avionics (DO-178C Level A)**: In avionics flight control software verification, federal regulators strictly forbid software tests from communicating over ambient airport or enterprise Wi-Fi/Ethernet networks. Test harnesses must execute in an **Air-Gapped Faraday Chamber** where flight management computers receive only deterministic, bit-exact sensor streams recorded from certified flight test maneuvers (ARINC 424 navigation telemetry). Any stray network packet invalidates the certification run.

@@ -1,47 +1,162 @@
-# Module 1: Auditing the 3-Part Directive (Governance at the Root)
+# Module 1: Auditing the 3-Part Directive (Governance at the Root & Epistemic Air-Gapping)
 
-## 🧠 Theory: You are the Constitutional Guardrail
+## 🧠 Theory: Upstream Governance vs. Downstream Remediation
 
-In a traditional organization, auditors are "Downstream"—they check for mistakes after the code is in production. In the **Context Factory**, you are "Upstream." You audit the **Semantic Contract** *before* a single line of code is written.
+In traditional enterprise software engineering, regulatory compliance and security teams operate downstream: they audit code repositories weeks after implementation or conduct vulnerability scans immediately prior to annual production releases. In an autonomous engineering factory driven by AI agents, downstream compliance guarantees failure:
+* AI agents generate code and architectural changes at 10x human velocity.
+* If a requirement prompt contains implicit bias, proxy variables, or an unconstrained optimization objective, the agent will generate thousands of lines of compliant-looking code that codifies systemic discrimination or regulatory non-compliance with 100% efficiency.
 
-By auditing the **3-Part Directive**, you prevent **Algorithmic Poisoning**. If a requirement is biased at the root, the AI will generate biased code with 100% efficiency.
+**Shift-Left Epistemic Governance** dictates that Compliance Leads and Risk Officers audit the **3-Part Directive** *before* a single line of code is synthesized.
 
----
-
-## 🏗️ 1. Identifying "Proxy Variable" Risks
-
-AI is an expert at finding patterns. If you tell an AI to optimize for "Profitability" without constraints, it may discover that certain zip codes or demographics are less profitable and start discriminating against them automatically.
-
-### Your Audit Protocol:
-When reviewing a Requirements Lead's directive, look for:
-- **Proxy Variables:** Are they using data points (like Zip Code, Age, or Gender) that could act as a proxy for protected classes?
-- **Opaque Logic:** Is the requirement "Give the AI freedom to decide"? (This is a violation of Article VII: Reproducibility).
-- **Implicit Bias:** Does the "Strategic Why" of the story conflict with the **Enterprise Constitution**?
-
----
-
-## 🏗️ 2. The Audited Directive (Case Study)
-
-### ❌ The Poisoned Directive (Constitutional Violation):
-*   **Task:** "Create a credit scoring algorithm."
-*   **Constraint:** "Analyze the user's social media followers and recent purchases to determine creditworthiness."
-*   **Risk:** Violates Article VI (Fairness) and GDPR (Data Minimization).
-
-### ✅ The Audited Directive:
-*   **Task:** "Create a credit scoring algorithm."
-*   **Constraint:** "Use only verified financial data (Income, Debt-to-Equity, Credit History). All calculations MUST be logged with the specific mathematical weight used for each variable."
-*   **Auditor's Note:** This ensures the final code is **Transparent** and **Deterministic**.
+```
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                   UPSTREAM EPISTEMIC GOVERNANCE IN THE CONTEXT FACTORY                           │
+├──────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                                  │
+│   ❌ TRADITIONAL DOWNSTREAM AUDIT (HIGH REMEDIATION COST)                                        │
+│   ┌──────────────┐         ┌──────────────┐         ┌──────────────┐         ┌────────────────┐  │
+│   │ Biased       │ ──────► │ AI Builder   │ ──────► │ Production   │ ──────► │ Compliance     │  │
+│   │ Requirement  │         │ Code Gen     │         │ Deployment   │         │ Audit Fails!   │  │
+│   └──────────────┘         └──────────────┘         └──────────────┘         └────────────────┘  │
+│                                                                                                  │
+│   ✅ UPSTREAM EPISTEMIC AUDIT (ROOT-LEVEL PREVENTION)                                            │
+│   ┌──────────────┐         ┌──────────────┐         ┌──────────────┐         ┌────────────────┐  │
+│   │ Requirements │ ──────► │ Compliance   │ ──────► │ AI Builder   │ ──────► │ Deterministic  │  │
+│   │ Directive    │         │ Gate (Seal)  │         │ Epistemic    │         │ Verified       │  │
+│   │              │         │              │         │ Sandbox      │         │ Release        │  │
+│   └──────────────┘         └──────────────┘         └──────────────┘         └────────────────┘  │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## 🛠️ Exercise: Spot the Strategic Risk
+## 🔎 Identifying Proxy Variable Risks & Unconstrained AI Objectives
 
-**Scenario:** A Requirements Lead submits a directive: *"Optimize the delivery routes. Prioritize deliveries in high-income neighborhoods to reduce the risk of package theft."*
+Machine learning models and LLMs are expert pattern-matching engines. When tasked with optimizing a singular objective (such as "maximize loan repayment rate" or "minimize delivery theft"), an unconstrained AI will rapidly identify and exploit **Proxy Variables** that correlate with protected demographic classes (race, gender, age, religion, national origin).
 
-**Your Action:** 
-1.  Explain which Article of the **Enterprise Constitution** this violates.
-2.  Rewrite the constraint to optimize for "Security" without using "Income" as a proxy.
+### Common Proxy Variable Patterns:
+1. **Geographic Proxies**: Five-digit ZIP codes, municipal voting precincts, or census tracts acting as demographic surrogates.
+2. **Social Graph Proxies**: Social media follower counts, affiliate group memberships, or university alumni networks.
+3. **Behavioral Timing Proxies**: Purchase transaction timing or internet connectivity frequency acting as socioeconomic proxies.
+
+### The Compliance Audit Criteria for Directives:
+Every 3-Part Directive must be evaluated against three constitutional questions:
+* **Article VI (Fairness & Anti-Discrimination)**: Does the directive explicitly bar protected characteristics and their statistical proxies?
+* **Article VII (Reproducibility & Determinism)**: Does the directive demand deterministic mathematical formulations rather than granting the AI unconstrained discretion?
+* **Article I (Data Minimization)**: Does the directive forbid the ingestion or logging of Personally Identifiable Information (PII)?
 
 ---
 
-[**Next Module: Regulatory Red-Teaming →**](./02_regulatory_red_teaming.md)
+## 🛡️ Epistemic Air-Gapping & The 80% Commercial Funnel Discount (ADR-030)
+
+In Crisis 5 (The Epistemic Priming & Liquidation Incident), an AI agent parsed an external YouTube video titled *"Once in a Lifetime Monetary Reset"* and treated the creator's panic-driven claims as independent third-party market validation, liquidating **\$150,000** in TSLA shares. In reality, the creator was exaggerating a routine 25 bps rate cut to sell a **\$2,000 day-trading mentorship**.
+
+To prevent external promotional hype from polluting enterprise decision-making, ADR-030 enforces the **Epistemic Air-Gap**:
+
+### 1. Epistemic Classification
+External unstructured media must be tagged strictly as `OBSERVED_CLAIM` (crowd psychology telemetry), never as `GROUND_TRUTH_FACT`. Any agent prompt generating assertions that external media "corroborates our internal thesis" triggers an immediate schema validation rejection.
+
+### 2. The 80% Commercial Funnel Discount Formula
+When a video, article, or transcript contains commercial sales funnels, course sales, or affiliate links (`commercial_conflict: true`), its raw polarity score is discounted by 80%:
+$$\text{Polarity}_{\text{stored}} = \operatorname{round}(\text{Polarity}_{\text{raw}} \times 0.20, \; 2)$$
+
+The effective Brier reliability weight is similarly discounted:
+$$W_{\text{eff}} = W_{\text{Brier}} \times W_{\text{commercial}} = W_{\text{Brier}} \times 0.20$$
+
+Under this discount, an extreme sensationalist video with raw polarity $-8.5$ is deflated to $-1.70$, preventing it from crossing the $|P(t)| \ge 6.0$ eruption trigger and eliminating panic liquidations.
+
+---
+
+## 🗄️ Immutable Ledger Quarantine (ADR-027 / Invariant $I_{04}$)
+
+Under regulatory record-keeping frameworks—such as FDA 21 CFR Part 11 (§11.10(e) Audit Trails) and SEC Rule 17a-4 / FINRA Rule 4511 (Electronic Records Preservation)—audit trails must be **immutable**, ensuring record modifications do not obscure previously recorded information. To satisfy these statutory mandates and support the model change tracking required by Federal Reserve SR 11-7, software engineers must never execute raw database deletions:
+$$\forall r \in \text{Ledger}: \operatorname{DELETE}(r) = \emptyset$$
+
+### The Quarantine Ledger Protocol
+1. **Raw `DELETE` Prohibited**: CI pre-commit chains scan all SQL migrations and source code. Any script containing `DELETE FROM consensus` or `DROP TABLE` is blocked immediately.
+2. **Atomic Quarantine Migration**: When invalid or poisoned records are identified, they are migrated in a single atomic transaction to `consensus_quarantine`:
+   ```sql
+   -- Atomic Quarantine Transaction
+   BEGIN TRANSACTION;
+   INSERT INTO consensus_quarantine (
+       record_id, source_table, ticker, verdict, conviction, 
+       quarantine_reason, bug_reference, invalidated_by, timestamp_utc
+   )
+   SELECT 
+       id, 'consensus_verdicts', ticker, verdict, conviction,
+       'Crisis 3: Synthetic interest rate stub 5.25% contamination',
+       'BUG-2026-10-18', 'AUDITOR_AGENT_V4', CURRENT_TIMESTAMP
+   FROM consensus_verdicts
+   WHERE id = 42891;
+
+   UPDATE consensus_verdicts 
+   SET status = 'QUARANTINED', active = 0 
+   WHERE id = 42891;
+   COMMIT;
+   ```
+3. **Cryptographic Traceability**: The quarantine table preserves the full historical record, enabling external regulatory auditors to verify exactly what data influenced past decisions.
+
+---
+
+## 🛠️ Role-Based Operational Playbook: Before vs. After Directive Audits
+
+### Domain A: Financial Credit Decisioning (Fair Lending / ECOA Compliance)
+
+#### ❌ The Poisoned Directive (Constitutional Violation)
+```markdown
+### TASK: Create a real-time credit scoring algorithm for micro-loans.
+### CONSTRAINT: Maximize repayment rate. Use all available mobile device telemetry, 
+including user battery charging habits, social network friend density, and home zip code.
+```
+* **Auditor's Rejection**: Violates the Equal Credit Opportunity Act (ECOA) and Article VI of the Enterprise Constitution. Home zip code is a well-established proxy for race; social network friend density discriminates against isolated demographic groups.
+
+#### ✅ The Audited Directive (Compliance Certified)
+```markdown
+### 1. CONTEXT BOUNDARY
+- SPECIFICATION: `docs/specs/CREDIT_UNDERWRITING_SPEC.md` (ECOA / Regulation B Compliant).
+- PERMITTED INPUTS: Strictly verified financial metrics: debt-to-income ratio, verified monthly income, seasoned trade-line repayment history.
+- FORBIDDEN INPUTS: Zip code, geolocation history, social media density, device telemetry, demographic indicators.
+
+### 2. TASK INSTRUCTION
+Implement `UnderwritingEngine.calculate_risk_score()` using a transparent, additive scorecard:
+- Calculate base credit tier from verified DTI and trade-line history.
+- Output explicit numerical sub-scores for every scoring variable.
+- For every score deduction, generate an adverse action reason code conforming to FCRA Section 615(a).
+
+### 3. FORMAT & CONSTRAINTS
+- DETERMINISTIC EXECUTION: Zero stochastic model outputs; all scorecards must evaluate to bit-exact outputs given identical inputs.
+- AUDIT LOGGING: Persist input features and calculated weights to `credit_decision_audit` table.
+- IMMUTABLE RECORDS: Hard deletes forbidden; archive contested applications to `quarantine`.
+```
+
+---
+
+### Domain B: Healthcare Clinical Triage (HIPAA / FDA 21 CFR Part 820)
+
+#### ❌ The Poisoned Directive (HIPAA Violation)
+```markdown
+### TASK: Implement acute patient deterioration detection in the ICU monitoring dashboard.
+### CONSTRAINT: Log all incoming telemetry packets with full patient names and medical record 
+numbers (MRN) to the local debugging file to assist with system troubleshooting.
+```
+* **Auditor's Rejection**: Violates HIPAA Security Rule (45 CFR Part 164) and Article I (Data Minimization). Storing unencrypted PII/PHI in application logs creates severe breach liabilities.
+
+#### ✅ The Audited Directive (HIPAA / FDA Certified)
+```markdown
+### 1. CONTEXT BOUNDARY
+- SPECIFICATION: `docs/regulatory/ICU_TRIAGE_ALGORITHM_SPEC.md`.
+- REGULATORY MANDATE: HIPAA 45 CFR § 164.514(b) (De-Identification Standard) and FDA 21 CFR Part 820.30.
+- PERMITTED INPUTS: Pseudonymized patient token (UUIDv4), vital sign telemetry streams (Heart Rate, $S_p\text{O}_2$, Mean Arterial Pressure).
+- FORBIDDEN INPUTS: Patient name, MRN, date of birth, social security number, full home address.
+
+### 2. TASK INSTRUCTION
+Implement `TriageEngine.detect_deterioration()`:
+- Compute Modified Early Warning Score (MEWS) from anonymized telemetry.
+- Assert that telemetry logging logs ONLY `patient_uuid` and computed integer risk tier.
+- If $S_p\text{O}_2$ sensor fails, trigger fail-closed audible alarm; zero synthetic data imputation allowed.
+
+### 3. FORMAT & CONSTRAINTS
+- ARTICLE I COMPLIANCE: Red-team logger output with regex assertions confirming zero PHI leakage.
+- TRACEABILITY: Attach AI-SBOM model slug and git commit hash to algorithm outputs.
+```

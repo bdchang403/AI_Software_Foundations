@@ -1,55 +1,200 @@
-# Lab Workbook: Registries, Chaining, & Routing
+# Lab Workbook: Registries, Chaining, & Zero-Drift Routing
 
 ## 🎯 Lab Objectives
-1.  **Build a Function Registry:** Define a tool that bounds the AI's actions.
-2.  **Chain Context:** Programmatically assemble a persona, a rule, and a task.
-3.  **Implement a 2-Tier Route:** Create a 1-hop link from a Global Router to a Domain Context.
+By completing this workbook, Software Engineers and System Architects will master:
+1. **Embedding & Verifying SHA1 Invariant Anchors**: Programmatically generating and validating `# === INVARIANT-BLOCK` checksums ($I_{01}$–$I_{22}$).
+2. **Constructing an AST State Registry Parser**: Extracting physical line counts, classes, public function signatures, and ADR-016 health flags.
+3. **Compiling Living Context Payloads**: Generating minified JSON (<1,500 tokens) with strict dual-schema table-to-DTO mappings.
+4. **Executing the Zero-Drift Pre-Commit Chain**: Enforcing `git diff --exit-code` and resolving AST drift in local development.
+5. **Enforcing Rule 14 Anti-Feature-Erasure**: Decomposing files $\ge 350$ LOC without truncating error handlers or assertions.
 
 ---
 
-## Lab 1: The Function Registry (Module 4)
+## 🧪 Lab 1: Embedding & Verifying an Invariant Anchor (Module 6)
 
-**The Scenario:**
-You are building a "Currency Validation" service. You want to give the AI a tool that checks if a currency code is valid, but you DO NOT want it to write its own validation logic.
+### Scenario
+You are modifying the execution gateway in `src/v3/execution/execution_gateway.py`. The governing architectural decision is **ADR-029**, and the governing constraint is **Invariant $I_{02}$ (Execution-Price Guardrail)**.
+
+The invariant predicate states:
+`Execution guardrail |P_exec - EMA_5| <= max(3*ATR, 0.08*EMA)`
 
 ### Your Task
-Create a JSON tool definition (following the `function_registry.md` template) for a function called `verify_iso_currency`. It should take a `currency_code` (string) as a parameter.
+1. Write a Python script to compute the deterministic 8-character SHA1 checksum using the formula:
+   $$\text{Checksum} = \operatorname{SHA1}\left(\text{"I02|ADR-029|Execution guardrail \|P\_exec - EMA\_5\| <= max(3*ATR, 0.08*EMA)"}\right)[:8]$$
+2. Confirm that the computed checksum equals `037a1c64`.
+3. Construct the complete code comment anchor block.
 
-*Check your work:* Does your JSON schema include a `description` that explicitly tells the AI to use this tool instead of writing a regex?
+### Step-by-Step Implementation & Answer Key
+```python
+import hashlib
+
+def generate_anchor_block(inv_id: str, adr: str, predicate: str) -> str:
+    raw_str = f"{inv_id.strip()}|{adr.strip()}|{predicate.strip()}"
+    checksum = hashlib.sha1(raw_str.encode("utf-8")).hexdigest()[:8]
+    
+    return (
+        f"# === INVARIANT-BLOCK v1 ===\n"
+        f"# INVARIANT: {inv_id.strip()}\n"
+        f"# ADR: {adr.strip()}\n"
+        f"# PREDICATE: {predicate.strip()}\n"
+        f"# /INVARIANT [sha1:{checksum}]\n"
+        f"# === /INVARIANT-BLOCK ==="
+    )
+
+anchor = generate_anchor_block(
+    "I02",
+    "ADR-029",
+    "Execution guardrail |P_exec - EMA_5| <= max(3*ATR, 0.08*EMA)"
+)
+print(anchor)
+assert "sha1:037a1c64" in anchor
+print("✅ Checksum verified: 037a1c64")
+```
 
 ---
 
-## Lab 2: The 2-Tier Route Test (Module 5)
+## 🧪 Lab 2: Building an AST State Registry Parser (Module 4)
 
-**The Scenario:**
-You are about to ask the AI to write the point accrual logic. You must use the 1-Hop pattern to provide the domain context and the task requirements simultaneously.
+### Scenario
+You must implement a standalone AST indexer that scans Python files in a directory, extracts non-private functions and classes, counts physical lines, and asserts whether the file satisfies the ADR-016 health threshold ($< 350$ lines).
 
 ### Your Task
-Execute a prompt in your IDE (using `@workspace` or your Agent CLI) that explicitly directs the AI to the specific Tier 2 domain context.
+Create `parse_module_topography(file_path: Path) -> dict` utilizing Python's native `ast` library.
 
-### Answer Key (Compare Your Work)
-Run this exact prompt in your AI Chat:
-> *"@workspace Load the domain context from `docs/context/billing.md`. This file contains the ADRs and the active story for FEAT-101. Using ONLY the Function Registry tools, implement the point accrual logic defined in the story."*
+### Step-by-Step Implementation & Answer Key
+```python
+import ast
+from pathlib import Path
+from typing import Dict, Any, List
 
-**The Result:** You will witness the AI skip the "hunting" phase. It goes directly to the truth, reads the ADR for integer precision, and applies the logic from the story on the first try.
+def parse_module_topography(file_path: Path) -> Dict[str, Any]:
+    source = file_path.read_text(encoding="utf-8")
+    lines = source.splitlines()
+    total_loc = len(lines)
+    
+    tree = ast.parse(source, filename=str(file_path))
+    classes: List[str] = []
+    public_functions: List[str] = []
+    
+    for node in ast.walk(tree):
+        if isinstance(node, ast.ClassDef):
+            classes.append(node.name)
+        elif isinstance(node, ast.FunctionDef) and not node.name.startswith("_"):
+            public_functions.append(node.name)
+            
+    is_healthy = total_loc < 350
+    status_flag = "✅ Healthy (<350 LOC)" if is_healthy else "⚠️ Near 400 LOC Cap"
+    
+    return {
+        "file": str(file_path.name),
+        "total_loc": total_loc,
+        "classes": sorted(classes),
+        "public_functions": sorted(public_functions),
+        "status_flag": status_flag,
+        "is_healthy": is_healthy
+    }
+```
 
 ---
 
-## Lab 3: Breaking the Chain (Troubleshooting)
+## 🧪 Lab 3: Compiling Living Context with Dual-Schema Parity (Module 4)
 
-**The Scenario:**
-Your AI agent is ignoring the `ADR-042` (Integer-only math) and is using floats anyway. 
+### Scenario
+To prevent LLM database column hallucinations (such as `SELECT * FROM historical_sentiment`), you must compile a minified JSON dictionary mapping active SQL tables to their backing Pydantic DTO models and files.
 
 ### Your Task
-1.  Look at your **Context Chain**. Is the ADR buried at the top of a 20,000-token file?
-2.  **Fix:** Move the "HARD CONSTRAINT" into a **System Skill** (see `skills.md`) and inject it at the *bottom* of the prompt, right before the user command.
+Construct `generate_living_context_payload()` that compiles:
+1. `table_dto_map`: All production tables mapped to model classes and source files.
+2. `canonical_math_algorithms`: Key algorithms with exact file and symbol coordinates.
+3. Assert that the total compiled JSON payload is under 1,500 tokens.
+
+### Step-by-Step Implementation & Answer Key
+```python
+import json
+from typing import Dict, Any
+
+def generate_living_context_payload() -> Dict[str, Any]:
+    payload = {
+        "active_models": {
+            "flagship": "claude-3-7-sonnet-20250219",
+            "fast": "google/gemini-2.0-flash-001"
+        },
+        "table_dto_map": {
+            "daily_prices": {"model": "DailyPriceDTO", "file": "src/v3/schemas/daily_prices.py"},
+            "consensus": {"model": "ConsensusVerdict", "file": "src/v3/schemas/debate.py"},
+            "consensus_quarantine": {"model": "QuarantineRecord", "file": "src/v3/utils/quarantine.py"},
+            "cost_logs": {"model": "CostEntry", "file": "src/v3/pipeline/cost_ledger.py"}
+        },
+        "canonical_math_algorithms": {
+            "Alg_42_PlausibilityBand": {"file": "src/v3/execution/gateway.py", "symbol": "validate_order"},
+            "Alg_89_ZCAWhitening": {"file": "src/v3/math/whitening.py", "symbol": "anchor_preserving_zca_whitening"}
+        },
+        "inviolable_rules": [
+            "ADR-016: 400 LOC ceiling per file.",
+            "Zero-Mock: Return None or raise on missing data; zero synthetic constants.",
+            "Compensatory Confluence: >=2 of 4 pillars unblock BUY."
+        ]
+    }
+    
+    # Estimate token count (approx 4 chars per token)
+    json_str = json.dumps(payload, indent=2)
+    estimated_tokens = len(json_str) // 4
+    assert estimated_tokens < 1500, f"Payload exceeded 1,500 tokens: {estimated_tokens}"
+    return payload
+```
 
 ---
 
-## ✅ Lab Completion Check
-- [ ] I have a valid JSON schema for my registry.
-- [ ] My AI agent successfully read a file path I provided in a prompt.
-- [ ] I successfully forced the AI to follow an ADR it was previously ignoring.
+## 🧪 Lab 4: Executing the Zero-Drift Command Chain (Module 6)
 
-1. [**Proceed to Module 5: Context Chaining & Codebase Routing →**](./05_context_chaining_and_routing.md)
-2. [**Proceed to Module 6: 2-Tier Precision Routing Architecture →**](./06_information_routing_structure.md)
+### Scenario
+An autonomous agent modified `src/v3/math/whitening.py` by adding an assertion, shifting the line numbers of `anchor_preserving_zca_whitening()` by 4 lines.
+
+### Your Task
+Execute the pre-commit chain to detect and eliminate AST drift:
+1. Stage your code modification.
+2. Run generator scripts to re-align registries.
+3. Assert `git diff --exit-code` exits with code 0.
+
+### Step-by-Step Shell Commands
+```bash
+# 1. Stage modified code
+git add src/v3/math/whitening.py
+
+# 2. Run AST Topography and Mathematical Indexers
+python3 scripts/update_state_registry.py
+python3 scripts/update_math_registry.py
+python3 scripts/generate_living_context.py
+
+# 3. Stage the automatically updated registries
+git add STATE_REGISTRY.md docs/MATHEMATICAL_REGISTRY.md data/openrouter_context.json
+
+# 4. Verify Zero Drift (Command will fail with code 1 if any uncommitted drift remains)
+git diff --cached --exit-code STATE_REGISTRY.md docs/MATHEMATICAL_REGISTRY.md data/openrouter_context.json
+
+# 5. Execute in-memory verification suite
+python3 -m pytest tests/unit/test_context_freshness.py
+```
+
+---
+
+## 🧪 Lab 5: Applying Rule 14 Anti-Feature-Erasure (Module 3)
+
+### Scenario
+A file `risk_manager.py` is at **380 physical lines**. An unconstrained AI agent was tasked with adding a new volatility filter, and submitted a PR that reduced the file to 320 lines by replacing 80 lines of multi-tier broker fallbacks with `# ... remaining broker logic ...`.
+
+### Your Task
+Identify the Rule 14 violation and apply genuine architectural decomposition.
+
+### Evaluation & Remediation Rubric
+* **Violation Detected**: Compression Cheating / Silent Feature Erasure. The agent deleted critical runtime error recovery to satisfy the 400-LOC ceiling.
+* **Remediation Action**: Reject the PR. Decompose `risk_manager.py` by extracting `broker_fallbacks.py` (110 LOC) and `volatility_filter.py` (90 LOC), reducing the primary risk manager to 200 LOC while preserving 100% of safety handlers.
+
+---
+
+## ✅ Mastery Verification Checklist
+- [ ] Computed and verified the exact SHA1 checksum for Invariant $I_{02}$ (`037a1c64`).
+- [ ] Built an AST parser identifying classes, public functions, and the 350-LOC refactor trigger.
+- [ ] Confirmed that `openrouter_context.json` maps SQL tables to DTOs in under 1,500 tokens.
+- [ ] Executed the atomic pre-commit command chain with clean zero-diff exit status.
+- [ ] Enforced Rule 14 Anti-Feature-Erasure against compression cheating.

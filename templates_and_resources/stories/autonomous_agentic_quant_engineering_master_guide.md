@@ -1317,7 +1317,7 @@ flowchart TB
     end
 
     subgraph Telemetry_Debiasing ["Mathematical Telemetry De-Biasing"]
-        RAW_P["Raw Sentiment Polarity<br/>[-10.0, +10.0]"]
+        RAW_P["Raw Sentiment Polarity<br/>(-10.0 to +10.0)"]
         DISC["Apply 80% Commercial Funnel Discount<br/>W_commercial = 0.20"]
         CLEAN_P["Sanitized Narrative Telemetry<br/>Polarity_stored = Raw * 0.20"]
         
@@ -1651,7 +1651,7 @@ flowchart TD
         RAG[Contrastive k-NN Prior] --> SOLVER
         SOCIAL["Social Alpha Adj<br/>ADR-035 tanh Scaling"] --> SOLVER
         SOLVER --> JSD_CALC["Calculate Triad JSD<br/>Entropy Discount"]
-        JSD_CALC --> FUSION["Convex Posterior Probability<br/>P_posterior in [0, 1]"]
+        JSD_CALC --> FUSION["Convex Posterior Probability<br/>P_posterior in (0 to 1)"]
         FUSION --> DECISION{"Verdict & Bounding"}
         DECISION --> BUY["BUY / SNIPER_BUY<br/>Multiplier in 0.20-1.25"]
         DECISION --> WATCH[WATCH / HOLD]
@@ -3867,7 +3867,7 @@ flowchart TD
     end
 
     subgraph ExecutionLayer ["5. Pre-Trade Execution & Portfolio Guardrails"]
-        V --> W["Compute Position Size Multiplier M in [0.20, 1.25]"]
+        V --> W["Compute Position Size Multiplier M in (0.20 to 1.25)"]
         W --> X[Pre-Trade Execution Guardrail: ADR-029]
         X --> Y{"Execution Price |P - EMA5| <= max(3*ATR, 0.08*EMA5)?"}
         Y -- No --> Z[Reject Trade: Corrupt / Stale Price]

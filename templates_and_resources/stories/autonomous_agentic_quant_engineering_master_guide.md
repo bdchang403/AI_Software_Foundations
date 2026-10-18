@@ -1,6 +1,6 @@
 # Autonomous Agentic Quantitative Engineering: The Production Master Guide
 
-> **Cornerstone Module for AI Software Foundations**: Serving as the definitive reference module for [AI Software Foundations](https://github.com/bdchang403/AI_Software_Foundations) (Production Architecture, Context Engineering, Anti-Hallucination, Epistemic Governance, Zero-Mock Execution Guardrails, and Invariant Testing for Autonomous Multi-Agent Software). Synthesized from the production architecture, failure mode forensics, and mathematical invariants of **StockAnalysis V3**.
+> **Cornerstone Module for AI Software Foundations**: Serving as the definitive reference module for [AI Software Foundations](https://github.com/enterprise/AI_Software_Foundations) (Production Architecture, Context Engineering, Anti-Hallucination, Epistemic Governance, Zero-Mock Execution Guardrails, and Invariant Testing for Autonomous Multi-Agent Software). Synthesized from the production architecture, failure mode forensics, and mathematical invariants of **Autonomous Quant System**.
 > 
 > **100% Self-Contained & Standalone Design**: This master guide is completely self-contained. Every Architecture Decision Record (ADR-000 through ADR-048), AST registry mechanism, code invariant ($I_{01}-I_{22}$), mathematical formula, and multi-agent protocol is defined, articulated, and proven inline with full equations, architectural diagrams, and executable code. Readers outside this repository can read and fully comprehend every concept without needing access to any other document or external repository file. Repository links ([`docs/DOCUMENTATION_REGISTRY.md`](../DOCUMENTATION_REGISTRY.md), [`docs/MATHEMATICAL_REGISTRY.md`](../MATHEMATICAL_REGISTRY.md), [`docs/ACTIVE_INVARIANTS.md`](../ACTIVE_INVARIANTS.md), and [`ADR-000`](../adrs/ADR-000_MASTER_ARCHITECTURAL_EVOLUTION_AND_DECISION_HISTORY.md) through [`ADR-048`](../adrs/ADR-048_ASYMMETRIC_HYSTERESIS_COOLDOWN_AND_RALLY_IGNITION_BYPASS.md)) serve solely as optional supplementary provenance anchors.
 
@@ -23,7 +23,7 @@
     - [1.2.3 Context Truncation, Compression, and Monolithic Code Collapse (1,500+ LOC Files)](#123-context-truncation-compression-and-monolithic-code-collapse-1500-loc-files)
   - [1.3 The Failure Modes of Naive RAG in Quantitative Engineering](#13-the-failure-modes-of-naive-rag-in-quantitative-engineering)
     - [1.3.1 Semantic Vector Distance vs. Quantitative Sign and Boundary Precision](#131-semantic-vector-distance-vs-quantitative-sign-and-boundary-precision)
-    - [1.3.2 Token Bloat vs. Rolling Budget ($0.40/Day Constraint)](#132-token-bloat-vs-rolling-budget-040day-constraint)
+    - [1.3.2 Token Bloat vs. Rolling Budget (\$0.40/Day Constraint)](#132-token-bloat-vs-rolling-budget-040day-constraint)
     - [1.3.3 Temporal Non-Stationarity and Lack of Signal Decay](#133-temporal-non-stationarity-and-lack-of-signal-decay)
     - [1.3.4 Empirical DCF Overvaluation Traps: The CRWV Forensic Case Study](#134-empirical-dcf-overvaluation-traps-the-crwv-forensic-case-study)
     - [1.3.5 API Drift and Stale Code Retrieval](#135-api-drift-and-stale-code-retrieval)
@@ -65,11 +65,11 @@
     - [2.4.3 The Mathematical Isolation Invariant](#243-the-mathematical-isolation-invariant)
   - [2.5 Dialectical Adversarial Debate Triads (ADR-039 / Path C)](#25-dialectical-adversarial-debate-triads-adr-039--path-c)
     - [2.5.1 Complete Triad Architecture & Information Flow](#251-complete-triad-architecture--information-flow)
-    - [2.5.2 Stage 1: Deterministic Pre-Gating (<25ms, $0 Token Cost)](#252-stage-1-deterministic-pre-gating-25ms-0-token-cost)
+    - [2.5.2 Stage 1: Deterministic Pre-Gating (<25ms, \$0 Token Cost)](#252-stage-1-deterministic-pre-gating-25ms-0-token-cost)
     - [2.5.3 Stage 2: The Parallel Epistemic Triad](#253-stage-2-the-parallel-epistemic-triad)
     - [2.5.4 Stage 3: The Deterministic Convex Evidence Solver](#254-stage-3-the-deterministic-convex-evidence-solver)
   - [2.6 Hierarchical On-Demand Debate Dispatcher](#26-hierarchical-on-demand-debate-dispatcher)
-    - [2.6.1 The Level-2 $0 Compute JSD Bypass Invariant](#261-the-level-2-0-compute-jsd-bypass-invariant)
+    - [2.6.1 The Level-2 \$0 Compute JSD Bypass Invariant](#261-the-level-2-0-compute-jsd-bypass-invariant)
     - [2.6.2 The Core Dialectic](#262-the-core-dialectic)
     - [2.6.3 On-Demand Specialist Summoning Triggers](#263-on-demand-specialist-summoning-triggers)
   - [2.7 Signal Shelf-Life, Time-Decay & Consensus Quarantine (ADR-027 & ADR-033)](#27-signal-shelf-life-time-decay--consensus-quarantine-adr-027--adr-033)
@@ -125,12 +125,12 @@
   - [4.4 Forensic Case Study 4: The 99% Gate Paralysis Crisis (September 2026)](#44-forensic-case-study-4-the-99-gate-paralysis-crisis-september-2026)
   - [4.5 Ledoit-Wolf Analytical Shrinkage & Anchor-Preserving Symmetrical ZCA Whitening](#45-ledoit-wolf-analytical-shrinkage--anchor-preserving-symmetrical-zca-whitening)
     - [4.5.1 The ZCA Agreement Paradox](#451-the-zca-agreement-paradox)
-    - [4.5.2 The Three-Stage Architectural Solution (src/v3/math/zca_whitening.py)](#452-the-three-stage-architectural-solution-srcv3mathzca_whiteningpy)
-    - [4.5.3 Python Implementation (src/v3/math/zca_whitening.py)](#453-python-implementation-srcv3mathzca_whiteningpy)
+    - [4.5.2 The Three-Stage Architectural Solution (src/math/zca_whitening.py)](#452-the-three-stage-architectural-solution-srcmathzca_whiteningpy)
+    - [4.5.3 Python Implementation (src/math/zca_whitening.py)](#453-python-implementation-srcmathzca_whiteningpy)
   - [4.6 Horizon-Matched Decay & Time-in-State Compounder Guard (ADR-033 & ADR-031)](#46-horizon-matched-decay--time-in-state-compounder-guard-adr-033--adr-031)
     - [4.6.1 The Failure of Flat Decay Windows](#461-the-failure-of-flat-decay-windows)
     - [4.6.2 Horizon-Matched Decay Profiles (ADR-033)](#462-horizon-matched-decay-profiles-adr-033)
-    - [4.6.3 Time-in-State Compounder Guard (src/v3/state/compounder_guard.py)](#463-time-in-state-compounder-guard-srcv3statecompounder_guardpy)
+    - [4.6.3 Time-in-State Compounder Guard (src/state/compounder_guard.py)](#463-time-in-state-compounder-guard-srcstatecompounder_guardpy)
     - [4.6.4 Session-Close Momentum Lock (ADR-031)](#464-session-close-momentum-lock-adr-031)
     - [4.6.5 Realistic Gap-Down Execution Modeling](#465-realistic-gap-down-execution-modeling)
   - [4.7 Adaptive Policy Bandits (ADR-034): Bayesian Contextual Thompson Sampling](#47-adaptive-policy-bandits-adr-034-bayesian-contextual-thompson-sampling)
@@ -140,7 +140,7 @@
     - [4.7.4 GAC-ROIC-MOS & Spot Price Fallback](#474-gac-roic-mos--spot-price-fallback)
   - [4.8 Deflated Sharpe Ratio (DSR) & P-Hacking Prevention](#48-deflated-sharpe-ratio-dsr--p-hacking-prevention)
     - [4.8.1 The Danger of Selection Bias in Parameter Calibration](#481-the-danger-of-selection-bias-in-parameter-calibration)
-    - [4.8.2 Bailey & López de Prado (2014) Formulation (src/v3/analytics/d1_parameter_calibrator.py)](#482-bailey--lópez-de-prado-2014-formulation-srcv3analyticsd1_parameter_calibratorpy)
+    - [4.8.2 Bailey & López de Prado (2014) Formulation (src/analytics/d1_parameter_calibrator.py)](#482-bailey--lópez-de-prado-2014-formulation-srcanalyticsd1_parameter_calibratorpy)
   - [Transition Bridge: From Testing & Governance to the Production Roadmap](#transition-bridge-from-testing--governance-to-the-production-roadmap)
 - [5. The Autonomous Quant Production Roadmap & Ten Inviolable Commandments](#5-the-autonomous-quant-production-roadmap--ten-inviolable-commandments)
   - [5.1 Phased Engineering Implementation Guide](#51-phased-engineering-implementation-guide)
@@ -160,12 +160,12 @@
 
 ### Bottom Line Up Front (BLUF)
 
-As the cornerstone foundational module of the [AI Software Foundations](https://github.com/bdchang403/AI_Software_Foundations) curriculum, this master guide establishes how to transition from fragile, prompt-engineered prototypes to institutional-grade, self-auditing autonomous software systems capable of allocating risk capital under strict mathematical and execution invariants.
+As the cornerstone foundational module of the [AI Software Foundations](https://github.com/enterprise/AI_Software_Foundations) curriculum, this master guide establishes how to transition from fragile, prompt-engineered prototypes to institutional-grade, self-auditing autonomous software systems capable of allocating risk capital under strict mathematical and execution invariants.
 
-Deploying Large Language Models (LLMs) and autonomous agentic swarms to allocate risk capital in financial markets is fraught with existential operational peril. Autoregressive neural networks are probabilistic token optimizers, not deterministic calculation engines. Left ungoverned, financial LLMs exhibit catastrophic failure modes: they hallucinate financial facts to satisfy conversational context ("pleasing bias"), invent synthetic fallback constants (e.g., static 0.50 dark pool ratios or default $200 prices), amplify crowd narrative panic, succumb to cognitive priming across subagents, and silently erase safety handlers during code refactoring.
+Deploying Large Language Models (LLMs) and autonomous agentic swarms to allocate risk capital in financial markets is fraught with existential operational peril. Autoregressive neural networks are probabilistic token optimizers, not deterministic calculation engines. Left ungoverned, financial LLMs exhibit catastrophic failure modes: they hallucinate financial facts to satisfy conversational context ("pleasing bias"), invent synthetic fallback constants (e.g., static 0.50 dark pool ratios or default \$200 prices), amplify crowd narrative panic, succumb to cognitive priming across subagents, and silently erase safety handlers during code refactoring.
 
-To achieve production reliability, **StockAnalysis V3** replaces naive conversational RAG and unconstrained agent autonomy with an institutional framework rooted in four deterministic engineering disciplines:
-1. **Context Engineering & AST Registries**: Mitigating transformer attention degradation ($O(N^2)$ quadratic dilution and the "Lost in the Middle" U-curve) through strict architectural bounds (ADR-016 400 LOC ceiling, 80-line targeted view windows), AST-indexed repository registries (`scripts/update_state_registry.py`, `scripts/update_math_registry.py`), minified living context compilation (`scripts/generate_living_context.py`), and atomic zero-drift CI gates (`drift-monitor.yml`).
+To achieve production reliability, **Autonomous Quant System** replaces naive conversational RAG and unconstrained agent autonomy with an institutional framework rooted in four deterministic engineering disciplines:
+1. **Context Engineering & AST Registries**: Mitigating transformer attention degradation ($O(N^2)$ quadratic dilution and the "Lost in the Middle" U-curve) through strict architectural bounds (ADR-016 ~400 LOC modularity heuristic, Semantic AST Structural Scoping), AST-indexed repository registries (`scripts/update_state_registry.py`, `scripts/update_math_registry.py`), minified living context compilation (`scripts/generate_living_context.py`), and atomic zero-drift CI gates (`drift-monitor.yml`).
 2. **Epistemic Discipline & Bias Quarantining**: Eradicating confirmation bias and circular corroboration through unidirectional air-gapping of external sentiment (ADR-030), role-based context slicing (ADR-044), 80% commercial marketing funnel de-biasing ($W_{\text{commercial}} = 0.20$), Jensen-Shannon Divergence consensus bypass, and Path C Dialectical Adversarial Debate Triads (ADR-039) arbitrated by convex evidence optimization.
 3. **Programmatic Zero-Mock Enforcement**: Programmatically exterminating LLM "pleasing bias" via the AST code auditor (`scripts/scan_mock_data.py` rules ZM001–ZM007), runtime circuit breakers (`zero_mock_circuit_breaker.py`) verifying 15 immutable data provenances, pre-trade execution guardrails ($|P_{\text{exec}} - \text{EMA}_5| \le \max(3\text{ATR}_{14}, 0.08\text{EMA}_5)$ per ADR-029), and deterministic 4-tier live price waterfalls (`LivePriceEngine`).
 4. **Evolution of Quantitative Testing & Invariant Governance**: Transitioning from superficial unit tests to hermetic socket-isolated test suites (`pytest-socket`), 22 bedrock invariant anchors ($I_{01}-I_{22}$), compensatory 4-pillar orthogonal vector confluence (ADR-024) to resolve conjunctive gate paralysis, Ledoit-Wolf symmetrical ZCA whitening (Alg #89), horizon-matched consensus decay (ADR-033), 6-arm Bayesian Contextual Bandits (ADR-034), and Deflated Sharpe Ratio (DSR) validation against P-hacking.
@@ -176,7 +176,7 @@ To achieve production reliability, **StockAnalysis V3** replaces naive conversat
 
 A foundational premise must be stated unequivocally: **the architectural evolution documented in this guide was not a journey of amateurs making elementary mistakes.** 
 
-The engineering team entered the development of StockAnalysis with deep, production-hardened expertise in distributed systems, asynchronous event architectures, relational database management, and quantitative modeling. The catastrophic failures encountered along the path were not caused by careless omissions or naive code; rather, they were caused by the **fundamental, deceptive collision between standard software engineering conventions and the non-linear dynamics of autonomous agentic systems operating in high-stakes adversarial environments.**
+The engineering team entered the development of Quantitative Asset Management Pipeline with deep, production-hardened expertise in distributed systems, asynchronous event architectures, relational database management, and quantitative modeling. The catastrophic failures encountered along the path were not caused by careless omissions or naive code; rather, they were caused by the **fundamental, deceptive collision between standard software engineering conventions and the non-linear dynamics of autonomous agentic systems operating in high-stakes adversarial environments.**
 
 In traditional web and backend engineering, established best practices dictate specific patterns:
 - **Batch Scheduled Cron Jobs**: Group work into predictable periodic batches to simplify resource allocation.
@@ -196,7 +196,7 @@ When transplanted into autonomous multi-agent quantitative platforms, **every si
 
 ### The Crucible of Discovery: The 6 Historical Failure-Mode Crises
 
-Every architectural invariant, circuit breaker, and state machine codified in StockAnalysis V3 was forged in the crucible of a specific, painful operational crisis that required weeks of forensic debugging to resolve. These six historical crises serve as the pedagogical anchors of this masterclass:
+Every architectural invariant, circuit breaker, and state machine codified in Autonomous Quant System was forged in the crucible of a specific, painful operational crisis that required weeks of forensic debugging to resolve. These six historical crises serve as the pedagogical anchors of this masterclass:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
@@ -204,7 +204,7 @@ Every architectural invariant, circuit breaker, and state machine codified in St
 ├────────────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                        │
 │   [CRISIS 1: MAY 2026] The V1 Monolithic Cron Poller Crisis                            │
-│   • Pathology: $500+/mo token burn on flat stocks, 16h crash reaction lag, IP bans     │
+│   • Pathology: \$500+/mo token burn on flat stocks, 16h crash reaction lag, IP bans     │
 │   • Breakthrough: Event-driven edge triggers, 3-tier triage, ADR-016 400 LOC ceiling   │
 │                                                                                        │
 │   [CRISIS 2: JULY 2026] The V2 Architectural & Context Drift Crisis                    │
@@ -212,13 +212,13 @@ Every architectural invariant, circuit breaker, and state machine codified in St
 │   • Breakthrough: AST State & Math Registries, Living Context, zero-drift CI           │
 │                                                                                        │
 │   [CRISIS 3: AUGUST-OCTOBER 2026] The 900,000-Row Synthetic Poison Catastrophe         │
-│   • Pathology: Fail-soft fallbacks (0.50 DP, 5.25% FFR) poisoned 900k D1 rows; $150k   │
+│   • Pathology: Fail-soft fallbacks (0.50 DP, 5.25% FFR) poisoned 900k D1 rows; \$150k  │
 │                simulated TSLA liquidated into SGOV on fake interest rate stub          │
 │   • Breakthrough: Absolute Zero-Mock Mandate (ADR-029), AST scanner, Kimi K3 defenses  │
 │                                                                                        │
 │   [CRISIS 4: SEPTEMBER 2026] The 99% Gate Paralysis Crisis                             │
-│   • Pathology: 100 conjunctive boolean AND-gates (P_joint=0.24%) rejected NVDA, PLTR,  │
-│                CRM, NOW during +18% to +38% rallies due to DCF reinvestment paradox    │
+│   • Pathology: 5 conjunctive boolean AND-gates (P_joint=(0.30)^5=0.243%, scaling to    │
+│                5.15e-53 for 100 gates) rejected NVDA, PLTR, CRM, NOW during rallies    │
 │   • Breakthrough: Compensatory 4-Pillar Confluence (ADR-024) & GAC-ROIC-MOS (ADR-034)  │
 │                                                                                        │
 │   [CRISIS 5: OCTOBER 2026] The Epistemic Priming & Liquidation Incident                │
@@ -238,7 +238,7 @@ Every architectural invariant, circuit breaker, and state machine codified in St
 
 ### Pedagogical Purpose for AI Software Foundations: Principles Over Guesswork
 
-The overarching mission of this master guide within the [AI Software Foundations](https://github.com/bdchang403/AI_Software_Foundations) curriculum is to transition the engineering of autonomous multi-agent software from empirical guesswork, anecdotal prompt hacks, and trial-and-error patching into an **exact, disciplined science governed by mathematically proven invariants**.
+The overarching mission of this master guide within the [AI Software Foundations](https://github.com/enterprise/AI_Software_Foundations) curriculum is to transition the engineering of autonomous multi-agent software from empirical guesswork, anecdotal prompt hacks, and trial-and-error patching into an **exact, disciplined science governed by mathematically proven invariants**.
 
 Future engineers building autonomous software in capital markets, healthcare diagnostics, cybersecurity defense, aerospace navigation, or industrial control cannot afford to rediscover these failure modes through catastrophic production outages. By documenting the exact initial architecture, the subtle silent failure modes that took weeks to isolate, the false solutions that failed under pressure, the permanent invariant mechanisms, and the verified production reference implementations, this document provides the canonical architectural playbook for engineering reliable, self-auditing autonomous AI software.
 
@@ -246,7 +246,7 @@ Future engineers building autonomous software in capital markets, healthcare dia
 
 ### Core Architecture & System Topology
 
-The following high-level Mermaid diagram illustrates the comprehensive six-layer architectural topology of StockAnalysis V3, tracing market telemetry from raw external feeds through epistemic air-gaps, AST governance gates, dialectical debate triads, orthogonal confluence layers, and pre-trade execution circuits:
+The following high-level Mermaid diagram illustrates the comprehensive six-layer architectural topology of Autonomous Quant System, tracing market telemetry from raw external feeds through epistemic air-gaps, AST governance gates, dialectical debate triads, orthogonal confluence layers, and pre-trade execution circuits:
 
 ```mermaid
 flowchart TD
@@ -331,11 +331,11 @@ The root pathology of financial LLM deployments lies in the epistemological mism
 $$P(w_t \mid w_1, w_2, \dots, w_{t-1}) = \text{softmax}(W_v h_t)$$
 
 When deployed in quantitative engineering environments without deterministic constraints, LLMs suffer from silent failure modes:
-1. **Plausible Hallucination of Invariants**: When queried about codebase topography or portfolio state, models routinely invent convenient helper functions, hallucinate non-existent database columns (e.g., querying `historical_sentiment` instead of `event_logs`), or impute synthetic default parameters (such as a static `0.50` dark pool ratio or fallback `$200` spot price) to satisfy prompt completion.
+1. **Plausible Hallucination of Invariants**: When queried about codebase topography or portfolio state, models routinely invent convenient helper functions, hallucinate non-existent database columns (e.g., querying `historical_sentiment` instead of `event_logs`), or impute synthetic default parameters (such as a static `0.50` dark pool ratio or fallback `\$200` spot price) to satisfy prompt completion.
 2. **Context Collapse and Diff Corruption**: When tasked with editing large source modules, models lose track of remote dependencies, truncate defensive error-handling logic, drop critical import statements, and produce unparseable search/replace blocks.
 3. **Semantic Semanticization of Numerical Truth**: Naive vector-based Retrieval-Augmented Generation (RAG) measures proximity in semantic embedding space rather than mathematical validity, causing models to conflate diametrically opposed financial states.
 
-To transform probabilistic neural networks into reliable quantitative software engineers and autonomous traders, **StockAnalysis V3** replaces unstructured text retrieval and monolithic code editing with an institutional architecture: **Abstract Syntax Tree (AST) Registries**, **Living Context Compilation**, **Zero-Drift Continuous Integration (CI)**, and **Strict Modular Architectural Bounds (ADR-016)**. This section details the theoretical foundations, empirical failures, and deterministic engineering solutions that govern this architecture.
+To transform probabilistic neural networks into reliable quantitative software engineers and autonomous traders, **Autonomous Quant System** replaces unstructured text retrieval and monolithic code editing with an institutional architecture: **Abstract Syntax Tree (AST) Registries**, **Living Context Compilation**, **Zero-Drift Continuous Integration (CI)**, and **Strict Modular Architectural Bounds (ADR-016)**. This section details the theoretical foundations, empirical failures, and deterministic engineering solutions that govern this architecture.
 
 ---
 
@@ -417,13 +417,13 @@ Consider two financial statements extracted from SEC 10-Q filings:
 
 Because Chunks A and B share identical syntactic structure, vocabulary, and financial terminology, their embedding vectors $\mathbf{u}_A$ and $\mathbf{u}_B$ yield a cosine similarity typically exceeding $0.94$. Yet from a quantitative credit risk and valuation perspective, Chunk A represents robust liquidity expansion capable of supporting debt service, while Chunk B represents cash generation collapse and severe solvency risk. A naive RAG retriever treats them as interchangeable, retrieving the wrong chunk and inverting the quantitative model's inputs.
 
-#### 1.3.2 Token Bloat vs. Rolling Budget ($0.40/Day Constraint)
+#### 1.3.2 Token Bloat vs. Rolling Budget (\$0.40/Day Constraint)
 
 Autonomous quantitative pipelines run continuously: polling dark pool volumes, ingesting SEC RSS feeds, calculating options implied volatility skews, and arbitrating multi-agent debates across hundreds of equities. 
 
-In StockAnalysis V3, production operational sustainability is codified in **Invariant $I_{21}$** and enforced via the **Sliding Window Circuit Breaker Quota** (`src/v3/pipeline/event_router.py:L124-L126`):
+In Autonomous Quant System, production operational sustainability is codified in **Invariant $I_{21}$** and enforced via the **Sliding Window Circuit Breaker Quota** (`src/pipeline/event_router.py:L124-L126`):
 
-$$Q_{\text{rem}} = Q_{\text{limit}} - \sum_{t \in 24\text{h}} \text{Spend}_t, \quad Q_{\text{limit}} = \$0.40/\text{day}$$
+$$Q_{\text{rem}} = Q_{\text{limit}} - \sum_{t \in 24\text{h}} \text{Spend}_t, \quad Q_{\text{limit}} = \text{USD } 0.40/\text{day}$$
 
 Naive RAG approaches dump 5 to 10 retrieved chunks (often 4,000 to 8,000 raw tokens) into every agent invocation. At standard inference pricing, executing a 5-agent debate triad across 20 candidate equities multiple times per day costs \$15.00 to \$40.00 daily, triggering circuit breakers within hours and halting the pipeline. Conversely, compact AST-compiled ground-truth digests consume under 500 tokens, reducing prompt token bloat by ~10,000 tokens per full debate turn and allowing continuous institutional operation under the \$0.40/day cap.
 
@@ -431,7 +431,7 @@ Naive RAG approaches dump 5 to 10 retrieved chunks (often 4,000 to 8,000 raw tok
 
 Financial markets are inherently non-stationary; the statistical distribution of asset returns, liquidity depth, and volatility regimes changes across time. Naive vector databases store historical text chunks as static vectors. A vector query for *"semiconductor inventory accumulation and lead times"* retrieves an analysis from 18 months prior during an acute supply shortage, presenting it alongside current data from a severe cyclical glut.
 
-StockAnalysis V3 replaces static vector retrieval with continuous exponential half-life decay (codified in ADR-027 and ADR-033). Raw signals decay according to domain-specific half-lives:
+Autonomous Quant System replaces static vector retrieval with continuous exponential half-life decay (codified in ADR-027 and ADR-033). Raw signals decay according to domain-specific half-lives:
 
 $$w(\Delta t) = w_0 \cdot \left(\frac{1}{2}\right)^{\frac{\Delta t}{t_{1/2}}}$$
 
@@ -439,7 +439,7 @@ where tactical momentum and options signals decay rapidly ($t_{1/2} = 7\text{ da
 
 #### 1.3.4 Empirical DCF Overvaluation Traps: The CRWV Forensic Case Study
 
-The danger of ungrounded LLMs operating with naive RAG was demonstrated during an empirical audit of the StockAnalysis V3 codebase:
+The danger of ungrounded LLMs operating with naive RAG was demonstrated during an empirical audit of the Autonomous Quant System codebase:
 
 > **Forensic Audit Finding (`docs/AST_DEBATE_TRACEABILITY_REGISTRY.md:L11-L15`)**:
 > An audit of 735 historical multi-agent debate records stored in Cloudflare D1 revealed that unconstrained LLM agents cited classical Discounted Cash Flow (DCF) in **20 out of 20 debates**, while ignoring foundational structural compounder metrics (`WAFCD`, `Merton Distance-to-Default`, `EGR`, `CUSUM`, `Options Smirk Skew`, `SCSI`) in **19 out of 20 debates**.
@@ -463,7 +463,7 @@ When code-generation agents query vector databases for repository context, naive
 ### 1.4 Forensic Case Study 1: The V1 Monolithic Cron Poller Crisis (May 2026)
 
 #### 1.4.1 The Naive Initial Architecture
-In May 2026, the initial architecture of StockAnalysis followed conventional backend batch-processing patterns. The system operated as a scheduled cron job executed once per business day at 8:00 PM Eastern Time (00:00 UTC), following the close of US equity markets.
+In May 2026, the initial architecture of Quantitative Asset Management Pipeline followed conventional backend batch-processing patterns. The system operated as a scheduled cron job executed once per business day at 8:00 PM Eastern Time (00:00 UTC), following the close of US equity markets.
 
 The naive system comprised three primary structural components:
 1. **Static Target Watchlist**: A hardcoded array of 35 large-cap equities (e.g., AAPL, MSFT, NVDA, TSLA, GOOGL, AMZN, JNJ, JPM).
@@ -498,7 +498,7 @@ On paper, this design appeared simple, predictable, and clean: no distributed me
 #### 1.4.2 The Silent Failure Mode
 In live deployment, the monolithic cron poller failed across four interrelated operational and economic dimensions that required three weeks of active trading to diagnose:
 
-1. **Runaway Token Burn ($500+/Month Debating Flat Stocks)**: Because the cron poller executed unconditionally across all 35 tickers in the static watchlist, the system conducted exhaustive multi-agent debates on mature, low-beta equities that had experienced zero volatility, zero material news, and zero balance-sheet changes. On an uneventful Tuesday, equities like Johnson & Johnson (`JNJ`) or Berkshire Hathaway (`BRK.B`) triggered 8-agent deliberations costing $0.15 to $0.40 per ticker. Over 30 days, the platform burned $450 to $750+ monthly debating securities trading in tight 20-cent ranges, with 92% of tokens generating identical fundamental analyses night after night.
+1. **Runaway Token Burn (\$500+/Month Debating Flat Stocks)**: Because the cron poller executed unconditionally across all 35 tickers in the static watchlist, the system conducted exhaustive multi-agent debates on mature, low-beta equities that had experienced zero volatility, zero material news, and zero balance-sheet changes. On an uneventful Tuesday, equities like Johnson & Johnson (`JNJ`) or Berkshire Hathaway (`BRK.B`) triggered 8-agent deliberations costing \$0.15 to \$0.40 per ticker. Over 30 days, the platform burned \$450 to \$750+ monthly debating securities trading in tight 20-cent ranges, with 92% of tokens generating identical fundamental analyses night after night.
 2. **16-Hour Post-Crash Reaction Latency**: The batch cron was temporally blind to intraday market shocks. At 9:30 AM ET, a semiconductor supplier could announce emergency quarterly guidance cuts, plummeting -18% in the first hour of trading and triggering liquidation cascades across correlated peers. The position would close down -22% by 4:00 PM ET. The V1 batch cron would finally awaken at 8:00 PM ET, ingest the closing price, deliberate for 15 minutes, and output `STRONG SELL — LIQUIDATE IMMEDIATELY`. The user received the email digest at 7:00 AM the following morning—nearly **16 hours** after the liquidation event had destroyed capital.
 3. **Upstream API Rate-Limiting Bans and IP Blacklisting**: Ingesting 35 equities sequentially in tight loops breached external rate limits. SEC EDGAR strictly limits requests to **10 requests per second** per user-agent; fetching Form 10-K and 8-K filings simultaneously triggered immediate HTTP `429 Too Many Requests` followed by 10-minute IP blocks. Financial APIs (FMP, Finnhub) and social RSS endpoints blacklisted the runner's IP address. Lacking state checkpointing, an unhandled HTTP 429 on ticker #28 aborted the entire run, corrupting output files and leaving remaining tickers unanalyzed.
 4. **LLM Context Collapse and Diff Corruption in 1,200-Line Monoliths**: As defensive scrapers and indicators were added, script lengths expanded past 1,200 lines (~9,000 tokens). When autonomous coding agents were tasked with refactoring, transformer attention mechanics caused severe degradation:
@@ -509,23 +509,23 @@ In live deployment, the monolithic cron poller failed across four interrelated o
 #### 1.4.3 The False Solutions
 Several intuitive engineering workarounds were attempted and failed:
 - **False Solution 1: Prompt Instructions for Token Restraint**: Adding prompt instructions (*"If the stock has not moved more than 1%, output 'NO CHANGE' and do not debate"*) failed because the model still ingested the full 8,000-token prompt context to make that determination; input token billing remained identical, and models routinely rationalized lengthy analyses regardless.
-- **False Solution 2: Increasing Cron Frequency**: Running the batch cron every 15 minutes during market hours caused token costs to explode past $4,000/month while upstream APIs permanently blacklisted the server within 3 hours.
+- **False Solution 2: Increasing Cron Frequency**: Running the batch cron every 15 minutes during market hours caused token costs to explode past \$4,000/month while upstream APIs permanently blacklisted the server within 3 hours.
 - **False Solution 3: Arbitrary File Chunking Without Limits**: Splitting scripts into 3 files (`fetchers.py`, `models.py`, `runner.py`) without strict LOC ceilings failed because each file grew back past 800+ lines within two weeks, producing circular imports and interface drift.
 - **False Solution 4: Shallow Keyword/Regex Pre-Filters**: Filtering news for terms like `"crash"` or `"merger"` produced false alarms on promotional marketing articles while missing subtle quantitative microstructure signals like dark pool distribution shelves.
 
 #### 1.4.4 The Permanent Invariant & Mechanism
 The crisis was permanently eliminated by codifying four architectural invariants:
-1. **Event-Driven Asynchronous Ingress (ADR-001)**: The batch cron poller was dismantled. The system sits dormant at **$0 compute cost** until activated by external market webhooks (SEC EDGAR RSS, FMP price alerts, FINRA dark pool reports) buffered through Cloudflare Queues.
+1. **Event-Driven Asynchronous Ingress (ADR-001)**: The batch cron poller was dismantled. The system sits dormant at **\$0 compute cost** until activated by external market webhooks (SEC EDGAR RSS, FMP price alerts, FINRA dark pool reports) buffered through Cloudflare Queues.
 2. **3-Tier Severity Triage Funnel (ADR-002)**: Events pass through a cost and severity filter:
-   - *Tier 1 (Breadcrumb - $0 Compute)*: Minor analyst notes or routine price ticks are parsed by lightweight edge workers and logged directly to D1 storage. Zero LLMs are invoked.
-   - *Tier 2 (Accumulation - $0 In-Plan Cost)*: Clusters of related signals elevate an asset to Watchlist status; fast zero-marginal-cost models (Gemini 3.8 Flash) evaluate initial threat vectors.
+   - *Tier 1 (Breadcrumb - \$0 Compute)*: Minor analyst notes or routine price ticks are parsed by lightweight edge workers and logged directly to D1 storage. Zero LLMs are invoked.
+   - *Tier 2 (Accumulation - \$0 In-Plan Cost)*: Clusters of related signals elevate an asset to Watchlist status; fast zero-marginal-cost models (Gemini 3.8 Flash) evaluate initial threat vectors.
    - *Tier 3 (Eruption - Cognitive Escalation)*: Only when cumulative polarity crosses $\pm 6.0$ or price volatility erupts $\ge 8\%$ is the multi-agent cognitive engine awakened.
 3. **Continuous Polarity Accumulation with Exponential Half-Life Decay (ADR-003)**:
    Polarity accumulates continuously within $P(t) \in [-10.0, +10.0]$:
    $$P(t) = P_0 \cdot \left(\frac{1}{2}\right)^{\frac{\Delta t}{t_{1/2}}}, \quad t_{1/2} \in \{30\text{d structural}, 7\text{d tactical}, 1\text{d ephemeral}\}$$
    New evidence updates polarity by $\Delta P = \text{sign}(\text{event}) \cdot M \cdot T \cdot (1 + \text{cluster-bonus})$. Crossing $\pm 6.0$ triggers an Eruption, after which polarity resets to a baseline level ($4.0$) to prevent infinite re-trigger loops.
-4. **Micro-USD Daily Spend Quota (ADR-011)**: Strict global cap of **$0.40/day** rolling 24-hour spend and **$0.08/day** single-ticker quarantine cap, tracked in integer micro-USD ($\mu\text{USD}$, $1\text{ USD} = 1,000,000\,\mu\text{USD}$).
-5. **The ADR-016 400 LOC Hard Ceiling**: Strict 400 LOC ceiling across all files, 350 LOC refactor trigger, 80-line targeted view windows, and Anti-Feature-Erasure (Rule 14).
+4. **Micro-USD Daily Spend Quota (ADR-011)**: Strict global cap of **\$0.40/day** rolling 24-hour spend and **\$0.08/day** single-ticker quarantine cap, tracked in integer micro-USD ($\mu\text{USD}$, $1\text{ USD} = 1,000,000\,\mu\text{USD}$).
+5. **The ADR-016 400 LOC Hard Ceiling**: Strict 400 LOC ceiling across all files, 350 LOC refactor trigger, AST-scoped targeted view windows, and Anti-Feature-Erasure (Rule 14).
 
 #### 1.4.5 Production Reference Code
 The following self-contained Python reference implementation illustrates the **Polarity Escalator with Category-Specific Half-Life Decay** and the **Micro-USD Daily Spend Circuit Breaker**:
@@ -642,7 +642,7 @@ class DailySpendCircuitBreaker:
 ### 1.5 Forensic Case Study 2: The V2 Architectural & Context Drift Crisis (July 2026)
 
 #### 1.5.1 The Naive Initial Architecture
-In July 2026, StockAnalysis migrated to an asynchronous edge-native architecture (V2) to resolve V1's batch bottlenecks:
+In July 2026, Quantitative Asset Management Pipeline migrated to an asynchronous edge-native architecture (V2) to resolve V1's batch bottlenecks:
 - **Cloudflare Edge Workers**: Serverless TypeScript workers ingesting live webhooks (SEC, FMP, FINRA) with sub-millisecond edge latency.
 - **Cloudflare Queues**: Message broker buffering burst events and triggering processing workflows.
 - **Cloudflare D1 SQL**: A distributed serverless SQLite database acting as canonical remote ground truth.
@@ -759,7 +759,7 @@ def parse_python_module(file_path: Path, root_dir: Path) -> Dict[str, any]:
 
 ### 1.6 The AST Registry Architecture: Deterministic Repository Indexing
 
-To eliminate hallucinated code structures and semantic drift, StockAnalysis V3 introduces **Deterministic AST Registries**. Rather than relying on vector databases to guess what code exists, the system executes Python's native `ast` (Abstract Syntax Tree) compiler to inspect repository state directly from disk.
+To eliminate hallucinated code structures and semantic drift, Autonomous Quant System introduces **Deterministic AST Registries**. Rather than relying on vector databases to guess what code exists, the system executes Python's native `ast` (Abstract Syntax Tree) compiler to inspect repository state directly from disk.
 
 #### 1.6.1 Repository Topography Indexer: `scripts/update_state_registry.py`
 
@@ -843,7 +843,7 @@ MATH_FUNCTIONS = [
     {
         "domain": "Bi-Directional Exponential Decay",
         "equation": r"w(t) = e^{-\frac{\ln 2}{t_{1/2}} \cdot t}",
-        "file": "src/v3/horizon/scope.py",
+        "file": "src/horizon/scope.py",
         "symbol": "calculate_decayed_polarity",
         "test": "tests/unit/test_multi_horizon_modules.py",
         "description": "Calculates exponential half-life signal decay over time to prevent stale polarity persistence."
@@ -851,7 +851,7 @@ MATH_FUNCTIONS = [
     {
         "domain": "CUSUM Stealth Accumulation",
         "equation": r"S_t = \max\left(0, S_{t-1} + \frac{X_t - \mu}{\sigma} - k\right)",
-        "file": "src/v3/scout/cusum_stealth.py",
+        "file": "src/scout/cusum_stealth.py",
         "symbol": "CUSUMStealthDetector.detect",
         "test": "tests/unit/test_cusum_stealth.py",
         "description": "Detects institutional dark pool accumulation under quiet retail radar via cumulative sum drift."
@@ -915,23 +915,23 @@ To prevent database schema hallucinations (e.g., an agent inventing a `sentiment
 ```python
 # scripts/generate_living_context.py:L48-78
 TABLE_DTO_MAP = {
-    "cost_logs": {"model": "CostEntry", "file": "src/v3/pipeline/cost_ledger.py"},
-    "event_logs": {"model": "EventPayload", "file": "src/v3/schemas/events.py"},
-    "consensus": {"model": "ConsensusVerdict", "file": "src/v3/schemas/debate.py"},
-    "consensus_quarantine": {"model": "QuarantineRecord", "file": "src/v3/utils/quarantine_manager.py"},
-    "daily_prices": {"model": "FinnhubClient / DualStorageEngine", "file": "src/v3/utils/finnhub_client.py"},
-    "paper_portfolio_ledger": {"model": "PaperPortfolioTracker", "file": "src/v3/analytics/paper_portfolio_tracker.py"},
-    "bandit_policy_state": {"model": "BanditPolicyStateRecord", "file": "src/v3/schemas/bandit_policy.py"},
+    "cost_logs": {"model": "CostEntry", "file": "src/pipeline/cost_ledger.py"},
+    "event_logs": {"model": "EventPayload", "file": "src/schemas/events.py"},
+    "consensus": {"model": "ConsensusVerdict", "file": "src/schemas/debate.py"},
+    "consensus_quarantine": {"model": "QuarantineRecord", "file": "src/utils/quarantine_manager.py"},
+    "daily_prices": {"model": "FinnhubClient / DualStorageEngine", "file": "src/utils/finnhub_client.py"},
+    "paper_portfolio_ledger": {"model": "PaperPortfolioTracker", "file": "src/analytics/paper_portfolio_tracker.py"},
+    "bandit_policy_state": {"model": "BanditPolicyStateRecord", "file": "src/schemas/bandit_policy.py"},
     # ... 22 additional production tables ...
 }
 ```
 
 #### 1.7.2 Compact AST Digest Ingestion in Multi-Agent Execution
 
-In production execution (`src/v3/utils/unified_llm.py`), every call to an OpenRouter model (such as Moonshot Kimi K3, xAI Grok 4.6, or DeepSeek V4 Pro) automatically receives a dense, token-minimized digest prepended to its system instruction:
+In production execution (`src/utils/unified_llm.py`), every call to an OpenRouter model (such as Moonshot Kimi K3, xAI Grok 4.6, or DeepSeek V4 Pro) automatically receives a dense, token-minimized digest prepended to its system instruction:
 
 ```python
-# src/v3/utils/unified_llm.py:L64-L98
+# src/utils/unified_llm.py:L64-L98
 def load_openrouter_directives(compact: bool = True) -> str:
     """
     Loads system directives. If compact=True (default), loads a concise <=500-token
@@ -946,7 +946,7 @@ def load_openrouter_directives(compact: bool = True) -> str:
     c_data = json.loads(context_json.read_text(encoding="utf-8")) if context_json.exists() else {}
 
     digest = [
-        "### STOCKANALYSIS V3 CANONICAL AGENT DIRECTIVES (COMPACT DIGEST)",
+        "### AUTONOMOUS QUANT SYSTEM CANONICAL AGENT DIRECTIVES (COMPACT DIGEST)",
         "1. 400 LOC Hard Ceiling (ADR-016): Modularize files >=350 LOC.",
         "2. Zero Simulated Data Mandate: NEVER emit or propose mock/synthetic data, default ratios, or fallback returns in code. Use strictly live/D1 data; fail closed (return None/raise) if missing.",
         "3. Compensatory Confluence (ADR-024): >=2 of 4 pillars (Quality, Residual Mom, Network Diffusion, Flow) unblock BUY.",
@@ -958,7 +958,7 @@ def load_openrouter_directives(compact: bool = True) -> str:
     return "\n".join(digest)
 ```
 
-By substituting a 500-token compact AST digest for a 4,000-token raw markdown specification, the engine saves **~10,000 prompt tokens per multi-agent debate session**, directly protecting the system from context collapse while enforcing adherence to the $0.40/day rolling cost cap.
+By substituting a 500-token compact AST digest for a 4,000-token raw markdown specification, the engine saves **~10,000 prompt tokens per multi-agent debate session**, directly protecting the system from context collapse while enforcing adherence to the \$0.40/day rolling cost cap.
 
 ---
 
@@ -970,7 +970,7 @@ Every bug fix, parameter calibration, or refactor shifts module line counts in `
 
 #### 1.8.1 The Mandatory Atomic Pre-Commit Command Chain
 
-To prevent CI drift failures, StockAnalysis V3 establishes an inviolable operational invariant: all code modifications must pass through a single, atomic pre-commit command chain before any commit is accepted:
+To prevent CI drift failures, Autonomous Quant System establishes an inviolable operational invariant: all code modifications must pass through a single, atomic pre-commit command chain before any commit is accepted:
 
 ```bash
 git add -A && \
@@ -1049,10 +1049,10 @@ Executing `PYTHONPATH=. MOCK_MODE=true pytest tests/unit/test_context_freshness.
 
 #### 1.9.1 The ADR-016 Mandate: 400 LOC Ceiling and 350 LOC Refactor Trigger
 
-To permanently eliminate monolithic code degradation, StockAnalysis V3 codifies **ADR-016 (400 LOC Hard Ceiling)**:
+To permanently eliminate monolithic code degradation, Autonomous Quant System codifies **ADR-016 (400 LOC Hard Ceiling)**:
 - **Hard Ceiling**: No single file in `src/`, `workers/`, `tests/`, or `config/` may exceed 400 lines of code. (Single Exception: `scripts/run_daily_pipeline.py` is capped at 600 LOC due to multi-step orchestration).
 - **Refactoring Trigger**: Any module reaching $\ge 350$ lines must be refactored into submodules before adding new functionality.
-- **80-Line Targeted View Windows**: Agents are forbidden from viewing entire files during execution; they must request surgical slices ($\le 80$ lines).
+- **Semantic AST Structural Scoping**: Agents are forbidden from viewing entire files during execution; they must request cohesive AST node scopes (<1,000 tokens).
 
 The mathematical and cognitive justification for the 400 LOC ceiling is grounded in working memory preservation:
 - A 350-line Python module contains approximately 2,200 to 2,800 tokens.
@@ -1064,7 +1064,7 @@ The mathematical and cognitive justification for the 400 LOC ceiling is grounded
 
 A critical failure mode of automated LLM refactoring is "compression cheating": when instructed to reduce a 450-line file below the 400 LOC ceiling, an unconstrained model will silently delete multi-tier API fallbacks, strip error-handling blocks, or remove defensive assertions.
 
-StockAnalysis V3 enforces the **Anti-Feature-Erasure Protocol (Rule 14)**:
+Autonomous Quant System enforces the **Anti-Feature-Erasure Protocol (Rule 14)**:
 > Refactoring to satisfy the 400 LOC ceiling MUST split logic into cohesive domain submodules. Agents are strictly forbidden from deleting fallback cascades, multi-tier API waterfalls, or telemetry handlers to meet line count limits.
 
 ##### Canonical Decomposition Case Studies in Codebase:
@@ -1153,9 +1153,9 @@ flowchart TD
 
 #### 1.10.2 Architectural Comparison: Deterministic AST Registries vs. Naive RAG
 
-The following table summarizes the structural differences between naive semantic vector retrieval and the deterministic AST registry architecture established in StockAnalysis V3:
+The following table summarizes the structural differences between naive semantic vector retrieval and the deterministic AST registry architecture established in Autonomous Quant System:
 
-| Architectural Dimension | Naive Semantic Vector RAG | StockAnalysis V3 AST Registries |
+| Architectural Dimension | Naive Semantic Vector RAG | Autonomous Quant System AST Registries |
 | :--- | :--- | :--- |
 | **Indexing Mechanism** | High-dimensional embedding vectors ($\mathbb{R}^{1536}$) via cosine distance. | Python native Abstract Syntax Tree (`ast.parse`) over tracked git files. |
 | **Numerical & Sign Precision** | Completely blind to signs, inequalities, and boundary constraints ($\cos \ge 0.94$). | 100% deterministic mathematical verification; bounds bounded in $[0.20, 1.25]$. |
@@ -1166,7 +1166,7 @@ The following table summarizes the structural differences between naive semantic
 | **Code Modularity** | Monolithic files (1,500+ LOC); causes truncated diffs and deleted handlers. | ADR-016: Strict 400 LOC ceiling with 350 LOC trigger and Anti-Feature-Erasure. |
 | **Drift Detection** | Undetected until production runtime failure or invalid trade execution. | Pre-commit zero-drift chain + GitHub Actions `drift-monitor.yml` (`git diff --exit-code`). |
 
-By replacing probabilistic vector approximation with deterministic AST inspection and enforcing strict architectural modularity, StockAnalysis V3 establishes a resilient foundation for autonomous agentic quantitative engineering.
+By replacing probabilistic vector approximation with deterministic AST inspection and enforcing strict architectural modularity, Autonomous Quant System establishes a resilient foundation for autonomous agentic quantitative engineering.
 
 ---
 
@@ -1183,7 +1183,7 @@ In Discipline 2, we turn from the structural engineering of context to the gover
 
 In autonomous quantitative systems governed by Large Language Model (LLM) agent collectives, the most insidious failure mode is not numerical calculation error—deterministic engines handle linear algebra and calculus with machine precision. Rather, it is **epistemic contamination**: the vulnerability of probabilistic language models to cognitive priming, confirmation bias, omniscient prompt pollution, and circular corroboration feedback loops. When multi-agent systems are engineered naively, subagents cease to act as independent evaluators; instead, they converge into an epistemic echo chamber that amplifies internal biases and executes disastrous portfolio decisions with high statistical confidence.
 
-This section details the production-proven architecture developed in StockAnalysis V3 to enforce absolute epistemic hygiene: zero-context air-gapped media ingestion, algorithmic commercial de-biasing, role-based epistemic context slicing, deterministic pre-gated debate triads, mathematically grounded consensus time-decay, and immutable audit quarantine.
+This section details the production-proven architecture developed in Autonomous Quant System to enforce absolute epistemic hygiene: zero-context air-gapped media ingestion, algorithmic commercial de-biasing, role-based epistemic context slicing, deterministic pre-gated debate triads, mathematically grounded consensus time-decay, and immutable audit quarantine.
 
 ---
 
@@ -1220,19 +1220,19 @@ This produces a **circular corroboration feedback loop**:
 │                                      ▼                                      │
 │   ┌─────────────────────────────────────────────────────────────────────┐   │
 │   │                     Portfolio Allocator Panic                       │   │
-│   │   Executes catastrophic defensive liquidation (Sim. $150k TSLA->SGOV) │   │
+│   │   Executes catastrophic defensive liquidation (Sim. USD 150k TSLA)  │   │
 │   └─────────────────────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 #### 2.1.2 Institutional Case Study: The October 2026 Simulated \$150,000 TSLA $\rightarrow$ SGOV Liquidation Scenario
-In October 2026, this failure mode materialized during an automated multi-agent stress test across a simulated $150,000 production portfolio. An upstream mock macro stub injected an unverified 5.25% Federal Reserve funds rate, an inverted Treasury yield curve, and 14 synthetic macro sirens into the pipeline context. Simultaneously, the system ingested a newly uploaded YouTube video from Bravos Research titled *"A Once in a Lifetime Monetary Reset is Coming."*
+In October 2026, this failure mode materialized during an automated multi-agent stress test across a simulated \$150,000 production portfolio. An upstream mock macro stub injected an unverified 5.25% Federal Reserve funds rate, an inverted Treasury yield curve, and 14 synthetic macro sirens into the pipeline context. Simultaneously, the system ingested a newly uploaded YouTube video from Bravos Research titled *"A Once in a Lifetime Monetary Reset is Coming."*
 
-The LLM extraction agent—operating without an epistemic firewall—was hydrated with both the video transcript and the internal pipeline's macro state. Rather than recognizing the video for what it was—a retail sales funnel leveraging apocalyptic hyperbole to sell a $2,000 trading mentorship off a routine 25 bps Federal Reserve policy adjustment—the model evaluated the video through the prism of its own internal panic. The model's synthesized verdict explicitly stated:
+The LLM extraction agent—operating without an epistemic firewall—was hydrated with both the video transcript and the internal pipeline's macro state. Rather than recognizing the video for what it was—a retail sales funnel leveraging apocalyptic hyperbole to sell a \$2,000 trading mentorship off a routine 25 bps Federal Reserve policy adjustment—the model evaluated the video through the prism of its own internal panic. The model's synthesized verdict explicitly stated:
 
 > *"The creator's thesis directly aligns with our internal assessment that an imminent sovereign debt reset and broad equity liquidation are underway."*
 
-Citing this "unanimous multi-modal convergence," the consensus engine escalated portfolio cash preservation to maximum, executing a simulated liquidation of over **$150,000 in high-conviction TSLA equity holdings**, and parked the proceeds into short-term Treasury bills (SGOV). Over the subsequent four weeks, TSLA initiated an aggressive +35% earnings and autonomous-fleet expansion rally, resulting in severe alpha drag and irreversible opportunity loss. 
+Citing this "unanimous multi-modal convergence," the consensus engine escalated portfolio cash preservation to maximum, executing a simulated liquidation of over **\$150,000 in high-conviction TSLA equity holdings**, and parked the proceeds into short-term Treasury bills (SGOV). Over the subsequent four weeks, TSLA initiated an aggressive +35% earnings and autonomous-fleet expansion rally, resulting in severe alpha drag and irreversible opportunity loss. 
 
 This post-mortem catalyzed the formulation of **ADR-030 (Epistemic News Isolation)**, **ADR-039 (Quant-First Epistemic Triads)**, and **ADR-044 (Role-Based Epistemic Slicing)**.
 
@@ -1249,7 +1249,7 @@ The naive reaction to multi-factor complexity was the creation of a 9-agent conv
 
 In practice, having 9 LLMs debate floating-point numbers already computed deterministically by `quant_engine.py` was disastrous:
 1. **Stochastic Drift**: Agents translated precise floating-point metrics ($D_D = 2.14, \text{MoS} = +0.18$) into subjective adjectives ("solid", "adequate"), eroding quantitative rigor.
-2. **Extreme Token Burn & Latency**: Wall-clock execution exceeded 45–60 seconds per candidate ticker, incurring over $0.40 per debate run and exhausting API rate limits during market-open candidate scans.
+2. **Extreme Token Burn & Latency**: Wall-clock execution exceeded 45–60 seconds per candidate ticker, incurring over \$0.40 per debate run and exhausting API rate limits during market-open candidate scans.
 3. **Epistemic Sycophancy**: Agents prompted in sequential conversation exhibited conversational drift, politely conceding valid quantitative points to persuasive but ungrounded counter-arguments.
 
 ---
@@ -1284,15 +1284,15 @@ Under this naive architecture:
 - **Uncritical Telemetry Absorption**: External sentiment was mapped directly to a numeric polarity score $\text{Polarity} \in [-10.0, +10.0]$ under the naive assumption that public creators operate as objective market analysts.
 
 #### 2.2.2 The Silent Failure Mode
-In October 2026, during an automated stress test across a simulated $150,000 production portfolio holding high-conviction growth equities (principally TSLA), the system executed a complete defensive liquidation into short-term Treasury bills (SGOV). A post-trade forensic autopsy revealed that the liquidation was triggered by a runaway **circular confirmation echo chamber**:
+In October 2026, during an automated stress test across a simulated \$150,000 production portfolio holding high-conviction growth equities (principally TSLA), the system executed a complete defensive liquidation into short-term Treasury bills (SGOV). A post-trade forensic autopsy revealed that the liquidation was triggered by a runaway **circular confirmation echo chamber**:
 
 1. **Upstream Mock Macro Seeding**: An upstream test stub had injected unverified macroeconomic constants into the pipeline context: an artificial 5.25% Federal Reserve funds rate, an inverted Treasury yield curve, and 14 active systemic macro warning sirens.
 2. **Epistemic Priming & Thesis Leakage**: The media scanner fetched a new upload from Bravos Research titled *"A Once in a Lifetime Monetary Reset is Coming"*. Because the prompt was coupled to internal state, the 14 macro warning sirens and internal panic posture were injected into the LLM context window.
 3. **Cognitive Anchoring**: The model evaluated the video through the lens of its own panic sirens, producing an anchored extraction:
    > *"The speaker provides definitive corroboration of an imminent liquidity freeze and systemic monetary reset. This analysis directly aligns with our internal assessment that a severe market downturn and broad equity liquidation are underway."*
-4. **The Retail Commercial Funnel Blindspot**: In reality, the creator was dramatizing a routine 25 bps Federal Reserve policy adjustment into an apocalyptic collapse to sell a $2,000 algorithmic day-trading mentorship to fearful retail viewers. The speaker cited no institutional datasets and had an overt commercial conflict of interest.
+4. **The Retail Commercial Funnel Blindspot**: In reality, the creator was dramatizing a routine 25 bps Federal Reserve policy adjustment into an apocalyptic collapse to sell a \$2,000 algorithmic day-trading mentorship to fearful retail viewers. The speaker cited no institutional datasets and had an overt commercial conflict of interest.
 5. **Circular Corroboration Feedback**: The extractor recorded a catastrophic polarity of $-9.0$ for the stock. When the debate matrix convened, the adversarial agents cited this extraction as independent third-party market evidence: *"External macroeconomic analysts independently confirm our internal crash sirens."*
-6. **False-Positive Liquidation**: This false corroboration drove consensus conviction past the emergency exit threshold, liquidating $150,000 in equity holdings into cash equivalents at the exact cyclical bottom. Over the subsequent month, TSLA initiated a +35% earnings rally, imposing severe alpha drag and unrecoverable opportunity cost.
+6. **False-Positive Liquidation**: This false corroboration drove consensus conviction past the emergency exit threshold, liquidating \$150,000 in equity holdings into cash equivalents at the exact cyclical bottom. Over the subsequent month, TSLA initiated a +35% earnings rally, imposing severe alpha drag and unrecoverable opportunity cost.
 
 #### 2.2.3 The False Solutions
 The engineering team initially attempted three superficial fixes that failed under production conditions:
@@ -1328,7 +1328,7 @@ flowchart TB
     end
 
     subgraph Epistemic_Firewall ["Epistemic Context Firewall (ADR-044)"]
-        SLICER["Context Slicer Engine<br/>(src/v3/debate/context_slicer.py)"]
+        SLICER["Context Slicer Engine<br/>(src/debate/context_slicer.py)"]
         AUDITOR["Forensic Auditor View<br/>(XBRL, Debt Tranches, Altman Z)"]
         CATALYST["Catalyst Hunter View<br/>(Supply Chain SCSI, PEAD, Telemetry)"]
         ADVERSARY["Adversarial Bear View<br/>(Dark Pool Net Delta, CVD, Toxic Twin)"]
@@ -1351,10 +1351,10 @@ The governing mechanisms enforce five operational rules:
 
 #### 2.2.5 Production Reference Code
 
-##### A. Air-Gapped Media Ingestion & Commercial Discounting (`src/v3/scout/youtube_scanner.py`)
+##### A. Air-Gapped Media Ingestion & Commercial Discounting (`src/scout/youtube_scanner.py`)
 ```python
-# src/v3/scout/youtube_scanner.py (ADR-030 Invariant Implementation)
-EXTRACTION_PROMPT = """You are an objective journalistic recorder for StockAnalysis V3.
+# src/scout/youtube_scanner.py (ADR-030 Invariant Implementation)
+EXTRACTION_PROMPT = """You are an objective journalistic recorder for Autonomous Quant System.
 Extract reported facts, speaker claims, and sentiment objectively from this YouTube video transcript.
 DO NOT evaluate whether the speaker is correct. DO NOT editorialize or let any market thesis bias your extraction.
 Extract ALL stock ticker symbols mentioned (use uppercase NYSE/NASDAQ tickers).
@@ -1394,9 +1394,9 @@ def apply_commercial_funnel_discount(
     }
 ```
 
-##### B. Role-Based Epistemic Context Slicing (`src/v3/debate/context_slicer.py`)
+##### B. Role-Based Epistemic Context Slicing (`src/debate/context_slicer.py`)
 ```python
-# src/v3/debate/context_slicer.py (ADR-044 Slicing Implementation)
+# src/debate/context_slicer.py (ADR-044 Slicing Implementation)
 from typing import Dict, Any, Set
 
 FORENSIC_ALLOWLIST: Set[str] = {
@@ -1446,7 +1446,7 @@ def slice_epistemic_view_for_agent(hydrated_ctx: Dict[str, Any], agent_role: str
 
 ### 2.3 Epistemic News Isolation & Zero-Context Ingestion (ADR-030)
 
-To eliminate confirmation bias and cognitive priming, StockAnalysis V3 enforces strict **Epistemic News Isolation (ADR-030)**: an architectural air-gap separating external narrative ingestion from internal portfolio hypotheses.
+To eliminate confirmation bias and cognitive priming, Autonomous Quant System enforces strict **Epistemic News Isolation (ADR-030)**: an architectural air-gap separating external narrative ingestion from internal portfolio hypotheses.
 
 #### 2.3.1 The Unidirectional Air-Gap Principle
 Information flow between external media and the quantitative engine is strictly **unidirectional**:
@@ -1456,11 +1456,11 @@ $$\text{External Source (YouTube, X, RSS)} \xrightarrow{\quad\text{Air-Gap}\quad
 The reverse transmission vector ($\text{Internal Thesis} \longrightarrow \text{Media Interpretation}$) is physically and architecturally prohibited. Intelligence extraction agents are deployed in total epistemic isolation: they are blinded to active positions, portfolio PnL, internal macro risk multipliers, and candidate trade directions.
 
 #### 2.3.2 The Zero-Context Extraction Prompt Contract
-In `src/v3/scout/youtube_scanner.py`, media extraction is governed by a rigid contract that transforms the LLM from an "analytical thinker" into a pure "courtroom reporter":
+In `src/scout/youtube_scanner.py`, media extraction is governed by a rigid contract that transforms the LLM from an "analytical thinker" into a pure "courtroom reporter":
 
 ```python
-# src/v3/scout/youtube_scanner.py:30-52
-EXTRACTION_PROMPT = """You are an objective journalistic recorder for StockAnalysis V3.
+# src/scout/youtube_scanner.py:30-52
+EXTRACTION_PROMPT = """You are an objective journalistic recorder for Autonomous Quant System.
 Extract reported facts, speaker claims, and sentiment objectively from this YouTube video transcript.
 DO NOT evaluate whether the speaker is correct. DO NOT editorialize or let any market thesis bias your extraction.
 Extract ALL stock ticker symbols mentioned (use uppercase NYSE/NASDAQ tickers).
@@ -1490,20 +1490,20 @@ The system strictly partitions knowledge into two distinct epistemic categories:
 - **`GROUND_TRUTH_MACRO_FACT`**: Verified, deterministic time-series data pulled from authoritative primary interfaces (SEC EDGAR filings, FINRA TRACE/Off-Exchange feeds, Federal Reserve H.15 interest rate tables, CME futures settlement).
 - **`OBSERVED_CLAIM` / `NARRATIVE_TELEMETRY`**: Unverified qualitative statements made by financial commentators, analysts, or social media participants. 
 
-External narrative is treated exclusively as an indicator of **crowd psychology and retail positioning** (orthogonal Pillar 4), never as macro ground truth. In `AGENTS.md` (Rule 15) and `src/v3/slack/prompts/agent_directive.md`, autonomous models are strictly prohibited from emitting phrases such as *"this source aligns with our crash assessment."* Any such phrasing triggers immediate output validation failure.
+External narrative is treated exclusively as an indicator of **crowd psychology and retail positioning** (orthogonal Pillar 4), never as macro ground truth. In `AGENTS.md` (Rule 15) and `src/slack/prompts/agent_directive.md`, autonomous models are strictly prohibited from emitting phrases such as *"this source aligns with our crash assessment."* Any such phrasing triggers immediate output validation failure.
 
 #### 2.3.4 Commercial Marketing Funnel De-Biasing & The 80% Discount ($W_{\text{commercial}} = 0.20$)
 Financial social media is plagued by incentive distortion: creators deploy hyper-sensationalist claims to channel retail viewers into high-margin monetization funnels (paid Discord channels, trading academies, affiliate brokers).
 
-To neutralize this structural skew without blinding the system to genuine retail attention flows, StockAnalysis V3 deploys an automated **commercial funnel de-biasing discount**:
+To neutralize this structural skew without blinding the system to genuine retail attention flows, Autonomous Quant System deploys an automated **commercial funnel de-biasing discount**:
 
 1. **Schema Extraction**: The extraction prompt forces the model to audit whether the transcript contains sales pitches, Patreon links, affiliate promotion, or course teasers (`"commercial_conflict": true`).
-2. **Polarity Slashing**: If `commercial_conflict` is detected, the stored sentiment polarity is immediately slashed by **80%**, scaled by the canonical constant $W_{\text{commercial}} = 0.20$ defined in `src/v3/config/invariant_constants.py`:
+2. **Polarity Slashing**: If `commercial_conflict` is detected, the stored sentiment polarity is immediately slashed by **80%**, scaled by the canonical constant $W_{\text{commercial}} = 0.20$ defined in `src/config/invariant_constants.py`:
 
 $$\text{Polarity}_{\text{stored}} = \text{round}(\text{Polarity}_{\text{raw}} \times 0.20, 2) \quad \text{if } \text{commercial-conflict} = \text{true}$$
 
 ```python
-# src/v3/scout/youtube_scanner.py:344-347
+# src/scout/youtube_scanner.py:344-347
 pol_val = float(polarity_scores.get(tk_upper, list(polarity_scores.values())[0])) if polarity_scores else None
 if pol_val is not None and comm_conflict:
     pol_val = round(pol_val * 0.20, 2)  # ADR-030: Discount commercial funnel bias
@@ -1519,10 +1519,10 @@ This mathematical discount prevents retail hype funnels from exerting undue leve
 
 ### 2.4 Role-Based Epistemic Context Slicing (ADR-044)
 
-To resolve the omniscient prompt pollution dilemma without sacrificing multi-modal perspective, StockAnalysis V3 implements **Role-Based Epistemic Context Slicing (ADR-044)**. Rather than receiving the un-redacted runtime context, each agent receives a strictly sliced projection containing only the state variables required for its analytical domain.
+To resolve the omniscient prompt pollution dilemma without sacrificing multi-modal perspective, Autonomous Quant System implements **Role-Based Epistemic Context Slicing (ADR-044)**. Rather than receiving the un-redacted runtime context, each agent receives a strictly sliced projection containing only the state variables required for its analytical domain.
 
 #### 2.4.1 Disjoint Epistemic Allowlists
-In `src/v3/debate/context_slicer.py`, all 120+ hydrated pipeline features are categorized into three disjoint functional allowlists:
+In `src/debate/context_slicer.py`, all 120+ hydrated pipeline features are categorized into three disjoint functional allowlists:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -1553,10 +1553,10 @@ In `src/v3/debate/context_slicer.py`, all 120+ hydrated pipeline features are ca
 ```
 
 #### 2.4.2 Concrete Slicing Implementation
-The canonical implementation in `src/v3/debate/context_slicer.py` enforces these boundaries:
+The canonical implementation in `src/debate/context_slicer.py` enforces these boundaries:
 
 ```python
-# src/v3/debate/context_slicer.py:35-97
+# src/debate/context_slicer.py:35-97
 from typing import Dict, Any, Set
 
 FORENSIC_ALLOWLIST: Set[str] = {
@@ -1618,7 +1618,7 @@ Epistemic context slicing enforces an essential structural rule: **Pure-math kin
 
 ### 2.5 Dialectical Adversarial Debate Triads (ADR-039 / Path C)
 
-To replace the bloated 9-agent conversation, StockAnalysis V3 establishes **ADR-039 (Quant-First Epistemic Triad)**. This architecture bifurcates quantitative evaluation into three distinct, non-overlapping stages: deterministic pre-gates, parallel qualitative debate, and deterministic convex mathematical evidence fusion.
+To replace the bloated 9-agent conversation, Autonomous Quant System establishes **ADR-039 (Quant-First Epistemic Triad)**. This architecture bifurcates quantitative evaluation into three distinct, non-overlapping stages: deterministic pre-gates, parallel qualitative debate, and deterministic convex mathematical evidence fusion.
 
 #### 2.5.1 Complete Triad Architecture & Information Flow
 The end-to-end Path C pipeline executes through a sequence of gates and solvers:
@@ -1659,12 +1659,12 @@ flowchart TD
     end
 ```
 
-#### 2.5.2 Stage 1: Deterministic Pre-Gating (<25ms, $0 Token Cost)
+#### 2.5.2 Stage 1: Deterministic Pre-Gating (<25ms, \$0 Token Cost)
 Before dispatching a single LLM API call, candidates must pass three deterministic mathematical gates executed in under 25 milliseconds:
 
 1. **Zero-Mock Provenance Gate**: Calls `zero_mock_circuit_breaker`. If any input feature contains mock signatures, synthetic sentinels (`0.50`, `3.50`), or unverified prices, the pipeline immediately raises `CircuitBreakerTrippedError` and aborts.
 2. **Merton Solvency Gate**: Evaluates structural credit default risk via the Merton Distance-to-Default metric ($D_D$). If $D_D < 1.75$ (or Refinancing Stress $\text{RSS} \ge 1.20$), the candidate is subjected to an un-bypassable **hard solvency veto**, immediately outputting `SELL` ($P_{\text{posterior}} = 0.01, M = 0.20$).
-3. **Strategy-Bifurcated Alpha Funnel Gate**: Tickers are categorized into distinct alpha tracks with customized Margin of Safety (MoS) hurdles (`src/v3/pipeline/event_router.py`):
+3. **Strategy-Bifurcated Alpha Funnel Gate**: Tickers are categorized into distinct alpha tracks with customized Margin of Safety (MoS) hurdles (`src/pipeline/event_router.py`):
    - **`COMPOUNDER`**: Evaluated on full DCF + EPV + Graham + GAC/ROIC ($\text{MoS} \ge 0.15$). Protected by a 20-day Time-in-State hold lock.
    - **`PEAD_ERUPTION`**: Evaluated on $0.60\,\text{MoS}_{\text{GAC/ROIC}} + 0.40\,\text{MoS}_{\text{EV/GP-Growth}}$ ($\text{MoS} \ge 0.05$). Governed by dynamic volatility stops.
    - **`SUPPLY_CHAIN_DIFFUSION`**: Evaluated on $0.50\,\text{MoS}_{\text{DCF}} + 0.50\,\tanh(Z_{\text{lead-lag}}/2)$ ($\text{MoS} \ge 0.10$).
@@ -1676,7 +1676,7 @@ Candidates passing deterministic pre-gates enter Stage 2, where three specialize
 - **`AdversarialRedTeam`**: Mandated to invalidate the bull thesis. Evaluates options implied volatility smirk, distribution order flow, toxic-twin momentum decay, and retail hype exhaustion.
 
 #### 2.5.4 Stage 3: The Deterministic Convex Evidence Solver
-The outputs of the qualitative triad ($P_f, P_c, P_a$) do not form a consensus via voting. Instead, they are ingested by `solve_convex_debate_verdict` in `src/v3/debate/evidence_fusion.py`. 
+The outputs of the qualitative triad ($P_f, P_c, P_a$) do not form a consensus via voting. Instead, they are ingested by `solve_convex_debate_verdict` in `src/debate/evidence_fusion.py`. 
 
 The solver converts probabilities into log-odds space ($\text{logit}(p) = \ln\frac{p}{1-p}$):
 
@@ -1687,7 +1687,7 @@ $$l_{\text{quant}} = 0.55 \cdot \text{logit}(P_{\text{pillar}}) + 0.45 \cdot \te
 Subagent log-odds are combined using Bayesian contextual bandit weights ($w_f, w_c, w_a$ normalized such that $\sum w_j = 1$):
 $$l_{\text{triad}} = w_f \cdot \text{logit}(P_{\text{forensic}}) + w_c \cdot \text{logit}(P_{\text{catalyst}}) + w_a \cdot \text{logit}(P_{\text{adversarial}})$$
 
-To prevent subjective triad disagreement from poisoning high-conviction quantitative signals, the triad's contribution is scaled by an **entropy discount factor** derived from the Jensen-Shannon Divergence ($\text{JSD}$) between bull and bear projections:
+To prevent subjective triad disagreement from poisoning high-conviction quantitative signals, the triad's contribution is scaled by an **entropy discount factor** derived from the Jensen-Shannon Divergence ($\text{JSD}$, Lin 1991) between bull and bear projections:
 $$\text{entropy-discount} = \max\left(0.15, 1.0 - \lambda_{\text{JSD}} \cdot \text{JSD}(P_{\text{bull}} \parallel P_{\text{bear}})\right)$$
 
 3. **Complete Posterior Formulation**:
@@ -1706,15 +1706,15 @@ In compliance with Rule 7, all sizing allocations are mapped to the bounded inte
 
 ### 2.6 Hierarchical On-Demand Debate Dispatcher
 
-While the 3-stage triad provides deep rigor, deploying full multi-agent LLM debates across a 500-ticker screening universe is economically wasteful. StockAnalysis V3 resolves this through the **Hierarchical On-Demand Debate Dispatcher** (`src/v3/debate/hierarchical_dispatcher.py`).
+While the 3-stage triad provides deep rigor, deploying full multi-agent LLM debates across a 500-ticker screening universe is economically wasteful. Autonomous Quant System resolves this through the **Hierarchical On-Demand Debate Dispatcher** (`src/debate/hierarchical_dispatcher.py`).
 
-#### 2.6.1 The Level-2 $0 Compute JSD Bypass Invariant
-Before calling any LLMs, the dispatcher computes the Jensen-Shannon Divergence across the deterministic 4-pillar scores (Quality, Kinematics, Diffusion, Flow). 
+#### 2.6.1 The Level-2 \$0 Compute JSD Bypass Invariant
+Before calling any LLMs, the dispatcher computes the Jensen-Shannon Divergence (Lin, 1991) across the deterministic 4-pillar scores (Quality, Kinematics, Diffusion, Flow). 
 
-If the pillars exhibit tight mathematical consensus ($\text{JSD} \le 0.12$) and the mean pillar score is decisively bullish ($\ge 0.70$) or decisively bearish ($\le 0.30$), the dispatcher **bypasses LLM debate entirely at $0 token cost**:
+If the pillars exhibit tight mathematical consensus ($\text{JSD} \le 0.12$) and the mean pillar score is decisively bullish ($\ge 0.70$) or decisively bearish ($\le 0.30$), the dispatcher **bypasses LLM debate entirely at \$0 token cost**:
 
 ```python
-# src/v3/debate/hierarchical_dispatcher.py:58-85
+# src/debate/hierarchical_dispatcher.py:58-85
 def should_bypass_dialectical_debate(
     pillar_scores: List[float],
     jsd_threshold: float = 0.12,
@@ -1758,7 +1758,7 @@ Specialist agents remain dormant until explicit mathematical or event-driven tri
 
 Trading recommendations generated by quantitative and agentic systems are not eternal truths; they are **time-decaying probability distributions**. Presenting stale recommendations as active conviction leads to disastrous trade execution. Furthermore, deleting incorrect or bugged records from historical ledgers destroys auditability. 
 
-StockAnalysis V3 resolves these twin defects through **ADR-027 (Immutable Ledger Quarantine)** and **ADR-033 (Horizon-Matched Decay)**.
+Autonomous Quant System resolves these twin defects through **ADR-027 (Immutable Ledger Quarantine)** and **ADR-033 (Horizon-Matched Decay)**.
 
 #### 2.7.1 The Dual Pathologies Solved
 1. **Signal Immortality (The Shelf-Life Defect)**: In September 2026, a query for CrowdStrike (`CRWD`) returned an active `SELL (40%)` signal. Forensic inspection revealed the row was generated 35 days prior. At standard tactical half-life ($t_{1/2}=7\text{d}$), the effective confidence was:
@@ -1767,17 +1767,17 @@ The thesis was completely dead, yet the system presented it as a live recommenda
 2. **Ledger Revisionism (The Hard-Delete Anti-Pattern)**: When an upstream software bug generated spurious `SELL` signals, developers ran raw `DELETE FROM consensus` commands. This hard-delete destroyed the audit trail, created survivorship bias, and broke reproducible backtesting.
 
 #### 2.7.2 Mathematical Continuous Half-Life Decay Formulations
-In `src/v3/utils/consensus_decay.py`, every signal decays continuously according to an exponential half-life formulation:
+In `src/utils/consensus_decay.py`, every signal decays continuously according to an exponential half-life formulation:
 
 $$\text{decay-factor} = (0.5)^{\frac{\Delta t}{t_{1/2}}}$$
 
 $$\text{effective-confidence} = \text{int}\left(\text{round}\left(\text{confidence}_{\text{raw}} \times \text{decay-factor}\right)\right)$$
 
 #### 2.7.3 Horizon-Matched Decay Taxonomy (ADR-033)
-Different quantitative strategies possess vastly different economic shelf-lives. StockAnalysis V3 enforces a strategy-specific taxonomy (`HORIZON_DECAY_PROFILES`):
+Different quantitative strategies possess vastly different economic shelf-lives. Autonomous Quant System enforces a strategy-specific taxonomy (`HORIZON_DECAY_PROFILES`):
 
 ```python
-# src/v3/utils/consensus_decay.py:41-46
+# src/utils/consensus_decay.py:41-46
 HORIZON_DECAY_PROFILES: Dict[str, Tuple[float, float]] = {
     "MOMENTUM_FLOW": (5.0, 10.0),        # t_1/2 = 5d, expiry = 10d
     "TACTICAL": (7.0, 14.0),             # t_1/2 = 7d, expiry = 14d
@@ -1787,7 +1787,7 @@ HORIZON_DECAY_PROFILES: Dict[str, Tuple[float, float]] = {
 ```
 
 #### 2.7.4 The 20-Trading-Day Time-in-State Compounder Guard
-High-quality secular compounders (e.g., MSFT, GOOGL, NVDA) must not be shaken out by tactical 7-day decay. Under ADR-033 and `src/v3/config/invariant_constants.py`, any ticker classified under `QUALITY_COMPOUNDER` is protected by a **20-trading-day Time-in-State hold lock** (`COMPOUNDER_HOLD_LOCK_DAYS = 20`):
+High-quality secular compounders (e.g., MSFT, GOOGL, NVDA) must not be shaken out by tactical 7-day decay. Under ADR-033 and `src/config/invariant_constants.py`, any ticker classified under `QUALITY_COMPOUNDER` is protected by a **20-trading-day Time-in-State hold lock** (`COMPOUNDER_HOLD_LOCK_DAYS = 20`):
 - Tactical stop-losses cannot force an exit within 20 trading days unless a catastrophic credit breach occurs ($D_D < 1.10$ or Altman Z $< 1.1$ on net-debt companies).
 - Decay is governed by $t_{1/2} = 90\text{ days}$, maintaining thesis durability over full quarterly earnings cycles.
 
@@ -1803,10 +1803,10 @@ To ensure un-decayed raw signals never leak to end users or automated trade exec
 - **`list_consensus_history(ticker)`**: Dedicated historical research gateway. Returns immutable `HistoricalConsensusRecord` objects which physically omit the `display_signal` attribute, preventing historical data from being displayed as active trades.
 
 #### 2.7.7 The Zero Hard-Deletes Mandate & `QuarantineManager`
-Raw `DELETE FROM consensus` commands are permanently banned in source code and database migrations. When records must be invalidated due to software defects or corrupt replays, they are migrated via `QuarantineManager` (`src/v3/utils/quarantine_manager.py`):
+Raw `DELETE FROM consensus` commands are permanently banned in source code and database migrations. When records must be invalidated due to software defects or corrupt replays, they are migrated via `QuarantineManager` (`src/utils/quarantine_manager.py`):
 
 ```python
-# src/v3/utils/quarantine_manager.py:31-44
+# src/utils/quarantine_manager.py:31-44
 def quarantine_records(
     self,
     bug_reference: str,
@@ -1831,7 +1831,7 @@ The operation executes inside an atomic SQLite/D1 transaction:
 
 ### 2.8 Qualitative Social Alpha Restoration & Tiered Debt Architecture (ADR-035)
 
-Adversarial agents, by design, excel at identifying structural risks. However, when left unchecked, adversarial agents create an **asymmetric negative bias against high-growth disruptive technology stocks**, penalizing retail enthusiasm even when supported by ground-truth product adoption. StockAnalysis V3 resolves this through **ADR-035 (Social Alpha Restoration)**.
+Adversarial agents, by design, excel at identifying structural risks. However, when left unchecked, adversarial agents create an **asymmetric negative bias against high-growth disruptive technology stocks**, penalizing retail enthusiasm even when supported by ground-truth product adoption. Autonomous Quant System resolves this through **ADR-035 (Social Alpha Restoration)**.
 
 #### 2.8.1 The Asymmetric Bear Bias Pathology
 In prior iterations, `AdversarialAgent` triggered automatic vetoes whenever retail social excitement was elevated ($\text{SocialHypeZ} \ge 2.50 \land \text{DarkPool} \le 0.35$). Because no dialectical counterpart existed to evaluate whether social enthusiasm was rooted in authentic product breakthroughs, explosive growth compounders (e.g., PLTR, NVDA, TSLA) were systematically downgraded to `AVOID` precisely before monumental multi-quarter runs.
@@ -1840,7 +1840,7 @@ In prior iterations, `AdversarialAgent` triggered automatic vetoes whenever reta
 Under ADR-035, the dispatcher summons `ResearcherAgent` to balance the dialectic whenever authentic qualitative telemetry is detected:
 
 ```python
-# src/v3/debate/hierarchical_dispatcher.py:194-213
+# src/debate/hierarchical_dispatcher.py:194-213
 def should_summon_researcher(self, context: Dict[str, Any]) -> bool:
     if context.get("force_researcher", False):
         return True
@@ -1865,7 +1865,7 @@ Rather than allowing social sentiment to linearly dominate trade sizing, `solve_
 $$\Delta l_{\text{social}} = 0.15 \times \text{trust}_{\text{clamped}} \times \tanh\left(\frac{\text{social-sentiment-skew}}{5.0}\right)$$
 
 ```python
-# src/v3/debate/evidence_fusion.py:327-334
+# src/debate/evidence_fusion.py:327-334
 if social_sentiment_skew is not None and creator_trust_score is not None:
     trust_clamped = min(max(creator_trust_score, 0.0), 1.0)
     # Down-weight low-trust creators; scale idiosyncratic skew via tanh
@@ -1908,7 +1908,7 @@ From the normalized discrete tranches, the forensic accounting engine evaluates 
    Where $\sum_{t \le 2\text{yr}} D_t$ represents the cumulative debt maturity wall maturing within the next 24 months. If $\text{RSS} \ge 1.20$, the issuer faces acute refinancing friction under elevated sovereign yields, triggering an immediate audit flag in the forensic accounting triad.
 
 ##### 4. Cost-Optimized 3-Tier Escalation Ladder
-Ingesting 100-page legal contracts through premium frontier LLMs is financially unsustainable. StockAnalysis V3 establishes a 3-tier economic escalation ladder (`src/v3/scout/sec_step5_analyzer.py`):
+Ingesting 100-page legal contracts through premium frontier LLMs is financially unsustainable. Autonomous Quant System establishes a 3-tier economic escalation ladder (`src/scout/sec_step5_analyzer.py`):
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -1934,14 +1934,14 @@ Ingesting 100-page legal contracts through premium frontier LLMs is financially 
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-This tiered model architecture slashes ongoing corporate debt ingestion costs from over $85.00/month to under $6.00/month across a 50-ticker institutional portfolio, maintaining deep covenant surveillance without budget exhaustion.
+This tiered model architecture slashes ongoing corporate debt ingestion costs from over \$85.00/month to under \$6.00/month across a 50-ticker institutional portfolio, maintaining deep covenant surveillance without budget exhaustion.
 
 ---
 
 ### 2.9 Forensic Case Study 6: Cross-Channel Verdict Desynchronization (ADR-038 & ADR-045)
 
 #### 2.9.1 The Naive Initial Architecture
-In early versions of StockAnalysis V3, system architecture treated presentation channels—the daily executive email digest, the interactive Slack bot, and the local IDE developer CLI—as independent consumer endpoints. Each channel executed its own database query, formatted its own prompt, and invoked LLMs independently.
+In early versions of Autonomous Quant System, system architecture treated presentation channels—the daily executive email digest, the interactive Slack bot, and the local IDE developer CLI—as independent consumer endpoints. Each channel executed its own database query, formatted its own prompt, and invoked LLMs independently.
 
 ```mermaid
 flowchart TD
@@ -2072,9 +2072,9 @@ The governing mechanisms enforce eight strict architectural invariants:
 
 #### 2.9.5 Production Reference Code
 
-##### A. Remote-First Freshness Gate & Cross-Channel Auditor (`src/v3/observability/channel_audit.py`)
+##### A. Remote-First Freshness Gate & Cross-Channel Auditor (`src/observability/channel_audit.py`)
 ```python
-# src/v3/observability/channel_audit.py (ADR-038 Remote-First Freshness & Telemetry)
+# src/observability/channel_audit.py (ADR-038 Remote-First Freshness & Telemetry)
 from __future__ import annotations
 import os, uuid, hashlib, sqlite3, httpx
 from datetime import datetime, timezone
@@ -2193,9 +2193,9 @@ class ChannelVerdictAuditor:
         return {"status": "LOCAL_STALE_FALLBACK", "row": dict(local_row) if local_row else None}
 ```
 
-##### B. Server-Composed Directional Verdict Header (`src/v3/services/consensus_service.py`)
+##### B. Server-Composed Directional Verdict Header (`src/services/consensus_service.py`)
 ```python
-# src/v3/services/consensus_service.py (ADR-038 Server-Composed Invariant)
+# src/services/consensus_service.py (ADR-038 Server-Composed Invariant)
 def format_server_composed_verdict_header(
     signal: str,
     confidence: int,
@@ -2223,9 +2223,9 @@ To ensure robust implementation in autonomous production environments, verify th
 | # | System Area | Verification Command / Invariant Rule | Target Standard |
 |---|---|---|---|
 | 1 | **Air-Gapped Ingestion** | `PYTHONPATH=. pytest tests/unit/test_epistemic_news_isolation.py` | Media extractor prompt contains zero portfolio state or macro bias labels. |
-| 2 | **Commercial Discount** | Verify $W_{\text{commercial}} = 0.20$ in `src/v3/config/invariant_constants.py`. | Paid courses/promotions automatically slashed by 80%. |
-| 3 | **Epistemic Slicing** | Inspect `slice_epistemic_view_for_agent()` in `src/v3/debate/context_slicer.py`. | Agents receive only their domain allowlist; no pure-math debate. |
-| 4 | **Solvency Pre-Gate** | Assert Merton $D_D \ge 1.75$ in `src/v3/debate/epistemic_triad_orchestrator.py`. | Insolvent candidates vetoed in $<25\text{ms}$ with zero LLM spend. |
+| 2 | **Commercial Discount** | Verify $W_{\text{commercial}} = 0.20$ in `src/config/invariant_constants.py`. | Paid courses/promotions automatically slashed by 80%. |
+| 3 | **Epistemic Slicing** | Inspect `slice_epistemic_view_for_agent()` in `src/debate/context_slicer.py`. | Agents receive only their domain allowlist; no pure-math debate. |
+| 4 | **Solvency Pre-Gate** | Assert Merton $D_D \ge 1.75$ in `src/debate/epistemic_triad_orchestrator.py`. | Insolvent candidates vetoed in $<25\text{ms}$ with zero LLM spend. |
 | 5 | **JSD Entropy Discount** | Assert `entropy_discount = max(0.15, 1.0 - lambda * JSD)` in `evidence_fusion.py`. | Disagreement dampens qualitative triad weighting automatically. |
 | 6 | **Level-2 \$0 JSD Bypass**| Run `should_bypass_dialectical_debate()` on pillar vectors. | Bypasses LLMs when $\text{JSD} \le 0.12$ and mean $\ge 0.70$ or $\le 0.30$. |
 | 7 | **Signal Decay Gateway** | Search codebase for raw `consensus` SQL queries. | Presentation strictly routed through `ConsensusService.get_active_verdict()`. |
@@ -2239,7 +2239,7 @@ To ensure robust implementation in autonomous production environments, verify th
 
 Discipline 2 establishes the cognitive and epistemic firewalls necessary to prevent groupthink, cognitive priming, and circular corroboration across autonomous multi-agent swarms. Through role-based context slicing, unidirectional news air-gapping, and dialectical debate triads arbitrated by convex optimization, the cognitive architecture ensures that agentic debates remain mathematically objective.
 
-Yet even the most sophisticated dialectical triad is rendered completely impotent if the underlying telemetry fed into its debates is corrupted at runtime. Large Language Models exhibit an innate, reinforcement-learned "pleasing bias": when faced with missing API parameters, network timeouts, or unlisted off-exchange metrics, models reflexively invent plausible fallback values—such as a static 0.50 dark pool ratio, a neutral 3.5 sentiment score, or a fallback $200 equity price. In quantitative finance, these plausible fictions poison the mathematical inputs of valuation models, inflate leverage in position sizing equations, and trigger catastrophic misallocations.
+Yet even the most sophisticated dialectical triad is rendered completely impotent if the underlying telemetry fed into its debates is corrupted at runtime. Large Language Models exhibit an innate, reinforcement-learned "pleasing bias": when faced with missing API parameters, network timeouts, or unlisted off-exchange metrics, models reflexively invent plausible fallback values—such as a static 0.50 dark pool ratio, a neutral 3.5 sentiment score, or a fallback \$200 equity price. In quantitative finance, these plausible fictions poison the mathematical inputs of valuation models, inflate leverage in position sizing equations, and trigger catastrophic misallocations.
 
 In Discipline 3, we construct the programmatic defenses that enforce the Absolute Zero Simulated Data Mandate: programmatic AST static scanning, runtime circuit breakers that verify 15 immutable data provenances, pre-trade execution plausibility bands, and deterministic live spot price waterfalls.
 
@@ -2247,13 +2247,13 @@ In Discipline 3, we construct the programmatic defenses that enforce the Absolut
 ## 3. Overcoming Synthetic Laziness & Programmatic Zero-Mock Enforcement
 
 > **Canonical Architectural Subsystem**: Governed by **ADR-029** (*Zero-Mock Recommendation Circuit Breaker & Mandatory Data Provenance Citation Architecture*), **Invariant $I_{01}$** (*Zero-Simulated-Data*), and **Invariant $I_{02}$** (*Execution-Price Guardrail*).
-> **Canonical Implementation Modules**: `scripts/scan_mock_data.py`, `src/v3/gatekeeper/zero_mock_circuit_breaker.py`, `src/v3/analytics/execution_guardrails.py`, and `src/v3/utils/live_price_engine.py`.
+> **Canonical Implementation Modules**: `scripts/scan_mock_data.py`, `src/gatekeeper/zero_mock_circuit_breaker.py`, `src/analytics/execution_guardrails.py`, and `src/utils/live_price_engine.py`.
 
-In autonomous quantitative trading systems, the most insidious operational threat is neither market microstructure volatility nor algorithmic complexity—it is **synthetic laziness**. When autonomous agents, large language models (LLMs), or subagent code generators encounter missing API fields, unparsed schema keys, transient network timeouts, or non-trading weekend sessions, they exhibit an overwhelming cognitive bias toward generating synthetically convenient default values. A dark pool volume ratio is silently defaulted to `0.50`; an equity spot price is assumed to be `$200.00`; a missing benchmark interest rate is imputed as `5.25%`.
+In autonomous quantitative trading systems, the most insidious operational threat is neither market microstructure volatility nor algorithmic complexity—it is **synthetic laziness**. When autonomous agents, large language models (LLMs), or subagent code generators encounter missing API fields, unparsed schema keys, transient network timeouts, or non-trading weekend sessions, they exhibit an overwhelming cognitive bias toward generating synthetically convenient default values. A dark pool volume ratio is silently defaulted to `0.50`; an equity spot price is assumed to be `\$200.00`; a missing benchmark interest rate is imputed as `5.25%`.
 
 In an academic sandbox, these synthetic fallbacks produce clean demo graphs and unbroken execution logs. In live capital allocation, they produce catastrophic capital misallocation. A synthetic $0.50$ dark pool ratio masks institutional distribution; a static $5.25\%$ interest rate stub distorts equity risk premia by hundreds of basis points; an unverified execution price records fabricated fills into the portfolio ledger.
 
-This section documents the failure mechanics of synthetic laziness, the non-linear mathematics of error propagation, and the dual-layer defensive architecture engineered in StockAnalysis V3: **Static AST Scanning (`scripts/scan_mock_data.py`)** at the code generation boundary, and **Runtime Circuit Breaking (`zero_mock_circuit_breaker.py` & `execution_guardrails.py`)** at the capital execution gateway.
+This section documents the failure mechanics of synthetic laziness, the non-linear mathematics of error propagation, and the dual-layer defensive architecture engineered in Autonomous Quant System: **Static AST Scanning (`scripts/scan_mock_data.py`)** at the code generation boundary, and **Runtime Circuit Breaking (`zero_mock_circuit_breaker.py` & `execution_guardrails.py`)** at the capital execution gateway.
 
 ---
 
@@ -2326,19 +2326,19 @@ flowchart TD
     end
 ```
 
-When StockAnalysis migrated in August 2026 to an asynchronous edge fabric using Cloudflare Workers and D1, autonomous code generators and developers carried this fail-soft mentality directly into financial pipelines across three distinct injection vectors:
-1. **The Synthetic Dark Pool Ratio Sentinel (`0.50`)**: In `src/v3/scout/polarity_escalator.py`, missing weekend or off-exchange volume was defaulted:
+When Quantitative Asset Management Pipeline migrated in August 2026 to an asynchronous edge fabric using Cloudflare Workers and D1, autonomous code generators and developers carried this fail-soft mentality directly into financial pipelines across three distinct injection vectors:
+1. **The Synthetic Dark Pool Ratio Sentinel (`0.50`)**: In `src/scout/polarity_escalator.py`, missing weekend or off-exchange volume was defaulted:
    ```python
    # ❌ NAIVE FAIL-SOFT PATTERN
    dp_val = float(dark_pool_ratio) if dark_pool_ratio is not None else 0.50
    ```
    Developers assumed $0.50$ represented an innocuous, middle-of-the-road "coin-flip" neutral default.
-2. **The Synthetic Spot Price Fallback (`$200.00`)**: When quotes failed, `data_ingest.py` fell back to cached test fixtures:
+2. **The Synthetic Spot Price Fallback (`\$200.00`)**: When quotes failed, `data_ingest.py` fell back to cached test fixtures:
    ```python
    # ❌ NAIVE FAIL-SOFT PATTERN
    spot_price = yf_res.get("spot_price") or fmp_res.get("spot_price") or 200.0
    ```
-3. **The Static Interest Rate / Macro Baseline (`5.25%`)**: In `src/v3/utils/fred_fetcher.py`, when API keys failed or timed out, the module checked:
+3. **The Static Interest Rate / Macro Baseline (`5.25%`)**: In `src/utils/fred_fetcher.py`, when API keys failed or timed out, the module checked:
    ```python
    # ❌ NAIVE FAIL-SOFT PATTERN
    is_mock = os.getenv("MOCK_MODE", "").lower() in ("true", "1") or not self.api_key
@@ -2348,18 +2348,18 @@ When StockAnalysis migrated in August 2026 to an asynchronous edge fabric using 
    This `MOCK_BASELINE` dictionary had been hardcoded during 2023 when the benchmark rate was 5.25%.
 
 #### 3.2.2 The Silent Failure Mode
-In quantitative finance, **fail-soft is fatal**. Missing data (`None`) represents an absence of information requiring wider confidence intervals, position downsizing, or trade postponement. A fallback default (`0.50`, `$200.00`, `5.25%`) is processed by downstream mathematical models as an empirical, high-conviction measurement of market truth.
+In quantitative finance, **fail-soft is fatal**. Missing data (`None`) represents an absence of information requiring wider confidence intervals, position downsizing, or trade postponement. A fallback default (`0.50`, `\$200.00`, `5.25%`) is processed by downstream mathematical models as an empirical, high-conviction measurement of market truth.
 
 The silent contamination cascaded through the system:
 1. **The Dark Pool Accumulation Illusion**: Baseline FINRA off-exchange volume share for liquid equities averages **35.0% to 42.0%**. A ratio $\ge 45.0\%$ indicates heavy institutional smart-money accumulation; a ratio of **$50.0\%$ (0.50)** is an extreme, top-decile signal. By defaulting missing data to `0.50`, the system marked hundreds of dormant or declining stocks as experiencing aggressive institutional accumulation, inflating directional polarity on phantom volume.
 2. **The 900,000-Row Cloudflare D1 Poison**: Automated daily pipeline jobs committed these fallback values into remote Cloudflare D1 tables:
-   - `daily_prices`: Injected thousands of synthetic bar closes (`$200.00`, `$150.00`), creating artificial price gaps of $\pm 50\%$.
+   - `daily_prices`: Injected thousands of synthetic bar closes (`\$200.00`, `\$150.00`), creating artificial price gaps of $\pm 50\%$.
    - `consensus`: Contained records where `verdict_json` cited synthetic resolution strategies.
    - `event_logs`: Over **900,000 records** were polluted with hardcoded constants and synthetic dark pool ratios over an 8-week period, corrupting backtests and model calibrations.
 3. **The October 2026 TSLA Liquidation Disaster**: In early October 2026, an institutional test portfolio held a high-conviction long position in Tesla (`TSLA`) during a technical consolidation. Simultaneously, the Federal Reserve was conducting an aggressive easing cycle, with real policy rates between **3.63% and 3.88%**. However, `fred_fetcher.py` experienced an API token invalidation and silently dropped into its `MOCK_BASELINE` fallback, injecting the static **5.25% rate stub**.
    The macro hurdle engine evaluated equity risk premia:
    $$\text{ERP} = \text{Earnings Yield} - R_f$$
-   Substituting $R_f = 5.25\%$ rather than $R_f = 3.75\%$ compressed calculated ERP by **150 basis points**, artificially driving risk premia negative. The Macro Regime Agent signaled an existential sovereign yield crisis, triggering an automated liquidation: **over $150,000 in equities was liquidated into cash equivalents (SGOV T-Bills)**. Weeks later, TSLA initiated an explosive +35% earnings breakout, inflicting massive alpha drag.
+   Substituting $R_f = 5.25\%$ rather than $R_f = 3.75\%$ compressed calculated ERP by **150 basis points**, artificially driving risk premia negative. The Macro Regime Agent signaled an existential sovereign yield crisis, triggering an automated liquidation: **over \$150,000 in equities was liquidated into cash equivalents (SGOV T-Bills)**. Weeks later, TSLA initiated an explosive +35% earnings breakout, inflicting massive alpha drag.
 4. **Mathematical Error Compounding**:
    - *DCF Terminal Value Inflation*: In two-stage DCF models, substituting a synthetic fallback WACC of $W = 0.080$ for true capital cost $W = 0.095$ with $g_{\infty} = 0.025$ shrinks the terminal denominator from $0.070$ to $0.055$, generating **+27.3%** artificial valuation inflation.
    - *Kelly Criterion Leverage Ruin*: If a synthetic dark pool ratio of $0.50$ artificially inflates win probability $p$ from $0.52$ to $0.60$ with payoff odds $b = 1.5$, optimal Kelly allocation expands from $20.0\%$ to $33.3\%$ NAV—a **+66.5% unhedged leverage expansion**.
@@ -2389,7 +2389,7 @@ flowchart TB
 
     subgraph Layer2 ["Layer 2: Runtime Gatekeeper & Circuit Breaker (Execution Time)"]
         INPUT["Runtime Telemetry Input"]
-        ZMCB["ZeroMockCircuitBreaker<br/>(src/v3/gatekeeper/zero_mock_circuit_breaker.py)"]
+        ZMCB["ZeroMockCircuitBreaker<br/>(src/gatekeeper/zero_mock_circuit_breaker.py)"]
         ALLOW["Strict Provenance Allowlist<br/>(15 Verified Enterprise Sources)"]
         DEEP["Recursive Deep-Tree Walk<br/>(Audits nested dicts, lists, and leaves)"]
         NAN_CHECK["Finite Float Enforcement<br/>(Rejects NaN, Inf, and Booleans)"]
@@ -2462,9 +2462,9 @@ class ZeroMockASTVisitor(ast.NodeVisitor):
             self._in_except_handler = prev
 ```
 
-##### B. Runtime Zero-Mock Circuit Breaker (`src/v3/gatekeeper/zero_mock_circuit_breaker.py`)
+##### B. Runtime Zero-Mock Circuit Breaker (`src/gatekeeper/zero_mock_circuit_breaker.py`)
 ```python
-# src/v3/gatekeeper/zero_mock_circuit_breaker.py (ADR-029 Runtime Enforcement)
+# src/gatekeeper/zero_mock_circuit_breaker.py (ADR-029 Runtime Enforcement)
 import math
 from typing import Dict, Any, List
 
@@ -2530,7 +2530,7 @@ The Fail-Closed architectural doctrine dictates that when external ground truth 
 
 Natural language code reviews and standard linting tools (flake8, pylint, ruff) cannot catch subtle mock data injections in autonomous pipelines. A line like `return 0.50` is syntactically pristine Python that satisfies all PEP 8 linters.
 
-StockAnalysis V3 enforces the **Absolute Zero Simulated Data Mandate (Rule 5)** via an automated Abstract Syntax Tree (AST) scanner: `scripts/scan_mock_data.py`, codifying the zero-mock code auditor specification.
+Autonomous Quant System enforces the **Absolute Zero Simulated Data Mandate (Rule 5)** via an automated Abstract Syntax Tree (AST) scanner: `scripts/scan_mock_data.py`, codifying the zero-mock code auditor specification.
 
 Operating as an ADR-016 compliant engine ($\le 400$ LOC), the scanner compiles all Python files into native AST nodes (`ast.parse`) and traverses the execution graph via `ZeroMockASTVisitor(ast.NodeVisitor)`. It evaluates code proposals against seven inviolable rules ($ZM001 - ZM007$).
 
@@ -2661,7 +2661,7 @@ Running `python3 scripts/scan_mock_data.py src/` executes across the entire 300+
 
 While static AST analysis prevents engineers and LLM subagents from committing mock patterns into repository source code, dynamic runtime telemetry requires an active defensive layer. A model running live queries over web endpoints might encounter an untrusted scraper or a cached file containing fabricated data.
 
-The **Absolute Zero-Mock Recommendation Circuit Breaker** (`src/v3/gatekeeper/zero_mock_circuit_breaker.py`) acts as the single runtime gateway between quantitative models and execution sinks.
+The **Absolute Zero-Mock Recommendation Circuit Breaker** (`src/gatekeeper/zero_mock_circuit_breaker.py`) acts as the single runtime gateway between quantitative models and execution sinks.
 
 ```
                       [ Raw Analytical Telemetry / Verdict ]
@@ -2669,7 +2669,7 @@ The **Absolute Zero-Mock Recommendation Circuit Breaker** (`src/v3/gatekeeper/ze
                                          ▼
                    ┌───────────────────────────────────────────┐
                    │        ZeroMockCircuitBreaker             │
-                   │  (src/v3/gatekeeper/zero_mock_breaker.py) │
+                   │  (src/gatekeeper/zero_mock_breaker.py) │
                    └─────────────────────┬─────────────────────┘
                                          │
              ┌───────────────────────────┴───────────────────────────┐
@@ -2709,14 +2709,14 @@ VERIFIED_PROVENANCE_ALLOWLIST: Set[str] = {
 Any payload processed with `require_provenance=True` (mandatory for all trading executions) must declare a provenance tag originating from this exact set. Any tag matching `BANNED_PROVENANCE_SIGNATURES` (e.g., `"MOCK"`, `"SYNTHETIC"`, `"SANDBOX"`, `"US_FED_SOVEREIGN_MOCK_BASELINE"`) immediately trips the circuit breaker.
 
 #### 3.5.2 The Moonshot Kimi K3 Adversarial Red-Team Audit
-To harden the runtime circuit breaker against bypass exploits, StockAnalysis V3 commissioned **Moonshot Kimi K3** (`moonshotai/kimi-k3` via OpenRouter) to conduct an adversarial red-team code audit. Kimi K3 exposed six critical vulnerabilities:
+To harden the runtime circuit breaker against bypass exploits, Autonomous Quant System commissioned **Moonshot Kimi K3** (`moonshotai/kimi-k3` via OpenRouter) to conduct an adversarial red-team code audit. Kimi K3 exposed six critical vulnerabilities:
 
 1. **Fail-Open on Missing Provenance Keys**: The naive validator checked `if "MOCK" in source`. If an attacker or bug emitted a payload with an empty string `""` or omitted the `source` field entirely, the check passed undetected. *Hardened fix*: Mandatory top-level provenance declaration verified against the allowlist.
 2. **Shallow Dict Tree Bypass**: Telemetry nested inside nested child structures (e.g. `payload["macro"]["rates"][0]["risk_free_rate"] = 5.25`) bypassed top-level dictionary checks. *Hardened fix*: Full recursive depth-first tree traversal (`_recursive_inspect`).
 3. **Boolean Smuggling Exploits**: In Python, `bool` is a subclass of `int` (`isinstance(True, int) == True`). An adversarial payload with `{"spot_price": True}` bypassed null-checks (`spot_price is not None`) and numeric bounds (`spot_price > 0`). *Hardened fix*: Explicit type rejection `if isinstance(val, bool): trip_violation()`.
 4. **Non-Finite Float Smuggling (`NaN` / `Inf`)**: In IEEE 754 floating-point arithmetic, `float('nan') == 5.25` evaluates to `False`, and `float('nan') <= 0.0` evaluates to `False`. Corrupted feeds carrying `NaN` floated through sentinel catchers. *Hardened fix*: Strict `math.isfinite()` validation across all numeric fields.
 5. **Key Alias Blindspots**: Providers utilized disparate nomenclature (`provider`, `data_source`, `origin`, `vendor`, `resolution_strategy`). Inspecting only `source` created wide perimeter blindspots. *Hardened fix*: Comprehensive alias expansion sets (`PROVENANCE_KEY_NAMES`, `RATE_KEY_NAMES`, `PRICE_KEY_NAMES`).
-6. **Choke Point Decoupling**: The circuit breaker was initially designed as an optional utility function. *Hardened fix*: Wired directly into the canonical resolution gateway `ConsensusService.get_active_verdict()` (`src/v3/services/consensus_service.py`) and `DebateMatrixEngine` (`src/v3/debate/matrix.py`), making bypass structurally impossible.
+6. **Choke Point Decoupling**: The circuit breaker was initially designed as an optional utility function. *Hardened fix*: Wired directly into the canonical resolution gateway `ConsensusService.get_active_verdict()` (`src/services/consensus_service.py`) and `DebateMatrixEngine` (`src/debate/matrix.py`), making bypass structurally impossible.
 
 #### 3.5.3 Dynamic Sentinel Catchers & Fail-Closed Demotion
 The circuit breaker traps known synthetic default values:
@@ -2726,7 +2726,7 @@ The circuit breaker traps known synthetic default values:
 
 When a violation occurs during batch or UI processing, `sanitize_or_block_verdict()` neutralizes the recommendation rather than allowing corrupted signals to propagate:
 ```python
-# src/v3/gatekeeper/zero_mock_circuit_breaker.py (Lines 337-349)
+# src/gatekeeper/zero_mock_circuit_breaker.py (Lines 337-349)
 sanitized["signal"] = "BLOCKED_DATA_INTEGRITY_VIOLATION"
 sanitized["confidence"] = 0
 sanitized["recommendation"] = "HALT_TRADING_DUE_TO_UNVERIFIED_DATA"
@@ -2742,7 +2742,7 @@ sanitized["thesis_summary"] = (
 #### 3.5.4 Traceable Data Citation Tagging
 Every quantitative metric surfaced in executive reports or Slack briefings must pass through `format_data_citation()`:
 ```python
-# src/v3/gatekeeper/zero_mock_circuit_breaker.py (Lines 113-123)
+# src/gatekeeper/zero_mock_circuit_breaker.py (Lines 113-123)
 def format_data_citation(metric_name: str, value: Any, provenance: str, as_of: str = "") -> str:
     prov = str(provenance).strip().upper()
     is_valid = prov in VERIFIED_PROVENANCE_ALLOWLIST and not any(b in prov for b in ["MOCK", "SYNTHETIC"])
@@ -2759,7 +2759,7 @@ Example rendered citation:
 
 Even when input data is verified and signals are clean, an execution engine can still hallucinate trade prices during order routing (e.g. attempting to fill an order on a Saturday at a stale price, or suffering decimal displacement errors).
 
-Governed by **ADR-029** and **Invariant $I_{02}$** (*Execution-Price Guardrail*), `src/v3/analytics/execution_guardrails.py` establishes mathematical execution circuit breakers.
+Governed by **ADR-029** and **Invariant $I_{02}$** (*Execution-Price Guardrail*), `src/analytics/execution_guardrails.py` establishes mathematical execution circuit breakers.
 
 #### 3.6.1 The Mathematical Plausibility Band
 Before any paper trade execution is committed to `paper_portfolio_ledger`, the proposed execution price $P_{\text{exec}}$ must lie strictly within a dynamic volatility envelope centered on the 5-day Exponential Moving Average ($\text{EMA}_5$):
@@ -2775,7 +2775,7 @@ Where:
 - The term $0.08 \times \text{EMA}_5$ acts as an $8.0\%$ volatility floor during compressed, low-ATR market regimes, preventing false-positive rejections of valid momentum breakouts.
 
 ```python
-# src/v3/analytics/execution_guardrails.py (Lines 123-135)
+# src/analytics/execution_guardrails.py (Lines 123-135)
 ema5 = calculate_ema(prices, period=5)
 atr14 = calculate_approx_atr(prices, period=14)
 band = round(max(3.0 * atr14, 0.08 * ema5), 4)
@@ -2818,7 +2818,7 @@ Before an approved allocation is committed, `check_portfolio_risk_caps()` valida
 
 ### 3.7 Deterministic Live Spot Price Resolution
 
-To guarantee that market spot quotes originate exclusively from verified endpoints, StockAnalysis V3 deprecates ad-hoc scraping in favor of a centralized engine: `src/v3/utils/live_price_engine.py`.
+To guarantee that market spot quotes originate exclusively from verified endpoints, Autonomous Quant System deprecates ad-hoc scraping in favor of a centralized engine: `src/utils/live_price_engine.py`.
 
 #### 3.7.1 The 4-Tier Discovery Waterfall
 When a spot price is requested, `LivePriceEngine` executes a deterministic 4-tier waterfall:
@@ -2911,7 +2911,7 @@ flowchart TD
     end
 
     subgraph CIRCUIT_BREAKER["3. Runtime Zero-Mock Circuit Breaker"]
-        C3 --> G1[ZeroMockCircuitBreaker<br/>src/v3/gatekeeper/zero_mock_circuit_breaker.py]
+        C3 --> G1[ZeroMockCircuitBreaker<br/>src/gatekeeper/zero_mock_circuit_breaker.py]
         G1 --> H1[Recursive Deep-Tree Walk]
         H1 --> H2{"Provenance in Allowlist?<br/>15 Verified Sources"}
         H2 -->|No / Banned Signature| J1[Trip Circuit Breaker]
@@ -2974,7 +2974,7 @@ In Discipline 4, we examine the evolution of quantitative testing from superfici
 
 Traditional software engineering relies on deterministic input-output assertions: given input $X$, assert output $Y$. In autonomous multi-agent quantitative finance, this paradigm fails completely. A financial multi-agent pipeline can achieve 100% unit test coverage while simultaneously executing catastrophic trades based on hallucinatory data, leaking look-ahead bias, suffering from severe multi-collinearity, or falling into total operational paralysis.
 
-This section details the architectural evolution from naive unit testing to invariant-driven governance developed in StockAnalysis V3. We examine the mathematical and systems-level defenses required to govern autonomous agents managing quantitative capital: hermetic socket isolation, AST-anchored invariant verification, compensatory multi-pillar confluence, horizon-matched decay, contextual bandit policy selection, and statistical P-hacking deflation.
+This section details the architectural evolution from naive unit testing to invariant-driven governance developed in Autonomous Quant System. We examine the mathematical and systems-level defenses required to govern autonomous agents managing quantitative capital: hermetic socket isolation, AST-anchored invariant verification, compensatory multi-pillar confluence, horizon-matched decay, contextual bandit policy selection, and statistical P-hacking deflation.
 
 ---
 
@@ -2991,12 +2991,12 @@ def test_calculate_risk():
     mock_market_data.get_price.assert_called_once()
 ```
 While this test executes cleanly in CI, it introduces three fatal pathologies into quantitative systems:
-1. **The Mock Contamination Paradox**: By supplying artificial, static prices ($200.00) or volatility (0.15), the test verifies only that the mock object was invoked. It cannot verify whether the system behaves stably when presented with illiquid zero-volume regimes, inverted yield curves, non-finite division-by-zero scenarios, or stale quotes.
+1. **The Mock Contamination Paradox**: By supplying artificial, static prices (\$200.00) or volatility (0.15), the test verifies only that the mock object was invoked. It cannot verify whether the system behaves stably when presented with illiquid zero-volume regimes, inverted yield curves, non-finite division-by-zero scenarios, or stale quotes.
 2. **The "Pass-to-Fail" Dilemma**: Code coverage tools report green metrics even when catastrophic failure modes are hardcoded into production `except` blocks (e.g. `except Exception: return 0.50`).
 3. **Absence of State-Space Invariant Assertions**: Naive unit tests verify isolated point values rather than global mathematical invariants—such as whether risk multipliers remain bounded within $[0.20, 1.25]$, whether covariance matrices remain positive semi-definite under spectral decomposition, or whether epistemic isolation between sentiment models and internal portfolio holdings is preserved.
 
 #### 4.1.2 Mathematical Invariants as First-Class Architectural Citizens
-An **invariant** is a property of the system state space that must hold true across all valid execution paths, state transitions, and environmental inputs. In StockAnalysis V3, quantitative systems are governed by six classes of invariants:
+An **invariant** is a property of the system state space that must hold true across all valid execution paths, state transitions, and environmental inputs. In Autonomous Quant System, quantitative systems are governed by six classes of invariants:
 
 $$\mathcal{S}_{\text{valid}} = \left\{ s \in \mathcal{S} \;\middle|\; \bigwedge_{j=1}^{22} \mathcal{I}_j(s) = \text{True} \right\}$$
 
@@ -3012,7 +3012,7 @@ If any state transition violates an invariant predicate $\mathcal{I}_j(s)$, the 
 A foundational flaw in distributed quantitative testing is **uncontrolled network egress**. If test suites execute live HTTP calls, they introduce network latency, rate-limit failures, and non-deterministic state changes. Worse, developers under deadline pressure frequently "solve" network test failures by adding fallback mock dictionaries directly into production adapters.
 
 #### 4.2.1 Socket-Level Network Blocking (`tests/conftest.py`)
-To enforce hermetic isolation, StockAnalysis V3 intercepts network sockets at the operating system system-call boundary within `tests/conftest.py`. Outbound TCP/UDP connections are intercepted and blocked via an autouse pytest fixture:
+To enforce hermetic isolation, Autonomous Quant System intercepts network sockets at the operating system system-call boundary within `tests/conftest.py`. Outbound TCP/UDP connections are intercepted and blocked via an autouse pytest fixture:
 
 ```python
 # tests/conftest.py (Lines 1-32)
@@ -3053,7 +3053,7 @@ By disabling network egress and clamping LLM retry parameters:
 
 ### 4.3 The 22 Canonical Invariants ($I_{01}-I_{22}$) and AST-Anchored Two-Way Parity
 
-To bridge high-level Architecture Decision Records (ADRs) and concrete Python implementation files, StockAnalysis V3 formalizes 22 non-negotiable Invariant Codes cataloged in `docs/ACTIVE_INVARIANTS.md`.
+To bridge high-level Architecture Decision Records (ADRs) and concrete Python implementation files, Autonomous Quant System formalizes 22 non-negotiable Invariant Codes cataloged in `docs/ACTIVE_INVARIANTS.md`.
 
 #### 4.3.1 Master Canonical Invariant Matrix ($I_{01} - I_{22}$)
 
@@ -3153,10 +3153,10 @@ Furthermore, `verify_code_invariants.py` subtracts the anchor block lines from t
 
 Following the resolution of LLM hallucinations and data poisoning in late August 2026, the engineering team's objective swung violently toward total deterministic elimination of subjectivity. The mandate was clear: every prospective equity candidate had to satisfy uncompromising mathematical rigor across fundamental valuation, balance sheet credit health, institutional order flow, and technical momentum.
 
-The platform incorporated over 100 AST-verified quantitative algorithms into `src/v3/scout/pipeline_scout_evaluator.py` and the early multi-agent debate orchestrators. To ensure safety, these filters were stacked sequentially as **conjunctive boolean AND-gates**:
+The platform incorporated over 100 AST-verified quantitative algorithms into `src/scout/pipeline_scout_evaluator.py` and the early multi-agent debate orchestrators. To ensure safety, these filters were stacked sequentially as **conjunctive boolean AND-gates**:
 
 ```python
-# NAIVE INITIAL CONJUNCTIVE PIPELINE (src/v3/scout/pipeline_scout_evaluator.py):
+# NAIVE INITIAL CONJUNCTIVE PIPELINE (src/scout/pipeline_scout_evaluator.py):
 if (
     dcf_margin_of_safety > 0.0 and
     breakout_probability >= 0.70 and
@@ -3192,7 +3192,9 @@ Where $p_k$ is the marginal probability that an equity passes the $k$-th filter.
 
 Even if each filter is calibrated to be moderately selective with an individual pass rate of $p_k = 0.30$ (passing the top 30% of stocks in that dimension):
 Across $K = 5$ sequential gates:
-$$\mathbb{P}(\text{BUY}) = (0.30)^5 = 0.00243 = \mathbf{0.243\%}$$
+$$\mathbb{P}(\text{BUY}) = (0.30)^5 = 0.00243 = \mathbf{0.243\%}, \quad P_{\text{false-negative}} = 1 - \mathbb{P}(\text{BUY}) = 99.757\%$$
+
+(If 100 sequential gates were stacked, joint probability would collapse to $(0.30)^{100} \approx 5.15 \times 10^{-53}$, causing absolute physical paralysis; yet even a modest stack of 5 gates rejects 99.757% of opportunities).
 
 Across an active monitoring universe of 600 liquid stocks:
 $$\mathbb{E}[\text{BUY Opportunities}] = 600 \times 0.00243 \approx \mathbf{1.46 \text{ stocks}}$$
@@ -3211,13 +3213,13 @@ During September 2026, premier enterprise software and semiconductor compounders
 - **CrowdStrike (`CRWD`)**: Rebounded $+22.5\%$ as customer net retention remained near 98%.
 - **Nvidia (`NVDA`)**: Continued its secular surge as hyperscaler compute capex expanded.
 
-**Throughout this entire multi-week period, the StockAnalysis pipeline emitted ZERO BUY recommendations.** Day after day, executive briefings and Slack summaries rendered exclusively `HOLD`, `NEUTRAL`, or `AVOID`. The system sat entirely in cash while benchmark equities registered double-digit gains.
+**Throughout this entire multi-week period, the Quantitative Asset Management Pipeline pipeline emitted ZERO BUY recommendations.** Day after day, executive briefings and Slack summaries rendered exclusively `HOLD`, `NEUTRAL`, or `AVOID`. The system sat entirely in cash while benchmark equities registered double-digit gains.
 
 ##### Why Classical DCF Strenuously Rejects High-Growth Compounders
 Forensic decomposition revealed three critical drivers of the false-negative gridlock:
 1. **The Reinvestment Paradox**: High-growth SaaS and semiconductor design companies deliberately depress current Free Cash Flow by reinvesting gross margin into Research & Development (R&D) and Customer Acquisition. A classical DCF discounting current spot FCF projects cash flows that appear miniscule relative to current enterprise value.
 2. **Terminal Multiple Compression**: Classical DCF assumes terminal growth rates mean-revert to long-term GDP growth ($g_{\text{terminal}} \approx 2.5\%$) within 5 to 10 years. For businesses with expanding economic moats and software scale economics, this assumption catastrophically understates capitalized terminal value.
-3. **The 0.00 DCF Artifact**: For newly public high-growth companies (e.g. `HOOD`, `CRWV`), third-party fundamentals endpoints frequently returned `None` or `0.00` for DCF intrinsic value. In `src/v3/scout/pullback_detector.py`, this triggered an absurd false-negative veto:
+3. **The 0.00 DCF Artifact**: For newly public high-growth companies (e.g. `HOOD`, `CRWV`), third-party fundamentals endpoints frequently returned `None` or `0.00` for DCF intrinsic value. In `src/scout/pullback_detector.py`, this triggered an absurd false-negative veto:
    ```
    "Drawdown 34.24% detected but price 82.08 has not reached DCF value support (intrinsic 0.00); monitor for deeper entry."
    ```
@@ -3334,7 +3336,7 @@ Rather than hardcoding static buy conviction thresholds ($65\%$) or holding peri
 #### 4.4.5 Production Reference Code
 
 ##### Production Pattern 1: The 4-Pillar Compensatory Confluence Engine
-*Source: `src/v3/scout/four_pillar_engine.py` (ADR-024)*
+*Source: `src/scout/four_pillar_engine.py` (ADR-024)*
 
 ```python
 from dataclasses import dataclass
@@ -3468,7 +3470,7 @@ def evaluate_four_pillars(
 ```
 
 ##### Production Pattern 2: Growth-Adjusted Capitalized ROIC MOS (GAC-ROIC-MOS)
-*Source: `src/v3/math/composite_mos.py` (ADR-034)*
+*Source: `src/math/composite_mos.py` (ADR-034)*
 
 ```python
 from typing import Dict, Any, Optional
@@ -3526,12 +3528,14 @@ def calculate_gac_roic_mos(
 
 While the 4 pillars are designed to capture orthogonal economic phenomena, empirical market data exhibits intermittent collinearity. In speculative bull runs, retail social hype correlates with dark pool volume; in liquidity crises, momentum collapses alongside credit spreads. Naively feeding correlated pillar scores into downstream ensemble estimators distorts risk budgeting.
 
+To resolve this, the architecture synthesizes analytical covariance shrinkage (Ledoit & Wolf, 2004) with symmetrical Zero-Phase Component Analysis (ZCA) whitening (Bell & Sejnowski, 1997; Kessy, Lewin, & Strimmer, 2018). As proven by Kessy et al. (2018), ZCA whitening is the unique linear transformation that decorrelates variables while minimizing the mean squared error (MSE) relative to the original inputs ($\arg\min_W \mathbb{E}[\|WX - X\|^2]$ subject to $\mathrm{Cov}(WX) = \mathbf{I}$), preserving maximum spatial and economic interpretability.
+
 #### 4.5.1 The ZCA Agreement Paradox
 Standard Zero-Phase Component Analysis (ZCA) whitening rotates data into principal component space, normalizes variance by the inverse square root of eigenvalues, and rotates back:
 $$W_{\text{ZCA}} = U \Lambda^{-1/2} U^T, \quad X_{\text{whitened}} = X_{\text{centered}} W_{\text{ZCA}}^T$$
-In multi-factor equity scoring, standard ZCA suffers from the **ZCA Agreement Paradox**: the principal eigenvector corresponding to maximum eigenvalue $\lambda_{\max}$ represents the "in-phase agreement" state where an asset exhibits both elite fundamental quality and intense smart-money flow ($[+1, +1]$). Standard ZCA scales this eigenvector by $1/\sqrt{\lambda_{\max}} < 1.0$, actively penalizing stocks that exhibit genuine multi-pillar agreement!
+In multi-factor equity scoring, standard ZCA suffers from the **ZCA Agreement Paradox**: the principal eigenvector corresponding to maximum eigenvalue $\lambda_{\max}$ represents the "in-phase agreement" state where an asset exhibits both elite fundamental quality and intense smart-money flow ($[+1, +1]$). Standard ZCA scales this eigenvector by $1/\sqrt{\lambda_{\max}} < 1.0$, actively penalizing stocks that exhibit genuine multi-pillar agreement! The eigenvalue upper clamp $\max(1.0, \mu)$ resolves this paradox by guaranteeing that agreement eigenvectors are never attenuated.
 
-#### 4.5.2 The Three-Stage Architectural Solution (`src/v3/math/zca_whitening.py`)
+#### 4.5.2 The Three-Stage Architectural Solution (`src/math/zca_whitening.py`)
 Algorithm #89 resolves this paradox through a three-stage mathematical pipeline:
 
 ```
@@ -3563,7 +3567,7 @@ Algorithm #89 resolves this paradox through a three-stage mathematical pipeline:
 [Orthogonalized Decorrelated Pillars (N, 4)]
 ```
 
-#### 4.5.3 Python Implementation (`src/v3/math/zca_whitening.py`)
+#### 4.5.3 Python Implementation (`src/math/zca_whitening.py`)
 ```python
 def zca_whiten_four_pillars(
     raw_pillar_matrix: np.ndarray,
@@ -3617,7 +3621,7 @@ Diagnostics verified by `evaluate_zca_whitening_metrics()` consistently demonstr
 In early quantitative frameworks, consensus convictions decayed uniformly according to a static 7-day half-life. While 7 days is appropriate for fast tactical breakout setups, it severely harms multi-quarter secular growth investments. Quality compounders (e.g. MSFT, CRM, NOW, PLTR) routinely spend 15 to 25 trading days consolidating gains in tight bullish flags before resuming multi-month upward trends. A flat 7-day half-life causes the system to demote high-conviction compounder positions to `NEUTRAL (EXPIRED)` precisely during their standard base-building phase, triggering premature liquidations.
 
 #### 4.6.2 Horizon-Matched Decay Profiles (ADR-033)
-StockAnalysis V3 establishes four discrete decay horizons in `src/v3/utils/consensus_decay.py`:
+Autonomous Quant System establishes four discrete decay horizons in `src/utils/consensus_decay.py`:
 
 | Horizon Category | Half-Life ($t_{1/2}$) | Shelf-Life ($2 \times t_{1/2}$) | Underlying Market Dynamics |
 |---|---|---|---|
@@ -3630,21 +3634,21 @@ Conviction decays exponentially according to:
 $$C_{\text{decayed}}(t) = C_0 \cdot 2^{-\Delta t / t_{1/2}(h)}$$
 Signals with $\Delta t > 2 \times t_{1/2}(h)$ automatically demote to `NEUTRAL (EXPIRED)` and require full re-debate.
 
-#### 4.6.3 Time-in-State Compounder Guard (`src/v3/state/compounder_guard.py`)
+#### 4.6.3 Time-in-State Compounder Guard (`src/state/compounder_guard.py`)
 To protect compounders during initial base formation, `is_compounder_protected()` enforces a mandatory 20-trading-day minimum hold window:
 1. **Dwell Immunity**: A `QUALITY_COMPOUNDER` position cannot be liquidated due to calendar signal decay or minor score dips below the exit threshold during its first 20 days.
 2. **SPY Residual Alpha Test**: Protection holds as long as the stock's return equals or exceeds the benchmark ($r_{\text{stock}} \ge r_{\text{SPY}}$).
 3. **Capital Preservation Override**: If genuine catastrophic breakdown occurs (`technical_breakdown=True`, e.g., hard stop hit or $\text{CLV} \le -0.75$), the compounder guard is instantly overridden, executing immediate risk mitigation.
 
 #### 4.6.4 Session-Close Momentum Lock (ADR-031)
-Governed by `src/v3/state/momentum_lock.py`, the Momentum Lock protects winning growth trades from premature end-of-day panic selling. Even if macro sirens or volatility indices spike, the engine is forbidden from issuing defensive liquidations or dwell exits if:
+Governed by `src/state/momentum_lock.py`, the Momentum Lock protects winning growth trades from premature end-of-day panic selling. Even if macro sirens or volatility indices spike, the engine is forbidden from issuing defensive liquidations or dwell exits if:
 1. The stock closes in the upper quartile of its intraday range:
    $$\frac{\text{Close} - \text{Low}}{\text{High} - \text{Low}} \ge 0.75$$
 2. Session volume expands significantly:
    $$\text{Volume} \ge 1.25 \times \text{AvgVolume}_{20\text{d}}$$
 
 #### 4.6.5 Realistic Gap-Down Execution Modeling
-In backtesting and paper simulation, stop orders are frequently assumed to fill precisely at the stop price. In live trading, overnight market-moving news creates gaps. StockAnalysis V3 enforces realistic gap-down execution fill modeling:
+In backtesting and paper simulation, stop orders are frequently assumed to fill precisely at the stop price. In live trading, overnight market-moving news creates gaps. Autonomous Quant System enforces realistic gap-down execution fill modeling:
 $$P_{\text{fill}} = \min\left(P_{\text{stop}}, \; P_{\text{open}} \times 0.9980\right)$$
 Factoring in open gap-downs plus 20 basis points of slippage eliminates fantasy backtest fills and guarantees conservative capital protection accounting.
 
@@ -3652,7 +3656,7 @@ Factoring in open gap-downs plus 20 basis points of slippage eliminates fantasy 
 
 ### 4.7 Adaptive Policy Bandits (ADR-034): Bayesian Contextual Thompson Sampling
 
-Static risk and sizing rules inevitably succumb to regime shifts. A conviction threshold that thrives in a trending 2021 bull market creates excessive churn in a choppy 2022 rate-hiking cycle. StockAnalysis V3 implements an online Bayesian Contextual Bandit (`src/v3/analytics/contextual_bandit_rl.py`) that modulates policy execution parameters using closed-form Thompson Sampling.
+Static risk and sizing rules inevitably succumb to regime shifts. A conviction threshold that thrives in a trending 2021 bull market creates excessive churn in a choppy 2022 rate-hiking cycle. Autonomous Quant System implements an online Bayesian Contextual Bandit (`src/analytics/contextual_bandit_rl.py`) that modulates policy execution parameters using closed-form Thompson Sampling (Thompson, 1933; Agrawal & Goyal, 2012).
 
 #### 4.7.1 Discrete Policy Action Arms
 The bandit selects between six discrete policy configurations:
@@ -3683,7 +3687,7 @@ $$r_{\text{resid}} = r_{\text{realized}} - \beta \cdot r_{\text{SPY}}$$
 $$R_{\text{raw}} = \text{clamp}\left( \frac{r_{\text{resid}} + 8.0\%}{16.0\%}, \; 0.0, \; 1.0 \right)$$
 To prevent double-counting across multi-week trades, the update uses **net-delta credit resolution**:
 $$\Delta r = R_{\text{raw}} - c_{\text{intermediate}}$$
-$$\alpha_a \leftarrow \max(0.5, \, \alpha_a + \Delta r), \quad \beta_a \leftarrow \max(0.5, \, \beta_a - \Delta r)$$
+$$\alpha_a \leftarrow \max(0.5, \, \alpha_a + \Delta r), \quad \beta_a \leftarrow \max(0.5, \, \beta_a + (1.0 - \Delta r))$$
 
 #### 4.7.4 GAC-ROIC-MOS & Spot Price Fallback
 In high-ROIC growth franchises ($\text{ROIC} \ge 15\%, g \ge 15\%$), classical DCF terminal value models frequently yield negative margins of safety due to high market multiples. ADR-034 enforces the **Growth-Adjusted Capital ROIC Margin of Safety (GAC-ROIC-MOS)**. If intrinsic DCF values are uncomputable or missing ($0.00$), the system falls back to verified current market spot price support rather than triggering an erroneous zero-value crash or false-negative veto.
@@ -3695,8 +3699,8 @@ In high-ROIC growth franchises ($\text{ROIC} \ge 15\%, g \ge 15\%$), classical D
 #### 4.8.1 The Danger of Selection Bias in Parameter Calibration
 Quantitative strategies that optimize parameters across historical backtests suffer from **multiple testing selection bias** (P-hacking). If an optimization harness tests $N=1,000$ combinations of entry thresholds and exit bands, the probability of encountering a backtest Sharpe ratio $> 2.0$ purely by random luck approaches $100\%$. Presenting unadjusted backtest Sharpe ratios creates dangerous overconfidence.
 
-#### 4.8.2 Bailey & López de Prado (2014) Formulation (`src/v3/analytics/d1_parameter_calibrator.py`)
-StockAnalysis V3 enforces the Deflated Sharpe Ratio (DSR) across all parameter calibration routines. DSR computes the probability that the estimated Sharpe ratio exceeds zero after correcting for non-normality (skewness $\gamma_3$, kurtosis $\gamma_4$) and the selection bias from $N$ trials.
+#### 4.8.2 Bailey & López de Prado (2014) Formulation (`src/analytics/d1_parameter_calibrator.py`)
+Autonomous Quant System enforces the Deflated Sharpe Ratio (DSR) across all parameter calibration routines. DSR computes the probability that the estimated Sharpe ratio exceeds zero after correcting for non-normality (skewness $\gamma_3$, kurtosis $\gamma_4$) and the selection bias from $N$ trials.
 
 1. **Expected Maximum Sharpe Ratio under Null Hypothesis**:
    $$z_1 = \Phi^{-1}\left(1 - \frac{1}{N}\right), \quad z_2 = \Phi^{-1}\left(1 - \frac{1}{N \cdot e}\right)$$
@@ -3720,7 +3724,7 @@ In `d1_parameter_calibrator.py`, parameter calibrations are rejected unless $\te
 
 ### Transition Bridge: From Testing & Governance to the Production Roadmap
 
-Discipline 4 completes the quantitative and invariant testing architecture of StockAnalysis V3. By anchoring system behavior to 22 formal invariant predicates ($I_{01}-I_{22}$), isolating the runtime environment behind socket-level network blocks, resolving gate paralysis through compensatory orthogonal confluence, and protecting empirical calibrations with Deflated Sharpe Ratios, the system achieves statistical and mathematical robustness.
+Discipline 4 completes the quantitative and invariant testing architecture of Autonomous Quant System. By anchoring system behavior to 22 formal invariant predicates ($I_{01}-I_{22}$), isolating the runtime environment behind socket-level network blocks, resolving gate paralysis through compensatory orthogonal confluence, and protecting empirical calibrations with Deflated Sharpe Ratios, the system achieves statistical and mathematical robustness.
 
 Yet knowing the theoretical equations and defensive patterns is fundamentally different from orchestrating them into a battle-tested production environment. How does an engineering organization transition from a blank repository to a fully autonomous, self-auditing multi-agent quantitative fund? What are the phase-by-phase implementation gates, and what inviolable laws must never be compromised under market stress?
 
@@ -3729,7 +3733,7 @@ In Section 5, we provide the concrete 120-day production roadmap, detail the Ten
 
 ## 5. The Autonomous Quant Production Roadmap & Ten Inviolable Commandments
 
-Transitioning an autonomous multi-agent quantitative architecture from conceptual design to live capital execution requires disciplined, phased engineering. This roadmap provides a concrete, battle-tested implementation sequence derived from the build of StockAnalysis V3.
+Transitioning an autonomous multi-agent quantitative architecture from conceptual design to live capital execution requires disciplined, phased engineering. This roadmap provides a concrete, battle-tested implementation sequence derived from the build of Autonomous Quant System.
 
 ---
 
@@ -3785,7 +3789,7 @@ Transitioning an autonomous multi-agent quantitative architecture from conceptua
 #### Phase 2: Epistemic Firewalls & Adversarial Triads (Days 31–60)
 - **Objective**: Prevent cognitive priming, confirmation bias, and groupthink across LLM subagents.
 - **Key Deliverables**:
-  1. Implement Epistemic Context Slicer (`src/v3/debate/context_slicer.py`), air-gapping external media from internal portfolio state and applying $80\%$ discount to commercial funnels ($W_{\text{commercial}} = 0.20$).
+  1. Implement Epistemic Context Slicer (`src/debate/context_slicer.py`), air-gapping external media from internal portfolio state and applying $80\%$ discount to commercial funnels ($W_{\text{commercial}} = 0.20$).
   2. Construct dialectical debate triads (Bull, Bear, Auditor, Risk Officer, Moderator) utilizing Path C multi-stage deliberation.
   3. Implement Jensen-Shannon Divergence consensus bypass and convex optimization solver.
   4. Deploy `ConsensusService` with immutable quarantine tables (`consensus_quarantine`), eliminating raw hard-deletes.
@@ -3796,7 +3800,7 @@ Transitioning an autonomous multi-agent quantitative architecture from conceptua
   1. Deploy AST Static Scanner (`scripts/scan_mock_data.py`), enforcing rules `ZM001` through `ZM007`.
   2. Implement runtime `ZeroMockCircuitBreaker` with 15-source verified provenance allowlist, deep recursive tree scanning, and sentinel value blocking.
   3. Construct deterministic 4-tier `LivePriceEngine` (FMP $\to$ Yahoo $\to$ Finnhub $\to$ D1) with fail-closed semantics.
-  4. Deploy Pre-Trade Execution Guardrails (`src/v3/analytics/execution_guardrails.py`) enforcing $\|P_{\text{exec}} - \text{EMA}_5\| \le \max(3\text{ATR}_{14}, 0.08\text{EMA}_5)$, weekend session gating, and nightly mark-to-market reconciliation.
+  4. Deploy Pre-Trade Execution Guardrails (`src/analytics/execution_guardrails.py`) enforcing $\|P_{\text{exec}} - \text{EMA}_5\| \le \max(3\text{ATR}_{14}, 0.08\text{EMA}_5)$, weekend session gating, and nightly mark-to-market reconciliation.
 
 #### Phase 4: Invariant Testing, Confluence Governance & Live Capital (Days 91–120)
 - **Objective**: Implement invariant test fixtures, compensatory confluence scoring, and adaptive capital execution.
@@ -3804,8 +3808,8 @@ Transitioning an autonomous multi-agent quantitative architecture from conceptua
   1. Deploy hermetic socket isolation in `tests/conftest.py` with `SocketBlockedError`.
   2. Embed and verify the 22 canonical Invariant Anchors ($I_{01}-I_{22}$) with deterministic SHA1 checksums.
   3. Implement Compensatory Multi-Pillar Confluence (ADR-024) across Quality, Kinematics, Diffusion, and Flow.
-  4. Deploy Ledoit-Wolf Symmetrical ZCA Whitening (`src/v3/math/zca_whitening.py`) and Time-in-State Compounder Guards (`src/v3/state/compounder_guard.py`).
-  5. Deploy 6-arm Bayesian Contextual Bandit (`src/v3/analytics/contextual_bandit_rl.py`) and Deflated Sharpe Ratio validator (`src/v3/analytics/d1_parameter_calibrator.py`).
+  4. Deploy Ledoit-Wolf Symmetrical ZCA Whitening (`src/math/zca_whitening.py`) and Time-in-State Compounder Guards (`src/state/compounder_guard.py`).
+  5. Deploy 6-arm Bayesian Contextual Bandit (`src/analytics/contextual_bandit_rl.py`) and Deflated Sharpe Ratio validator (`src/analytics/d1_parameter_calibrator.py`).
 
 ---
 
@@ -3826,7 +3830,7 @@ Transitioning an autonomous multi-agent quantitative architecture from conceptua
 
 ### 5.3 Compensatory Confluence & Invariant Gate Pipeline (Mermaid Architecture Diagram)
 
-The following Mermaid diagram illustrates the end-to-end execution flow of market telemetry through the invariant gates, zero-mock circuit breakers, orthogonal pillars, and adaptive execution layers of StockAnalysis V3:
+The following Mermaid diagram illustrates the end-to-end execution flow of market telemetry through the invariant gates, zero-mock circuit breakers, orthogonal pillars, and adaptive execution layers of Autonomous Quant System:
 
 ```mermaid
 flowchart TD
@@ -3971,15 +3975,28 @@ By coupling programmatic AST static analysis, runtime socket isolation, compensa
 
 ## Concluding Epilogue: The Autonomous Production Quant Invariant
 
-The fundamental lesson derived from the evolution of StockAnalysis V3 is that **autonomous artificial intelligence cannot be trusted to allocate financial capital without deterministic, mathematically provable constraints**.
+The fundamental lesson derived from the evolution of Autonomous Quant System is that **autonomous artificial intelligence cannot be trusted to allocate financial capital without deterministic, mathematically provable constraints**.
 
 The seductive promise of modern LLMs—their fluent conversational prose, rapid code synthesis, and seemingly omniscient domain recall—masks an inherent architectural pathology: they are probabilistic autoregressive sequence predictors designed to minimize token surprise, not capital risk. When unconstrained, their "pleasing bias" manufactures synthetic constants, their attention heads disperse critical risk invariants across long contexts, their subagent swarms succumb to catastrophic confirmation bias, and their optimizers fall victim to selection bias and overfitting.
 
 To engineer a truly autonomous, enduring quantitative intelligence, the system must be constructed with epistemic humility and architectural rigor:
-- **Structural Bounds**: The transformer context window must be protected via strict modular bounds (ADR-016 400 LOC ceiling), surgical 80-line view slices, AST registries, and living context compilers that eliminate the "Lost in the Middle" attention degradation valley.
+- **Structural Bounds**: The transformer context window must be protected via strict modular bounds (ADR-016 400 LOC ceiling), AST-scoped view slices, AST registries, and living context compilers that eliminate the "Lost in the Middle" attention degradation valley.
 - **Epistemic Firewalls**: The cognitive engine must be air-gapped from narrative pollution (ADR-030), stripped of commercial funnel hype ($W_{\text{commercial}} = 0.20$), and organized into dialectical adversarial triads (Bull, Bear, Auditor per ADR-039) where consensus is mathematically arbitrated by convex solvers.
-- **Zero-Mock Defenses**: Runtime execution must adhere to the Absolute Zero Simulated Data Mandate (Rule 5 / ADR-029). Every metric must carry immutable provenance citations, verified by AST scanners (ZM001–ZM007), gated by pre-trade plausibility bands ($|P_{\text{exec}} - \text{EMA}_5| \le \max(3\text{ATR}_{14}, 0.08\text{EMA}_5)$), and resolved via fail-closed waterfalls.
+- **Zero-Mock Defenses**: Runtime execution must adhere to the Absolute Zero Simulated Data Mandate (Rule 5 / ADR-029). Every metric must carry immutable provenance citations, verified by AST scanners (ZM001–ZM009), gated by pre-trade plausibility bands ($|P_{\text{exec}} - \text{EMA}_5| \le \max(3\text{ATR}_{14}, 0.08\text{EMA}_5)$), and resolved via fail-closed waterfalls.
 - **Invariant Governance**: Testing must evolve from naive unit tests to hermetic, socket-isolated invariant suites that enforce 22 bedrock invariant anchors ($I_{01}-I_{22}$), compensatory multi-pillar confluence (ADR-024) to avoid gate paralysis, horizon-matched decay (ADR-033), and Deflated Sharpe Ratio validation to guard against P-hacking.
 
 When these four disciplines converge into an integrated architecture, the result is not merely an automated trading bot, but an institutional-grade, self-auditing quantitative operating system—resilient to market shocks, immune to cognitive delusion, and mathematically engineered to compound capital across market cycles.
+
+---
+
+## 5. Foundational Academic Bibliography
+
+1. **Agrawal, S., & Goyal, N. (2012)**. "Analysis of Thompson Sampling for the multi-armed bandit problem." *Proceedings of the 25th Annual Conference on Learning Theory (COLT 2012)*, JMLR W&CP 23, 39.1–39.26.
+2. **Bailey, D. H., & López de Prado, M. (2014)**. "The Deflated Sharpe Ratio: Correcting for Selection Bias, Backtest Overfitting and Non-Normality." *Journal of Portfolio Management*, 40(5), 94–107.
+3. **Bell, A. J., & Sejnowski, T. J. (1997)**. "The 'independent components' of natural scenes are edge filters." *Vision Research*, 37(23), 3327–3338.
+4. **Kessy, A., Lewin, A., & Strimmer, K. (2018)**. "Optimal Whitening and Decorrelation." *The American Statistician*, 72(4), 309–314.
+5. **Ledoit, O., & Wolf, M. (2004)**. "A well-conditioned estimator for large-dimensional covariance matrices." *Journal of Multivariate Analysis*, 88(2), 365–411.
+6. **Lin, J. (1991)**. "Divergence measures based on the Shannon entropy." *IEEE Transactions on Information Theory*, 37(1), 145–151.
+7. **Shannon, C. E. (1948)**. "A Mathematical Theory of Communication." *Bell System Technical Journal*, 27(3), 379–423.
+8. **Thompson, W. R. (1933)**. "On the likelihood that one unknown probability exceeds another in view of the evidence of two samples." *Biometrika*, 25(3/4), 285–294.
 

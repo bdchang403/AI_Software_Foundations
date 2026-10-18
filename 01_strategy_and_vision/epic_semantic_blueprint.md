@@ -9,7 +9,7 @@
 - **Target Subsystem**: `[Bounded Subsystem Domain Path]`
 - **Max Token Budget**: `[<= 15,000 tokens for entire Epic]`
 - **Max Story Blast Radius**: `[<= 4,000 tokens per child story]`
-- **Target File LOC**: `[<= 400 lines per module per Architectural Modularity Ceiling (<= 400 LOC)]`
+- **Target File LOC**: `[<= 400 lines per module per Architectural Modularity Heuristics (<= 400 LOC)]`
 - **Governing Invariants**: `[e.g., I01, I02, I04, I07, I15, I20]`
 
 ---

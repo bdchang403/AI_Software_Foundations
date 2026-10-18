@@ -20,14 +20,14 @@
 
 * **Observed Failure Mode:** `[Detail the observed latency, token burn, race condition, or context degradation]`
 * **Working Memory / Attention Implications:** `[Attention entropy $\mathcal{H}(A_i)$, U-curve retrieval loss $F(x)$, or prompt token overhead]`
-* **Economic / Spend Budget:** `[Micro-USD cost impact against the $0.40/day rolling spend cap]`
+* **Economic / Spend Budget:** `[Micro-USD cost impact against the \$0.40/day rolling spend cap]`
 
 ---
 
 ## 2. Decision Drivers
 *What physical, regulatory, or operational constraints strictly govern the acceptable solutions?*
 1. **D1 (Deterministic Reproducibility):** Output must be reproducible across local and remote CI without stochastic drift.
-2. **D2 (Modularity & Working Memory):** Implementations must fit within the ADR-016 400-LOC ceiling and 80-line surgical view windows.
+2. **D2 (Modularity & Working Memory):** Implementations must adhere to Architectural Modularity Heuristics (target <= 400 LOC) and Semantic AST Structural Scoping.
 3. **D3 (Fail-Closed Safety):** Failure states must halt execution or return `None`; zero synthetic fallbacks permitted (Invariant $I_{01}$).
 4. **D4 (Regulatory Auditability):** Full 1:1 bidirectional traceability from requirements to code-adjacent invariant anchors.
 
@@ -59,8 +59,8 @@ $$\text{Predicate Formula (in standard LaTeX)}$$
 
 ### Machine Contract & Invariant Binding
 * **Invariant ID:** `[e.g., I02, I07, I16, I22]`
-* **Target Source Modules:** `[e.g., src/v3/execution/execution_gateway.py]`
-* **Enforcing AST Rules / Unit Tests:** `[e.g., test_tier2_boundary_invariants.py, ZM001–ZM007]`
+* **Target Source Modules:** `[e.g., src/execution/execution_gateway.py]`
+* **Enforcing AST Rules / Unit Tests:** `[e.g., test_tier2_boundary_invariants.py, ZM001–ZM009]`
 
 ---
 
@@ -86,11 +86,11 @@ $$\text{Checksum} = \mathrm{SHA1}\left(\text{INV-ID} \;\|\; \text{ADR-ID.strip()
 
 ### Positive Consequences
 * `[e.g., Eliminates schema hallucinations by injecting minified living context]`
-* `[e.g., Saves ~10,000 prompt tokens per multi-agent session, keeping spend under $0.40/day]`
+* `[e.g., Saves ~10,000 prompt tokens per multi-agent session, keeping spend under \$0.40/day]`
 
 ### Negative Consequences / Trade-offs
 * `[e.g., Developers must run atomic pre-commit command chain before merging to prevent CI drift failure]`
-* `[e.g., Source files must be actively refactored once reaching 350 physical lines of code]`
+* `[e.g., Source files approaching 350 physical lines should be evaluated for modular decomposition]`
 
 ### Explicit Agentic Machine Constraints (Injected into System Prompts)
 1. **Rule 14 Anti-Feature-Erasure:** Autonomous agents refactoring code under this ADR are FORBIDDEN from deleting fallback cascades, retry logic, or telemetry assertions to satisfy line limits.

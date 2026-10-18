@@ -2,7 +2,7 @@
 
 In the enterprise Context Pipeline, the **Strategy Lead / Product Owner (PO)** operates as the constitutional source of truth. Autonomous software engineering systems powered by Large Language Models (LLMs) cannot infer unstated business priorities, legal constraints, or clinical thresholds. Without explicit boundary conditions, stochastic agents default to unbounded exploratory traversals, generating architectural drift, hallucinated data models, and unmitigated risk exposure.
 
-As a Strategy Lead or Product Owner, your primary responsibility is **Epistemic Bounding and Invariant Governance**. You translate ambiguous executive mandates, regulatory compliance rules (e.g., FDA 21 CFR Part 820/11, Federal Reserve SR 11-7, FAA DO-178C Level A), and customer requirements into machine-ingestible **Epic Semantic Blueprints**.
+As a Strategy Lead or Product Owner, your primary responsibility is **Epistemic Bounding and Invariant Governance**. You translate ambiguous executive mandates, statutory compliance obligations (e.g., objective verification under FDA 21 CFR Part 820/11, model validation under Federal Reserve SR 11-7, and airworthiness objectives under FAA DO-178C Level A), and customer requirements into machine-ingestible **Epic Semantic Blueprints**.
 
 ---
 

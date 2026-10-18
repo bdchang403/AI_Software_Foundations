@@ -130,8 +130,11 @@ The static AST scanner operates via `ast.NodeVisitor`, inspecting Python syntax 
   fake_feed = Mock()  # BANNED: ZM009
   stream = MagicMock()  # BANNED: ZM009
   ```
-* **Vulnerability Analysis**: Autonomous models under test pressure frequently import mock frameworks to fabricate synthetic test doubles. While standard web testing tolerates synthetic test stubs, mission-critical systems under Invariant $I_{01}$ forbid mocks because they create the optical illusion of passing test suites while decoupling verification from empirical reality.
-* **Required Remediation**: Eliminate synthetic mocks entirely. Unit and integration tests must run against immutable offline golden fixture recordings under hermetic socket isolation (`pytest-socket` raising `SocketBlockedError`).
+* **Vulnerability Analysis**: Autonomous models under test pressure frequently import mock frameworks to fabricate synthetic test doubles that bypass core assertions. In mission-critical systems, unanchored mocks create the optical illusion of passing test suites while decoupling verification from empirical reality.
+* **Architectural Clarification — Production Source vs. Regulated Test Scaffolding**:
+  - **In Production Source Code (`src/`, `firmware/`)**: Absolute Zero-Mock enforcement. Zero synthetic mocks, zero fail-soft default returns (`except: return 0.50`), and zero synthetic fallback dictionaries are tolerated. All production calculations must operate strictly on verified live or recorded immutable data.
+  - **In Regulated Test Suites (`tests/`)**: The Zero-Mock doctrine prohibits unanchored, tautological mocks (mocks that merely assert what the mock itself was told to return). However, regulatory standards—specifically **RTCA DO-178C Level A** (mandating 100% Modified Condition/Decision Coverage, MC/DC) and **IEC 62304 Class C** (mandating safety-critical fault injection)—mathematically require test doubles, hardware bus drivers, and deterministic fault injectors. Simulating catastrophic hardware bus failures, EEPROM checksum corruption, or packet timeouts cannot always be induced on physical hardware during CI. Thus, test suites may employ verifiable, contract-bound test doubles, offline golden recordings, and hardware emulators under hermetic socket isolation (`pytest-socket` raising `SocketBlockedError`).
+* **Required Remediation**: Eliminate synthetic mocks and unanchored `@patch` decorators from production source code. Verification suites must execute against immutable golden recordings or deterministic contract-bound test doubles under hermetic socket isolation.
 
 ---
 

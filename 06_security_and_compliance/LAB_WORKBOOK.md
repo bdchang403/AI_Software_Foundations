@@ -130,7 +130,7 @@ def quarantine_tainted_record(db_conn: sqlite3.Connection, record_id: int, reaso
 ## 🧪 Lab 4: Nightly Mark-to-Market State Reconciliation
 
 ### Objective
-Implement the automated nightly reconciliation loop that independently computes portfolio PnL and NAV from raw immutable trades and asserts tolerance $\le \$250.00$.
+Implement the automated nightly reconciliation loop that independently computes portfolio PnL and NAV from raw immutable trades and asserts tolerance $\le \text{USD } 250.00$.
 
 ### Step 1: Verified Answer Key
 ```python

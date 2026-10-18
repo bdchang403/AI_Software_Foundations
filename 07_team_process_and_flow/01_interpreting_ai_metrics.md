@@ -29,21 +29,33 @@ Agile Leaders (Scrum Masters, Agile Coaches, Engineering Managers, and Delivery 
 Agile Leaders must monitor four objective mathematical telemetry indices across the engineering lifecycle:
 
 ### 1. Context Debt Ratio (CDR)
-Quantifies the proportion of model tokens wasted on prompt looping, refactoring, and code rollbacks caused by defective context:
+Quantifies context waste across both economic token spend and structural AST indexing:
 
-$$\text{CDR} = \frac{\text{Tokens Expended on Rework, Refactoring, and Rollbacks}}{\text{Total Production Tokens Expended}}$$
+- **Token Context Debt Ratio ($\text{CDR}_{\text{token}}$)**:
+  $$\text{CDR}_{\text{token}} = \frac{\text{Tokens Expended on Rework, Refactoring, and Rollbacks}}{\text{Total Production Tokens Expended}}$$
 
-*   **Operational Ceiling**: $\text{CDR} \le 0.18$ (Healthy).
-*   **Warning Threshold**: $0.18 < \text{CDR} \le 0.25$ (Context Drift Detected).
-*   **Emergency Halt**: $\text{CDR} > 0.25$ (Prompt looping; halt generation and audit AST Living Context).
+  *   **Operational Ceiling**: $\text{CDR}_{\text{token}} \le 0.18$ (Healthy).
+  *   **Warning Threshold**: $0.18 < \text{CDR}_{\text{token}} \le 0.25$ (Context Drift Detected).
+  *   **Emergency Halt**: $\text{CDR}_{\text{token}} > 0.25$ (Prompt looping; halt generation and audit AST Living Context).
+
+- **Structural Context Debt Ratio ($\text{CDR}_{\text{structural}}$)**:
+  $$\text{CDR}_{\text{structural}} = \frac{\text{Un-indexed Source Lines of Code}}{\text{Total Indexed AST Registry Lines}}$$
+
+  *   **Operational Ceiling**: $\text{CDR}_{\text{structural}} \le 0.05$. Exceeding $0.05$ indicates uncommitted code divergence from the AST state registry.
 
 ### 2. Prompt Regression Interval (PRI)
-Measures the temporal frequency of commit rollbacks and prompt churn:
+Measures the frequency of commit rollbacks, execution churn, and turn iterations:
 
-$$\text{PRI} = \frac{\sum_{i=1}^M \tau_{\text{revert}}^{(i)}}{\sum_{j=1}^N \tau_{\text{commit}}^{(j)}}$$
+- **Temporal Prompt Regression Interval ($\text{PRI}_{\text{hours}}$)**:
+  $$\text{PRI}_{\text{hours}} = \frac{\sum_{i=1}^M \tau_{\text{revert}}^{(i)}}{\sum_{j=1}^N \tau_{\text{commit}}^{(j)}}$$
 
-Where $\tau_{\text{revert}}$ represents hours dedicated to reverting agent-generated pull requests, and $\tau_{\text{commit}}$ represents total active engineering hours.
-*   **Operational Target**: $\text{PRI} \le 0.08$.
+  Where $\tau_{\text{revert}}$ represents hours dedicated to reverting agent-generated pull requests, and $\tau_{\text{commit}}$ represents total active engineering hours.
+  *   **Operational Target**: $\text{PRI}_{\text{hours}} \le 0.08$.
+
+- **Turn-Based Prompt Regression Interval ($\text{PRI}_{\text{turns}}$)**:
+  $$\text{PRI}_{\text{turns}} = \text{Average agent interaction turns per passing pull request}$$
+
+  *   **Operational Target**: $\text{PRI}_{\text{turns}} \le 3$. An average $\text{PRI}_{\text{turns}} > 3$ indicates an ambiguous or insufficiently bounded 3-Part Directive.
 
 ### 3. Quality Decay Factor (QDF)
 Correlates automated test passes against post-release defect escapes:
@@ -137,7 +149,7 @@ flowchart TD
 │   • Diagnostic: Review comments averaged 42 per PR; senior architects were reviewing line-by-line│
 │   • Root Cause: Agent introduced unapproved third-party cryptographic hashing libraries.         │
 │   • Intervention: Implemented Architectural Dependency Whitelist and AI-SBOM SPDX 3.0 headers.   │
-│   • Result: Review turnaround time reduced by 74%; 100% compliance with Federal Reserve SR 11-7. │
+│   • Result: Review turnaround time reduced by 74%; verified model dependency inventory and governance auditability in alignment with Federal Reserve SR 11-7 principles. │
 │                                                                                                  │
 └──────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```

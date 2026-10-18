@@ -8,26 +8,34 @@ An autonomous agent is not an open-ended conversational chatbot. An enterprise a
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                      THE 5-LAYER ENTERPRISE AGENT ARCHITECTURE                                    │
+│                      THE 7-LAYER ENTERPRISE AGENT ARCHITECTURE                                    │
 ├──────────────────────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                                  │
-│   LAYER 1: IDENTITY & COGNITIVE SOUL                                                             │
-│   • Authored by Strategy Lead & Requirements Lead (3-Part Directive & Semantic Blueprint).       │
-│   • Defines deterministic operational purpose, exact inputs, and bounded output schemas.         │
+│   LAYER 1: IDENTITY & MISSION (COGNITIVE SOUL)                                                   │
+│   • Authored by Strategy Lead (Epic Strategic Blueprint & Value Thesis).                         │
+│   • Defines deterministic operational purpose, bounded goals, and anti-bias invariants.          │
 │                                                                                                  │
-│   LAYER 2: EPISODIC & STRUCTURAL MEMORY                                                          │
-│   • Authored by Software Engineers & Architects (AST State & Mathematical Registries).           │
+│   LAYER 2: REQUIREMENTS & LOGIC CONSTRAINTS                                                      │
+│   • Authored by Requirements Lead (3-Part Directives & 20-Row Edge-Case Matrices).               │
+│   • Enforces explicit input boundaries, closed-world fallbacks, and data minimization.           │
+│                                                                                                  │
+│   LAYER 3: AST STRUCTURAL MEMORY (LIVING CONTEXT)                                                │
+│   • Authored by Software Architects (AST State & Mathematical Registries).                       │
 │   • Deterministic Living Context (<1,500 tokens) with zero vector drift and zero hallucination.  │
 │                                                                                                  │
-│   LAYER 3: TOOLS & OPERATIONAL ACTUATORS (THE HANDS)                                             │
-│   • Authored by Builders (Function Registry / OpenAPI 3.1 & Model Context Protocol Tools).      │
+│   LAYER 4: TOOLS & OPERATIONAL ACTUATORS (THE HANDS)                                             │
+│   • Authored by Software Builders (Function Registry / OpenAPI 3.1 & Model Context Protocol).    │
 │   • Strongly-typed tool interfaces with strict schema validation on all argument payloads.       │
 │                                                                                                  │
-│   LAYER 4: PHYSICAL INVARIANT BOUNDARIES (THE GUARDIAN)                                         │
-│   • Authored by Validation Leads & Security Officers (Invariants I01-I22 & Plausibility Bands).  │
-│   • Intercepts every proposed action with mathematical clamps before physical state changes.     │
+│   LAYER 5: ADVERSARIAL BOUNDS & ZERO-MOCK GATING (THE SENTRY)                                    │
+│   • Authored by Validation Leads & QEs (Rules ZM001–ZM009 & Socket Isolation).                   │
+│   • Eliminates synthetic fallbacks, unanchored mocks, and deceptive boolean smuggling.           │
 │                                                                                                  │
-│   LAYER 5: AUDIT TRACEABILITY & ATTESTATION (THE CUSTODIAN)                                      │
+│   LAYER 6: PHYSICAL EXECUTION CLAMPS (THE GUARDIAN)                                              │
+│   • Authored by Security Officers (Invariants I01-I22 & Pre-Action Plausibility Bands).          │
+│   • Intercepts every proposed action with mathematical clamps (|V_exec - Baseline| <= Band).     │
+│                                                                                                  │
+│   LAYER 7: AUDIT CUSTODY & ATTESTATION (THE CUSTODIAN)                                           │
 │   • Authored by BuilderOps & Release Engineers (Machine-Readable SPDX 3.0 AI-SBOM Headers).      │
 │   • Embeds immutable UUIDv4 traces, git commit digests, and zero-temperature audit records.      │
 │                                                                                                  │

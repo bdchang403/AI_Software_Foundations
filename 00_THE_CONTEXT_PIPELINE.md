@@ -16,7 +16,7 @@ The Context Factory solves this by enforcing the **3-Tier Context Pipeline**: a 
 ├────────────────────┼───────────────────────────────────┼─────────────────────────────────────────┤
 │ Tier 1: Global     │ Enterprise Constitution & Rules   │ 200 – 400 tokens (Immutable / Pinned)   │
 │ Tier 2: Structural │ AST Living Context JSON           │ 800 – 1,200 tokens (Dynamic AST Cache)  │
-│ Tier 3: Surgical   │ Domain Blueprint & 80-line Window │ 400 – 600 tokens (Target File Focus)    │
+│ Tier 3: Surgical   │ Domain Blueprint & AST Node Scope │ 400 – 600 tokens (Target Scope Focus)   │
 ├────────────────────┴───────────────────────────────────┴─────────────────────────────────────────┤
 │ TOTAL COMBINED PROMPT PAYLOAD CEILING:                 │ <= 2,500 TOKENS (95%+ Attention Zone)   │
 └──────────────────────────────────────────────────────────────────────────────────────────────────┘

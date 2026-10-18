@@ -58,7 +58,7 @@ To guarantee deterministic, production-grade output, every machine instruction e
 │   • Architectural Modularity Ceiling: target file non-anchor LOC must remain $\le 400$ lines.             │
 │   • Rule 14 Anti-Feature-Erasure: zero deletion of fallback retries or telemetry handlers.       │
 │   • Fail-Closed Error Policy: raise domain exception or return `None`; zero synthetic fallbacks. │
-│   • AST Zero-Mock compliance: zero ZM001–ZM007 violations.                                       │
+│   • AST Zero-Mock compliance: zero ZM001–ZM009 violations.                                       │
 │   • Output representation: strictly unified diff format or standardized `<DIFF>` XML tags.       │
 │                                                                                                  │
 └──────────────────────────────────────────────────────────────────────────────────────────────────┘
@@ -77,10 +77,10 @@ To guarantee deterministic, production-grade output, every machine instruction e
 #### ✅ The Architectural 3-Part Directive (Production Standard)
 ```markdown
 ### 1. CONTEXT BOUNDARY
-- TARGET FILE: `src/v3/execution/execution_gateway.py` (Non-anchor lines 140–215 only).
+- TARGET FILE: `src/execution/execution_gateway.py` (Cohesive `validate_order` method AST node).
 - BOUNDING REGISTRY: `docs/MATHEMATICAL_REGISTRY.md` (Algorithm #42: Pre-Trade Execution Plausibility Band).
-- BOUNDING INVARIANTS: Invariant $I_{02}$ (Execution-Price Guardrail), Invariant $I_{22}$ (400 LOC Ceiling).
-- FORBIDDEN PATHS: Do not modify `src/v3/schemas/` or `src/v3/pipeline/`.
+- BOUNDING INVARIANTS: Invariant $I_{02}$ (Execution-Price Guardrail), Invariant $I_{22}$ (Modularity Heuristic <= 400 LOC).
+- FORBIDDEN PATHS: Do not modify `src/schemas/` or `src/pipeline/`.
 
 ### 2. TASK INSTRUCTION
 Implement the mathematical pre-action plausibility check inside `ExecutionGateway.validate_order()`:
@@ -169,7 +169,7 @@ $$H(s) = \frac{K_{\text{damper}} \cdot \tau s}{\tau s + 1}$$
 ::: tip DUAL-USE ANALYSIS: DIRECTIVE ENFORCEMENT ACROSS REGULATED INDUSTRIES
 | Operational Dimension | Quantitative Trading Systems | FDA Class III Medical Devices | Aerospace Flight Management (DO-178C) |
 | :--- | :--- | :--- | :--- |
-| **Context Sandbox** | Restricts AI to specific trading strategy modules (`src/v3/strategy/`). Banning access to raw database drop privileges. | Restricts AI to algorithmic drug calculation modules. Banning access to hardware interrupt vector tables. | Restricts AI to navigation calculation modules. Banning modification of flight-critical servo actuation loops. |
+| **Context Sandbox** | Restricts AI to specific trading strategy modules (`src/strategy/`). Banning access to raw database drop privileges. | Restricts AI to algorithmic drug calculation modules. Banning access to hardware interrupt vector tables. | Restricts AI to navigation calculation modules. Banning modification of flight-critical servo actuation loops. |
 | **Fail-Closed Mandate** | Order rejected on unverified market price; cash balance untouched ($I_{05}$). | Infusion clamped to safe basal rate on transducer failure; audible alarm sounded ($I_{05\text{-MED}}$). | Autopilot disengaged to Direct Law on pitot icing; flight director handoff to manual ($I_{05\text{-AERO}}$). |
 | **Anti-Feature-Erasure** | Forbids AI from truncating 150 lines of multi-broker fallback cascades into `# ... rest of broker logic ...`. | Forbids AI from deleting occlusion pressure sensing or bubble detector interrupt routines. | Forbids AI from stripping dual-redundant bus cross-comparisons or cyclic redundancy checks (CRCs). |
 :::

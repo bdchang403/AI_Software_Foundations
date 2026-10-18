@@ -52,9 +52,9 @@ Agile Leaders transition organizations to **Bounded Task Units and Token Budgets
 ```
 
 ### The Sizing Rules for Bounded Task Units:
-1. **The 80-Line Surgical Slice Rule**: A task is appropriately sized if the necessary code change can be contained within an 80-line contextual window.
+1. **The Semantic Slice & Focus Window Rule**: A task is appropriately sized if the necessary code change can be contained within a cohesive AST scope (e.g., single function or class definition, typically $\le 80$ lines focus window).
 2. **The Single-Role Responsibility Rule**: A user story must never require an autonomous agent to simultaneously modify requirements, architecture, and test suites. Each role handoff must be an independent, verified commit.
-3. **The Micro-Spend Budget Cap**: A single task execution must operate within a \$0.40 daily budget quota (approx. 100,000 prompt tokens per cycle), preventing runaway agent loops.
+3. **The Micro-Spend Budget Cap**: A single task execution must operate within a \$0.10 to \$0.40 budget quota (approx. 25,000 to 100,000 prompt tokens per cycle, with a standard BTU ceiling of $\le 25,000$ active context tokens), preventing runaway agent loops.
 
 ---
 
@@ -90,8 +90,12 @@ flowchart TD
 ```
 
 ### The AI-Specific Metrics Catalog:
-1. **Context Debt Ratio (CDR)**: The ratio of un-indexed source code lines to indexed AST registry lines. A CDR $> 0.05$ indicates that developers are writing code without running registry generators.
-2. **Prompt Regression Interval (PRI)**: The number of automated turns an agent executes before successfully passing the unit test suite. A PRI $> 3$ indicates an ambiguous 3-Part Directive.
+1. **Context Debt Ratio (CDR)**: Tracks structural and economic context waste:
+   - *Structural CDR*: The ratio of un-indexed source code lines to indexed AST registry lines ($\text{CDR}_{\text{structural}} = \frac{\text{Un-indexed Source LOC}}{\text{Total Indexed AST LOC}}$). A $\text{CDR}_{\text{structural}} > 0.05$ indicates that developers or agents are adding code without running AST registry generators.
+   - *Economic / Token CDR*: The ratio of tokens expended on rework, refactoring, and rollbacks to total production tokens expended ($\text{CDR}_{\text{token}} = \frac{\text{Tokens Expended on Rework \& Rollbacks}}{\text{Total Production Tokens Expended}}$), where $\text{CDR}_{\text{token}} \le 0.18$ represents the healthy operational ceiling.
+2. **Prompt Regression Interval (PRI)**: Measures execution churn and rework frequency:
+   - *Turn-Based PRI*: The number of automated interaction turns an agent executes before successfully passing the unit test suite ($\text{PRI}_{\text{turns}}$). A $\text{PRI}_{\text{turns}} > 3$ indicates an ambiguous 3-Part Directive.
+   - *Temporal PRI*: The ratio of rollback engineering hours to active engineering hours ($\text{PRI}_{\text{hours}} = \frac{\sum_{i=1}^M \tau_{\text{revert}}^{(i)}}{\sum_{j=1}^N \tau_{\text{commit}}^{(j)}}$), targeting $\text{PRI} \le 0.08$.
 3. **Quarantine Demotion Frequency (QDF)**: The rate at which records are migrated to `consensus_quarantine` due to synthetic mock poisoning or corrupted inputs.
 
 ---

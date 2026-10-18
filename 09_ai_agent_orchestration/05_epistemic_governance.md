@@ -59,7 +59,7 @@ Where each pillar represents an independent, decorrelated dimension of reality.
 
 ## 🧮 Multi-Pillar Decorrelation: Ledoit-Wolf ZCA Whitening
 
-When multiple sensors or feeds measure related phenomena, their covariance matrix $\mathbf{\Sigma}$ exhibits high multi-collinearity. The agent fuses evidence using **Ledoit-Wolf Zero-Phase Component Analysis (ZCA) Whitening**:
+When multiple sensors or feeds measure related phenomena, their covariance matrix $\mathbf{\Sigma}$ exhibits high multi-collinearity. The agent regularizes covariance via analytical shrinkage (Ledoit & Wolf, 2004) and decorrelates features using symmetrical Zero-Phase Component Analysis (ZCA) Whitening (Bell & Sejnowski, 1997; Kessy, Lewin, & Strimmer, 2018):
 
 $$\mathbf{Z} = \mathbf{\Sigma}_{\text{LW}}^{-\frac{1}{2}} (\mathbf{X} - \mathbf{\mu})$$
 
@@ -73,7 +73,7 @@ $$\mathbf{\Sigma}_{\text{LW}} = (1 - \delta^*) \mathbf{S} + \delta^* \mathbf{F}$
 
 
 ### Spectral Eigendecomposition & Symmetrical ZCA Whitening
-To transform the regularized covariance matrix into decorrelated factor space without arbitrary rotational bias, the system applies **Zero-Phase Component Analysis (ZCA) Whitening**:
+To transform the regularized covariance matrix into decorrelated factor space without arbitrary rotational bias, the system applies **Zero-Phase Component Analysis (ZCA) Whitening** (Kessy, Lewin, & Strimmer, 2018). As proven by Kessy et al. (2018), among all whitening matrices $W$ satisfying $\mathrm{Cov}(W X) = \mathbf{I}$, the symmetrical ZCA matrix $W_{\text{ZCA}} = \mathbf{\Sigma}^{-1/2} = U \Lambda^{-1/2} U^T$ is the unique transformation that minimizes expected squared reconstruction error $\mathbb{E}[\|W X - X\|^2]$, preserving maximal cross-covariance with the original inputs:
 
 1. Decompose $\mathbf{\Sigma}_{\text{LW}}$ into its orthogonal eigenvectors $U$ and diagonal eigenvalues $\Lambda$:
 $$\mathbf{\Sigma}_{\text{LW}} = U \Lambda U^T = U \;\mathrm{diag}(\lambda_1, \dots, \lambda_p) U^T$$

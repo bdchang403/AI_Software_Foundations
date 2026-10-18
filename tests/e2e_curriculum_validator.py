@@ -1136,8 +1136,10 @@ def extract_and_validate_latex(markdown_text: str) -> List[Dict[str, Any]]:
         syntax_errors = []
         if r"\operatorname" in formula:
             syntax_errors.append("Disallowed macro \\operatorname (use \\mathrm instead)")
-        if re.search(r"\\text\{[^}]*_[^}]*\}", formula):
-            syntax_errors.append("Underscore in \\text{...} triggers 'allowed only in math mode'")
+        for text_match in re.finditer(r"\\text\{([^}]*)\}", formula):
+            if "_" in text_match.group(1).replace(r"\_", ""):
+                syntax_errors.append("Underscore in \\text{...} triggers 'allowed only in math mode'")
+                break
         if re.search(r"\^_", formula):
             syntax_errors.append("Missing open brace for superscript: ^_")
         # Check unescaped percent inside math
@@ -1166,8 +1168,10 @@ def extract_and_validate_latex(markdown_text: str) -> List[Dict[str, Any]]:
         syntax_errors = []
         if r"\operatorname" in formula:
             syntax_errors.append("Disallowed macro \\operatorname (use \\mathrm instead)")
-        if re.search(r"\\text\{[^}]*_[^}]*\}", formula):
-            syntax_errors.append("Underscore in \\text{...} triggers 'allowed only in math mode'")
+        for text_match in re.finditer(r"\\text\{([^}]*)\}", formula):
+            if "_" in text_match.group(1).replace(r"\_", ""):
+                syntax_errors.append("Underscore in \\text{...} triggers 'allowed only in math mode'")
+                break
         if re.search(r"\^_", formula):
             syntax_errors.append("Missing open brace for superscript: ^_")
         line_clean = formula.replace(r"\%", "")

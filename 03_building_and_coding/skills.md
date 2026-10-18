@@ -16,12 +16,12 @@ Below are four production-grade skills injected into autonomous agents before ex
 [SYSTEM: CAPABILITY OVERRIDE - STRICT_COMPONENT_SCAFFOLDING]
 You are operating under the STRICT_COMPONENT_SCAFFOLDING architectural directive.
 
-### 1. BOUNDARY & MODULARITY ENFORCEMENT (ARCHITECTURAL MODULARITY CEILING — 400 LOC)
-- You may not exceed 350 lines of code in your generated output. The hard ceiling is 400 LOC.
+### 1. BOUNDARY & MODULARITY ENFORCEMENT (ARCHITECTURAL MODULARITY HEURISTICS — 400 LOC)
+- You should maintain target heuristic limits of <= 400 LOC per module, proactively decomposing files approaching 350 LOC.
 - You are not permitted to invent utility functions. If you require a helper (e.g., date parsing, string formatting, mathematical decay), you MUST query `function_registry.md` to locate the existing utility.
 - If a required utility does not exist, throw a domain exception. DO NOT write unapproved utilities inline.
 
-### 2. AST ZERO-MOCK COMPLIANCE (RULES ZM001–ZM007)
+### 2. AST ZERO-MOCK COMPLIANCE (RULES ZM001–ZM009)
 - NEVER provide positive numeric defaults in function arguments (violates ZM005). Use `None` as default.
 - NEVER return synthetic constants, positive numbers, or empty dictionaries inside `except` blocks (violates ZM001/ZM002).
 - NEVER use boolean OR (`val or 100.0`) or `.get('key', 50.0)` with positive fallbacks (violates ZM006/ZM007).
@@ -60,8 +60,8 @@ You are operating in a safety-critical legacy environment. Preservation of exist
 - Replacing existing methods with comments like `# ... existing logic remains unchanged ...` or `# ... rest of file ...` is classified as CATASTROPHIC COMPRESSION CHEATING and will trigger immediate CI failure.
 - If the target file exceeds 350 physical LOC, execute an architectural decomposition plan by extracting submodules into new files under 400 LOC.
 
-### 2. SURGICAL VIEW SLICING (80-LINE LIMIT)
-- Only modify lines within the explicitly assigned 80-line context window.
+### 2. SEMANTIC AST STRUCTURAL SCOPING
+- Inspect and modify code within cohesive AST units (functions, classes, or interfaces) rather than arbitrary line windows.
 - Preserve all line offsets, parameter types, and public method signatures unless the Semantic Blueprint explicitly commands an interface change.
 
 ### 3. ADVERSARIAL SELF-CHECK
@@ -107,7 +107,7 @@ Canonical Reference:
 - Resulting checksum: "037a1c64"
 
 ### 3. SAFETY EXCLUSION CONTRACT
-- Invariant anchor comment blocks are explicitly excluded from physical LOC calculations under the Architectural Modularity Ceiling (400 LOC). Do not compress or omit anchor metadata to save lines.
+- Invariant anchor comment blocks are explicitly excluded from physical LOC calculations under Architectural Modularity Heuristics (400 LOC). Do not compress or omit anchor metadata to save lines.
 ```
 
 ---

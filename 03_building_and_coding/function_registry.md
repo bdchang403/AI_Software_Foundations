@@ -31,8 +31,8 @@ When an AI agent needs to understand domain rules, it must call this tool to ret
       },
       "max_lines": {
         "type": "integer",
-        "description": "Hard limit on lines returned to prevent token attention dilution (Architectural Modularity Ceiling compliant). Maximum 80 lines.",
-        "default": 80
+        "description": "Limit on lines returned to maintain focused working memory (Architectural Modularity compliant).",
+        "default": 120
       }
     },
     "required": ["domain_name"]

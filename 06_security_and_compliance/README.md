@@ -47,7 +47,7 @@ flowchart TD
     end
 
     subgraph P4["Pillar 4: Reconciliation & AI-SBOM"]
-        Reconcile["Nightly Mark-to-Market<br/>Tolerance <= $250.00"]
+        Reconcile["Nightly Mark-to-Market<br/>Tolerance <= USD 250.00"]
         SBOM["Automated AI-SBOM Lineage<br/>UUIDv4 Traceability (I15)"]
     end
 

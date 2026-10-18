@@ -115,21 +115,21 @@ Every bug fix, parameter calibration, or refactor shifts line counts in `STATE_R
 To prevent CI drift failures, all code modifications must pass through a single, atomic pre-commit command chain before any commit is accepted:
 
 ```bash
-git add -A && \
 python3 scripts/update_state_registry.py && \
 python3 scripts/update_math_registry.py && \
 python3 scripts/generate_living_context.py && \
-git add STATE_REGISTRY.md docs/MATHEMATICAL_REGISTRY.md data/openrouter_context.json && \
 git diff --exit-code STATE_REGISTRY.md docs/MATHEMATICAL_REGISTRY.md data/openrouter_context.json && \
+git add STATE_REGISTRY.md docs/MATHEMATICAL_REGISTRY.md data/openrouter_context.json && \
 python3 -m pytest tests/unit/test_context_freshness.py
 ```
 
 ### What this atomic command chain guarantees:
-1. All newly staged or modified files are indexed by the AST parser.
-2. Exact AST line ranges (`L{start}–L{end}`) are recalculated for all 100 mathematical algorithms.
+1. All newly modified or refactored files are indexed by the AST parser.
+2. Exact AST line ranges (`L{start}–L{end}`) are recalculated for all mathematical algorithms.
 3. The living context JSON payload is regenerated with matching schema keys.
-4. `git diff --exit-code` asserts zero divergence between git index state and generated registry state. If an agent manually edited a registry or forgot to run generators, the command exits with code 1.
-5. In-memory unit tests physically verify AST parity in under 2 seconds.
+4. `git diff --exit-code` verifies zero drift *before* staging. If an agent manually edited a registry or modified source files without synchronizing documentation, the check halts immediately with exit code 1.
+5. Once verified clean, the synchronized registries and living context are staged.
+6. In-memory unit tests physically verify AST freshness and schema parity in under 2 seconds.
 
 ---
 
@@ -193,7 +193,7 @@ jobs:
 ## ✍️ Hands-On Exercises: Implementing and Auditing Invariant Anchors
 
 ### Exercise 6.1: Generating and Verifying an Anchor Checksum
-**Scenario**: You are implementing Invariant $I_{07}$ (Div-by-Zero Domain Safety) in `src/v3/math/ratio_engine.py`.
+**Scenario**: You are implementing Invariant $I_{07}$ (Div-by-Zero Domain Safety) in `src/math/ratio_engine.py`.
 * Invariant ID: `I07`
 * Governing Architectural Decision: `ADR-043` (Cryptographic Invariant Anchor Block Specification)
 * Predicate: `forall a/b: b = 0 => defined fallback (never NaN/Inf propagation). Log/sqrt inputs must assert domain non-negativity.`

@@ -10,7 +10,7 @@ For the Strategy Lead and Product Owner, **Adversarial Thinking** is the discipl
 
 ## 💥 Forensic Analysis: Case Study 5 — The Epistemic Priming & Liquidation Incident
 
-The most illustrative failure archetype of epistemic priming in autonomous agentic systems occurred in October 2026, leading to a catastrophic **$150,000 panic liquidation** of high-conviction equities immediately prior to a +35% market breakout.
+The most illustrative failure archetype of epistemic priming in autonomous agentic systems occurred in October 2026, leading to a catastrophic **\$150,000 panic liquidation** of high-conviction equities immediately prior to a +35% market breakout.
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
@@ -21,10 +21,10 @@ The most illustrative failure archetype of epistemic priming in autonomous agent
 │ 3. Cognitive Priming: Extractor ingested YouTube video ("Monetary Reset") through      │
 │    its primed panic, concluding creator "independently confirms our crash thesis."     │
 │ 4. Commercial Blindspot: Video creator exaggerated routine 25 bps rate cut to sell a   │
-│    $2,000 day-trading mentorship course.                                               │
+│    \$2,000 day-trading mentorship course.                                               │
 │ 5. Circular Corroboration Loop: Multi-agent debate cited the -9.0 polarity as          │
 │    "independent third-party validation," maximizing conviction to panic-liquidate.     │
-│ 6. Catastrophic Outcome: $150k in TSLA shares liquidated into SGOV hours before +35%   │
+│ 6. Catastrophic Outcome: \$150k in TSLA shares liquidated into SGOV hours before +35%   │
 │    earnings rally.                                                                     │
 └────────────────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -34,8 +34,8 @@ The most illustrative failure archetype of epistemic priming in autonomous agent
 1. **Omniscient Prompt Pollution**: The multi-agent pipeline hydrated every extractor, analyst, and debating agent with the full internal portfolio state and macro risk status (over 120 features). The unstructured news extractor was aware of existing unrealized drawdowns and macro risk scores.
 2. **Cognitive Priming & Confirmation Bias**: When the extractor analyzed an external YouTube transcript titled *"Once in a Lifetime Monetary Reset: Why Markets Will Crash 80%"*, it did not evaluate the claims objectively. Primed by the internal macro alerts, the LLM hallucinated confirmation:
    > *"The creator's macro thesis aligns directly with our internal high-stress regime, independently verifying impending market collapse."*
-3. **Commercial Funnel Blindness**: The external creator was operating a commercial sales funnel, deliberately stoking fear to sell a $2,000 day-trading mentorship program. The LLM took the alarmist rhetoric as objective, empirical evidence.
-4. **Circular Corroboration Loop**: When downstream adversarial debate agents (Bull vs. Bear) reviewed the evidence, they treated the extractor's -9.0 polarity score as an "independent, external market signal." This amplified bear conviction to maximum, triggering an emergency liquidation of $150,000 in core holdings into SGOV cash equivalents hours before a blowout earnings report sparked a +35% rally.
+3. **Commercial Funnel Blindness**: The external creator was operating a commercial sales funnel, deliberately stoking fear to sell a \$2,000 day-trading mentorship program. The LLM took the alarmist rhetoric as objective, empirical evidence.
+4. **Circular Corroboration Loop**: When downstream adversarial debate agents (Bull vs. Bear) reviewed the evidence, they treated the extractor's -9.0 polarity score as an "independent, external market signal." This amplified bear conviction to maximum, triggering an emergency liquidation of \$150,000 in core holdings into SGOV cash equivalents hours before a blowout earnings report sparked a +35% rally.
 
 ### 2. Attempted False Solutions
 

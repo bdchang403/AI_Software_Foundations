@@ -15,7 +15,7 @@ The answer is dictated by the fundamental mathematical laws of Transformer atten
 ├────────────────────────────────┬─────────────────────────────────────────────────────────────────┤
 │ Monolithic Context (High Risk) │ Bounded Cognitive Units (Deterministic)                         │
 ├────────────────────────────────┼─────────────────────────────────────────────────────────────────┤
-│ Ingests 50,000+ unbounded LOC  │ Targeted 80-line AST surgical view windows                      │
+│ Ingests 50,000+ unbounded LOC  │ Semantic AST structural scoping (cohesive units <= 400 LOC)     │
 │ Quadratic FLOPs explosion      │ Strictly bounded token burn (BTU <= 25,000 tokens)              │
 │ Attention entropy dispersion   │ High attention concentration on critical invariants             │
 │ Middle-zone information loss   │ Invariants pinned to high-attention Primacy & Recency zones     │
@@ -83,11 +83,11 @@ Unconstrained prompting is economically unsustainable. Executing an unpartitione
 
 Under the **Micro-USD Daily Spend Quota Guardrail (Invariant $I_{11}$)**, systems enforce a rolling 24-hour spend ceiling:
 
-$$Q_{\text{rem}} = Q_{\text{limit}} - \sum_{t \in 24\text{h}} \text{Spend}_t, \quad Q_{\text{limit}} = \$0.40/\text{day} = 400,000\,\mu\text{USD}$$
+$$Q_{\text{rem}} = Q_{\text{limit}} - \sum_{t \in 24\text{h}} \text{Spend}_t, \quad Q_{\text{limit}} = 0.40\,\text{USD/day} = 400,000\,\mu\text{USD}$$
 
 With an individual subsystem ceiling:
 
-$$Q_{\text{subsystem}} \le \$0.08/\text{day} = 80,000\,\mu\text{USD}$$
+$$Q_{\text{subsystem}} \le 0.08\,\text{USD/day} = 80,000\,\mu\text{USD}$$
 
 ---
 
@@ -140,7 +140,7 @@ flowchart TD
 │   FINANCE: Core Banking High-Frequency Settlement Gateway                                        │
 │   • Threat: Engineering dumped 120,000 LOC ledger codebase into prompt to add ISO 20022 parsing. │
 │   • Breakdown: Model hallucinated a synthetic currency conversion fallback when rates timed out. │
-│   • Strategic Fix: Enforced Architectural Modularity Ceiling (<= 400 LOC) and Bounded Task Units.│
+│   • Strategic Fix: Enforced Architectural Modularity Heuristics (<= 400 LOC) and Bounded Task Units.│
 │     Isolated ISO 20022 message deserialization from core debit/credit ledger commit.             │
 │                                                                                                  │
 └──────────────────────────────────────────────────────────────────────────────────────────────────┘

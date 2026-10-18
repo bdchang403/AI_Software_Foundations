@@ -10,32 +10,32 @@ It provides autonomous agents with instantaneous (<2 second) repository topograp
 
 **Generated:** `2026-10-17T22:30:00Z`  
 **Total Tracked Python Files:** 42  
-**ADR-016 Modularity Compliance:** 100% (0 files > 400 LOC)  
-**Modules in Refactor Zone (>=350 LOC):** 2
+**ADR-016 Modularity Compliance:** 100% (Modularity target: ~400 LOC)  
+**Modules in Modularity Warning Zone (>=350 LOC):** 2
 
 ---
 
 ## Module Topography & Architectural Health
 
-| Relative Module Path | Physical LOC | Classes | Public Functions | ADR-016 Health Status |
+| Relative Module Path | Physical LOC | Classes | Public Functions | Modularity Status |
 | :--- | :--- | :--- | :--- | :--- |
-| `src/v3/analytics/paper_portfolio_metrics.py` | 166 | `PortfolioMetrics` | `calculate_sharpe_ratio`, `calculate_sortino_ratio`, `compute_max_drawdown` | ✅ Healthy (<350 LOC) |
-| `src/v3/analytics/paper_portfolio_tracker.py` | 332 | `PaperPortfolioTracker` | `execute_order`, `get_position`, `update_mark_to_market` | ✅ Healthy (<350 LOC) |
-| `src/v3/execution/execution_gateway.py` | 215 | `ExecutionGateway` | `validate_order`, `dispatch_to_broker`, `check_plausibility_band` | ✅ Healthy (<350 LOC) |
-| `src/v3/execution/portfolio_risk_stops.py` | 192 | `RiskStopEngine` | `calculate_trailing_ratchet`, `check_volatility_stop` | ✅ Healthy (<350 LOC) |
-| `src/v3/horizon/scope.py` | 148 | `HorizonScope` | `calculate_decayed_polarity`, `get_active_horizon` | ✅ Healthy (<350 LOC) |
-| `src/v3/math/ratio_engine.py` | 110 | `RatioEngine` | `safe_divide`, `clamp_multiplier`, `calculate_z_score` | ✅ Healthy (<350 LOC) |
-| `src/v3/math/whitening.py` | 118 | `DecorrelationEngine` | `anchor_preserving_zca_whitening`, `ledoit_wolf_shrinkage` | ✅ Healthy (<350 LOC) |
-| `src/v3/pipeline/cost_ledger.py` | 175 | `CostLedger` | `record_spend`, `check_rolling_quota`, `get_ticker_spend` | ✅ Healthy (<350 LOC) |
-| `src/v3/schemas/daily_prices.py` | 84 | `DailyPriceDTO`, `CandlePayload` | `validate_ohlcv`, `to_storage_dict` | ✅ Healthy (<350 LOC) |
-| `src/v3/schemas/debate.py` | 92 | `ConsensusVerdict`, `DebateTranscript` | `is_actionable`, `compute_conviction` | ✅ Healthy (<350 LOC) |
-| `src/v3/utils/consensus_service.py` | 362 | `ConsensusService` | `get_latest_verdict`, `compose_channel_headline`, `decay_signal` | ⚠️ Near 400 LOC Cap |
-| `src/v3/utils/finnhub_client.py` | 358 | `FinnhubClient` | `fetch_daily_candle`, `fetch_peers`, `stream_quotes` | ⚠️ Near 400 LOC Cap |
-| `src/v3/utils/quarantine_manager.py` | 142 | `QuarantineManager` | `quarantine_verdict`, `audit_ledger`, `rollback_record` | ✅ Healthy (<350 LOC) |
+| `src/analytics/paper_portfolio_metrics.py` | 166 | `PortfolioMetrics` | `calculate_sharpe_ratio`, `calculate_sortino_ratio`, `compute_max_drawdown` | ✅ Healthy (<350 LOC) |
+| `src/analytics/paper_portfolio_tracker.py` | 332 | `PaperPortfolioTracker` | `execute_order`, `get_position`, `update_mark_to_market` | ✅ Healthy (<350 LOC) |
+| `src/execution/execution_gateway.py` | 215 | `ExecutionGateway` | `validate_order`, `dispatch_to_broker`, `check_plausibility_band` | ✅ Healthy (<350 LOC) |
+| `src/execution/portfolio_risk_stops.py` | 192 | `RiskStopEngine` | `calculate_trailing_ratchet`, `check_volatility_stop` | ✅ Healthy (<350 LOC) |
+| `src/horizon/scope.py` | 148 | `HorizonScope` | `calculate_decayed_polarity`, `get_active_horizon` | ✅ Healthy (<350 LOC) |
+| `src/math/ratio_engine.py` | 110 | `RatioEngine` | `safe_divide`, `clamp_multiplier`, `calculate_z_score` | ✅ Healthy (<350 LOC) |
+| `src/math/whitening.py` | 118 | `DecorrelationEngine` | `anchor_preserving_zca_whitening`, `ledoit_wolf_shrinkage` | ✅ Healthy (<350 LOC) |
+| `src/pipeline/cost_ledger.py` | 175 | `CostLedger` | `record_spend`, `check_rolling_quota`, `get_ticker_spend` | ✅ Healthy (<350 LOC) |
+| `src/schemas/daily_prices.py` | 84 | `DailyPriceDTO`, `CandlePayload` | `validate_ohlcv`, `to_storage_dict` | ✅ Healthy (<350 LOC) |
+| `src/schemas/debate.py` | 92 | `ConsensusVerdict`, `DebateTranscript` | `is_actionable`, `compute_conviction` | ✅ Healthy (<350 LOC) |
+| `src/utils/consensus_service.py` | 362 | `ConsensusService` | `get_latest_verdict`, `compose_channel_headline`, `decay_signal` | ⚠️ Modularity Warning (>=350 LOC) |
+| `src/utils/finnhub_client.py` | 358 | `FinnhubClient` | `fetch_daily_candle`, `fetch_peers`, `stream_quotes` | ⚠️ Modularity Warning (>=350 LOC) |
+| `src/utils/quarantine_manager.py` | 142 | `QuarantineManager` | `quarantine_verdict`, `audit_ledger`, `rollback_record` | ✅ Healthy (<350 LOC) |
 
 ---
 
 ## Architectural Refactoring Instructions for Autonomous Agents
-1. Any module flagged with **`⚠️ Near 400 LOC Cap`** (e.g., `src/v3/utils/consensus_service.py`) is in the **Refactor Zone**.
-2. Before adding new functionality to these modules, you MUST decompose them into submodules under 400 LOC.
+1. Any module flagged with **`⚠️ Modularity Warning (>=350 LOC)`** (e.g., `src/utils/consensus_service.py`) is in the **Modularity Warning Zone**.
+2. Before adding new functionality to these modules, evaluate decomposing them into cohesive submodules targeted around 400 LOC, rather than arbitrary line truncation.
 3. Apply **Rule 14 Anti-Feature-Erasure**: NEVER delete existing error handlers, retry loops, or telemetry logging during refactoring.

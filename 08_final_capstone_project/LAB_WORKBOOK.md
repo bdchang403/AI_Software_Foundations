@@ -7,7 +7,7 @@
 In this capstone lab, you act as the **Principal AI Systems Orchestrator**. You will synthesize the deliverables authored across all functional roles (Strategy Lead, Requirements Lead, Software Builder, Validation Lead, and BuilderOps Engineer) into an assembled, tested, and certified autonomous software engineering agent.
 
 By completing this lab, you will:
-1. Construct the complete 5-layer agent configuration schema (`.github/agents/enterprise-agent.yaml`).
+1. Construct the complete 7-layer agent configuration schema (`.github/agents/enterprise-agent.yaml`).
 2. Implement and mount the deterministic AST Living Context compiler (<1,500 tokens).
 3. Connect strictly-typed function actuators with runtime schema validation.
 4. Implement the **3-Stage Dialectical Adversarial Triad** (Proponent, Adversary, Auditor) with zero-compute Jensen-Shannon Divergence bypass ($\text{JSD} \le 0.12$).
@@ -34,7 +34,7 @@ pytest tests/ --disable-socket -v
 
 ---
 
-## 🏗️ Step 1: Cognitive Soul & Directive Definition (Layer 1)
+## 🏗️ Step 1: Cognitive Soul & Directive Definition (Layer 1: Identity & Constitution)
 
 The agent cognitive soul defines its deterministic purpose, operational domain, and bounded output structure. You will formulate this using the **3-Part Directive Framework**:
 1. **Context**: Operational environment, current domain boundaries, and governing invariants.
@@ -60,13 +60,13 @@ Process incoming interbank settlement tickets and calculate optimal routing path
 ## 3. Mandatory Execution Guardrails
 - Invariant I01: If any counterparty balance or exchange rate returns null, NaN, or simulated data, reject the ticket immediately.
 - Invariant I02: Clamped settlement limits: $|T - \mu_{\text{historical}}| \le 3.5\sigma$.
-- Architectural Modularity Ceiling: Do not output single code blocks exceeding 400 lines of code.
+- Architectural Modularity Heuristic: Target <= 400 lines of code to maintain SRP and cognitive bounds.
 - Epistemic Air-Gap: Never evaluate unverified external payloads without telemetry normalization.
 ```
 
 ---
 
-## 🧠 Step 2: Deterministic AST Context Memory Assembly (Layer 2)
+## 🧠 Step 2: Deterministic AST Context Memory Assembly (Layer 3: AST Memory)
 
 Enterprise agents must never ingest unbounded source code. Instead, compile a living context payload strictly bounded below 1,500 tokens.
 
@@ -98,7 +98,7 @@ def compile_context(registry_path: Path, max_tokens: int = 1500) -> dict:
     }
 
     if context_payload["token_estimate"] > max_tokens:
-        raise ValueError(f"Context payload ({context_payload["token_estimate"]} tokens) exceeds ceiling of {max_tokens}!")
+        raise ValueError(f"Context payload ({context_payload['token_estimate']} tokens) exceeds ceiling of {max_tokens}!")
 
     return context_payload
 
@@ -109,7 +109,7 @@ if __name__ == "__main__":
 
 ---
 
-## 🔧 Step 3: Tool Mounting & Function Registry (Layer 3)
+## 🔧 Step 3: Tool Mounting & Function Registry (Layer 4: Actuation Tools)
 
 Agents must only interact with physical environments through strongly-typed schemas. Mount tools using the OpenAPI 3.1 / Model Context Protocol format:
 
@@ -144,7 +144,7 @@ tools:
 
 ---
 
-## ⚖️ Step 4: Dialectical Adversarial Triad & Consensus Gate (Layer 4)
+## ⚖️ Step 4: Dialectical Adversarial Triad & Consensus Gate (Layer 5: Adversarial Bounds)
 
 Configure the 3-stage multi-agent consensus engine to prevent single-model sycophancy.
 
@@ -170,7 +170,7 @@ flowchart TD
 import numpy as np
 
 def compute_jsd(p: np.ndarray, q: np.ndarray) -> float:
-    """Computes Jensen-Shannon Divergence between two probability distributions."""
+    """Computes Jensen-Shannon Divergence between two probability distributions (Lin, 1991)."""
     m = 0.5 * (p + q)
     kl_pm = np.sum(np.where(p > 0, p * np.log2(p / m), 0.0))
     kl_qm = np.sum(np.where(q > 0, q * np.log2(q / m), 0.0))
@@ -190,7 +190,7 @@ def evaluate_consensus(proponent_scores: list[float], adversary_scores: list[flo
 
 ---
 
-## 🛡️ Step 5: Runtime Physical Invariant Guardrails (Layer 5)
+## 🛡️ Step 5: Runtime Physical Invariant Guardrails & Plausibility Clamps (Layer 6: Execution Clamps)
 
 Enforce physical invariant clamps on all proposed actions before physical state commitment:
 
@@ -222,7 +222,7 @@ def enforce_settlement_guardrails(proposed_transfer: float, historical_mean: flo
 
 ---
 
-## 📜 Step 6: Immutable AI-SBOM & Audit Custody (Layer 6)
+## 📜 Step 6: Immutable AI-SBOM & Audit Custody (Layer 7: Audit Custody)
 
 Every output emitted by the agent must carry a cryptographically verifiable SPDX 3.0 provenance header:
 
@@ -292,4 +292,6 @@ python3 scripts/verify_context_drift.py
 - [ ] 0 AST Zero-Mock violations (rules ZM001 through ZM009 satisfied).
 - [ ] 0 bare ADR acronyms (all guardrails fully spelled out).
 - [ ] Living context compilation size strictly $< 1,500$ tokens.
+- [ ] Context Debt Ratio compliant ($\text{CDR}_{\text{token}} \le 0.18$, $\text{CDR}_{\text{structural}} \le 0.05$).
+- [ ] Prompt Regression Interval compliant ($\text{PRI}_{\text{turns}} \le 3$, $\text{PRI}_{\text{hours}} \le 0.08$).
 - [ ] All Mermaid diagrams validated with 0 syntax errors.

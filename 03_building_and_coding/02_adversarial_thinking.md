@@ -69,7 +69,7 @@ In May 2026, the initial production architecture of an autonomous market analysi
 │   │ • Synchronous For-Loop: For Ticker in [35 Static Equities]  │     │
 │   │   1. Scrape Yahoo, Finnhub, SEC EDGAR in tight loop          │     │
 │   │   2. Build 8,000-token prompt per ticker                     │     │
-│   │   3. Invoke Flagship LLM Debate Matrix ($0.15 - $0.40/run)   │     │
+│   │   3. Invoke Flagship LLM Debate Matrix (\$0.15 - \$0.40/run)   │     │
 │   │   4. Append output text to local text file                   │     │
 │   └──────────────────────────────────────────────────────────────┘     │
 │              │                                                         │
@@ -82,8 +82,8 @@ In May 2026, the initial production architecture of an autonomous market analysi
 ### 2. The Fourfold Operational Breakdown
 In live deployment, this naive system failed catastrophically across four interrelated dimensions:
 
-1. **Runaway Token Burn ($500+/Month Debating Flat Equities)**:
-   Because the cron poller executed unconditionally across all 35 tickers, the system conducted exhaustive multi-agent debates on mature, low-beta equities that had experienced zero volatility, zero material news, and zero balance-sheet changes. On an uneventful Tuesday, mature equities like Johnson & Johnson (`JNJ`) or Berkshire Hathaway (`BRK.B`) triggered 8-agent deliberations costing $0.15 to $0.40 per ticker. Over 30 days, the platform burned $450 to $750+ monthly debating securities trading in tight 20-cent ranges, with **92% of tokens generating identical fundamental analyses night after night**.
+1. **Runaway Token Burn (\$500+/Month Debating Flat Equities)**:
+   Because the cron poller executed unconditionally across all 35 tickers, the system conducted exhaustive multi-agent debates on mature, low-beta equities that had experienced zero volatility, zero material news, and zero balance-sheet changes. On an uneventful Tuesday, mature equities like Johnson & Johnson (`JNJ`) or Berkshire Hathaway (`BRK.B`) triggered 8-agent deliberations costing \$0.15 to \$0.40 per ticker. Over 30 days, the platform burned \$450 to \$750+ monthly debating securities trading in tight 20-cent ranges, with **92% of tokens generating identical fundamental analyses night after night**.
 
 2. **16-Hour Post-Crash Reaction Latency**:
    The batch cron was temporally blind to intraday market shocks. At 9:30 AM ET, a semiconductor supplier could announce emergency quarterly guidance cuts, plummeting -18% in the first hour of trading and triggering liquidation cascades across correlated peers. The position would close down -22% by 4:00 PM ET. The V1 batch cron would finally awaken at 8:00 PM ET, ingest the closing price, deliberate for 15 minutes, and output `STRONG SELL — LIQUIDATE IMMEDIATELY`. The user received the email digest at 7:00 AM the following morning—nearly **16 hours** after the liquidation event had destroyed capital.
@@ -99,7 +99,7 @@ In live deployment, this naive system failed catastrophically across four interr
 
 ### 3. The False Solutions Attempted
 * **False Solution 1: Prompt Instructions for Token Restraint**: Adding prompt instructions (*"If the stock has not moved more than 1%, output 'NO CHANGE' and do not debate"*) failed because the model still ingested the full 8,000-token prompt context to make that determination; input token billing remained identical, and models routinely rationalized lengthy analyses regardless.
-* **False Solution 2: Increasing Cron Frequency**: Running the batch cron every 15 minutes during market hours caused token costs to explode past $4,000/month while upstream APIs permanently blacklisted the server within 3 hours.
+* **False Solution 2: Increasing Cron Frequency**: Running the batch cron every 15 minutes during market hours caused token costs to explode past \$4,000/month while upstream APIs permanently blacklisted the server within 3 hours.
 * **False Solution 3: Arbitrary File Chunking Without Limits**: Splitting scripts into 3 files (`fetchers.py`, `models.py`, `runner.py`) without strict LOC ceilings failed because each file grew back past 800+ lines within two weeks, producing circular imports and interface drift.
 * **False Solution 4: Shallow Keyword/Regex Pre-Filters**: Filtering news for terms like `"crash"` or `"merger"` produced false alarms on promotional marketing articles while missing subtle quantitative microstructure signals like dark pool distribution shelves.
 
@@ -107,20 +107,20 @@ In live deployment, this naive system failed catastrophically across four interr
 The crisis was permanently eliminated by establishing five foundational architectural invariants:
 
 1. **Event-Driven Asynchronous Ingress Guardrail**:
-   The batch cron poller was dismantled. The system sits dormant at **$0 compute cost** until activated by external market webhooks (SEC EDGAR RSS, FMP price alerts, FINRA dark pool reports) buffered through Cloudflare Queues.
+   The batch cron poller was dismantled. The system sits dormant at **\$0 compute cost** until activated by external market webhooks (SEC EDGAR RSS, FMP price alerts, FINRA dark pool reports) buffered through Cloudflare Queues.
 2. **3-Tier Severity Triage Funnel Guardrail**:
    Events pass through a cost and severity filter:
-   * *Tier 1 (Breadcrumb - $0 Compute)*: Minor analyst notes or routine price ticks are parsed by lightweight edge workers and logged directly to D1 storage. Zero LLMs are invoked.
-   * *Tier 2 (Accumulation - $0 In-Plan Cost)*: Clusters of related signals elevate an asset to Watchlist status; fast zero-marginal-cost models (Gemini Flash) evaluate initial threat vectors.
+   * *Tier 1 (Breadcrumb - \$0 Compute)*: Minor analyst notes or routine price ticks are parsed by lightweight edge workers and logged directly to D1 storage. Zero LLMs are invoked.
+   * *Tier 2 (Accumulation - \$0 In-Plan Cost)*: Clusters of related signals elevate an asset to Watchlist status; fast zero-marginal-cost models (Gemini Flash) evaluate initial threat vectors.
    * *Tier 3 (Eruption - Cognitive Escalation)*: Only when cumulative polarity crosses $\pm 6.0$ or price volatility erupts $\ge 8\%$ is the multi-agent cognitive engine awakened.
 3. **Continuous Polarity Accumulation with Exponential Half-Life Decay Guardrail**:
    Polarity accumulates continuously within $P(t) \in [-10.0, +10.0]$:
    $$P(t) = P_0 \cdot \left(\frac{1}{2}\right)^{\frac{\Delta t}{t_{1/2}}}, \quad t_{1/2} \in \{30\text{d structural}, 7\text{d tactical}, 1\text{d ephemeral}\}$$
    New evidence updates polarity by $\Delta P = \text{sign}(\text{event}) \cdot M \cdot T \cdot (1 + \text{cluster-bonus})$. Crossing $\pm 6.0$ triggers an Eruption, after which polarity resets to a baseline level ($4.0$) to prevent infinite re-trigger loops.
 4. **Micro-USD Daily Spend Quota Guardrail**:
-   Strict global cap of **$0.40/day** rolling 24-hour spend and **$0.08/day** single-ticker quarantine cap, tracked in integer micro-USD ($\mu\text{USD}$, $1\text{ USD} = 1,000,000\,\mu\text{USD}$).
-5. **The Architectural Modularity Ceiling (400 LOC) & Rule 14**:
-   Strict 400 LOC ceiling across all files, 350 LOC refactor trigger, 80-line targeted view windows, and Anti-Feature-Erasure (Rule 14).
+   Strict global cap of **\$0.40/day** rolling 24-hour spend and **\$0.08/day** single-ticker quarantine cap, tracked in integer micro-USD ($\mu\text{USD}$, $1\text{ USD} = 1,000,000\,\mu\text{USD}$).
+5. **Architectural Modularity Heuristics (400 LOC) & Rule 14**:
+   Target 400 LOC heuristic ceiling across modules, 350 LOC refactor warning zone, Semantic AST Structural Scoping, and Anti-Feature-Erasure (Rule 14).
 
 ---
 
@@ -241,7 +241,7 @@ class DailySpendCircuitBreaker:
 | Failure Dimension | Quantitative Finance (Crisis 1) | FDA Class III Medical Devices | Aerospace Fly-by-Wire Avionics | Core Banking Transaction Mainframes |
 | :--- | :--- | :--- | :--- | :--- |
 | **Naive Polling Architecture** | 8:00 PM nightly cron sweeps across 35 equities in sequential for-loops. | Polling glucose or arterial lactate every 30 minutes in closed-loop ICU infusion systems. | Polling airspeed and angle-of-attack sensors on a 1-second background task loop. | Batch end-of-day file transfer (NACHA/SWIFT) sweeping 50,000 corporate wire transfers. |
-| **Real-World Catastrophe** | 16-hour reaction lag during flash crashes; burns $500+/mo debating flat equities. | Patient experiences acute hypoglycemic shock within 8 minutes; missed by 30m poller. | 1-second lag during atmospheric microburst causes pilot-induced oscillation or wing stall. | Settlement delays expose bank to 12-hour counterparty insolvency and daylight overdrafts. |
+| **Real-World Catastrophe** | 16-hour reaction lag during flash crashes; burns \$500+/mo debating flat equities. | Patient experiences acute hypoglycemic shock within 8 minutes; missed by 30m poller. | 1-second lag during atmospheric microburst causes pilot-induced oscillation or wing stall. | Settlement delays expose bank to 12-hour counterparty insolvency and daylight overdrafts. |
 | **Permanent Mechanism** | Event-driven edge webhooks + 3-Tier triage funnel (\$0 compute standby). | Sub-millisecond hardware interrupt-driven sensor sampling with direct micro-bolus adjustment. | Interrupt-driven avionics databus (ARINC 429) operating at $\ge 100\,\text{Hz}$ with hardware limiters. | Real-time ISO 20022 message-event validation with atomic distributed balance locks. |
 :::
 

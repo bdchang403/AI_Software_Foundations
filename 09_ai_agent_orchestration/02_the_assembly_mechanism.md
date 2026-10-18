@@ -24,29 +24,31 @@ To eliminate single-point epistemic failure, the Context Factory employs the **D
 
 ## 📐 The Mathematics of Consensus: Level-2 Zero-Compute JSD Bypass
 
-Running a multi-agent debate on every trivial task would introduce crippling token costs and execution latency. The orchestrator solves this using **Jensen-Shannon Divergence (JSD)** gating:
+Running a multi-agent debate on every trivial task would introduce crippling token costs and execution latency. The orchestrator solves this using **Jensen-Shannon Divergence (JSD)** gating (Lin, 1991):
 
 $$D_{\text{JS}}(P \parallel Q) = \frac{1}{2} D_{\text{KL}}(P \parallel M) + \frac{1}{2} D_{\text{KL}}(Q \parallel M)$$
 
-Where $M = \frac{1}{2}(P + Q)$, and $D_{\text{KL}}$ is the Kullback-Leibler divergence:
+Where $M = \frac{1}{2}(P + Q)$, and $D_{\text{KL}}$ is the Kullback-Leibler divergence evaluated with base-2 logarithm:
 
 $$D_{\text{KL}}(P \parallel M) = \sum_{x} P(x) \log_2 \left( \frac{P(x)}{M(x)} \right)$$
+
+Evaluating $D_{\text{KL}}$ with base-2 logarithm bounds $\text{JSD} \in [0.0, 1.0]$, and the square root $\sqrt{\text{JSD}}$ is a mathematically proven metric satisfying the triangle inequality (Lin, 1991).
 
 ### 1. Level-2 Fast-Path Consensus Bypass ($\text{JSD} \le 0.12$)
 If the Proponent and Adversary probability distributions over candidate decisions exhibit high mutual agreement:
 $$\text{JSD}(P_{\text{prop}} \parallel P_{\text{adv}}) \le 0.12$$
 The orchestration engine bypasses multi-agent arbitration entirely, committing the consensus recommendation at **zero additional token cost**.
 
-### 2. Full Arbitration via Convex Log-Odds Solver ($\text{JSD} > 0.12$)
-If the models diverge ($\text{JSD} > 0.12$), the task trips an active dispute. The Forensic Auditor activates the **Convex Log-Odds Evidence Solver**:
+### 2. Full Arbitration via Closed-Form Log-Odds Fusion ($\text{JSD} > 0.12$)
+If the models diverge ($\text{JSD} > 0.12$), the task trips an active dispute. The Forensic Auditor activates the **Closed-Form Convex Log-Odds Evidence Fusion Engine**:
 
-$$\mathcal{L}^* = \arg\max_\ell \left[ \sum_{k=1}^K w_k \ell_k - \lambda \cdot D_{\text{JS}}(\sigma(\ell) \parallel \bar{\sigma}) \right]$$
+$$l_{\text{fused}} = l_{\text{deterministic}} + (\text{entropy-discount} \times l_{\text{triad}}), \quad \text{entropy-discount} = \max(0.15, \; 1.0 - \lambda \cdot \mathrm{JSD})$$
 
 Where:
-*   $\ell_k$ represents the log-odds evidence submitted by agent $k$.
-*   $w_k$ represents the credibility weight of agent $k$ (Auditor = 0.50, Adversary = 0.30, Proponent = 0.20).
-*   $\lambda$ is the entropy dampening parameter preventing extreme probability overconfidence.
-*   $\sigma(\ell)$ is the standard sigmoid function mapping log-odds back to $[0, 1]$.
+*   $l_{\text{triad}} = \sum_{k=1}^K w_k \cdot \mathrm{logit}(P_k)$ represents the weighted log-odds evidence submitted by the dialectical triad agents with $\sum w_k = 1.0$ (Auditor = 0.50, Adversary = 0.30, Proponent = 0.20).
+*   $l_{\text{deterministic}} = \mathrm{logit}(P_{\text{det}})$ represents baseline evidence from deterministic invariant checks.
+*   $\lambda = 1.0$ is the entropy dampening sensitivity. When agents diverge significantly, the entropy discount clamps down to a minimum floor of $0.15$, preventing runaway epistemic drift.
+*   The final fused probability is decoded via the logistic sigmoid: $P_{\text{fused}} = \sigma(l_{\text{fused}}) = \frac{1}{1 + e^{-l_{\text{fused}}}}$.
 
 ---
 
@@ -190,10 +192,10 @@ if __name__ == "__main__":
 │   • Adversary: Identifies declining physical activity telemetry and predicts hypoglycemia.       │
 │   • Divergence: JSD = 0.38 (> 0.12). Triggers full log-odds arbitration.                         │
 │   • Forensic Auditor: Enforces Invariant I02 (Physiological Clamp) and limits bolus to +0.4 Units│
-│   • Outcome: Patient protected from severe hypoglycemic shock; decision logged to 21 CFR Part 11.│
+│   • Outcome: Patient protected from severe hypoglycemic shock; decision logged to tamper-evident audit trail in compliance with 21 CFR Part 11.│
 │                                                                                                  │
 │   FINANCE: Core Banking High-Frequency Settlement Dialectic                                      │
-│   • Proponent: Recommends routing $15,000,000 wire through Gateway B for lower transaction fee.  │
+│   • Proponent: Recommends routing \$15,000,000 wire through Gateway B for lower transaction fee. │
 │   • Adversary: Flags sudden volatility spike in counterparty credit default swap (CDS) spreads.  │
 │   • Divergence: JSD = 0.42 (> 0.12). Triggers full log-odds arbitration.                         │
 │   • Forensic Auditor: Weighted log-odds fuses CDS spread and solvency, routing through Fedwire.  │

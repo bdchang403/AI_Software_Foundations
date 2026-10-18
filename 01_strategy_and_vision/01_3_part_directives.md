@@ -60,7 +60,7 @@ When authoring strategic directives, the Strategy Lead binds business requiremen
 | **$I_{07}$** | **Div-by-Zero Safety** | All denominator terms must be clamped or checked. Log/sqrt operations must assert domain non-negativity. | Risk Analytics / Medical Dosing Calculations |
 | **$I_{18}$** | **Compounder Hold Lock** | Enforce minimum time-in-state windows (e.g., 20 trading days or therapeutic course completion) to stop churn. | Asset Management / Pharmacokinetic Regimens |
 | **$I_{20}$** | **Epistemic News Isolation** | Unstructured external media must be ingested behind a unidirectional air-gap with an 80% commercial discount. | Market Sentiment / Clinical Trial Literature |
-| **$I_{22}$** | **400-LOC & Test Hygiene** | All implementation modules must adhere to Architectural Modularity Ceiling (400 LOC) ($\le 400$ LOC) and embed verifiable SHA1 invariant anchors. | Software Engineering Architecture |
+| **$I_{22}$** | **Modularity & Test Hygiene** | All implementation modules must adhere to Architectural Modularity Heuristics (target $\le 400$ LOC per Single Responsibility Principle) and embed verifiable SHA1 invariant anchors. | Software Engineering Architecture |
 
 ---
 

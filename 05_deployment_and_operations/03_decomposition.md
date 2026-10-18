@@ -60,7 +60,7 @@ flowchart TD
     subgraph Wave_1 ["Wave 1: Canary 10% Live Traffic"]
         E -- "Verified Clean" --> G["Route 10% Production Traffic to Canary"]
         G --> H["Monitor Runtime Error Rates & Latency for 30 Minutes"]
-        H --> I{"Error Rate Spike > 0.05% or Drift > $250.00?"}
+        H --> I{"Error Rate Spike > 0.05% or Drift > USD 250.00?"}
         I -- "Anomaly Tripped" --> J["CIRCUIT BREAKER: Automated Instant Traffic Drain to 0%"]
         J --> F
     end
@@ -126,7 +126,7 @@ runs:
 | :--- | :--- | :--- |
 | **Canary Traffic Routing** | Routes 5% of non-critical telemetry streams to the canary cluster; patient telemetry processing remains on the certified baseline. | Routes 5% of low-value consumer transfers to the new settlement container; high-value wholesale transactions remain on the legacy engine. |
 | **Automated Rollback Metric** | An algorithmic divergence exceeding 2.0% in calculated vital scores triggers an immediate, zero-downtime rollback. | Any ledger balance mismatch exceeding \$0.01 between parallel engines trips an immediate execution halt and traffic rollback. |
-| **Regulatory Validation** | Generates an automated Design Verification audit record showing 0 regression errors across 10,000 synthetic patient traces. | Generates a Federal Reserve SR 11-7 model outcome analysis record demonstrating mathematical equivalence to historical ledger entries. |
+| **Regulatory Validation** | Generates an automated Design Verification audit record showing 0 regression errors across 10,000 de-identified historical clinical test traces. | Generates a Federal Reserve SR 11-7 model outcome analysis record demonstrating mathematical equivalence to historical ledger entries. |
 
 ---
 

@@ -39,7 +39,7 @@ Organizations must evaluate a representative sample of 50 recent AI interactions
 │                                                                                                  │
 │  Tier 3: The "Context Factory" Pattern (High Maturity — Deterministic Precision)                 │
 │  • 3-Part Directives (Role, Task, Format) bound to AST Registries and Semantic Blueprints.       │
-│  • Outcome: Surgical 80-line edits, zero AST drift, SHA1 invariant verification, fail-closed.   │
+│  • Outcome: Surgical AST scoped edits, zero AST drift, SHA1 invariant verification, fail-closed. │
 └──────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -72,7 +72,7 @@ gh pr list --state merged --limit 100 --json number,createdAt,mergedAt,commits \
 ### 2.2 DORA Metric 2: Change Failure Rate (CFR)
 
 **Objective:** Track the percentage of production deployments requiring emergency rollbacks, hotfixes, or incident mitigation.  
-**Hypothesis:** Programmatic AST Zero-Mock enforcement (rules ZM001–ZM007) and adversarial red-teaming maintain $\text{CFR} \le 5\%$, preventing AI-generated bugs from reaching production.
+**Hypothesis:** Programmatic AST Zero-Mock enforcement (rules ZM001–ZM009) and adversarial red-teaming maintain $\text{CFR} \le 5\%$, preventing AI-generated bugs from reaching production.
 
 $$\text{CFR} = \frac{N_{\text{hotfix-deployments}} + N_{\text{rollback-events}}}{N_{\text{total-deployments}}} \times 100\%$$
 
@@ -154,7 +154,7 @@ Prior to launching Phase 1 of the 120-Day Rollout Roadmap, every squad member mu
 | **Product Owner / Executive** | [ ] 90-day DORA and SPACE baseline metrics captured.<br>[ ] Enterprise Constitution ratified.<br>[ ] Model risk governance and quarantine tables provisioned. | Executive Baseline Report & Approved Constitution |
 | **Business Analyst (BA)** | [ ] Ingested external requirements air-gapped from internal state.<br>[ ] 80% commercial discount applied to vendor claims.<br>[ ] 20-edge-case Semantic Blueprint template loaded. | Completed Semantic Blueprint (`docs/stories/`) |
 | **System Architect / Developer** | [ ] ADR-016 400-LOC ceiling verified across all existing files.<br>[ ] `STATE_REGISTRY.md` and `MATHEMATICAL_REGISTRY.md` compiled.<br>[ ] Atomic pre-commit command chain configured in `.git/hooks/`. | Passing `git diff --exit-code` on AST registries |
-| **Validation Lead (QE)** | [ ] `scripts/scan_mock_data.py` (ZM001–ZM007) integrated into CI.<br>[ ] `pytest-socket` active in `tests/conftest.py`.<br>[ ] SHA1 invariant verification script operational. | Green hermetic test run with zero network egress |
+| **Validation Lead (QE)** | [ ] `scripts/scan_mock_data.py` (ZM001–ZM009) integrated into CI.<br>[ ] `pytest-socket` active in `tests/conftest.py`.<br>[ ] SHA1 invariant verification script operational. | Green hermetic test run with zero network egress |
 | **Scrum Master / Agile Coach** | [ ] User stories sized to $\le 2$ points (<200 LOC blast radius).<br>[ ] Sprint dashboard tracking files near 350-LOC refactor trigger.<br>[ ] Developer feedback loop established. | Sprint Board with Context Debt Tracking |
 
 ---

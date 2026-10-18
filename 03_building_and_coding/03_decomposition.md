@@ -23,32 +23,36 @@ In a 1,200-line monolith, functions positioned between lines 200 and 1,000 resid
 
 ---
 
-## 🏛️ The Architectural Modularity Ceiling Standard (400 LOC)
+## 🏛️ The Architectural Modularity Heuristic Standard (400 LOC)
 
-To eliminate monolithic degradation and guarantee 100% deterministic code modifications, enterprise context architecture codifies **Architectural Modularity Ceiling (The 400-LOC Guardrail)**:
+To eliminate monolithic degradation, prevent cognitive drift, and guarantee deterministic code modifications, enterprise software architecture codifies **Architectural Modularity Heuristics (The 400-LOC Guideline)**:
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                             THE ARCHITECTURAL MODULARITY CEILING STANDARD (400 LOC)                            │
+│                           THE ARCHITECTURAL MODULARITY HEURISTIC (400 LOC)                       │
 ├──────────────────────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                                  │
-│   1. THE 400-LOC HARD CEILING                                                                    │
-│      • No source file in `src/`, `workers/`, `tests/`, or `config/` may exceed 400 physical lines. │
+│   1. THE 400-LOC ARCHITECTURAL MODULARITY HEURISTIC                                              │
+│      • Source modules in `src/`, `workers/`, and `tests/` maintain a target heuristic ceiling    │
+│        of <= 400 physical lines to safeguard the Single Responsibility Principle (SRP).         │
 │      • Excludes code-adjacent `# === INVARIANT-BLOCK` lines (safety annotations are free).      │
-│      • Single explicit system exception: orchestration runners capped at 600 LOC.                │
+│      • Orchestration runners and complex coordinators have an explicit ceiling of 600 LOC.        │
 │                                                                                                  │
-│   2. THE 350-LOC REFACTORING TRIGGER                                                             │
-│      • Any module reaching 350 physical lines enters the "Refactor Zone".                        │
-│      • Builders and AI agents are FORBIDDEN from adding new features to a module >= 350 LOC.     │
-│      • Architectural decomposition must occur BEFORE implementing new functional requirements.   │
+│   2. THE 350-LOC REFACTORING HEURISTIC TRIGGER                                                   │
+│      • Any module reaching 350 physical lines enters the "Refactor Warning Zone".               │
+│      • Serves as an architectural modularity heuristic: before adding extensive feature sets,    │
+│        engineers evaluate decomposition. Localized bug fixes and atomic patches remain          │
+│        permitted without forcing premature, brittle micro-module fragmentation.                  │
 │                                                                                                  │
-│   3. THE 80-LINE SURGICAL VIEW WINDOW                                                            │
-│      • Autonomous agents are prohibited from dumping entire files into working memory.           │
-│      • Agents must inspect code in targeted slices of <= 80 lines using slice notation.          │
-│      • Keeps active task context entirely within the model's 100% fidelity attention region.     │
+│   3. SEMANTIC AST STRUCTURAL SCOPING                                                             │
+│      • Autonomous agents inspect code via cohesive AST node units (functions, classes, and      │
+│        interface declarations) rather than arbitrary physical line-slicing windows.             │
+│      • In modern frontier models with context windows >= 128k tokens, inspecting an entire       │
+│        cohesive module (<= 400 LOC, ≈ 2,500 tokens) operates well within high-fidelity          │
+│        attention (<2% context capacity), preventing truncation of parameter lists or try-blocks.│
 │                                                                                                  │
 │   4. RULE 14: THE ANTI-FEATURE-ERASURE PROTOCOL                                                 │
-│      • Refactoring to meet the 400-LOC limit MUST decompose logic into domain submodules.        │
+│      • Refactoring to meet modularity targets MUST decompose logic into domain submodules.       │
 │      • Agents are strictly forbidden from deleting fallback cascades, retry loops, or telemetry. │
 │      • Banned: replacing existing methods with `# ... existing code ...` or pass-through stubs.   │
 │                                                                                                  │
@@ -92,11 +96,11 @@ The following Mermaid diagram details the deterministic decision tree executed b
 
 ```mermaid
 flowchart TD
-    A[New Feature or Bugfix Request] --> B[Read Target Module in <=80 Line Slices]
+    A[New Feature or Bugfix Request] --> B[Inspect Module via Semantic AST Scoping]
     B --> C["Check Target Physical LOC: calculate_physical_loc(file)"]
-    C --> D{"Non-Anchor LOC >= 350?"}
+    C --> D{"Non-Anchor LOC >= 350 & Expansion?"}
     
-    D -- Yes --> E[MANDATORY ARCHITECTURAL DECOMPOSITION]
+    D -- Yes --> E[EVALUATE MODULAR DECOMPOSITION HEURISTIC]
     E --> F[Identify Cohesive Domain Boundaries]
     F --> G[Extract Submodules < 400 LOC]
     G --> H[Apply Rule 14 Anti-Feature-Erasure Audit]
@@ -105,7 +109,7 @@ flowchart TD
     J --> G
     I -- No --> K[Update AST State & Math Registries]
     
-    D -- No --> L[Implement Target Modification]
+    D -- No --> L[Implement Target Modification / Atomic Patch]
     L --> M{"Did Edit Push LOC >= 400?"}
     M -- Yes --> E
     M -- No --> K
@@ -123,12 +127,12 @@ flowchart TD
 
 ## ⚖️ Dual-Use Regulated Callout Box: Modular Deconstruction in Safety-Critical Domains
 
-::: tip DUAL-USE ANALYSIS: LINE BOUNDS & ANTI-FEATURE-ERASURE ACROSS REGULATED INDUSTRIES
-| Engineering Requirement | Quantitative Asset Management (`StockAnalysis V3`) | FDA Class III Medical Device Firmware (21 CFR Part 820.30) | Aerospace Fly-by-Wire Avionics (RTCA DO-178C Level A) |
+::: tip DUAL-USE ANALYSIS: MODULARITY HEURISTICS & ANTI-FEATURE-ERASURE ACROSS REGULATED INDUSTRIES
+| Engineering Requirement | Quantitative Asset Management Pipeline | FDA Class III Medical Device Firmware (21 CFR Part 820.30) | Aerospace Fly-by-Wire Avionics (RTCA DO-178C Level A) |
 | :--- | :--- | :--- | :--- |
-| **Physical LOC Ceiling** | 400 LOC per file. Preserves LLM working memory and eliminates Lost-in-the-Middle retrieval loss. | MISRA-C Rule 8.4: Functions $\le 100$ LOC, compilation units $\le 500$ LOC. Prevents stack overflow and register spilling. | DO-178C Unit Testing: Units strictly scoped to single-condition decision paths to guarantee 100% MC/DC testability. |
+| **Physical Modularity Heuristics** | 400 LOC target per file. Preserves single responsibility and maintains active code well within high-fidelity attention ($<2\%$ context capacity). | MISRA C:2012 Design Guidelines: Recommends small, cohesive functions to prevent path explosion (Rule 8.4 mandates compatible external linkage declarations to prevent type mismatches). | DO-178C Unit Testing: Units strictly scoped to single-condition decision paths to guarantee 100% MC/DC testability. |
 | **Rule 14 Anti-Feature-Erasure** | Forbids AI from removing 4-tier live price discovery waterfall (FMP $\to$ Yahoo $\to$ Finnhub $\to$ D1) to meet file limits. | Forbids AI from deleting redundant hardware watchdog pet routines (`WDT_PET()`) or sensor out-of-range clamps. | Forbids AI from stripping triple-modular redundancy (TMR) sensor voting or dual-channel bus synchronization logic. |
-| **80-Line Surgical Views** | Eliminates attention entropy dispersion; model operates at peak attention density ($F(x) \approx 1.0$). | Auditing and modifying single state-machine transitions without loading unrelated driver interrupt tables. | Verifying single aerodynamic table lookup functions without exposing actuator servo PID control loops. |
+| **Semantic AST Structural Scoping** | Inspects cohesive AST units (functions, classes, schemas); operates in peak fidelity attention zone without severing syntax scopes. | Auditing and modifying single state-machine transitions without loading unrelated driver interrupt tables. | Verifying single aerodynamic table lookup functions without exposing actuator servo PID control loops. |
 :::
 
 ---

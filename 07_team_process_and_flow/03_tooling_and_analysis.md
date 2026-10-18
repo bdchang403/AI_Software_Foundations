@@ -17,7 +17,7 @@ The objective of an Agile Leader is to mathematically demonstrate the **Determin
 │ Zero-Context / Ad-Hoc Prompting│ The Context Factory Framework                                   │
 ├────────────────────────────────┼─────────────────────────────────────────────────────────────────┤
 │ Model guesses repository state │ Model consumes pre-compiled Living Context (<1,500 tokens)      │
-│ Ingests 50,000+ unbounded LOC  │ Ingests targeted 80-line AST view windows                       │
+│ Ingests 50,000+ unbounded LOC  │ Ingests cohesive AST node scopes                                │
 │ High hallucination and drift   │ Pinned to AST State & Mathematical Registries                   │
 │ Unpredictable token burn       │ Bounded Task Units (BTU <= 25,000 tokens)                       │
 │ Synthetic mocks hide defects   │ AST Zero-Mock Rules (ZM001-ZM009) enforce truth                 │
@@ -35,8 +35,8 @@ Quantifies the direct token savings achieved by compiling living context instead
 
 $$\text{TCER} = \frac{\text{Tokens Expended (Zero-Context Run)}}{\text{Tokens Expended (Context Factory Run)}}$$
 
-*   **Zero-Context Baseline**: Dumping a 50,000 LOC repository $\approx 150,000$ prompt tokens $\approx \$1.50$ per invocation.
-*   **Context Factory Run**: Living Context JSON ($1,200$ tokens) + 3-Part Directive ($600$ tokens) $\approx 1,800$ tokens $\approx \$0.018$ per invocation.
+*   **Zero-Context Baseline**: Dumping a 50,000 LOC repository $\approx 150,000$ prompt tokens $\approx$ \$1.50 per invocation.
+*   **Context Factory Run**: Living Context JSON (1,200 tokens) + 3-Part Directive (600 tokens) $\approx$ 1,800 tokens $\approx$ \$0.018 per invocation.
 *   **Expected Efficiency**: $\text{TCER} \ge 80\times$ token cost reduction per development cycle.
 
 ### 2. First-Pass Convergence Rate (FPCR)

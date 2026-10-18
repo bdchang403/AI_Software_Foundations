@@ -17,7 +17,7 @@ The **Enterprise AI Constitution** establishes the non-negotiable legal and arch
 │ 1. HARD-SAFETY     │ Biological & capital preservation │ Pre-Action Plausibility Bands ($I_{02}$) │
 │ 2. MATH-BOUND      │ Statistical & domain bounds       │ Condition numbers, DSR, and decay ($I_{11}$)│
 │ 3. SCHEMA-PARITY   │ Database & DTO integrity          │ Dual-Schema Parity & WAL Mode ($I_{13}$)│
-│ 4. CONTEXT-ISOLATE │ Blast radius & attention defense  │ 400 LOC ceiling & 80-line views ($I_{16}$)│
+│ 4. CONTEXT-ISOLATE │ Blast radius & attention defense  │ 400 LOC ceiling & AST scoped views ($I_{16}$)│
 │ 5. CODE-HYGIENE    │ Anti-deception & zero-drift       │ AST Zero-Mock Rules ZM001-ZM009 ($I_{22}$)│
 └────────────────────┴───────────────────────────────────┴─────────────────────────────────────────┘
 ```
@@ -33,7 +33,7 @@ The **Enterprise AI Constitution** establishes the non-negotiable legal and arch
 5. **Thou Shalt Decouple Decision from Narrative**: Epistemic normalizers must strip promotional hype and apply an 80% commercial discount (Invariant $I_{05}$).
 6. **Thou Shalt Attenuate Stale Evidence**: Observations decay continuously according to exponential half-life kinetics (Invariant $I_{17}$).
 7. **Thou Shalt Reject Conjunctive Paralysis**: Decision gates must use Compensatory Confluence across orthogonal pillars (Invariant $I_{09}$).
-8. **Thou Shalt Respect the Modularity Ceiling**: No code module may exceed 400 physical lines of code (Invariant $I_{16}$).
+8. **Thou Shalt Respect the Modularity Heuristic**: Code modules should target $\le 400$ lines of code grounded in Single Responsibility Principle (SRP) and cognitive maintainability, allowing atomic bug fixes while discouraging feature sprawl (Invariant $I_{16}$).
 9. **Thou Shalt Anchor Invariants Cryptographically**: Core invariants must be bound by checksummed SHA1 comment anchors (Invariant $I_{22}$).
 10. **Thou Shalt Cryptographically Attest Every Output**: Every agent output must carry an SPDX 3.0 AI-SBOM header with UUIDv4 lineage (Invariant $I_{15}$).
 
@@ -60,10 +60,10 @@ The **Enterprise AI Constitution** establishes the non-negotiable legal and arch
 | **$I_{15}$** | **AI-SBOM Lineage** | `SCHEMA-PARITY` | $\text{UUIDv4} \land \text{GitDigest} \land \text{SPDX-3.0}$ | `05_05`, `08_LAB` | `test_ai_sbom_traceability` |
 | **$I_{16}$** | **Modularity Ceiling** | `CONTEXT-ISOL` | $\text{LOC}_{\text{file}} \le 400 \land \text{RefactorTrigger}=350$ | `03_03`, `05_03` | `test_adr016_loc_counter` |
 | **$I_{17}$** | **Horizon Decay** | `CONTEXT-ISOL` | $w(\Delta t) = w_0 \cdot 2^{-\Delta t / t_{1/2}} \land (\Delta t > 2t_{1/2} \to \text{EXP})$| `02_02`, `03_02` | `test_half_life_decay` |
-| **$I_{18}$** | **Surgical Context** | `CONTEXT-ISOL` | $\text{ViewWindow} \le 80 \text{ lines} \land \text{Tokens} < 2,500$ | `03_04`, `09_04` | `test_context_budget_bound` |
+| **$I_{18}$** | **Surgical Context** | `CONTEXT-ISOL` | $\text{ViewWindow} \le \text{AST Scope} \land \text{Tokens} < 2,500$ | `03_04`, `09_04` | `test_context_budget_bound` |
 | **$I_{19}$** | **Hermetic Isolation** | `CODE-HYGIENE` | Sockets blocked during CI testing (`pytest-socket`) | `04_02`, `08_LAB` | `test_socket_isolation` |
 | **$I_{20}$** | **Deterministic Seeds** | `CODE-HYGIENE` | $\text{Seed}=42 \land \text{Temperature}=0.0$ | `05_01`, `09_01` | `test_deterministic_repro` |
-| **$I_{21}$** | **Micro-USD Quota** | `CODE-HYGIENE` | $\text{Spend}_{24\text{h}} \le 400,000\,\mu\text{USD}$ ($0.40/day) | `01_03`, `03_02` | `test_micro_usd_spend_limit` |
+| **$I_{21}$** | **Micro-USD Quota** | `CODE-HYGIENE` | $\text{Spend}_{24\text{h}} \le 400,000\,\mu\text{USD}$ (\$0.40/day) | `01_03`, `03_02` | `test_micro_usd_spend_limit` |
 | **$I_{22}$** | **Registry Parity** | `CODE-HYGIENE` | $\Delta(\text{AST}, \text{Registries}) = \emptyset$ | `03_04`, `05_05` | `test_zero_drift_pre_commit` |
 
 ---

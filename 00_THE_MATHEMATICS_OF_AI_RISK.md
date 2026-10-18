@@ -32,21 +32,21 @@ This document establishes the **Executive Mathematical Foundations** of the Cont
 ### Pillar 1: Quadratic Complexity & Attention Entropy
 Transformer attention scales quadratically with sequence length $N$:
 
-$$\text{FLOPs}_{\text{attention}} \sim 2 \cdot L \cdot H \cdot N^2 \cdot d_k$$
+$$\text{FLOPs}_{\text{attention}} = 2 \cdot L \cdot H \cdot N^2 \cdot d_k, \quad d_{\text{model}} = H \cdot d_k$$
 
-The dispersion of attention probability mass is quantified by information-theoretic attention entropy:
+The dispersion of attention probability mass across the $(N-1)$-simplex is quantified by information-theoretic attention entropy (Shannon, 1948):
 
-$$\mathcal{H}(A_i) = -\sum_{j=1}^N A_{ij} \ln A_{ij}$$
+$$\mathcal{H}(A_i) = -\sum_{j=1}^N A_{ij} \ln(A_{ij} + \epsilon), \quad A_{ij} \in [0, 1], \quad \sum_{j=1}^N A_{ij} = 1.0, \quad \mathcal{H}(A_i) \in [0, \ln N]\,\text{nats}$$
 
-As $N \to \infty$, attention entropy approaches $\ln N$, diluting negative constraints and type invariants.
+Where $\epsilon = 10^{-12}$ provides an $\epsilon$-floor preventing numerical underflow and division-by-zero traps (with $0 \ln 0 \equiv 0$ by continuity). Because the natural logarithm is used, entropy is measured in nats ($\mathcal{H} \ge 0$). As sequence length $N \to \infty$, uniform dispersion yields maximum entropy $\mathcal{H}_{\max} = \ln N$, diluting negative constraints, system instructions, and type invariants.
 *   **Operational Guardrail**: Hard prompt ceiling of $\le 2,500$ tokens per task.
 *   **Deep Implementation**: [Strategic Decomposition (01_03)](./01_strategy_and_vision/03_decomposition.md) and [Context Engineering (03_04)](./03_building_and_coding/04_context_engineering.md).
 
 ---
 
-### Pillar 2: Attention Dilution & The 20,000-Line Cliff
-Empirical testing reveals that when context exceeds 20,000 lines of code, retention drops sharply below $60\%$.
-*   **Operational Guardrail**: Architectural Modularity Ceiling (maximum 400 LOC per file, refactoring triggered at 350 LOC).
+### Pillar 2: Attention Dilution & Semantic Structural Scoping
+Empirical testing reveals that when context exceeds 20,000 lines of code, cross-module retention drops sharply below $60\%$ due to context dilution and interference.
+*   **Operational Guardrail**: Architectural Modularity Heuristic (recommended $\le 400$ LOC per file, with refactoring reviews triggered at 350 LOC to preserve single responsibility) and Semantic Structural Scoping (agents inspect cohesive AST functions and classes rather than arbitrary line windows).
 *   **Deep Implementation**: [Code Decomposition & Modularity (03_03)](./03_building_and_coding/03_decomposition.md).
 
 ---
@@ -55,9 +55,9 @@ Empirical testing reveals that when context exceeds 20,000 lines of code, retent
 Decoder-only transformers exhibit severe retention decay across relative context coordinate $x \in [0.0, 1.0]$:
 
 $$F(x) = \begin{cases} 
-1.0 - k_1 x & x \in [0.0, 0.15] \quad \text{(High-Fidelity Primacy Zone)} \\
-F_{\text{valley}} + \epsilon(x) & x \in (0.15, 0.85) \quad \text{(Degradation Valley: 40 to 75 percent loss)} \\
-1.0 - k_2 (1.0 - x) & x \in [0.85, 1.0] \quad \text{(High-Fidelity Recency Zone)}
+1.0 - 4.33 x & x \in [0.0, 0.15] \quad \text{(Primacy Zone: } F \in [0.35, 1.0]\text{)} \\
+0.35 + \epsilon(x) & x \in (0.15, 0.85), \; |\epsilon(x)| \le 0.15 \quad \text{(Degradation Valley: } F \in [0.20, 0.50]\text{)} \\
+1.0 - 4.33 (1.0 - x) & x \in [0.85, 1.0] \quad \text{(Recency Zone: } F \in [0.35, 1.0]\text{)}
 \end{cases}$$
 
 *   **Operational Guardrail**: Critical invariants and tool schemas must be pinned strictly to prompt inception ($x \le 0.15$) and prompt termination ($x \ge 0.85$).
@@ -68,7 +68,9 @@ F_{\text{valley}} + \epsilon(x) & x \in (0.15, 0.85) \quad \text{(Degradation Va
 ### Pillar 4: Temporal Telemetry Decay & Four-Horizon Taxonomy
 State observations decay in predictive validity according to exponential half-life kinetics:
 
-$$w(\Delta t) = w_0 \cdot \left(\frac{1}{2}\right)^{\frac{\Delta t}{t_{1/2}}}, \quad \text{effective-confidence}(\Delta t) = \mathrm{int}\left(\mathrm{round}\left(w_0 \cdot 2^{-\frac{\Delta t}{t_{1/2}}}\right)\right)$$
+$$w(\Delta t) = w_0 \cdot \left(\frac{1}{2}\right)^{\frac{\Delta t}{t_{1/2}}} = w_0 \exp\left(-\frac{\ln 2}{\max(t_{1/2}, 10^{-6})} \Delta t\right), \quad \Delta t \ge 0, \quad t_{1/2} > 0$$
+
+$$\text{effective-confidence}(\Delta t) = \mathrm{int}\left(\mathrm{round}\left(w_0 \cdot 2^{-\frac{\Delta t}{t_{1/2}}}\right)\right)$$
 
 System telemetry is partitioned into four operational half-life horizons:
 1. *Kinematic Flow*: $t_{1/2} = 5.0\text{ days}$ (Hard expiry: $10.0\text{ days}$)
@@ -81,13 +83,13 @@ System telemetry is partitioned into four operational half-life horizons:
 ---
 
 ### Pillar 5: Conjunctive Gate Collapse vs. Compensatory Confluence
-Sequential conjunctive boolean filters ($C_1 \land C_2 \land C_3 \land C_4 \land C_5$) suffer exponential probability collapse:
+Sequential conjunctive boolean filters ($C_1 \land C_2 \land \dots \land C_K$) suffer exponential joint probability collapse:
 
-$$P_{\text{joint}} = \prod_{k=1}^5 p_k = (0.30)^5 = 0.00243 \quad (0.243\%)$$
+$$P_{\text{joint}} = \prod_{k=1}^K p_k \xrightarrow{K=5, \; p_k=0.30} (0.30)^5 = 0.00243 \; (0.243\%), \quad P_{\text{false-negative}} = 1 - P_{\text{joint}} = 99.757\%$$
 
-Causing 99% false-negative system paralysis. The system instead enforces Compensatory Orthogonal Confluence (Invariant $I_{09}$):
+Stacking just 5 conjunctive boolean gates with independent pass rate $p_k = 0.30$ reduces joint execution probability to $0.243\%$ (falsely rejecting $99.757\%$ of valid opportunities or operations; stacking 100 gates yields $(0.30)^{100} \approx 5.15 \times 10^{-53}$, inducing total system paralysis). The system instead enforces Compensatory Orthogonal Confluence (Invariant $I_{09}$):
 
-$$\text{Confluence Score} = \sum_{j=1}^4 \mathbb{I}(S_j \ge 0.35) \ge 2 \quad \land \quad \neg \text{FatalContagion}$$
+$$P_{\text{confluence}} = \mathbb{P}\left(\sum_{j=1}^4 \mathbb{I}(S_j \ge 0.35) \ge 2 \;\land\; \neg \text{FatalContagion}\right) \approx 34.83\% \quad (\text{vs. } 0.243\%)$$
 
 *   **Operational Guardrail**: Requires positive confirmation across $\ge 2$ of 4 orthogonal pillars with isolated fatal contagion veto ($I_{03}$).
 *   **Deep Implementation**: [Requirements Decomposition (02_03)](./02_requirements_and_design/03_decomposition.md) and [Testing Architecture (04_TEST_ARCHITECTURE)](./04_testing_and_validation/TEST_ARCHITECTURE.md).
@@ -95,13 +97,21 @@ $$\text{Confluence Score} = \sum_{j=1}^4 \mathbb{I}(S_j \ge 0.35) \ge 2 \quad \l
 ---
 
 ### Pillar 6: Multi-Agent Dialectical Triad & Convex Log-Odds Solver
-To eliminate single-model sycophancy, the system deploys a 3-stage dialectical multi-agent triad:
-1. *Fast-Path Consensus Bypass*: If Proponent and Adversary achieve Jensen-Shannon Divergence $\text{JSD}(P \parallel Q) \le 0.12$, bypass debate at $0 token cost$.
-2. *Convex Evidence Solver*: If $\text{JSD} > 0.12$, solve weighted log-odds:
+To eliminate single-model sycophancy, the system deploys a 3-stage dialectical multi-agent triad arbitrated by the Jensen-Shannon Divergence (Lin, 1991):
+1. *Fast-Path Consensus Bypass*: If Proponent ($P$) and Adversary ($Q$) achieve Jensen-Shannon Divergence $\text{JSD}(P \parallel Q) \le 0.12$, bypass debate at \$0 token cost. Formally, for probability vectors $P, Q$:
+   $$\text{JSD}(P \parallel Q) = \frac{1}{2} D_{\text{KL}}(P \parallel M) + \frac{1}{2} D_{\text{KL}}(Q \parallel M), \quad M = \frac{1}{2}(P + Q)$$
+   Where $D_{\text{KL}}$ is Kullback-Leibler divergence evaluated with base-2 logarithm, bounding $\text{JSD} \in [0.0, 1.0]$ and guaranteeing that $\sqrt{\text{JSD}}$ is a true mathematical metric satisfying the triangle inequality (Lin, 1991).
+2. *Convex Evidence Solver*: If $\text{JSD} > 0.12$, the system executes closed-form log-odds evidence fusion with clamped logit bounds and JSD entropy discounting:
 
-$$\mathcal{L}^* = \arg\max_\ell \left[ \sum_{k=1}^K w_k \ell_k - \lambda \cdot D_{\text{JS}}(\sigma(\ell) \parallel \bar{\sigma}) \right]$$
+$$\mathrm{logit}(P) = \ln\left(\frac{P_{\text{clamped}}}{1 - P_{\text{clamped}}}\right), \quad P_{\text{clamped}} = \min(\max(P, \; \epsilon), \; 1 - \epsilon), \quad \epsilon = 10^{-7}$$
 
-*   **Operational Guardrail**: Epistemic variance is dampened automatically; decisions are backed by formal proofs.
+$$l_{\text{triad}} = \sum_{k=1}^K w_k \cdot \mathrm{logit}(P_k), \quad \sum_{k=1}^K w_k = 1.0$$
+
+$$\text{entropy-discount} = \max\left(0.15, \; 1.0 - \lambda \cdot \text{JSD}(P \parallel Q)\right), \quad \text{JSD} \in [0.0, 1.0]$$
+
+$$l_{\text{fused}} = l_{\text{deterministic}} + (\text{entropy-discount} \times l_{\text{triad}}), \quad P_{\text{fused}} = \sigma(l_{\text{fused}}) = \frac{1}{1 + e^{-l_{\text{fused}}}}$$
+
+*   **Operational Guardrail**: Epistemic variance is dampened automatically; decisions are backed by formal proofs and bounded logits.
 *   **Deep Implementation**: [The Assembly Mechanism (09_02)](./09_ai_agent_orchestration/02_the_assembly_mechanism.md).
 
 ---
@@ -109,23 +119,33 @@ $$\mathcal{L}^* = \arg\max_\ell \left[ \sum_{k=1}^K w_k \ell_k - \lambda \cdot D
 ### Pillar 7: Deflated Sharpe Ratio (DSR) & Multiple-Testing Bias
 When an autonomous agent tests thousands of variations, standard statistical tests fail due to selection bias. The system enforces the Deflated Sharpe Ratio (Bailey & López de Prado, 2014):
 
-$$\mathrm{DSR} \equiv \mathrm{Prob}\left[\mathrm{SR}^* > 0 \mid \{\mathrm{SR}_k\}_{k=1}^K\right] = \Phi\left(\frac{(\widehat{\mathrm{SR}} - \mathrm{SR}_0)\sqrt{T-1}}{\sqrt{1 - \hat{\gamma}_3 \widehat{\mathrm{SR}} + \frac{\hat{\gamma}_4 - 1}{4} \widehat{\mathrm{SR}}^2}}\right)$$
+$$\mathrm{DSR} \equiv \mathrm{Prob}\left[\mathrm{SR}^* > 0 \mid \{\mathrm{SR}_k\}_{k=1}^K\right] = \Phi\left(\frac{(\widehat{\mathrm{SR}} - \mathrm{SR}_0)\sqrt{T-1}}{\sqrt{1 - \hat{\gamma}_3 \widehat{\mathrm{SR}} + \frac{\hat{\gamma}_4 - 1}{4} \widehat{\mathrm{SR}}^2}}\right) \in [0.0, 1.0]$$
 
+Where $\mathrm{SR}_0 = \mathbb{E}[\max_K \{\mathrm{SR}\}]$ is the expected maximum Sharpe ratio under the null hypothesis of zero true predictive skill across $K$ parameter trials:
+$$\mathrm{SR}_0 \approx \sigma_{\text{trials}} \left( (1 - \gamma_{\text{EM}}) \Phi^{-1}\left(1 - \frac{1}{K}\right) + \gamma_{\text{EM}} \Phi^{-1}\left(1 - \frac{1}{K \cdot e}\right) \right)$$
+With $\sigma_{\text{trials}}$ representing the empirical standard deviation across all $K$ trials, $\gamma_{\text{EM}} \approx 0.5772156649$ being the Euler-Mascheroni constant, and sample size $T > 1$.
 *   **Operational Guardrail**: Only models or rules satisfying $\mathrm{DSR} \ge 0.95$ are approved for production.
 *   **Deep Implementation**: [Testing Architecture (04_TEST_ARCHITECTURE)](./04_testing_and_validation/TEST_ARCHITECTURE.md) and [Regulatory Red-Teaming (06_02)](./06_security_and_compliance/02_regulatory_red_teaming.md).
 
 ---
 
 ### Pillar 8: Ledoit-Wolf Covariance Shrinkage & Symmetrical ZCA Whitening
-Correlated environmental telemetry causes ill-conditioned covariance matrices ($\mathrm{cond}(S) > 10^{15}$). The system regularizes covariance via analytical Ledoit-Wolf shrinkage:
+Correlated environmental telemetry causes ill-conditioned covariance matrices ($\mathrm{cond}(S) > 10^{15}$). The system regularizes covariance via analytical Ledoit-Wolf shrinkage (Ledoit & Wolf, 2004):
 
-$$\mathbf{\Sigma}_{\text{LW}} = (1 - \delta^*) \mathbf{S} + \delta^* \mathbf{F}, \quad \mathrm{cond}(\mathbf{\Sigma}_{\text{LW}}) \le 10^{12} \quad (\text{Invariant } I_{11})$$
+$$\mathbf{\Sigma}_{\text{LW}} = (1 - \delta^*) \mathbf{S} + \delta^* \mathbf{F}, \quad \mathbf{F} = \frac{\mathrm{Tr}(\mathbf{S})}{p} \mathbf{I}_p, \quad \mathrm{cond}(\mathbf{\Sigma}_{\text{LW}}) \le 10^{12} \quad (\text{Invariant } I_{11})$$
 
-Followed by symmetrical Zero-Phase Component Analysis (ZCA) whitening:
+Where $\delta^* \in [0, 1]$ is the analytically optimal shrinkage intensity minimizing expected quadratic loss under Frobenius norm. This is followed by symmetrical Zero-Phase Component Analysis (ZCA) whitening (Bell & Sejnowski, 1997; Kessy, Lewin, & Strimmer, 2018):
 
-$$W_{\text{ZCA}} = U \;\mathrm{diag}\left(\frac{1}{\sqrt{\lambda_{\text{safe}, 1}}}, \dots, \frac{1}{\sqrt{\lambda_{\text{safe}, p}}}\right) U^T$$
+$$\mathbf{\Sigma}_{\text{LW}} = \mathbf{U} \mathbf{\Lambda} \mathbf{U}^T, \quad \mathbf{\Lambda} = \mathrm{diag}(\lambda_1, \dots, \lambda_p)$$
 
-*   **Operational Guardrail**: Decorrelates multi-sensor inputs while preserving original spatial coordinate identities.
+$$\lambda_{\text{safe}, i} = \min\left(\max\left(\lambda_i, \; \max(10^{-4} \lambda_{\max}, 10^{-8})\right), \; \max(1.0, \mu)\right), \quad \mu = \frac{\mathrm{Tr}(\mathbf{\Sigma}_{\text{LW}})}{p}$$
+
+$$\mathbf{W}_{\text{ZCA}} = \mathbf{U} \mathbf{\Lambda}_{\text{safe}}^{-1/2} \mathbf{U}^T = \mathbf{U} \;\mathrm{diag}\left(\frac{1}{\sqrt{\lambda_{\text{safe}, 1}}}, \dots, \frac{1}{\sqrt{\lambda_{\text{safe}, p}}}\right) \mathbf{U}^T$$
+
+$$\mathbf{X}_{\text{decorrelated}} = (\mathbf{X} - \bar{\mathbf{X}}) \mathbf{W}_{\text{ZCA}}^T + \bar{\mathbf{X}}$$
+
+As proven by Kessy et al. (2018), symmetrical ZCA whitening $\mathbf{W}_{\text{ZCA}} = \mathbf{\Sigma}^{-1/2}$ is the unique transformation that minimizes expected squared reconstruction error $\mathbb{E}[\|\mathbf{W} \mathbf{X} - \mathbf{X}\|^2]$ subject to $\mathrm{Cov}(\mathbf{W} \mathbf{X}) = \mathbf{I}$, preserving maximal cross-covariance with the original input channels. The upper clamp $\max(1.0, \mu)$ resolves the ZCA Agreement Paradox by preventing unanimous multi-pillar co-movement from being artificially penalized.
+*   **Operational Guardrail**: Decorrelates multi-sensor inputs while preserving original spatial coordinate identities and avoiding penalization of unanimous consensus.
 *   **Deep Implementation**: [Epistemic Governance (09_05)](./09_ai_agent_orchestration/05_epistemic_governance.md).
 
 ---
@@ -139,8 +159,20 @@ $$W_{\text{ZCA}} = U \;\mathrm{diag}\left(\frac{1}{\sqrt{\lambda_{\text{safe}, 1
 | **Pillar 4: Temporal Decay** | Requirements Lead | `02_02`, `03_02` | `test_latex_continuous_half_life_decay_formulation` |
 | **Pillar 5: Confluence** | Validation Lead (QE) | `02_03`, `04_02`, `04_TEST`| `test_latex_joint_probability_vs_confluence_formulation`|
 | **Pillar 6: Dialectical Solver**| Agent Orchestrator | `09_02` | `test_latex_log_odds_convex_evidence_fusion_mechanics` |
-| **Pillar 7: Deflated Sharpe** | Security / Validator | `04_TEST`, `06_02` | `test_alg89_ledoit_wolf_shrinkage_intensity_bounds` |
+| **Pillar 7: Deflated Sharpe** | Security / Validator | `04_TEST`, `06_02` | `test_tier1_feature_contracts.py` (DSR Contract) |
 | **Pillar 8: ZCA Whitening** | Systems Engineer | `09_05` | `test_alg89_zca_whitening_execution` |
+
+---
+
+## 📚 References & Foundational Literature
+
+1. **Bailey, D. H., & López de Prado, M. (2014).** *"The Deflated Sharpe Ratio: Correcting for Selection Bias, Backtest Overfitting, and Non-Normality."* *Journal of Portfolio Management*, 40(5), 94–107.
+2. **Ledoit, O., & Wolf, M. (2004).** *"A Well-Conditioned Estimator for Large-Dimensional Covariance Matrices."* *Journal of Multivariate Analysis*, 88(2), 365–411.
+3. **Lin, J. (1991).** *"Divergence measures based on the Shannon entropy."* *IEEE Transactions on Information Theory*, 37(1), 145–151.
+4. **Bell, A. J., & Sejnowski, T. J. (1997).** *"The 'independent components' of natural scenes are edge filters."* *Vision Research*, 37(23), 3327–3338.
+5. **Kessy, A., Lewin, A., & Strimmer, K. (2018).** *"Optimal Whitening and Decorrelation."* *The American Statistician*, 72(4), 309–314.
+6. **Liu, N. F., Gardner, M., Liang, P., Manning, C. D., & Levy, O. (2023).** *"Lost in the Middle: How Language Models Use Long Contexts."* *Transactions of the Association for Computational Linguistics (TACL)*, 12, 157–173.
+7. **Shannon, C. E. (1948).** *"A Mathematical Theory of Communication."* *Bell System Technical Journal*, 27(3), 379–423.
 
 ---
 

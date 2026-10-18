@@ -30,9 +30,9 @@ Because human reviewers and LLM-as-a-judge evaluators cannot reliably distinguis
 │                                                                                                  │
 │   CRISIS 3: THE SYNTHETIC POISON CATASTROPHE       CRISIS 4: THE 99% GATE PARALYSIS CRISIS        │
 │  ┌─────────────────────────────────────────┐      ┌─────────────────────────────────────────┐    │
-│  │ • Silenced except handlers return 0.50  │      │ • 100 sequential boolean AND gates      │    │
+│  │ • Silenced except handlers return 0.50  │      │ • 5 sequential conjunctive AND gates    │    │
 │  │ • 900,000 rows of tainted data          │      │ • Joint probability collapse:           │    │
-│  │ • TSLA $150k panic liquidation          │      │   P_joint = (0.30)^5 = 0.243%           │    │
+│  │ • TSLA \$150k panic liquidation         │      │   P_joint = (0.30)^5 = 0.243%           │    │
 │  │ • Kelly / DCF / Bayes error compounding │      │ • Rejection of NVDA, PLTR, CRM, NOW     │    │
 │  └─────────────────────────────────────────┘      └─────────────────────────────────────────┘    │
 │                        │                                               │                         │
@@ -205,7 +205,7 @@ If $\text{ROIC} \ge 15\%$ and revenue growth $g \ge 15\%$, and $\text{MOS}_{\tex
 ## 🔬 Dual-Use Regulated Callout Boxes
 
 ### 🛡️ Dual-Use Callout Box 1: Zero-Mock & Fail-Closed Telemetry
-> **Algorithmic Trading System**: An API feed drops out during a volatility spike. Under the Zero-Mock Mandate ($I_{01}$), the system returns `None` and transitions to `HALT_TRADING_DUE_TO_UNVERIFIED_DATA` with confidence 0. It refuses to invent a synthetic spot price (`$200.00`), preventing bad fills.  
+> **Algorithmic Trading System**: An API feed drops out during a volatility spike. Under the Zero-Mock Mandate ($I_{01}$), the system returns `None` and transitions to `HALT_TRADING_DUE_TO_UNVERIFIED_DATA` with confidence 0. It refuses to invent a synthetic spot price (`\$200.00`), preventing bad fills.  
 > **FDA Class III Closed-Loop Drug Infusion Pump**: An optical pulse oximeter ($S_p\text{O}_2$) probe disconnects from an ICU patient. Under the Fail-Closed Telemetry Doctrine, the firmware detects telemetry loss (`telemetry_source != PROBE_VERIFIED`). Instead of defaulting to a synthetic "safe" oxygenation reading of $98\%$, the pump **immediately sounds an acoustic alarm, halts drug infusion, latches the mechanical flow-valve shut, and drops to a safe basal maintenance rate**. A synthetic default would administer lethal sedation to a suffocating patient.
 
 ### 🛡️ Dual-Use Callout Box 2: Compensatory Confluence vs. Conjunctive Gate Collapse

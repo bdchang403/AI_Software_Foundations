@@ -6,7 +6,7 @@ For Chief Technology Officers (CTOs), Chief Information Officers (CIOs), and Eng
 
 1. **The Context Cliff:** Large Language Models (LLMs) collapse in architectural precision when confronted with enterprise monoliths (>500,000 LOC), generating plausible-sounding code that hallucinates non-existent APIs, breaks database schemas, and erases critical error handling.
 2. **Runaway Token OpEx:** Organizations bleed millions of dollars in inference costs by using "Monolithic Prompting"—dumping hundreds of thousands of raw repository tokens into massive context windows, only to suffer from information-theoretic attention dilution.
-3. **Unmitigated Regulatory Exposure:** Un-audited generative AI pipelines violate core compliance mandates (FDA 21 CFR Part 820/11, Federal Reserve SR 11-7, FAA DO-178C Level A, and EU AI Act), creating un-tracked "black box" code liabilities.
+3. **Unmitigated Regulatory Exposure:** Un-audited generative AI pipelines fail to produce the objective verification, validation, and traceability evidence required by core regulatory and supervisory frameworks (FDA 21 CFR Part 820/11, Federal Reserve SR 11-7, FAA DO-178C Level A, and EU AI Act Regulation (EU) 2024/1689), exposing the enterprise to severe compliance and operational liabilities.
 
 The **Context Factory** provides the executive blueprint to industrialize AI-assisted engineering. By replacing stochastic prompting with **AST-compiled living context**, **2-tier precision routing**, **cryptographic invariant anchors**, and **fail-closed circuit breakers**, the Context Factory converts AI from an uncontrollable operational liability into a deterministic, auditable software production engine.
 
@@ -29,7 +29,7 @@ The Context Factory (2-Tier Precision Routing):
 | Operational Metric | Monolithic "Dump the Repo" Approach | The Context Factory Architecture | Executive ROI Impact |
 |:---|:---|:---|:---|
 | **Average Prompt Payload** | 250,000 to 500,000 tokens | 1,500 to 4,000 tokens (Surgical AST) | **85% to 95% reduction in token consumption** |
-| **Inference Cost per Task** | $2.50 to $7.50 per agent turn | $0.02 to $0.10 per agent turn | **Multi-million-dollar annual OpEx reduction** |
+| **Inference Cost per Task** | \$2.50 to \$7.50 per agent turn | \$0.02 to \$0.10 per agent turn | **Multi-million-dollar annual OpEx reduction** |
 | **Attention Fidelity** | High entropy ($\mathcal{H} \approx \ln N$); severe middle loss | Low entropy; zero "Lost in the Middle" rot | Drastic decline in defect remediation cycles |
 | **API Rate-Limit Throttle** | Frequent HTTP 429 throttling; blocked queues | Zero throttling; bounded micro-USD spend | Predictable continuous CI/CD throughput |
 | **Code Merge Success** | Low (<40% first-pass pass rate) | High (>90% first-pass pass rate) | Faster time-to-market with zero rework |
@@ -79,8 +79,8 @@ Industrializing software engineering with AI requires structured alignment acros
 |:---|:---|:---|:---|:---|
 | **Product Owners & Regulated Executives** | - Epistemic model risk governance<br>- Fail-closed business doctrine<br>- Regulatory compliance (FDA / SR 11-7 / EU AI Act)<br>- Zero hard-deletes & quarantine oversight | $I_{03}$ Fatal-Contagion Veto<br>$I_{04}$ Immutable Quarantine<br>$I_{15}$ UUID Traceability<br>$I_{21}$ Macro Gate | - Enterprise Constitution<br>- AI-SBOM Compliance Gate<br>- Immutable Quarantine Ledger<br>- Executive DORA Dashboards | `00_`<br>`01_strategy_and_vision` |
 | **Business Analysts & Requirements Leads** | - 3-Part Directives (Role, Task, Format)<br>- Epistemic air-gapping of user feedback<br>- 80% commercial discount on vendor claims<br>- Semantic Blueprints with 20 edge cases | $I_{05}$ Closed-World Fallback<br>$I_{07}$ Div-by-Zero Domain<br>$I_{08}$ Growth Hurdle<br>$I_{20}$ Epistemic News Air-Gap | - Semantic Blueprints<br>- 20-Row Edge Case Matrix<br>- Machine-Readable Story Files (`/stories/`) | `02_requirements_and_design` |
-| **System Architects & Software Engineers** | - ADR-016 400-LOC modular hard ceiling<br>- 80-line surgical context windows<br>- AST State & Math Registry synchronization<br>- Living Context compilation (<1,500 tokens)<br>- SHA1 Invariant Anchor embedding | $I_{01}$ Zero-Simulated-Data<br>$I_{02}$ Execution Plausibility<br>$I_{06}$ MOS Bounds<br>$I_{11}$ Whitening Stability<br>$I_{22}$ 400-LOC Ceiling | - `STATE_REGISTRY.md`<br>- `MATHEMATICAL_REGISTRY.md`<br>- `data/openrouter_context.json`<br>- `# === INVARIANT-BLOCK` | `03_building_and_coding` |
-| **Validation Leads & Quality Engineers** | - Programmatic AST Zero-Mock scanning<br>- Hermetic socket isolation enforcement<br>- Cryptographic SHA1 invariant verification<br>- Cartesian fault-injection fuzz testing<br>- 4-tier opaque-box verification suites | $I_{01}$ Zero-Simulated-Data<br>$I_{09}$ Compensatory Confluence<br>$I_{10}$ Bandit Priors<br>$I_{12}$ Conformal Coverage<br>$I_{22}$ Test Quality $\ge 90\%$ | - `scripts/scan_mock_data.py` (ZM001–ZM007)<br>- `tests/conftest.py` (`pytest-socket`)<br>- `verify_code_invariants.py`<br>- Conformal Fuzz Harnesses | `04_testing_and_validation`<br>`06_security_and_compliance` |
+| **System Architects & Software Engineers** | - ADR-016 400-LOC modular ceiling heuristic<br>- AST scoped surgical context windows<br>- AST State & Math Registry synchronization<br>- Living Context compilation (<1,500 tokens)<br>- SHA1 Invariant Anchor embedding | $I_{01}$ Zero-Simulated-Data<br>$I_{02}$ Execution Plausibility<br>$I_{06}$ MOS Bounds<br>$I_{11}$ Whitening Stability<br>$I_{22}$ 400-LOC Ceiling | - `STATE_REGISTRY.md`<br>- `MATHEMATICAL_REGISTRY.md`<br>- `data/openrouter_context.json`<br>- `# === INVARIANT-BLOCK` | `03_building_and_coding` |
+| **Validation Leads & Quality Engineers** | - Programmatic AST Zero-Mock scanning<br>- Hermetic socket isolation enforcement<br>- Cryptographic SHA1 invariant verification<br>- Cartesian fault-injection fuzz testing<br>- 4-tier opaque-box verification suites | $I_{01}$ Zero-Simulated-Data<br>$I_{09}$ Compensatory Confluence<br>$I_{10}$ Bandit Priors<br>$I_{12}$ Conformal Coverage<br>$I_{22}$ Test Quality $\ge 90\%$ | - `scripts/scan_mock_data.py` (ZM001–ZM009)<br>- `tests/conftest.py` (`pytest-socket`)<br>- `verify_code_invariants.py`<br>- Conformal Fuzz Harnesses | `04_testing_and_validation`<br>`06_security_and_compliance` |
 | **Scrum Masters & Agile Coaches** | - Bounded task decomposition (1-2 pts)<br>- Active Context Debt monitoring<br>- AI blast radius containment (<200 LOC)<br>- Tracking AI-assisted DORA & SPACE telemetry<br>- Guiding 120-day phased rollout roadmap | $I_{13}$ Remote-First Freshness<br>$I_{14}$ Cross-Channel Sync<br>$I_{16}$ Multi-Entity Isolation<br>$I_{17}$ Horizon-Matched Decay | - Context Debt Dashboard<br>- Sprint Refactoring Spikes (350 LOC trigger)<br>- Review Cognitive Load Logs<br>- DORA Incident Trackers | `07_team_process_and_flow` |
 
 ---
@@ -130,13 +130,13 @@ gantt
     ADR-016 400-LOC Ceiling Enforced   :p2_2, 2026-12-01, 30d
     AI-SBOM Header Automation          :p2_3, 2026-12-01, 30d
     section Phase 3: Industrialize
-    Zero-Mock AST Scanner (ZM001-ZM007):p3_1, 2027-01-01, 30d
+    Zero-Mock AST Scanner (ZM001-ZM009):p3_1, 2027-01-01, 30d
     Immutable Quarantine Ledger Setup  :p3_2, 2027-01-01, 30d
     Executive Dashboard Telemetry      :p3_3, 2027-01-01, 30d
     section Phase 4: Invariant Governance
     22 Canonical Invariant Audit (I01-I22):p4_1, 2027-02-01, 30d
     Hermetic Socket Isolation Full Gate:p4_2, 2027-02-01, 30d
-    Regulatory Compliance Sign-Off     :p4_3, 2027-02-01, 30d
+    Regulatory Compliance Audit Review :p4_3, 2027-02-01, 30d
 ```
 
 ### Phase Details:
@@ -144,11 +144,11 @@ gantt
 - **Phase 1: Pilot Squad (Days 1–30):**  
   Deploy the Context Factory across a single pilot squad (1 BA, 3 Engineers, 1 QE). Validate the Context Handshake using Semantic Blueprints and 3-Part Directives. Establish the DORA/SPACE performance baseline and measure initial token OpEx reductions.
 - **Phase 2: Tribe Scale (Days 31–60):**  
-  Scale across an entire engineering tribe (5–8 squads). Enforce the ADR-016 400-LOC hard ceiling and 350-LOC refactor trigger. Deploy the automated pre-commit command chain and activate CI zero-drift sentinels (`drift-monitor.yml`). Mandate AI-SBOM headers on all pull requests.
+  Scale across an entire engineering tribe (5–8 squads). Enforce the ADR-016 400-LOC modular ceiling heuristic and 350-LOC refactor trigger. Deploy the automated pre-commit command chain and activate CI zero-drift sentinels (`drift-monitor.yml`). Mandate AI-SBOM headers on all pull requests.
 - **Phase 3: Industrialize (Days 61–90):**  
-  Expand enterprise-wide. Activate the static AST Zero-Mock Scanner (rules ZM001–ZM007) across all repositories. Implement ADR-027 immutable quarantine ledgers, banning raw `DELETE` SQL operations. Connect repository telemetry directly to executive C-suite dashboards.
+  Expand enterprise-wide. Activate the static AST Zero-Mock Scanner (rules ZM001–ZM009) across all repositories. Implement ADR-027 immutable quarantine ledgers, banning raw `DELETE` SQL operations. Connect repository telemetry directly to executive C-suite dashboards.
 - **Phase 4: Full Invariant Governance (Days 91–120):**  
-  Achieve 100% formal governance. Embed verifiable SHA1 Invariant Anchor blocks across all 22 Canonical Invariants ($I_{01}-I_{22}$). Enforce hermetic socket isolation (`pytest-socket`) across all test suites. Secure formal regulatory sign-off (FDA PMA, SR 11-7, DO-178C, EU AI Act).
+  Achieve 100% formal governance. Embed verifiable SHA1 Invariant Anchor blocks across all 22 Canonical Invariants ($I_{01}-I_{22}$). Enforce hermetic socket isolation (`pytest-socket`) across all test suites. Satisfy the evidentiary requirements for formal regulatory and supervisory audits (FDA PMA/510(k) clearances, Federal Reserve SR 11-7 supervisory reviews, FAA DO-178C airworthiness approvals, and EU AI Act conformity assessments).
 
 ---
 
@@ -160,6 +160,10 @@ gantt
 4. **Forsgren, N., et al. (2021).** *"The SPACE of Developer Productivity: There's more to it than you think."* *ACM Queue*, 19(1), 20–48.
 5. **National Telecommunications and Information Administration (NTIA) (2021).** *"The Minimum Elements For a Software Bill of Materials (SBOM)."* U.S. Department of Commerce.
 6. **Federal Reserve Board / OCC (2011).** *"Supervisory Guidance on Model Risk Management."* Supervisory Letter SR 11-7.
+7. **Bailey, D. H., & López de Prado, M. (2014).** *"The Deflated Sharpe Ratio: Correcting for Selection Bias, Backtest Overfitting, and Non-Normality."* *Journal of Portfolio Management*, 40(5), 94–107.
+8. **Ledoit, O., & Wolf, M. (2004).** *"A Well-Conditioned Estimator for Large-Dimensional Covariance Matrices."* *Journal of Multivariate Analysis*, 88(2), 365–411.
+9. **Lin, J. (1991).** *"Divergence measures based on the Shannon entropy."* *IEEE Transactions on Information Theory*, 37(1), 145–151.
+10. **Kessy, A., Lewin, A., & Strimmer, K. (2018).** *"Optimal Whitening and Decorrelation."* *The American Statistician*, 72(4), 309–314.
 
 ---
 

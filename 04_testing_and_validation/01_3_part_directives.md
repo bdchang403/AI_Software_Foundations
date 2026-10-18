@@ -51,7 +51,7 @@ Every directive authored by a Validation Lead or Quality Engineer must follow th
 │   • Authoritative specification document (e.g., `SEMANTIC_BLUEPRINT_SPECIFICATION.md`).          │
 │   • Binding System Invariants (e.g., Invariant $I_{01}$, Invariant $I_{02}$, Invariant $I_{09}$).  │
 │   • Explicit exclusion: FORBIDDEN from reading target implementation files in `src/`.             │
-│   • Test suite budget: maximum 400 lines per test module (Architectural Modularity Ceiling).                              │
+│   • Test suite budget: target ~400 lines per test module (Architectural Modularity Heuristic for SRP & cognitive bounds). │
 │                                                                                                  │
 │   PART 2: TASK INSTRUCTION (Adversarial Edge-Case Generation)                                    │
 │   • Precise failure paths, negative boundaries, and edge cases to target.                        │
@@ -61,8 +61,8 @@ Every directive authored by a Validation Lead or Quality Engineer must follow th
 │                                                                                                  │
 │   PART 3: FORMAT & ARCHITECTURAL CONSTRAINTS (Zero-Mock Mandate)                                 │
 │   • Hermetic Socket Isolation: all tests must execute under `pytest-socket`.                     │
-│   • Zero Synthetic Mocks: zero mock data dictionaries; use golden recorded traces.               │
-│   • AST Zero-Mock compliance: zero ZM001–ZM007 violations in generated test code.                │
+│   • Zero Synthetic Mocks in Prod: zero fail-soft stubs or synthetic data in production modules.  │
+│   • AST Zero-Mock compliance: zero ZM001–ZM009 violations in source; contract test doubles only. │
 │   • Deterministic execution: test must complete in $<5\text{ms}$ without thread sleeping.       │
 │                                                                                                  │
 └──────────────────────────────────────────────────────────────────────────────────────────────────┘
@@ -86,7 +86,7 @@ Every directive authored by a Validation Lead or Quality Engineer must follow th
   * Invariant $I_{01}$ (Zero-Simulated-Data): Unverified feeds must return `None` or raise `UnverifiedDataError`.
   * Invariant $I_{02}$ (Execution-Price Guardrail): $|P_{\text{exec}} - \text{EMA}_5| \le \max(3.0 \cdot \text{ATR}_{14}, \; 0.08 \cdot \text{EMA}_5)$.
 - FORBIDDEN PATHS: Do not inspect `src/execution/execution_guardrails.py`. Design tests strictly from the blueprint mathematical equations.
-- TARGET FILE: `tests/unit/test_execution_guardrails.py` (Must not exceed 350 LOC).
+- TARGET FILE: `tests/unit/test_execution_guardrails.py` (Target ~350 LOC, adhering to the 400-LOC modularity heuristic).
 
 ### 2. TASK INSTRUCTION
 Generate an adversarial pytest suite targeting `ExecutionGuardrails.validate_order()`:
@@ -98,8 +98,9 @@ Generate an adversarial pytest suite targeting `ExecutionGuardrails.validate_ord
 
 ### 3. FORMAT & ARCHITECTURAL CONSTRAINTS
 - HERMETIC ISOLATION: Tests must execute cleanly with network sockets disabled (`pytest-socket`).
-- ZERO-MOCK MANDATE: Do not mock the mathematical functions. Pass pure numerical inputs directly into the public class interface.
-- AST SCANNER COMPLIANCE: Zero ZM001–ZM007 violations. Do not use `MOCK_` variable prefixes.
+- ZERO-MOCK MANDATE: Do not mock internal system logic in production; in test suites, pass pure numerical inputs directly into the public class interface or use deterministic contract-bound test doubles without unanchored mocks.
+- AST SCANNER COMPLIANCE: Zero ZM001–ZM009 violations. Do not use `MOCK_` variable prefixes.
+- MODULARITY HEURISTIC: Target file sizing should respect the ~400 LOC modularity heuristic for single-responsibility focus.
 - OUTPUT FORMAT: Emit pure executable Python test code in a single file.
 ```
 
@@ -115,7 +116,7 @@ Generate an adversarial pytest suite targeting `ExecutionGuardrails.validate_ord
 ```markdown
 ### 1. CONTEXT BOUNDARY
 - SPECIFICATION: `docs/regulatory/PMA_CLINICAL_ALGORITHM_SPEC.md` (Section 4: Sensor Anomaly Mitigation).
-- REGULATORY MANDATE: FDA 21 CFR Part 820.30(g) Design Validation and IEC 62304 Class C Medical Device Software.
+- REGULATORY COMPLIANCE TARGET: Objective evidence supporting FDA 21 CFR Part 820.30(g) Design Validation and IEC 62304 Class C Medical Device Software Verification.
 - BOUNDING INVARIANTS:
   * Invariant $I_{01}$ Equivalent: Zero Simulated Biosensor Telemetry. No imputed glucose readings.
   * Invariant $I_{02}$ Equivalent: Maximum Basal Plausibility Envelope:

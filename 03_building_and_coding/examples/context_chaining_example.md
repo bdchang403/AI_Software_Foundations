@@ -34,23 +34,23 @@ You operate strictly in deterministic fail-closed mode.
 - Article I: Data Minimization. Zero storage of raw un-hashed intelligence.
 - Article II: Fail-Closed Safety. Never return synthetic constants, positive numeric fallbacks, or dummy dictionaries.
 - Invariant I01: Zero-Simulated-Data. All calculations must use verified live provenances.
-- Invariant I22: ADR-016 Modularity. File non-anchor lines must remain <= 400 LOC. Files >= 350 LOC require refactoring.
+- Invariant I22: ADR-016 Modularity & Test Hygiene. Modularity target: ~400 LOC heuristic ceiling; evaluate refactoring at >= 350 LOC.
 
 [2. LIVING CONTEXT DIGEST (FROM openrouter_context.json - <500 tokens)]
 - Active SQL Tables & DTOs:
-  * daily_prices -> DailyPriceDTO (src/v3/schemas/daily_prices.py)
-  * consensus -> ConsensusVerdict (src/v3/schemas/debate.py)
-  * cost_logs -> CostEntry (src/v3/pipeline/cost_ledger.py)
+  * daily_prices -> DailyPriceDTO (src/schemas/daily_prices.py)
+  * consensus -> ConsensusVerdict (src/schemas/debate.py)
+  * cost_logs -> CostEntry (src/pipeline/cost_ledger.py)
 - Canonical Algorithm: Alg #42 Pre-Action Plausibility Band: |P_exec - EMA_5| <= max(3.0 * ATR_14, 0.08 * EMA_5).
-- Model Environment: Flagship Claude 4.7 / Grok 4.6. Rolling quota limit: $0.40/day.
+- Model Environment: Flagship Claude 4.7 / Grok 4.6. Rolling quota limit: \$0.40/day.
 
 [3. ARCHITECTURAL GUARDRAILS & ADRS (FROM docs/context/order_execution.md)]
-- ADR-016: 400 LOC ceiling, 350 LOC trigger. Rule 14 Anti-Feature-Erasure strictly enforced.
+- ADR-016: Modularity target (~400 LOC heuristic ceiling, 350 LOC warning zone). Rule 14 Anti-Feature-Erasure strictly enforced.
 - ADR-029: Pre-Trade Execution Plausibility Guardrail.
 - Invariant I02 Anchor Checksum: sha1("I02|ADR-029|Execution guardrail |P_exec - EMA_5| <= max(3*ATR, 0.08*EMA)")[:8] == "037a1c64".
 
 [4. ACTIVE CONTRACT (FROM docs/stories/FEAT-101-execution-gate.md)]
-Story: Implement Execution Plausibility Gate in `src/v3/execution/execution_gateway.py`.
+Story: Implement Execution Plausibility Gate in `src/execution/execution_gateway.py`.
 - Target Lines: 120–180 (Surgical view slice).
 - Interface: `def validate_order(proposed_price: float, ema_5: float, atr_14: float) -> bool`
 - Pre-conditions:
@@ -85,7 +85,7 @@ Operating under FDA 21 CFR Part 820.30 & ISO 13485:2016 Design Controls.
 - Max Delivery Limit: 30.0 mcg/min norepinephrine.
 
 [3. ARCHITECTURAL CONSTRAINTS]
-- MISRA-C:2012 Rule 8.4: Zero dynamic memory; Q16.16 fixed-point math only.
+- MISRA-C:2012 Rule 8.4 (external linkage declaration parity) and Rule 21.3 (zero dynamic memory allocation); Q16.16 fixed-point math only.
 - Rule 14: Preserve hardware watchdog kick `WDT_PET()` at entry and exit.
 
 [4. ACTIVE TASK BLUEPRINT]

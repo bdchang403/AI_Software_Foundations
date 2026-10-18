@@ -68,15 +68,15 @@ def test_article_1_pii_and_credential_logging_penetration(caplog):
 
 
 # ============================================================================
-# 2. ARTICLE II: STATIC AST ZERO-MOCK CODE ENFORCEMENT (ZM001–ZM007)
+# 2. ARTICLE II: STATIC AST ZERO-MOCK CODE ENFORCEMENT (ZM001–ZM009)
 # ============================================================================
 
 def test_article_2_ast_zero_mock_code_hygiene():
     """Penetration Test: Ensure target source modules contain ZERO mock fallbacks."""
     target_files = [
-        "src/v3/execution/execution_gateway.py",
-        "src/v3/quant/quant_engine.py",
-        "src/v3/pipeline/live_price_engine.py"
+        "src/execution/execution_gateway.py",
+        "src/quant/quant_engine.py",
+        "src/pipeline/live_price_engine.py"
     ]
     
     for relative_path in target_files:
@@ -176,7 +176,7 @@ Executing the constitutional penetration test suite produces verifiable attestat
 
 ```text
 ============================== test session starts ==============================
-rootdir: /home/bdchang/AI_Software_Foundations
+rootdir: /workspace/AI_Software_Foundations
 collected 5 items
 
 tests/penetration/test_constitutional_integrity.py .....                  [100%]

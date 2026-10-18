@@ -26,6 +26,7 @@ from tests.e2e_curriculum_validator import (
     compensatory_confluence,
     logit,
     sigmoid,
+    deflated_sharpe_ratio,
     scan_python_code_for_mock_violations,
     validate_markdown_syntax,
     extract_and_validate_latex,
@@ -191,6 +192,34 @@ def test_latex_log_odds_convex_evidence_fusion_mechanics():
     
     p_reconstructed = sigmoid(logit_val)
     assert math.isclose(p_reconstructed, p, rel_tol=1e-5)
+
+
+def test_latex_deflated_sharpe_ratio_mathematical_formulation():
+    """Verify Bailey & López de Prado (2014) Deflated Sharpe Ratio (DSR) mechanics."""
+    # Under high number of trials and modest Sharpe, DSR deflates toward 0
+    dsr_overfit = deflated_sharpe_ratio(
+        estimated_sr=1.2,
+        trials=1000,
+        sigma_trials=0.5,
+        skew=-0.2,
+        kurtosis=3.5,
+        sample_length=252,
+    )
+    assert dsr_overfit < 0.05, f"Overfit DSR {dsr_overfit} should deflate below 0.05"
+    
+    # Under zero or single trial, returns 0.0
+    assert deflated_sharpe_ratio(1.2, 1, 0.5, 0.0, 3.0, 252) == 0.0
+    
+    # Under strong genuine Sharpe and low trials, DSR approaches 1.0 (>= 0.95 gate)
+    dsr_genuine = deflated_sharpe_ratio(
+        estimated_sr=3.5,
+        trials=5,
+        sigma_trials=0.2,
+        skew=0.0,
+        kurtosis=3.0,
+        sample_length=500,
+    )
+    assert dsr_genuine >= 0.95, f"Genuine DSR {dsr_genuine} should exceed 0.95 hurdle"
 
 
 # ============================================================================

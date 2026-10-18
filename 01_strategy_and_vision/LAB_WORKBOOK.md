@@ -82,7 +82,7 @@ Draft a complete, machine-ingestible **Epic Semantic Blueprint** including:
 
 ## 1. Epic Metadata
 - **Epic ID**: `EPIC-EXEC-02`
-- **Bounded Subsystem**: `01_strategy_and_vision`, `02_requirements_and_specifications`
+- **Bounded Subsystem**: `01_strategy_and_vision`, `02_requirements_and_design`
 - **Max Token Budget**: `3,500 tokens`
 - **Governing Invariants**: `I01, I02, I04, I15`
 

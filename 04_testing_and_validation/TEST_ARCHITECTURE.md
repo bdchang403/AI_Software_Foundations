@@ -10,7 +10,7 @@ flowchart TD
         direction TB
         T1["Tier 1: Feature Contracts<br/>• Markdown & LaTeX AST<br/>• 22 Invariants & 10 Commandments<br/>• AST Scanner Rules ZM001–ZM009"]
         T2["Tier 2: Boundary Invariants<br/>• Zero-Mock Returns & Div-by-Zero<br/>• Matrix cond(Sigma) <= 10^12<br/>• Modularity Ceiling <= 400 LOC<br/>• SHA1 Invariant Anchors"]
-        T3["Tier 3: Cross-Chapter Parity<br/>• Dialectical Triad Arbitration<br/>• Level-2 $0-Compute JSD Bypass<br/>• Cross-Channel Synchronization"]
+        T3["Tier 3: Cross-Chapter Parity<br/>• Dialectical Triad Arbitration<br/>• Level-2 \$0-Compute JSD Bypass<br/>• Cross-Channel Synchronization"]
         T4["Tier 4: Real-World Workloads<br/>• Replay of 6 Forensic Crises<br/>• Dual-Use Safety Equivalence<br/>• Ledoit-Wolf & ZCA Whitening<br/>• Hermetic Socket Interception"]
         T1 --> T2 --> T3 --> T4
     end
@@ -51,7 +51,7 @@ flowchart TD
 * **Objective**: Validates multi-agent debate consensus, epistemic routing, and presentation-layer synchronization.
 * **Key Assertions**:
   1. **Dialectical Adversarial Triad**: Verifies log-odds convex evidence fusion across Bull, Bear, and Forensic Auditor perspectives, with JSD entropy discounting.
-  2. **Level-2 $\$0$-Compute JSD Bypass**: Verifies that when 4-pillar divergence satisfies $\text{JSD} \le 0.12$ with strong consensus, LLM debate is bypassed entirely ($I_{11}$).
+  2. **Level-2 \$0-Compute JSD Bypass**: Verifies that when 4-pillar divergence satisfies $\text{JSD} \le 0.12$ with strong consensus, LLM debate is bypassed entirely ($I_{11}$).
   3. **Single-Source Channel Synchronization**: Verifies that email, Slack, and CLI interfaces query the unified `ConsensusService`, and stale replicas $>72\text{h}$ old raise `StaleDataCircuitBreaker` ($I_{14}$).
 
 ### Tier 4: Real-World Workloads & Forensic Failure Replays
@@ -128,11 +128,15 @@ Where:
 *   $T$ is the number of observation periods.
 *   $\hat{\gamma}_3$ and $\hat{\gamma}_4$ are the sample skewness and kurtosis of returns.
 *   $\Phi(\cdot)$ is the standard normal cumulative distribution function.
-*   $\mathrm{SR}_0$ is the expected maximum Sharpe ratio under the null hypothesis of zero true predictive skill across $K$ independent trials:
+*   $\mathrm{SR}_0 = \mathbb{E}[\max_K \{\mathrm{SR}\}]$ is the expected maximum Sharpe ratio under the null hypothesis of zero true predictive skill across $K$ independent trials, evaluated using the Bailey & López de Prado (2014) quantile formulation:
 
-$$\mathrm{SR}_0 = \sqrt{2 \ln K} \left(1 - \frac{\gamma}{\sqrt{2 \ln K}}\right) + \frac{\ln(4\pi \ln K)}{2\sqrt{2\ln K}}$$
+$$\mathrm{SR}_0 \approx \sigma_{\text{trials}} \left( (1 - \gamma_{\text{EM}}) \Phi^{-1}\left(1 - \frac{1}{K}\right) + \gamma_{\text{EM}} \Phi^{-1}\left(1 - \frac{1}{K \cdot e}\right) \right)$$
 
-Where $\gamma \approx 0.577215$ is the Euler-Mascheroni constant.
+Where:
+*   $\sigma_{\text{trials}}$ is the empirical standard deviation of Sharpe ratios across all $K$ parameter trials.
+*   $\gamma_{\text{EM}} \approx 0.5772156649$ is the Euler-Mascheroni constant.
+*   $e \approx 2.7182818284$ is Euler's number.
+*   $\Phi^{-1}(\cdot)$ is the standard normal quantile function (inverse CDF).
 *   **Validation Gate**: The test suite requires $\mathrm{DSR} \ge 0.95$. Any agent discovery failing this hurdle is rejected as a statistical artifact.
 
 ---

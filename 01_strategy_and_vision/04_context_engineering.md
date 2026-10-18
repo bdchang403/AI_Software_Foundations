@@ -46,7 +46,7 @@ Under **Unidirectional Epistemic Air-Gap Guardrail**, the system enforces a stri
 
 ## 📉 The 80% Commercial Funnel Discount
 
-Promotional media and sponsored vendor literature systematically exaggerate risks and rewards to drive retail sales funnels. In Case Study 5, an alarmist YouTube video exaggerated a routine Federal Reserve rate cut to market a $2,000 day-trading mentorship course, triggering a $150k panic liquidation.
+Promotional media and sponsored vendor literature systematically exaggerate risks and rewards to drive retail sales funnels. In Case Study 5, an alarmist YouTube video exaggerated a routine Federal Reserve rate cut to market a \$2,000 day-trading mentorship course, triggering a \$150k panic liquidation.
 
 To insulate autonomous decision pipelines from commercial hype, the Strategy Lead mandates the **80% Commercial Funnel Discount**:
 
@@ -108,7 +108,7 @@ The primary strategic artifact emitted by the Strategy Lead / Product Owner is t
 
 ## 1. Strategic Metadata
 - **Epic ID**: `EPIC-ING-04`
-- **Bounded Subsystem**: `01_strategy_and_vision`, `02_requirements_and_specifications`
+- **Bounded Subsystem**: `01_strategy_and_vision`, `02_requirements_and_design`
 - **Max Token Budget**: `3,500 tokens`
 - **Governing Invariants**: `I01, I04, I17, I20`
 

@@ -21,12 +21,12 @@ The curriculum is structured around the **Enterprise Context Pipeline**, transit
 │   • Semantic Blueprints with 20 Edge-Case Pre-conditions                                         │
 │                                                                                                  │
 │   [Software Engineers & Architects]        ──► 03_ Building & Coding                             │
-│   • ADR-016 400-LOC Hard Ceiling & 80-line Surgical Slices                                       │
+│   • ADR-016 400-LOC Hard Ceiling & AST-Scoped Surgical Slices                                    │
 │   • AST State & Math Registries (`STATE_REGISTRY.md`, `MATHEMATICAL_REGISTRY.md`)               │
 │   • Living Context Compiler (<1,500 tokens) & Invariant SHA1 Anchors                             │
 │                                                                                                  │
 │   [Validation Leads & Quality Engineers]   ──► 04_ Testing & 06_ Security                        │
-│   • AST Zero-Mock Code Scanner Rules (ZM001–ZM007)                                               │
+│   • AST Zero-Mock Code Scanner Rules (ZM001–ZM009)                                               │
 │   • Hermetic Socket Isolation (`pytest-socket`, `SocketBlockedError`)                            │
 │   • Compensatory 4-Pillar Orthogonal Confluence vs Conjunctive Gate Collapse                     │
 │   • Cartesian Fault-Injection & Conformal Fuzzing                                                │
@@ -38,7 +38,7 @@ The curriculum is structured around the **Enterprise Context Pipeline**, transit
 │                                                                                                  │
 │   [Autonomous Agent Orchestrators]         ──► 09_ Agent Orchestration                           │
 │   • Dialectical Adversarial Triad (Bull / Bear / Forensic Auditor)                               │
-│   • Deterministic Convex Solver Evidence Fusion & Level-2 $0-Compute JSD Bypass                 │
+│   • Deterministic Convex Solver Evidence Fusion & Level-2 \$0-Compute JSD Bypass                 │
 │   • Runtime Execution Plausibility Bands & Nightly Reconciliation                                │
 │                                                                                                  │
 └──────────────────────────────────────────────────────────────────────────────────────────────────┘
@@ -63,12 +63,12 @@ Every feature extracted during the Survey phase is mapped to an assigned milesto
 | 12 | Epistemic Air-Gap (ADR-030) | Unidirectional firewall decoupling narrative sentiment from internal state | M2 | Survey §3 (#7) |
 | 13 | 80% Commercial Funnel Discount | Slashing commercial promotional polarity by 80% ($W_{\text{commercial}} = 0.20$) | M2 | Survey §3 (#8) |
 | 14 | Semantic Blueprints with 20 Edges | Deterministic interface contracts with 20 pre-condition boundary edge cases | M2 | Survey §3 (#1-20) |
-| 15 | ADR-016 400-LOC Hard Ceiling | Modular ceiling, 350-LOC refactor trigger, 80-line surgical view slices | M3 | Survey §3 (#5) |
+| 15 | ADR-016 400-LOC Hard Ceiling | Modular ceiling, 350-LOC refactor trigger, AST-scoped surgical view slices | M3 | Survey §3 (#5) |
 | 16 | AST State & Math Registries | Static AST parser indexing functions, LOC, algorithmic LaTeX, and test bindings | M3 | Survey §3 (#1, #2) |
 | 17 | Living Context Compilation | Deterministic minification of active schemas and model matrices (<1,500 tokens) | M3 | Survey §3 (#3) |
 | 18 | SHA1 Invariant Anchors | In-code `# === INVARIANT-BLOCK` with deterministic SHA1 checksum verification | M3 | Survey §5 |
 | 19 | Zero-Drift Pre-commit Chains | Automated git hooks and CI workflows enforcing zero AST/schema drift | M3 | Survey §3 (#4) |
-| 20 | AST Zero-Mock Rules (ZM001–ZM007)| Static AST visitor rules intercepting numeric defaults, catch fallbacks, mocks | M4 | Survey §3 (#17) |
+| 20 | AST Zero-Mock Rules (ZM001–ZM009)| Static AST visitor rules intercepting numeric defaults, catch fallbacks, mocks | M4 | Survey §3 (#17) |
 | 21 | Hermetic Socket Isolation | OS-level socket interception via `pytest-socket` raising `SocketBlockedError` | M4 | Survey §3 (#22) |
 | 22 | Compensatory 4-Pillar Engine | Multi-pillar confluence with isolated fatal contagion vetoes | M4 | Survey §3 (#23) |
 | 23 | Cartesian Fault-Injection Fuzzing| Stress testing with NaN, inf, ill-conditioned matrices, and extreme drift | M4 | Survey §3 (#24) |
@@ -88,7 +88,7 @@ Every feature extracted during the Survey phase is mapped to an assigned milesto
 | # | Name | Scope | Dependencies | Status |
 |---|------|-------|-------------|--------|
 | M1 | Foundations, Mathematics & Invariants | `00_` root files (`00_THE_MATHEMATICS_OF_AI_RISK.md`, `00_THE_CONTEXT_PIPELINE.md`, `00_ENTERPRISE_CONSTITUTION.md`, `00_REGULATORY_MODEL_GOVERNANCE.md`, `00_EXECUTIVE_ALIGNMENT_STRATEGY.md`, `00_PREREQUISITES_AND_BASELINES.md`, `README.md`) | none | DONE |
-| M2 | Requirements, Specifications & Product | `01_strategy_and_vision/`, `02_requirements_and_specifications/` | M1 contracts | DONE |
+| M2 | Requirements, Specifications & Product | `01_strategy_and_vision/`, `02_requirements_and_design/` | M1 contracts | DONE |
 | M3 | Architecture, Modular Coding & Living Context | `03_building_and_coding/` | M1 contracts | DONE |
 | M4 | Quality Engineering, Zero-Mock & Security | `04_testing_and_validation/`, `06_security_and_compliance/` | M1 contracts | IN_PROGRESS |
 | M5 | Operations, Process, Capstone & Orchestration | `05_deployment_and_operations/`, `07_team_process_and_flow/`, `08_final_capstone_project/`, `09_ai_agent_orchestration/` | M1, M3 contracts | PLANNED |
@@ -103,22 +103,22 @@ Every feature extracted during the Survey phase is mapped to an assigned milesto
 
 ### M1 ↔ M3 (Invariants & Context Pipeline to Code Implementation)
 - Invariants $I_{01}-I_{22}$ must be formatted as verifiable SHA1 anchor blocks (`# === INVARIANT-BLOCK v1 ... /INVARIANT [sha1:xxxxxxxx]`).
-- ADR-016 defines the hard 400-LOC ceiling, 350-LOC refactor threshold, and 80-line context slice contract.
+- ADR-016 defines the hard 400-LOC ceiling, 350-LOC refactor threshold, and AST-scoped context slice contract.
 - Living Context schema must compile into `<1,500` tokens of JSON (`openrouter_context.json`).
 
 ### M1/M3 ↔ M4 (Invariants to Zero-Mock & Quality Engineering)
-- Invariant $I_{01}$ (Zero-Simulated-Data) binds to AST rules ZM001–ZM007.
+- Invariant $I_{01}$ (Zero-Simulated-Data) binds to AST rules ZM001–ZM009.
 - Socket isolation contract: all unit test runs must execute under hermetic isolation (`pytest-socket`) where outbound network raises `SocketBlockedError`.
 - Compensatory Confluence Engine: $M=2$ of $N=4$ orthogonal pillars with isolated Fatal Contagion Veto ($I_{03}$).
 
 ### M1/M3/M4 ↔ M5 (Operations, Governance & Multi-Agent Orchestration)
 - Dialectical Debate Triad: 3-stage Path C flow (Pre-Gates $\to$ Triad $\to$ Convex Solver).
-- Level-2 $\$0$-Compute JSD Consensus Bypass: divergence threshold $\text{JSD} \le 0.12$.
+- Level-2 \$0-Compute JSD Consensus Bypass: divergence threshold $\text{JSD} \le 0.12$.
 - Pre-Action Plausibility Band: $|V_{\text{exec}} - \text{Baseline}| \le \text{Band}$ enforced runtime gate.
 
 ## Code Layout
 ```
-/home/bdchang/AI_Software_Foundations/
+AI_Software_Foundations/
 ├── 00_THE_MATHEMATICS_OF_AI_RISK.md
 ├── 00_THE_CONTEXT_PIPELINE.md
 ├── 00_ENTERPRISE_CONSTITUTION.md
@@ -136,7 +136,7 @@ Every feature extracted during the Survey phase is mapped to an assigned milesto
 │   ├── 03_decomposition.md
 │   ├── 04_context_engineering.md
 │   └── LAB_WORKBOOK.md
-├── 02_requirements_and_specifications/
+├── 02_requirements_and_design/
 │   ├── README.md
 │   ├── 01_3_part_directives.md
 │   ├── 02_adversarial_thinking.md

@@ -146,7 +146,7 @@ numbers (MRN) to the local debugging file to assist with system troubleshooting.
 ```markdown
 ### 1. CONTEXT BOUNDARY
 - SPECIFICATION: `docs/regulatory/ICU_TRIAGE_ALGORITHM_SPEC.md`.
-- REGULATORY MANDATE: HIPAA 45 CFR § 164.514(b) (De-Identification Standard) and FDA 21 CFR Part 820.30.
+- REGULATORY COMPLIANCE TARGET: Objective evidence supporting HIPAA 45 CFR § 164.514(b) (De-Identification Standard) and FDA 21 CFR Part 820.30 Design Validation.
 - PERMITTED INPUTS: Pseudonymized patient token (UUIDv4), vital sign telemetry streams (Heart Rate, $S_p\text{O}_2$, Mean Arterial Pressure).
 - FORBIDDEN INPUTS: Patient name, MRN, date of birth, social security number, full home address.
 

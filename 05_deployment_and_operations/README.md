@@ -66,7 +66,7 @@ The diagram below illustrates the exact path code travels from local editing thr
 ```mermaid
 flowchart TD
     subgraph Developer_Workspace ["1. Developer & Agent Workspace"]
-        A["Code Modification in src/ or tests/"] --> B["Apply 80-Line Surgical View Window"]
+        A["Code Modification in src/ or tests/"] --> B["Apply Semantic AST Scoping"]
         B --> C{"File LOC >= 350?"}
         C -- "Yes" --> D["Trigger Modular Decomposition (Split at 350 LOC, Cap at 400 LOC)"]
         D --> E["Extract Submodules <= 400 LOC (Rule 14 Anti-Feature-Erasure)"]
@@ -104,7 +104,7 @@ flowchart TD
         X --> Y["Merge to main Branch"]
         Y --> Z["Deploy Immutable Container to Production Runtime"]
         Z --> AA["Run Automated Nightly State Reconciliation (SOX / SR 11-7)"]
-        AA --> AB{"NAV / Balance Drift <= $250.00 Tolerance?"}
+        AA --> AB{"NAV / Balance Drift <= USD 250.00 Tolerance?"}
         AB -- "Divergence Exceeded" --> AC["Emergency Halt: Alert Compliance Officer"]
         AB -- "Reconciliation Verified" --> AD["Log Signed Cryptographic Audit Record"]
     end
@@ -123,7 +123,7 @@ The table below explains how BuilderOps principles operate across two distinct h
 
 | Operational Subsystem | Use Case A: Healthcare & FDA Medical Devices (SaMD) | Use Case B: High-Throughput Financial & Core Banking |
 | :--- | :--- | :--- |
-| **Zero-Drift Registry Gate** | Verifies that clinical dosage calculation functions match the approved Design History File (DHF) line numbers before binary compilation. | Verifies that financial balance settlement algorithms match the audited mathematical registry coordinates before transaction execution. |
+| **Zero-Drift Registry Gate** | Verifies that clinical dosage calculation functions match approved design controls, verification protocols, and validation evidence in the Design History File (DHF) under 21 CFR 820.30(j), demonstrating design outputs meet design inputs rather than tracking volatile physical source line numbers. | Verifies that financial balance settlement algorithms match the audited mathematical registry coordinates before transaction execution. |
 | **Hermetic Socket Isolation** | Blocks outbound cloud calls during infusion pump software testing to ensure the embedded software operates safely during hospital network outages. | Blocks outbound network calls during ledger testing to guarantee trade matching rules execute deterministically without external data leakage. |
 | **AI-SBOM Lineage** | Records the exact neural model slug, dataset training cut-off, and prompt hash for FDA 510(k) software change tracking. | Records the model identifier, prompt version, and validation hash for Federal Reserve SR 11-7 and OCC model risk audit compliance. |
 | **Session Calendar Gating** | Blocks firmware updates during active patient monitoring sessions; allows updates only during authorized maintenance windows. | Blocks order placement and trade settlement on weekends and bank holidays unless explicitly verified against Friday closing valuations. |

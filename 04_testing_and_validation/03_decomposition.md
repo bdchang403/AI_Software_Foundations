@@ -6,11 +6,11 @@ In large-scale enterprise systems, automated test suites frequently suffer from 
 
 Under the transformer's $O(N^2)$ attention mechanism and the U-shaped positional attention curve, an AI modifying a monolithic test file loses track of earlier mock setups, accidentally deletes shared fixtures, and introduces unasserted side effects.
 
-### The Architectural Modularity Test Ceiling (400 LOC)
-To maintain deterministic test quality, the **Architectural Modularity Ceiling (400 LOC)** applies equally to test code:
-1. **Hard 400-LOC Ceiling**: No single test file in `tests/` may exceed 400 physical non-anchor lines of code.
-2. **350-LOC Refactoring Trigger**: When a test file reaches 350 lines, it must be decomposed into cohesive, isolated sub-suites before adding new test cases.
-3. **80-Line Surgical Test Slices**: Test authoring directives must operate within targeted 80-line focus windows.
+### The Architectural Modularity Test Heuristic (~400 LOC)
+To maintain deterministic test quality, the **Architectural Modularity Heuristic (~400 LOC)** guides test code sizing:
+1. **Target ~400-LOC Heuristic**: Test suites should target ~400 LOC for test clarity, cognitive focus, and Single Responsibility Principle (SRP). Comprehensive integration test suites, meta-harnesses, or AST validators (such as `e2e_curriculum_validator.py`) that evaluate cross-system properties may span multiple cohesive functional visitors without violating modularity invariants.
+2. **350-LOC Refactoring Trigger**: When a unit test file reaches 350 lines, teams should proactively consider decomposing it into cohesive, isolated sub-suites before adding large new test matrices.
+3. **Semantic AST Test Scoping**: Test authoring directives must operate within cohesive AST node scopes (<1,000 tokens) rather than arbitrary physical line windows.
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
@@ -24,7 +24,7 @@ To maintain deterministic test quality, the **Architectural Modularity Ceiling (
 │   │ • Attention decay leads to silent fixture deletion & test flakiness                      │   │
 │   └──────────────────────────────────────────────────────────────────────────────────────────┘   │
 │                                                                                                  │
-│   ✅ DECOMPOSED HERMETIC TEST PYRAMID (400-LOC MODULAR CEILING COMPLIANT)                                        │
+│   ✅ DECOMPOSED HERMETIC TEST PYRAMID (400-LOC MODULAR HEURISTIC COMPLIANT)                      │
 │   ┌────────────────────────┐  ┌────────────────────────┐  ┌────────────────────────┐             │
 │   │ test_order_math.py     │  │ test_guardrails.py     │  │ test_conformal_fuzz.py │             │
 │   │ (Pure math, <250 LOC)  │  │ (Fail-closed, <300 LOC)│  │ (Fault inject, <350 LOC)│            │
@@ -109,4 +109,4 @@ The Zero-Mock Mandate ($I_{01}$) does not mean systems cannot be tested against 
 
 ### 🛡️ Dual-Use Callout Box: Hermetic Test Isolation
 > **Algorithmic Asset Management**: Outbound network interception via `pytest-socket` guarantees that backtests and unit test suites do not query live exchanges, preventing lookahead data leakage, rate-limiting IP bans, and unrepeatable execution results.  
-> **Aerospace Hardware-in-the-Loop (HIL) Avionics (DO-178C Level A)**: In avionics flight control software verification, federal regulators strictly forbid software tests from communicating over ambient airport or enterprise Wi-Fi/Ethernet networks. Test harnesses must execute in an **Air-Gapped Faraday Chamber** where flight management computers receive only deterministic, bit-exact sensor streams recorded from certified flight test maneuvers (ARINC 424 navigation telemetry). Any stray network packet invalidates the certification run.
+> **Aerospace Hardware-in-the-Loop (HIL) Avionics (DO-178C Level A)**: In avionics flight control software verification, RTCA DO-178C Section 6.4 mandates software testing in target or closed-loop simulation environments without unverified external network dependencies. RTCA DO-178C software verification does NOT require "Air-Gapped Faraday Chambers" (Faraday cages and anechoic chambers are used for DO-160 radio frequency/electromagnetic interference environmental testing). Instead, DO-178C Level A requires deterministic closed-loop simulation environments with certified recorded sensor streams (e.g., ARINC 424 navigation telemetry) and hermetic execution without ambient network dependencies, ensuring 100% Modified Condition/Decision Coverage (MC/DC) repeatability free from external network jitter or packet interference.

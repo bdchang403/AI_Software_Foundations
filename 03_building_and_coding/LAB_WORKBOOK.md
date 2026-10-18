@@ -3,17 +3,17 @@
 ## 🎯 Lab Objectives
 By completing this workbook, Software Engineers and System Architects will master:
 1. **Embedding & Verifying SHA1 Invariant Anchors**: Programmatically generating and validating `# === INVARIANT-BLOCK` checksums ($I_{01}$–$I_{22}$).
-2. **Constructing an AST State Registry Parser**: Extracting physical line counts, classes, public function signatures, and Architectural Modularity Ceiling (400 LOC) health flags.
+2. **Constructing an AST State Registry Parser**: Extracting physical line counts, classes, public function signatures, and Architectural Modularity Target (~400 LOC) health flags.
 3. **Compiling Living Context Payloads**: Generating minified JSON (<1,500 tokens) with strict dual-schema table-to-DTO mappings.
 4. **Executing the Zero-Drift Pre-Commit Chain**: Enforcing `git diff --exit-code` and resolving AST drift in local development.
-5. **Enforcing Rule 14 Anti-Feature-Erasure**: Decomposing files $\ge 350$ LOC without truncating error handlers or assertions.
+5. **Enforcing Rule 14 Anti-Feature-Erasure**: Decomposing files exceeding modularity thresholds ($\ge 350$ LOC) without truncating error handlers or assertions.
 
 ---
 
 ## 🧪 Lab 1: Embedding & Verifying an Invariant Anchor (Module 6)
 
 ### Scenario
-You are modifying the execution gateway in `src/v3/execution/execution_gateway.py`. The governing architectural decision is **ADR-029 (Pre-Action Execution Plausibility Envelope Guardrail)**, and the governing constraint is **Invariant $I_{02}$ (Execution-Price Guardrail)**.
+You are modifying the execution gateway in `src/execution/execution_gateway.py`. The governing architectural decision is **ADR-029 (Pre-Action Execution Plausibility Envelope Guardrail)**, and the governing constraint is **Invariant $I_{02}$ (Execution-Price Guardrail)**.
 
 The invariant predicate states:
 `Execution guardrail |P_exec - EMA_5| <= max(3*ATR, 0.08*EMA)`
@@ -56,7 +56,7 @@ print("✅ Checksum verified: 037a1c64")
 ## 🧪 Lab 2: Building an AST State Registry Parser (Module 4)
 
 ### Scenario
-You must implement a standalone AST indexer that scans Python files in a directory, extracts non-private functions and classes, counts physical lines, and asserts whether the file satisfies the Architectural Modularity Ceiling health threshold ($< 350$ lines).
+You must implement a standalone AST indexer that scans Python files in a directory, extracts non-private functions and classes, counts physical lines, and asserts whether the file satisfies the Architectural Modularity warning threshold ($< 350$ lines).
 
 ### Your Task
 Create `parse_module_topography(file_path: Path) -> dict` utilizing Python's native `ast` library.
@@ -83,7 +83,7 @@ def parse_module_topography(file_path: Path) -> Dict[str, Any]:
             public_functions.append(node.name)
             
     is_healthy = total_loc < 350
-    status_flag = "✅ Healthy (<350 LOC)" if is_healthy else "⚠️ Near 400 LOC Cap"
+    status_flag = "✅ Healthy (<350 LOC)" if is_healthy else "⚠️ Modularity Warning Zone (>=350 LOC)"
     
     return {
         "file": str(file_path.name),
@@ -120,17 +120,17 @@ def generate_living_context_payload() -> Dict[str, Any]:
             "fast": "google/gemini-2.0-flash-001"
         },
         "table_dto_map": {
-            "daily_prices": {"model": "DailyPriceDTO", "file": "src/v3/schemas/daily_prices.py"},
-            "consensus": {"model": "ConsensusVerdict", "file": "src/v3/schemas/debate.py"},
-            "consensus_quarantine": {"model": "QuarantineRecord", "file": "src/v3/utils/quarantine.py"},
-            "cost_logs": {"model": "CostEntry", "file": "src/v3/pipeline/cost_ledger.py"}
+            "daily_prices": {"model": "DailyPriceDTO", "file": "src/schemas/daily_prices.py"},
+            "consensus": {"model": "ConsensusVerdict", "file": "src/schemas/debate.py"},
+            "consensus_quarantine": {"model": "QuarantineRecord", "file": "src/utils/quarantine.py"},
+            "cost_logs": {"model": "CostEntry", "file": "src/pipeline/cost_ledger.py"}
         },
         "canonical_math_algorithms": {
-            "Alg_42_PlausibilityBand": {"file": "src/v3/execution/gateway.py", "symbol": "validate_order"},
-            "Alg_89_ZCAWhitening": {"file": "src/v3/math/whitening.py", "symbol": "anchor_preserving_zca_whitening"}
+            "Alg_42_PlausibilityBand": {"file": "src/execution/gateway.py", "symbol": "validate_order"},
+            "Alg_89_ZCAWhitening": {"file": "src/math/whitening.py", "symbol": "anchor_preserving_zca_whitening"}
         },
         "inviolable_rules": [
-            "Architectural Modularity Ceiling: 400 LOC ceiling per file.",
+            "Architectural Modularity Target: ~400 LOC heuristic target per file.",
             "Zero-Mock: Return None or raise on missing data; zero synthetic constants.",
             "Compensatory Confluence: >=2 of 4 pillars unblock BUY."
         ]
@@ -148,29 +148,30 @@ def generate_living_context_payload() -> Dict[str, Any]:
 ## 🧪 Lab 4: Executing the Zero-Drift Command Chain (Module 6)
 
 ### Scenario
-An autonomous agent modified `src/v3/math/whitening.py` by adding an assertion, shifting the line numbers of `anchor_preserving_zca_whitening()` by 4 lines.
+An autonomous agent modified `src/math/whitening.py` by adding an assertion, shifting the line numbers of `anchor_preserving_zca_whitening()` by 4 lines.
 
 ### Your Task
 Execute the pre-commit chain to detect and eliminate AST drift:
 1. Stage your code modification.
 2. Run generator scripts to re-align registries.
-3. Assert `git diff --exit-code` exits with code 0.
+3. Assert zero uncommitted drift exists via `git diff --exit-code` before staging.
+4. Stage the verified synchronized registries and commit cleanly.
 
 ### Step-by-Step Shell Commands
 ```bash
 # 1. Stage modified code
-git add src/v3/math/whitening.py
+git add src/math/whitening.py
 
-# 2. Run AST Topography and Mathematical Indexers
+# 2. Run AST Topography and Mathematical Indexers to regenerate registries
 python3 scripts/update_state_registry.py
 python3 scripts/update_math_registry.py
 python3 scripts/generate_living_context.py
 
-# 3. Stage the automatically updated registries
-git add STATE_REGISTRY.md docs/MATHEMATICAL_REGISTRY.md data/openrouter_context.json
+# 3. Assert zero uncommitted drift exists before staging (matching 03_06 atomic chain):
+git diff --exit-code STATE_REGISTRY.md docs/MATHEMATICAL_REGISTRY.md data/openrouter_context.json
 
-# 4. Verify Zero Drift (Command will fail with code 1 if any uncommitted drift remains)
-git diff --cached --exit-code STATE_REGISTRY.md docs/MATHEMATICAL_REGISTRY.md data/openrouter_context.json
+# 4. Stage the verified synchronized registries:
+git add STATE_REGISTRY.md docs/MATHEMATICAL_REGISTRY.md data/openrouter_context.json
 
 # 5. Execute in-memory verification suite
 python3 -m pytest tests/unit/test_context_freshness.py
@@ -187,14 +188,14 @@ A file `risk_manager.py` is at **380 physical lines**. An unconstrained AI agent
 Identify the Rule 14 violation and apply genuine architectural decomposition.
 
 ### Evaluation & Remediation Rubric
-* **Violation Detected**: Compression Cheating / Silent Feature Erasure. The agent deleted critical runtime error recovery to satisfy the 400-LOC ceiling.
+* **Violation Detected**: Compression Cheating / Silent Feature Erasure. The agent deleted critical runtime error recovery to satisfy the ~400-LOC modularity target.
 * **Remediation Action**: Reject the PR. Decompose `risk_manager.py` by extracting `broker_fallbacks.py` (110 LOC) and `volatility_filter.py` (90 LOC), reducing the primary risk manager to 200 LOC while preserving 100% of safety handlers.
 
 ---
 
 ## ✅ Mastery Verification Checklist
 - [ ] Computed and verified the exact SHA1 checksum for Invariant $I_{02}$ (`037a1c64`).
-- [ ] Built an AST parser identifying classes, public functions, and the 350-LOC refactor trigger.
+- [ ] Built an AST parser identifying classes, public functions, and the 350-LOC modularity review trigger.
 - [ ] Confirmed that `openrouter_context.json` maps SQL tables to DTOs in under 1,500 tokens.
 - [ ] Executed the atomic pre-commit command chain with clean zero-diff exit status.
 - [ ] Enforced Rule 14 Anti-Feature-Erasure against compression cheating.

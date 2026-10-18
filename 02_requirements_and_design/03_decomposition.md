@@ -57,23 +57,23 @@ Where:
 
 ---
 
-## 🏛️ The Architectural Modularity Ceiling (400 LOC)
+## 🏛️ The Architectural Modularity Heuristic (~400 LOC)
 
-Downstream software engineers cannot build clean, modular systems if upstream Requirements Leads write bloated user stories. Requirements Leads must design stories that strictly adhere to the **Architectural Modularity Ceiling**:
+Downstream software engineers cannot build clean, modular systems if upstream Requirements Leads write bloated user stories. Requirements Leads must design stories that strictly adhere to the **Architectural Modularity Heuristic**:
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                   ARCHITECTURAL MODULARITY CEILING BOUNDS                                        │
+│                   ARCHITECTURAL MODULARITY HEURISTIC BOUNDS                                      │
 ├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│ 1. 400-LOC Hard Ceiling: No production or test module may exceed 400 physical lines.             │
-│ 2. 350-LOC Refactor Trigger: Automated lint warnings trigger at 350 lines.                       │
-│ 3. 80-Line Surgical View Slices: AI agents receive targeted 80-line context windows.             │
+│ 1. 400-LOC Modularity Heuristic: Target <= 400 LOC to preserve SRP and cognitive maintainability.│
+│ 2. 350-LOC Refactor Trigger: Automated lint warnings trigger at 350 lines before additions.      │
+│ 3. Semantic AST Structural Scoping: AI agents receive cohesive AST node context scopes.          │
 │ 4. Rule 14 Anti-Feature-Erasure: Deleting existing logic without replacement is banned.          │
 │ 5. < 4,000 Token Blast Radius: Each story must be executable in a single agent turn.             │
 └──────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-If a proposed feature requires more than 400 lines of implementation code, the BA must decompose the feature into discrete, single-responsibility sub-stories.
+If a proposed feature requires more than 400 lines of implementation code, the BA must decompose the feature into discrete, single-responsibility sub-stories, allowing atomic bug fixes while discouraging feature sprawl.
 
 ---
 

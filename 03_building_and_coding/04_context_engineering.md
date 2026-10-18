@@ -149,7 +149,7 @@ MATH_FUNCTIONS = [
     {
         "domain": "Bi-Directional Exponential Decay",
         "equation": r"w(t) = e^{-\frac{\ln 2}{t_{1/2}} \cdot t}",
-        "file": "src/v3/horizon/scope.py",
+        "file": "src/horizon/scope.py",
         "symbol": "calculate_decayed_polarity",
         "test": "tests/unit/test_multi_horizon_modules.py",
         "description": "Calculates exponential half-life signal decay over time."
@@ -157,7 +157,7 @@ MATH_FUNCTIONS = [
     {
         "domain": "CUSUM Stealth Accumulation",
         "equation": r"S_t = \max\left(0, S_{t-1} + \frac{X_t - \mu}{\sigma} - k\right)",
-        "file": "src/v3/scout/cusum_stealth.py",
+        "file": "src/scout/cusum_stealth.py",
         "symbol": "CUSUMStealthDetector.detect",
         "test": "tests/unit/test_cusum_stealth.py",
         "description": "Detects institutional dark pool accumulation via cumulative sum drift."
@@ -188,13 +188,13 @@ To permanently eliminate database schema hallucinations, the compiler maintains 
 
 ```python
 TABLE_DTO_MAP = {
-    "cost_logs": {"model": "CostEntry", "file": "src/v3/pipeline/cost_ledger.py"},
-    "event_logs": {"model": "EventPayload", "file": "src/v3/schemas/events.py"},
-    "consensus": {"model": "ConsensusVerdict", "file": "src/v3/schemas/debate.py"},
-    "consensus_quarantine": {"model": "QuarantineRecord", "file": "src/v3/utils/quarantine_manager.py"},
-    "daily_prices": {"model": "FinnhubClient / DualStorageEngine", "file": "src/v3/utils/finnhub_client.py"},
-    "paper_portfolio_ledger": {"model": "PaperPortfolioTracker", "file": "src/v3/analytics/paper_portfolio_tracker.py"},
-    "bandit_policy_state": {"model": "BanditPolicyStateRecord", "file": "src/v3/schemas/bandit_policy.py"},
+    "cost_logs": {"model": "CostEntry", "file": "src/pipeline/cost_ledger.py"},
+    "event_logs": {"model": "EventPayload", "file": "src/schemas/events.py"},
+    "consensus": {"model": "ConsensusVerdict", "file": "src/schemas/debate.py"},
+    "consensus_quarantine": {"model": "QuarantineRecord", "file": "src/utils/quarantine_manager.py"},
+    "daily_prices": {"model": "FinnhubClient / DualStorageEngine", "file": "src/utils/finnhub_client.py"},
+    "paper_portfolio_ledger": {"model": "PaperPortfolioTracker", "file": "src/analytics/paper_portfolio_tracker.py"},
+    "bandit_policy_state": {"model": "BanditPolicyStateRecord", "file": "src/schemas/bandit_policy.py"},
     # ... all 29 production SQL tables ...
 }
 ```
@@ -210,7 +210,7 @@ def load_openrouter_directives(compact: bool = True) -> str:
 
     digest = [
         "### CANONICAL AGENT DIRECTIVES (COMPACT AST DIGEST)",
-        "1. 400 LOC Hard Ceiling: Modularize files >=350 LOC.",
+        "1. Modularity Heuristics: Target <=400 LOC, proactively evaluate files >=350 LOC.",
         "2. Zero Simulated Data Mandate: NEVER emit mock/synthetic data. Fail closed (return None/raise).",
         "3. Compensatory Confluence (Invariant I09): >=2 of 4 pillars unblock BUY.",
         "4. Mandatory Pre-Commit Zero-Drift: State, Math, and Living Context registries must stay synchronized.",
@@ -241,11 +241,11 @@ By substituting a 500-token compact AST digest for 4,000-token raw markdown spec
 ```mermaid
 flowchart TD
     subgraph Git_Workspace ["Git Workspace & Code Modification"]
-        A[Developer / Autonomous Agent Edit] --> B["Surgical View Windows <=80 LOC"]
+        A[Developer / Autonomous Agent Edit] --> B["Semantic AST Structural Scoping"]
         B --> C[File Modified in src/ or tests/]
-        C --> D{"File LOC >= 350?"}
-        D -- Yes --> E["Trigger Modular Decomposition (Split at 350 LOC, Cap at 400 LOC)"]
-        E --> F["Extract Submodules <= 400 LOC"]
+        C --> D{"File LOC >= 350 & Needs Decomposition?"}
+        D -- Yes --> E["Evaluate Modular Decomposition (Target <= 400 LOC)"]
+        E --> F["Extract Submodules <= 400 LOC (Rule 14 Anti-Feature-Erasure)"]
         D -- No --> G[Pre-Commit Atomic Command Chain]
         F --> G
     end

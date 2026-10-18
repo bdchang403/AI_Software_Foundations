@@ -109,7 +109,7 @@ class ContextAssembler:
         
         digest_lines = [
             "### LIVING CONTEXT DIGEST (<500 tokens)",
-            f"- Modularity Cap: 400 LOC ceiling, 350 LOC trigger. Files >=350 LOC require refactoring.",
+            f"- Modularity Heuristics: Target <=400 LOC, proactively evaluate files >=350 LOC.",
             f"- Active D1 SQL Tables: {', '.join(list(data.get('table_dto_map', {}).keys())[:12])}",
             f"- Canonical Algorithms: {', '.join(list(data.get('canonical_math_algorithms', {}).keys())[:10])}",
             f"- Active Invariants: {'; '.join(data.get('inviolable_rules', [])[:4])}"
@@ -146,7 +146,7 @@ class ContextAssembler:
 
         user_prompt = (
             f"=== 4. ACTIVE TASK REQUIREMENTS (SEMANTIC BLUEPRINT) ===\n{story}\n\n"
-            f"INSTRUCTION: Implement the task specified above. Adhere strictly to the Architectural Modularity Ceiling (<=400 LOC), "
+            f"INSTRUCTION: Implement the task specified above. Adhere strictly to Architectural Modularity Heuristics (<=400 LOC), "
             f"Rule 14 Anti-Feature-Erasure, and Zero-Mock compliance. Emit output as a unified git diff."
         )
 
@@ -183,10 +183,10 @@ class ContextAssembler:
 #### Model Solution:
 ```markdown
 ### 1. ASSEMBLED CONTEXT FILES
-- Global Router (Tier 1): `.github/copilot-instructions.md` (Traffic router and 400-LOC modularity rules).
+- Global Router (Tier 1): `.github/copilot-instructions.md` (Traffic router and modularity rules).
 - Domain Context (Tier 2): `docs/context/market_data.md` (Contains Database Schema Parity Guardrails).
 - Active Task: `docs/stories/MIGRATION-042-liquidity-tier.md` (Semantic Blueprint specifying integer enum values: 1=High, 2=Mid, 3=Illiquid).
-- Schema Contract: `src/v3/schemas/daily_prices.py` (Current Pydantic DTO model).
+- Schema Contract: `src/schemas/daily_prices.py` (Current Pydantic DTO model).
 
 ### 2. LIVING CONTEXT INGESTION
 - Provide `table_dto_map["daily_prices"]` from `openrouter_context.json`, demonstrating that `daily_prices` maps directly to `FinnhubClient / DualStorageEngine`.

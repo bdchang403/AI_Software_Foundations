@@ -28,7 +28,7 @@ The core of every Context-Enriched Semantic Blueprint is the **Bounded Subsystem
 
 ## 🔒 The Closed-World Fallback Doctrine (Invariant $I_{05}$)
 
-One of the most dangerous failure modes in autonomous engineering is the "fail-soft" fallback. When an external API times out or a database query fails, traditional web developers often write code that returns synthetic default values (e.g., returning `0.50` for missing dark pool ratio, or `5.25%` for missing interest rates). As proved in Crisis 3, this practice poisoned 900,000 database rows and triggered a $150k panic liquidation.
+One of the most dangerous failure modes in autonomous engineering is the "fail-soft" fallback. When an external API times out or a database query fails, traditional web developers often write code that returns synthetic default values (e.g., returning `0.50` for missing dark pool ratio, or `5.25%` for missing interest rates). As proved in Crisis 3, this practice poisoned 900,000 database rows and triggered a \$150k panic liquidation.
 
 Under **Invariant $I_{05}$ (Closed-World Fallback)**, the Business Analyst mandates a **Strict Closed-World Schema**:
 

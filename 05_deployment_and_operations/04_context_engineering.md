@@ -17,7 +17,7 @@ If an engineering team does not supply a formal, bounded map of existing cloud i
 │   "Deploy an ECS cluster and database for our new payment service."                              │
 │   ──► Model assumes no infrastructure exists.                                                    │
 │   ──► Creates duplicate VPC (10.0.0.0/16), new Internet Gateway, unmanaged IAM User.             │
-│   ──► Outcome: Network route collisions, broken VPC peering, and $450/month in ghost resources.   │
+│   ──► Outcome: Network route collisions, broken VPC peering, and \$450/month in ghost resources.   │
 │                                                                                                  │
 │   ✅ BOUNDED RESOURCE GRAPH INJECTION (INFRASTRUCTURE REGISTRY)                                  │
 │   Injects minified infra_registry.json (<800 tokens) defining existing VPC and subnets.          │

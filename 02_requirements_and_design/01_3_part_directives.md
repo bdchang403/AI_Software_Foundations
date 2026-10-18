@@ -58,7 +58,7 @@ The Business Analyst binds user stories directly to the system's 22 Canonical In
 | **$I_{16}$** | **Multi-Entity Isolation** | SCHEMA-PARITY | For distinct entities $A$ and $B$, their memory states must be disjoint: $\text{State}(A) \cap \text{State}(B) = \emptyset$. Loop-carried variable bleed is banned. |
 | **$I_{17}$** | **Horizon-Matched Decay** | DECAY-TIMING | Signals and recommendations must decay continuously via half-life curves ($t_{1/2} \in [5\text{d}, 90\text{d}]$). Signals older than $2 \cdot t_{1/2}$ auto-expire. |
 | **$I_{20}$** | **Epistemic News Isolation**| CONTEXT-ISOLATION| External unstructured media must be ingested behind a unidirectional air-gap. Commercial promotions are slashed by 80% ($W_{\text{commercial}} = 0.20$). |
-| **$I_{22}$** | **400 LOC & Test Hygiene** | CODE-HYGIENE | Implementation modules must not exceed 400 physical lines of code. Code must include verifiable SHA1 invariant anchor blocks. |
+| **$I_{22}$** | **400 LOC & Test Hygiene** | CODE-HYGIENE | Implementation modules must target $\le 400$ physical lines of code (refactor trigger at 350 LOC) to preserve Single Responsibility Principle and cognitive maintainability. Code must include verifiable SHA1 invariant anchor blocks. |
 
 ---
 
@@ -75,7 +75,7 @@ The Business Analyst binds user stories directly to the system's 22 Canonical In
 - **Constraint**:
   1. Bind to $I_{01}$ (Zero-Simulated-Data): If any of the top-5 levels contains a null price or volume, fail closed: return `None`. Do not impute volume.
   2. Bind to $I_{07}$ (Div-by-Zero Safety): If total volume $\sum (V_{b,i} + V_{a,i}) = 0$, return `obi = 0.0` with status `ILLIQUID_BOOK`. Never emit NaN.
-  3. Bind to $I_{22}$ (Code Hygiene): Implementation must not exceed 400 LOC and must include SHA1 anchor block for $I_{07}$.
+  3. Bind to $I_{22}$ (Code Hygiene): Implementation should target $\le 400$ LOC (adhering to the modularity heuristic) and must include SHA1 anchor block for $I_{07}$.
 ```
 
 ---
@@ -119,4 +119,4 @@ Before committing a 3-Part Directive to engineering, the Requirements Lead must 
 - [ ] **Deterministic Typing**: Are all inputs and outputs defined with typed schemas rather than generic strings or raw JSON?
 - [ ] **Explicit Invariant Linkage**: Does the constraint section explicitly cite at least two governing Invariants ($I_{01}-I_{22}$)?
 - [ ] **Negative Boundary Conditions**: Are forbidden behaviors (e.g., synthetic mock fallbacks, raw SQL `DELETE`s) explicitly enumerated?
-- [ ] **Architectural Modularity Ceiling (400 LOC)**: Is the task sized so that the implementation and unit test can each fit within 400 LOC?
+- [ ] **Architectural Modularity Heuristic (~400 LOC)**: Is the task sized so that the implementation and unit test can each adhere to the ~400 LOC modularity heuristic without feature sprawl?

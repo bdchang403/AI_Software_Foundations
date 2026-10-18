@@ -104,7 +104,7 @@ Every Semantic Blueprint authored by a Requirements Lead must explicitly define 
 | 16| **Extreme Matrix Cond**| Covariance matrix $\mathrm{cond}(\Sigma) > 10^{12}$ | Apply Ledoit-Wolf analytical shrinkage target. |
 | 17| **Pillar Divergence**| Orthogonal pillars disagree ($\text{JSD} > 0.12$) | Activate Convex Log-Odds Evidence Solver. |
 | 18| **Single Fatal Veto**| Fatal contagion sensor tripped ($I_{03}$) | Immediate veto; overrides all positive pillars. |
-| 19| **Commercial Funnel**| Marketing links detected in unstructured text | Apply 80% Commercial Funnel Discount ($0.20$). |
+| 19| **Commercial Funnel**| Marketing links detected in unstructured text | Apply 80% Commercial Funnel Discount (\$0.20). |
 | 20| **Schema Version Drift**| Ingress schema version mismatches registry | Reject payload; trigger automated drift alert. |
 
 ---
@@ -121,14 +121,14 @@ Every Semantic Blueprint authored by a Requirements Lead must explicitly define 
 │   • Adversarial Probe: CGM sensor transmitter emitted NaN glucose after 30 minutes offline.      │
 │   • Specification Requirement: System must fail closed, emit 0.0 Units basal, and sound nurse   │
 │     pager alarm. Hard prohibition against interpolating missing readings with historical mean.   │
-│   • Result: Zero clinical hypoglycemic events; full compliance with FDA 21 CFR 820.30(g).        │
+│   • Result: Zero clinical hypoglycemic events; objective design validation evidence satisfying 21 CFR 820.30(g) acceptance criteria. │
 │                                                                                                  │
 │   FINANCE: High-Value Core Banking Settlement Network                                            │
 │   • Edge Case Tested: Edge-Case 12 (Upper Plausibility) & Edge-Case 15 (Duplicate Ingress).       │
-│   • Adversarial Probe: Ingress wire message replayed twice with transfer value of $250,000,000.  │
+│   • Adversarial Probe: Ingress wire message replayed twice with transfer value of \$250,000,000. │
 │   • Specification Requirement: Idempotency deduplication via UUIDv4 cache; transaction value     │
 │     diverted to human dual-custody hold due to exceeding account 3.5σ kinematic limit.           │
-│   • Result: Bank protected against catastrophic $250M duplicate wire release; 100% SOX compliant.│
+│   • Result: Bank protected against duplicate \$250M wire release; objective audit evidence supporting SOX Section 404 internal controls. │
 │                                                                                                  │
 └──────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```

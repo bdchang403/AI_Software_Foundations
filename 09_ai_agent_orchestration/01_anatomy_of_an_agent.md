@@ -6,40 +6,66 @@
 
 In consumer-grade AI applications, an "agent" is frequently described as an LLM wrapped in a conversational while-loop with access to Python `eval()`. In an enterprise software engineering organization—especially within safety-critical and regulated sectors—this unstructured pattern is completely unacceptable.
 
-An enterprise autonomous agent is an **audited, stateful software pipeline**. It is formally decomposed into five deterministic architectural layers, where each layer is contributed by a specific engineering role in the Context Factory.
+An enterprise autonomous agent is an **audited, stateful software pipeline**. It is formally decomposed into seven deterministic architectural layers, harmonized directly with Chapter 08's canonical Enterprise Agent Architecture, where each layer is contributed by a specific engineering role in the Context Factory:
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                      THE 5-LAYER ENTERPRISE AGENT SPECIFICATION                                  │
+│                      THE 7-LAYER ENTERPRISE AGENT ARCHITECTURE                                    │
 ├──────────────────────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                                  │
-│   LAYER 1: IDENTITY & COGNITIVE SOUL                                                             │
-│   • Authored by: Requirements Lead & Strategy Lead                                               │
-│   • Core Artifact: 3-Part Directive & Semantic Blueprint Schema                                  │
-│   • Role: Defines deterministic operational boundaries, exact inputs, and bounded output schemas.│
+│   LAYER 1: IDENTITY & CONSTITUTION (COGNITIVE SOUL)                                              │
+│   • Authored by: Strategy Lead & Product Owner                                                   │
+│   • Core Artifact: Epic Strategic Blueprint, Ethical Principles, and Operational Purpose         │
+│   • Role: Defines deterministic mission boundaries, temperature 0.0 determinism, and anti-bias.  │
 │                                                                                                  │
-│   LAYER 2: EPISODIC & STRUCTURAL AST MEMORY                                                      │
+│   LAYER 2: REQUIREMENTS & BLUEPRINTS (LOGIC BOUNDS)                                              │
+│   • Authored by: Requirements Lead & Business Analyst                                            │
+│   • Core Artifact: 3-Part Directive & 20-Row Negative Edge-Case Matrix                           │
+│   • Role: Enforces explicit input bounds, closed-world fallbacks, and typed schemas.             │
+│                                                                                                  │
+│   LAYER 3: AST MEMORY & REGISTRIES (LIVING CONTEXT)                                              │
 │   • Authored by: Software Architect & Systems Engineer                                           │
 │   • Core Artifact: AST State & Mathematical Registries (Living Context <1,500 tokens)            │
-│   • Role: Provides zero-drift code state without vector hallucination or repository dumping.     │
+│   • Role: Provides zero-drift code coordinates without vector hallucination or repository dumps.  │
 │                                                                                                  │
-│   LAYER 3: TOOLS & OPERATIONAL ACTUATORS (THE HANDS)                                             │
+│   LAYER 4: ACTUATION TOOLS & SANDBOX (THE HANDS)                                                 │
 │   • Authored by: Software Builder (Software Engineer)                                            │
 │   • Core Artifact: OpenAPI 3.1 & Model Context Protocol (MCP) Manifests                          │
-│   • Role: Provides strictly-typed execution tools with runtime schema validation.                │
+│   • Role: Provides strictly-typed execution tools with runtime schema validation & socket jail. │
 │                                                                                                  │
-│   LAYER 4: PHYSICAL INVARIANT BOUNDARIES (THE GUARDIAN)                                         │
-│   • Authored by: Validation Lead (Quality Engineer) & Security Auditor                           │
-│   • Core Artifact: Invariants I01-I22, AST Zero-Mock Rules (ZM001-ZM009), Plausibility Bands     │
-│   • Role: Intercepts and mechanically clamps every proposed action before state mutation.        │
+│   LAYER 5: ADVERSARIAL BOUNDS & PLAUSIBILITY BANDS (THE SENTRY)                                  │
+│   • Authored by: Validation Lead (Quality Engineer) & Adversarial Critic                         │
+│   • Core Artifact: Programmatic AST Zero-Mock Rules (ZM001–ZM009) & Conformal Fuzz Tests          │
+│   • Role: Eliminates synthetic stubs, deceptive boolean smuggling, and unanchored mocks.         │
 │                                                                                                  │
-│   LAYER 5: AUDIT TRACEABILITY & ATTESTATION (THE CUSTODIAN)                                      │
+│   LAYER 6: PHYSICAL CLAMPS & CIRCUIT BREAKERS (THE GUARDIAN)                                     │
+│   • Authored by: Security Auditor & Systems Safety Engineer                                      │
+│   • Core Artifact: Bedrock Invariants I01-I22 & Mathematical Plausibility Bands (|V - B| <= Δ)   │
+│   • Role: Intercepts and mechanically clamps every proposed mutation before execution.           │
+│                                                                                                  │
+│   LAYER 7: AUDIT CUSTODY & PROVENANCE ATTESTATION (THE CUSTODIAN)                                │
 │   • Authored by: BuilderOps Engineer & Compliance Officer                                        │
-│   • Core Artifact: SPDX 3.0 AI-SBOM Headers & Immutable D1 Execution Blotter                     │
+│   • Core Artifact: Machine-Readable SPDX 3.0 AI-SBOM Headers & Immutable D1 Execution Blotter    │
 │   • Role: Embeds cryptographically signed provenance, model digests, and UUIDv4 audit traces.    │
 │                                                                                                  │
 └──────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
+
+---
+
+## 🏛️ Cross-Chapter Architectural Harmonization Matrix
+
+The seven functional layers defined in Chapter 08 map directly into the runtime execution pipeline:
+
+| Layer | Agent Subsystem | Responsible Role | Context Factory Deliverable | Governing Invariant |
+| :--- | :--- | :--- | :--- | :--- |
+| **Layer 1** | **Identity & Constitution** | Strategy Lead | Epic Strategic Blueprint & Value Thesis | Article VI (Fairness & Anti-Bias) |
+| **Layer 2** | **Requirements & Blueprints** | Requirements Lead | 3-Part Directive & 20 Edge-Case Matrix | Article I (Data Minimization / No PII) |
+| **Layer 3** | **AST Memory & Registries** | Software Architect | Living Context JSON (<1,500 tokens) | Invariant $I_{22}$ (Zero-Drift Registry Parity) |
+| **Layer 4** | **Actuation Tools & Sandbox** | Software Builder | Function Registry (OpenAPI / MCP Tools) | Architectural Modularity Heuristic ($\le 400$ LOC) |
+| **Layer 5** | **Adversarial Bounds & Plausibility** | Validation Lead (QE) | Programmatic AST Zero-Mock Rules (ZM001–ZM009) | Invariant $I_{01}$ (Zero-Simulated-Data) |
+| **Layer 6** | **Physical Clamps & Circuit Breakers** | Security Auditor | Pre-Action Plausibility Bands ($|V - B| \le \Delta$) | Invariant $I_{02}$ (Execution Plausibility Band) |
+| **Layer 7** | **Audit Custody & Provenance** | BuilderOps Engineer | CI Zero-Drift Workflow & AI-SBOM Header | Invariant $I_{15}$ (UUID Cryptographic Trace) |
 
 ---
 
@@ -62,24 +88,33 @@ metadata:
       - "EU AI Act High-Risk System (Annex III)"
 
 # =========================================================================
-# LAYER 1: IDENTITY & COGNITIVE SOUL
+# LAYER 1: IDENTITY & CONSTITUTION (COGNITIVE SOUL)
 # =========================================================================
-soul:
+identity_and_constitution:
   role: "Autonomous Interbank Settlement & Liquidity Routing Specialist"
   operational_scope: "Evaluate interbank settlement tickets and calculate optimal routing pathways."
   temperature: 0.0
   max_output_tokens: 2048
+  enterprise_articles:
+    - "Article I: Strict Data Minimization & PII Sanitization"
+    - "Article VI: Algorithmic Fairness & Execution Parity"
+
+# =========================================================================
+# LAYER 2: REQUIREMENTS & BLUEPRINTS (LOGIC BOUNDS)
+# =========================================================================
+requirements_and_blueprints:
   directive:
     context: "Operating within the Core Settlement Gateway. External network egress is disabled."
     instruction: "Ingest settlement tickets, verify liquidity depth, and emit validated routing recommendations."
     execution_guardrails:
       - "Never execute transactions directly; emit signed routing instructions."
       - "Reject any ticket referencing non-finite or simulated market telemetry."
+  edge_case_matrix_ref: "docs/specs/SETTLEMENT_20_EDGE_CASES.md"
 
 # =========================================================================
-# LAYER 2: EPISODIC & STRUCTURAL AST MEMORY
+# LAYER 3: AST MEMORY & REGISTRIES (LIVING CONTEXT)
 # =========================================================================
-memory:
+ast_memory:
   context_compiler:
     executable: "scripts/compile_living_context.py"
     max_context_tokens: 1500
@@ -87,15 +122,17 @@ memory:
       - "03_building_and_coding/STATE_REGISTRY.md"
       - "03_building_and_coding/MATHEMATICAL_REGISTRY.md"
   view_window_constraints:
-    max_lines_per_target_file: 80
+    semantic_ast_scoping: true
+    max_tokens_per_ast_scope: 1000
     enable_ast_signature_slicing: true
 
 # =========================================================================
-# LAYER 3: TOOLS & OPERATIONAL ACTUATORS (THE HANDS)
+# LAYER 4: ACTUATION TOOLS & SANDBOX (THE HANDS)
 # =========================================================================
-actuators:
+actuators_and_sandbox:
   tool_protocol: "Model Context Protocol (MCP) / OpenAPI 3.1"
   tool_manifest: "config/settlement_mcp_tools.json"
+  hermetic_socket_isolation: true
   allowed_tools:
     - name: "query_central_bank_liquidity"
       schema_ref: "#/components/schemas/LiquidityQuery"
@@ -108,11 +145,21 @@ actuators:
       timeout_ms: 1000
 
 # =========================================================================
-# LAYER 4: PHYSICAL INVARIANT BOUNDARIES (THE GUARDIAN)
+# LAYER 5: ADVERSARIAL BOUNDS & PLAUSIBILITY BANDS (THE SENTRY)
 # =========================================================================
-guardian:
+adversarial_bounds:
   enforce_ast_zero_mock: true
   ast_rule_suite: "ZM001-ZM009"
+  conformal_coverage_bound: "99% Empirically Validated Coverage"
+  banned_patterns:
+    - "mock_telemetry"
+    - "boolean_smuggling_isinstance_true"
+    - "unbounded_nan_inf_floats"
+
+# =========================================================================
+# LAYER 6: PHYSICAL CLAMPS & CIRCUIT BREAKERS (THE GUARDIAN)
+# =========================================================================
+physical_clamps:
   mandatory_invariants:
     - id: "I01"
       name: "Zero-Simulated-Data Guardrail"
@@ -127,9 +174,9 @@ guardian:
       pillars: ["velocity", "biometrics", "solvency", "liquidity"]
 
 # =========================================================================
-# LAYER 5: AUDIT TRACEABILITY & ATTESTATION (THE CUSTODIAN)
+# LAYER 7: AUDIT CUSTODY & PROVENANCE ATTESTATION (THE CUSTODIAN)
 # =========================================================================
-custodian:
+audit_custody:
   ai_sbom_standard: "SPDX-3.0"
   trace_header: "X-Context-Factory-Trace"
   hash_algorithm: "SHA-256"
@@ -144,22 +191,28 @@ custodian:
 
 ---
 
-## 🔍 Deep-Dive into the Five Architectural Subsystems
+## 🔍 Deep-Dive into the Seven Architectural Subsystems
 
-### 1. Identity & Soul: Preventing Conversational Drift
-Frontier models exhibit sycophancy when given unconstrained prompts. The Soul binds the model to a single deterministic operational mandate. Setting `temperature: 0.0` eliminates token sampling entropy, ensuring reproducible outputs.
+### 1. Layer 1: Identity & Constitution: Preventing Conversational Drift
+Frontier models exhibit sycophancy when given unconstrained prompts. Layer 1 binds the model to a single deterministic operational mandate and enterprise constitution. Setting `temperature: 0.0` eliminates token sampling entropy, ensuring reproducible outputs.
 
-### 2. AST Memory: Bounding Context to Prevent Degradation
+### 2. Layer 2: Requirements & Blueprints: Eliminating Ambiguity
+Loose natural language prompts cause epistemic drift. Layer 2 codifies 3-Part Directives (Context Boundary, Task Instruction, Architectural Constraints) and 20-row negative edge-case matrices, ensuring the agent operates within strictly defined logical parameters.
+
+### 3. Layer 3: AST Memory & Registries: Bounding Context to Prevent Degradation
 As demonstrated in [The Mathematics of AI Risk](../00_THE_MATHEMATICS_OF_AI_RISK.md), LLMs suffer from attention entropy $\mathcal{H}(A_i)$ and "Lost in the Middle" syndrome when loaded with tens of thousands of tokens. The AST Memory compiler extracts exact class definitions, method signatures, and invariant rules into a living payload under 1,500 tokens, maintaining model attention in the $95\%$ precision zone.
 
-### 3. Actuators (The Hands): Strictly-Typed Tool Contracts
-The agent never touches underlying operating systems or databases directly. It communicates exclusively through OpenAPI 3.1 and Model Context Protocol (MCP) JSON schemas. Arguments violating declared regexes or types are rejected by the orchestration runtime before reaching system tools.
+### 4. Layer 4: Actuation Tools & Sandbox: Strongly-Typed Tool Execution
+The agent never touches underlying operating systems or databases directly. It communicates exclusively through OpenAPI 3.1 and Model Context Protocol (MCP) JSON schemas within a hermetic sandbox. Arguments violating declared regexes or types are rejected by the orchestration runtime before reaching system tools.
 
-### 4. The Guardian: Physical Invariant Interception
-No matter how confident or persuasive the model reasoning appears, the Guardian intercepts candidate actions. If an action violates Invariant $I_{01}$ (Zero-Simulated-Data) or $I_{02}$ (Plausibility Band), the action is mechanically blocked and rerouted to human dual-custody.
+### 5. Layer 5: Adversarial Bounds & Plausibility: Exterminating Deception
+Modern frontier models generate syntactically pristine code that embeds subtle bypasses (such as boolean smuggling or NaN float injection). Layer 5 continuously audits code and telemetry via AST Zero-Mock rules (ZM001–ZM009) and conformal fuzzing.
 
-### 5. The Custodian: Regulatory Audit Lineage
-To satisfy Federal Reserve SR 11-7, FDA 21 CFR Part 11, and the EU AI Act, every execution must be mathematically traceable. The Custodian attaches an SPDX 3.0 AI-SBOM header with the exact git commit digest, model SHA-256 hash, and UUIDv4 trace identifier.
+### 6. Layer 6: Physical Clamps & Circuit Breakers: Mechanical Invariant Interception
+No matter how confident or persuasive the model reasoning appears, Layer 6 intercepts candidate actions. If an action violates Invariant $I_{01}$ (Zero-Simulated-Data) or $I_{02}$ (Plausibility Band), the action is mechanically blocked and rerouted to human dual-custody.
+
+### 7. Layer 7: Audit Custody & Provenance: Regulatory Audit Lineage
+To generate the objective compliance evidence demanded by Federal Reserve SR 11-7 (model inventory and version tracking), FDA 21 CFR Part 11 (audit trail integrity), and the EU AI Act Articles 11–12 (technical documentation and automated event logging), Layer 7 stamps every execution with a machine-readable SPDX 3.0 AI-SBOM header containing the git commit digest, model SHA-256 weight hash, and UUIDv4 trace identifier.
 
 ---
 
@@ -167,22 +220,26 @@ To satisfy Federal Reserve SR 11-7, FDA 21 CFR Part 11, and the EU AI Act, every
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                   INDUSTRY AGENT ARCHITECTURE COMPARISON                                         │
+│                   INDUSTRY 7-LAYER AGENT ARCHITECTURE COMPARISON                                 │
 ├──────────────────────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                                  │
 │   HEALTHCARE: FDA Class III Closed-Loop Clinical Titration Agent                                 │
-│   • Soul: "You are the Clinical Decision-Support Titration Agent. Bounded to basal adjustments." │
-│   • Memory: AST Medical Registry containing pharmacokinetics and decay formulas.                │
-│   • Hands: MCP tools querying calibrated blood glucose sensors and insulin pump telemetry.       │
-│   • Guardian: Invariant I02 clamps dose: |Dose - Baseline| <= 2.0 Units; fails closed on NaN.     │
-│   • Custodian: Emits HIPAA-compliant, encrypted EHR audit logs with 21 CFR Part 11 signatures.    │
+│   • L1 (Identity): "You are the Clinical Decision-Support Titration Agent."                      │
+│   • L2 (Requirements): 3-Part Directive bounded to basal adjustments; 20 sensor fault cases.    │
+│   • L3 (AST Memory): AST Medical Registry containing pharmacokinetics and decay formulas.       │
+│   • L4 (Actuation): MCP tools querying calibrated blood glucose sensors and insulin pump driver. │
+│   • L5 (Adversarial): ZM001-ZM009 scanner rejecting simulated glucose; socket isolation active.  │
+│   • L6 (Clamps): Invariant I02 clamps dose: |Dose - Baseline| <= 2.0 Units; fails closed on NaN. │
+│   • L7 (Audit Custody): Emits HIPAA-compliant, encrypted EHR audit logs with Part 11 signatures. │
 │                                                                                                  │
 │   FINANCE: Core Banking High-Frequency Wire Routing Agent                                        │
-│   • Soul: "You are the Interbank Settlement Routing Agent. Bounded to ISO 20022 wire advice."     │
-│   • Memory: AST Financial Registry containing BIC directory and central bank liquidity depth.    │
-│   • Hands: MCP tools querying SWIFT messaging gateways and real-time gross settlement (RTGS).    │
-│   • Guardian: Invariant I02 clamps wire size: |Transfer - Mean| <= 3.5σ; fails closed on mock.   │
-│   • Custodian: Emits SOX-compliant D1 SQLite blotter records with 7-year immutable retention.    │
+│   • L1 (Identity): "You are the Interbank Settlement Routing Agent."                             │
+│   • L2 (Requirements): 3-Part Directive bounded to ISO 20022 wire advice; 20 insolvency cases.  │
+│   • L3 (AST Memory): AST Financial Registry containing BIC directory and central bank liquidity. │
+│   • L4 (Actuation): MCP tools querying SWIFT messaging gateways and RTGS interfaces.             │
+│   • L5 (Adversarial): ZM001-ZM009 scanner catching synthetic mock spreads and float smuggling.   │
+│   • L6 (Clamps): Invariant I02 clamps wire size: |Transfer - Mean| <= 3.5σ; fails closed on mock.│
+│   • L7 (Audit Custody): Emits SOX-compliant D1 SQLite blotter records with 7-year retention.     │
 │                                                                                                  │
 └──────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -191,6 +248,6 @@ To satisfy Federal Reserve SR 11-7, FDA 21 CFR Part 11, and the EU AI Act, every
 
 ## 📋 Module Summary & Practical Next Step
 
-An enterprise autonomous agent is an audited 5-layer pipeline. In the next module, you will learn how the orchestration engine compiles and executes these layers through the **Dialectical Multi-Agent Triad**.
+An enterprise autonomous agent is an audited 7-layer pipeline. In the next module, you will learn how the orchestration engine compiles and executes these layers through the **Dialectical Multi-Agent Triad**.
 
 [**Proceed to Module 2: The Assembly Mechanism & Dialectical Consensus →**](./02_the_assembly_mechanism.md)

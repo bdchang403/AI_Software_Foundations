@@ -7,7 +7,7 @@ The test infrastructure for `AI_Software_Foundations` is designed on **opaque-bo
 
 The verification framework treats every curriculum module, architectural rule, mathematical formulation, and runtime component as an opaque-box system whose external contracts, interface boundaries, mathematical invariants, and failure-mode defenses must be deterministically proven:
 
-1. **Specification as Sole Arbiter**: Every test asserts compliance against explicit mathematical formulations, system invariants ($I_{01}–I_{22}$), AST static inspection rules (ZM001–ZM007), and enterprise interface contracts specified in `PROJECT.md` and `ORIGINAL_REQUEST.md`.
+1. **Specification as Sole Arbiter**: Every test asserts compliance against explicit mathematical formulations, system invariants ($I_{01}–I_{22}$), AST static inspection rules (ZM001–ZM009), and enterprise interface contracts specified in `PROJECT.md` and `ORIGINAL_REQUEST.md`.
 2. **Absolute Zero-Mock Doctrine**: Mocking production data, falling back to static numeric constants in `except` blocks, or smuggling synthetic sentinels is strictly forbidden. Tests verify that systems fail closed when live data is missing or corrupted.
 3. **Hermetic Execution Isolation**: Tests execute in complete network isolation via operating system socket interception (`pytest-socket`). Any unauthorized outbound TCP/UDP connection attempt raises `SocketBlockedError` immediately.
 4. **Cryptographic Invariant Anchoring**: Every safety invariant is embedded in code-adjacent `# === INVARIANT-BLOCK v1` structures protected by 8-character SHA1 checksums asserting $(\text{inv-id} \parallel \text{adr} \parallel \text{predicate})$ parity.
@@ -28,7 +28,7 @@ The test suite is structured into four deterministic tiers of increasing integra
 │   • LaTeX formula mathematical completeness and balance across all 7 core formulations          │
 │   • Canonical 22 Invariants (I01–I22) registry and attribute completeness                        │
 │   • 10 Inviolable Commandments formalization and non-negotiable clauses                          │
-│   • AST Zero-Mock static scanner rules (ZM001–ZM007) node visitor enforcement                    │
+│   • AST Zero-Mock static scanner rules (ZM001–ZM009) node visitor enforcement                    │
 │   • Threshold: 100% Pass; 0 syntax errors; >=5 tests per major feature area                     │
 │                                           │                                                      │
 │                                           ▼                                                      │
@@ -63,7 +63,7 @@ The test suite is structured into four deterministic tiers of increasing integra
 
 | Tier | Name | Focus | Key Invariants Verified | Required Test Density | Pass Threshold |
 |---|---|---|---|---|---|
-| **Tier 1** | **Feature Contracts** | Markdown AST, LaTeX equations, Invariant catalog ($I_{01}-I_{22}$), 10 Commandments, AST Rules (ZM001–ZM007) | $I_{01}, I_{05}, I_{15}, I_{20}, I_{22}$ | $\ge 5$ tests per feature area ($\ge 25$ total) | 100% Pass, 0 syntax/AST errors |
+| **Tier 1** | **Feature Contracts** | Markdown AST, LaTeX equations, Invariant catalog ($I_{01}-I_{22}$), 10 Commandments, AST Rules (ZM001–ZM009) | $I_{01}, I_{05}, I_{15}, I_{20}, I_{22}$ | $\ge 5$ tests per feature area ($\ge 25$ total) | 100% Pass, 0 syntax/AST errors |
 | **Tier 2** | **Boundary Invariants** | Zero-mock interception, Div-by-zero safety, Condition number $\text{cond}(\Sigma) \le 10^{12}$, Architectural Modularity Ceiling (400 LOC), SHA1 anchor parity | $I_{02}, I_{06}, I_{07}, I_{11}, I_{22}$ | $\ge 5$ tests per boundary area ($\ge 25$ total) | 100% Pass, 0 uncaught exceptions |
 | **Tier 3** | **Cross-Chapter Parity** | Dialectical Triad arbitration, Level-2 JSD bypass ($\text{JSD} \le 0.12$), Cross-channel sync, Role playbook handoffs | $I_{03}, I_{08}, I_{09}, I_{13}, I_{14}, I_{16}$ | Pairwise cross-feature permutations | 100% Pass, zero channel desync |
 | **Tier 4** | **Real-World Workloads** | Replay of 6 Forensic Crises, Dual-Use (FDA vs Fintech), Ledoit-Wolf shrinkage & ZCA whitening, Plausibility bands | $I_{01}–I_{22}$ (Full Matrix) | Full forensic scenarios & mathematical execution | 100% Pass, zero failure recurrence |
@@ -80,8 +80,8 @@ Every feature specified in `PROJECT.md` is mapped to its implementing test suite
 | 2 | LaTeX Mathematical Rigor | Attention entropy, lost-in-the-middle, continuous half-life decay, joint vs compensatory failure, log-odds fusion, DSR, Ledoit-Wolf | $I_{06}, I_{07}, I_{08}, I_{10}, I_{11}, I_{12}, I_{17}$ | `test_tier1_feature_contracts.py` |
 | 3 | 22 Canonical Invariants | Comprehensive catalog verification ($I_{01}$ to $I_{22}$) with ADRs, classes, predicates, target modules | $I_{01}–I_{22}$ | `test_tier1_feature_contracts.py` |
 | 4 | 10 Inviolable Commandments | Inviolable operational laws of autonomous software engineering | Article I–VII, Commandments 1–10 | `test_tier1_feature_contracts.py` |
-| 5 | Static AST Rules (ZM001–ZM007) | Static NodeVisitor intercepting numeric returns in except, synthetic dicts, banned prefixes, arg defaults, fallbacks | $I_{01}$, ZM001–ZM007 | `test_tier1_feature_contracts.py` |
-| 6 | Zero-Mock Exception Interception | Catch-block interception, boolean/NaN/Inf smuggling, FRED/SEC live provenance verification | $I_{01}$, ZM001, ZM002, ZM006, ZM007 | `test_tier2_boundary_invariants.py` |
+| 5 | Static AST Rules (ZM001–ZM009) | Static NodeVisitor intercepting numeric returns in except, synthetic dicts, banned prefixes, arg defaults, fallbacks | $I_{01}$, ZM001–ZM009 | `test_tier1_feature_contracts.py` |
+| 6 | Zero-Mock Exception Interception | Catch-block interception, boolean/NaN/Inf smuggling, FRED/SEC live provenance verification | $I_{01}$, ZM001–ZM009 | `test_tier2_boundary_invariants.py` |
 | 7 | Division-by-Zero Safety | Domain boundary safety across PE, Sharpe, RSS, log-odds, continuous decay, zero attention weights | $I_{07}$ | `test_tier2_boundary_invariants.py` |
 | 8 | Condition Number Limits | Ledoit-Wolf shrinkage stability assertion $\text{cond}(\Sigma) \le 10^{12}$ on ill-conditioned/singular matrices | $I_{11}$ | `test_tier2_boundary_invariants.py` |
 | 9 | Architectural Modularity Ceiling (400 LOC) | Non-anchor line counting, 350-LOC refactor trigger warning, 400-LOC CI rejection | $I_{22}$ | `test_tier2_boundary_invariants.py` |
@@ -104,7 +104,7 @@ Every feature specified in `PROJECT.md` is mapped to its implementing test suite
 tests/
 ├── conftest.py                       # Hermetic socket isolation fixtures (raises SocketBlockedError)
 ├── e2e_curriculum_validator.py       # Core evaluation engine, AST visitor, math algorithms, crisis models
-├── test_tier1_feature_contracts.py   # Tier 1: Markdown, LaTeX, Invariants, Commandments, ZM001-ZM007
+├── test_tier1_feature_contracts.py   # Tier 1: Markdown, LaTeX, Invariants, Commandments, ZM001-ZM009
 ├── test_tier2_boundary_invariants.py # Tier 2: Zero-mock, Div-by-zero, cond(Sigma), 400 LOC, SHA1 anchors
 ├── test_tier3_cross_chapter_parity.py# Tier 3: Dialectical Triad, JSD bypass, Cross-channel, Role handoffs
 └── test_tier4_real_world_workloads.py# Tier 4: 6 Forensic Crises, Dual-Use FDA/Fintech, Ledoit-Wolf ZCA

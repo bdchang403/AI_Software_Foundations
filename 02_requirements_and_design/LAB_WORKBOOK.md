@@ -30,12 +30,12 @@ Rewrite this requirement into a rigorous **3-Part Directive**:
 ### 3-Part Directive: Wire Transfer Authorization Service (STORY-BANK-101)
 - **Role**: You are the Wire Transfer Pre-Execution Gating Worker. Your scope is bounded to verified core ledger balances and the compliance sanction screener. You have zero access to marketing or customer communication tools.
 - **Task**: Ingest `WireRequestDTO(account_id: str, amount_cents: int, currency: str, beneficiary_routing: str, trace_id: UUIDv4)`.
-  1. Verify available settled balance: $\text{Balance} - \text{Hold} \ge \text{amount\_cents} + \text{Fee}$.
-  2. Compute fee: $\text{Fee} = \max(2500, \text{round}(\text{amount\_cents} \times 0.0015))$.
+  1. Verify available settled balance: $\text{Balance} - \text{Hold} \ge \text{amount-cents} + \text{Fee}$.
+  2. Compute fee: $\text{Fee} = \max(2500, \text{round}(\text{amount-cents} \times 0.0015))$.
   3. Emit `WireAuthorizationVerdict(approved: bool, reason: str, trace_id: UUIDv4)`.
 - **Constraint**:
   1. Bind to $I_{01}$ (Zero-Simulated-Data): If the compliance sanction API times out, FAIL CLOSED: return `approved = False, reason = "SANCTION_SCREENER_UNAVAILABLE"`. Fallback approvals are strictly prohibited.
-  2. Bind to $I_{02}$ (Execution Plausibility): If $\text{amount\_cents} > 3 \times \mu_{\text{history}}(account)$, flag transaction for dual-custody approval (`MANUAL_CUSTODY_HOLD`).
+  2. Bind to $I_{02}$ (Execution Plausibility): If $\text{amount-cents} > 3 \times \mu_{\text{history}}(account)$, flag transaction for dual-custody approval (`MANUAL_CUSTODY_HOLD`).
   3. Bind to $I_{04}$ (Immutable Quarantine): Rejected or suspicious transfer attempts must be persisted to `wire_quarantine_ledger`. Hard deletes are banned.
   4. Bind to $I_{07}$ (Div-by-Zero Safety): Ratio calculations must assert non-zero balance baselines.
   5. Bind to $I_{15}$ (UUID Traceability): Every verdict must preserve the inbound UUIDv4 trace identifier.

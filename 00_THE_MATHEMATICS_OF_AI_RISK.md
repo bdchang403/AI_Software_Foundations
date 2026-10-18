@@ -143,8 +143,8 @@ To mitigate token bloat, naive enterprise architectures deploy Vector Retrieval-
 $$\cos(\mathbf{q}, \mathbf{d}_i) = \frac{\mathbf{q} \cdot \mathbf{d}_i}{\|\mathbf{q}\| \|\mathbf{d}_i\|}$$
 
 While effective for broad topic retrieval, dense embedding spaces exhibit fundamental **Sign Blindness** and **Relational Inversion**:
-$$\cos\left(\mathbf{v}_{\text{bolus\_administration\_authorized}}, \; \mathbf{v}_{\text{bolus\_administration\_prohibited}}\right) \ge 0.94$$
-$$\cos\left(\mathbf{v}_{\text{capital\_expansion\_regime}}, \; \mathbf{v}_{\text{capital\_contraction\_liquidation}}\right) \ge 0.95$$
+$$\cos\left(\mathbf{v}_{\text{bolus-administration-authorized}}, \; \mathbf{v}_{\text{bolus-administration-prohibited}}\right) \ge 0.94$$
+$$\cos\left(\mathbf{v}_{\text{capital-expansion-regime}}, \; \mathbf{v}_{\text{capital-contraction-liquidation}}\right) \ge 0.95$$
 
 Because vector embeddings map semantic proximity rather than discrete boolean predicates or inequality directions, naive vector RAG regularly retrieves documents with inverted polarity. When concatenated into the middle $(0.15, 0.85)$ of the prompt, these chunks fall directly into the retrieval degradation valley, producing confident hallucinations.
 
@@ -160,7 +160,7 @@ $$w(\Delta t) = w_0 \cdot \left(\frac{1}{2}\right)^{\frac{\Delta t}{t_{1/2}}} = 
 
 Where $t_{1/2}$ is the operational half-life parameter. The effective integer confidence score utilized in downstream gating is computed via deterministic rounding:
 
-$$\text{effective\_confidence}(\Delta t) = \operatorname{int}\left(\operatorname{round}\left(w_0 \cdot 2^{-\frac{\Delta t}{t_{1/2}}}\right)\right)$$
+$$\text{effective-confidence}(\Delta t) = \mathrm{int}\left(\mathrm{round}\left(w_0 \cdot 2^{-\frac{\Delta t}{t_{1/2}}}\right)\right)$$
 
 ### 4.2 Four-Horizon Operational Taxonomy
 
@@ -298,9 +298,9 @@ $$\sigma(l) = \frac{1}{1 + e^{-l}}$$
 
 Let quantitative factor models evaluate structural fundamentals and dynamic valuation, outputting probabilities $P_{\text{pillar}}$ and $P_{\text{valuation}}$. The quantitative log-odds component $l_{\text{quant}}$ is formulated as:
 
-$$l_{\text{quant}} = 0.55 \cdot \text{logit}(P_{\text{pillar}}) + 0.45 \cdot \text{logit}(P_{\text{valuation}}) - \max(0.0, \beta_{\text{macro\_penalty}})$$
+$$l_{\text{quant}} = 0.55 \cdot \text{logit}(P_{\text{pillar}}) + 0.45 \cdot \text{logit}(P_{\text{valuation}}) - \max(0.0, \beta_{\text{macro-penalty}})$$
 
-Where $\beta_{\text{macro\_penalty}} \ge 0$ represents an external environmental drag coefficient.
+Where $\beta_{\text{macro-penalty}} \ge 0$ represents an external environmental drag coefficient.
 
 ### 6.3 Dialectical Epistemic Triad Log-Odds
 
@@ -329,7 +329,7 @@ $$\text{JSD}(P \parallel Q) = \frac{1}{2} D_{\text{KL}}(P \parallel M) + \frac{1
 
 Where $D_{\text{KL}}(P \parallel M) = \sum_x P(x) \ln \frac{P(x)}{M(x)}$. Because binary distributions are used with natural logarithms, $\text{JSD} \in [0.0, \ln 2]$. The Triad Entropy Discount Factor is defined as:
 
-$$\text{entropy\_discount} = \max\left(0.15, \; 1.0 - \lambda_{\text{JSD}} \cdot \text{JSD}(P \parallel Q)\right)$$
+$$\text{entropy-discount} = \max\left(0.15, \; 1.0 - \lambda_{\text{JSD}} \cdot \text{JSD}(P \parallel Q)\right)$$
 
 Where $\lambda_{\text{JSD}} = 1.25$. If the agents reach perfect consensus ($\text{JSD} \to 0$), the triad receives 100% weighting. If the agents irreconcilably diverge ($\text{JSD} \to \ln 2 \approx 0.693$), the triad contribution is mathematically crushed to the baseline floor ($0.15$), preventing hallucinatory debates from hijacking the deterministic solver.
 
@@ -337,7 +337,7 @@ Where $\lambda_{\text{JSD}} = 1.25$. If the agents reach perfect consensus ($\te
 
 To eliminate unnecessary LLM inference costs and latency, the system evaluates the divergence of the underlying quantitative pillars prior to invoking LLMs:
 
-$$\text{should\_bypass\_debate} \iff \text{JSD}(P_1, P_2, P_3, P_4) \le 0.12 \;\land\; \left(\bar{P} \ge 0.70 \lor \bar{P} \le 0.30\right)$$
+$$\text{should-bypass-debate} \iff \text{JSD}(P_1, P_2, P_3, P_4) \le 0.12 \;\land\; \left(\bar{P} \ge 0.70 \lor \bar{P} \le 0.30\right)$$
 
 If all quantitative pillars agree with high conviction, the LLM debate is bypassed entirely at **$0 token cost**, directly emitting the deterministic verdict.
 
@@ -345,7 +345,7 @@ If all quantitative pillars agree with high conviction, the LLM debate is bypass
 
 External qualitative crowd sentiment or clinician unstructured telemetry is converted to a bounded log-odds nudge $\Delta l_{\text{social}}$ via a hyperbolic tangent operator:
 
-$$\Delta l_{\text{social}} = 0.15 \cdot \text{trust}_{\text{clamped}} \cdot \tanh\left(\frac{\text{sentiment\_skew}}{5.0}\right)$$
+$$\Delta l_{\text{social}} = 0.15 \cdot \text{trust}_{\text{clamped}} \cdot \tanh\left(\frac{\text{sentiment-skew}}{5.0}\right)$$
 
 Where $\text{trust}_{\text{clamped}} \in [0.0, 1.0]$ is the source historical Brier credibility score, and the $\tanh$ saturation strictly guarantees that external narrative noise can never overpower internal quantitative invariants:
 
@@ -355,13 +355,13 @@ $$\lim_{|\text{skew}| \to \infty} |\Delta l_{\text{social}}| \le 0.15$$
 
 The complete fused log-odds posterior $l_{\text{posterior}}$ evaluates as:
 
-$$l_{\text{posterior}} = l_{\text{quant}} + \left(\text{entropy\_discount} \cdot l_{\text{triad}}\right) + w_{\text{rag}} l_{\text{rag}} + \Delta l_{\text{social}}$$
+$$l_{\text{posterior}} = l_{\text{quant}} + \left(\text{entropy-discount} \cdot l_{\text{triad}}\right) + w_{\text{rag}} l_{\text{rag}} + \Delta l_{\text{social}}$$
 
 $$P_{\text{posterior}} = \sigma(l_{\text{posterior}}) = \frac{1}{1 + e^{-l_{\text{posterior}}}}$$
 
 The resulting posterior probability is mapped directly to a bounded execution multiplier $M$ (Rule 7 / Invariant $I_{06}$):
 
-$$M = \operatorname{clamp}\left(0.20 + 1.05 \cdot P_{\text{posterior}}, \; 0.20, \; 1.25\right)$$
+$$M = \mathrm{clamp}\left(0.20 + 1.05 \cdot P_{\text{posterior}}, \; 0.20, \; 1.25\right)$$
 
 ---
 
@@ -373,7 +373,7 @@ In evaluating long-term operational viability, treating corporate debt or system
 
 Let a system maintain $K$ discrete debt tranches, where tranche $i$ has principal balance $D_i$ and stated coupon rate $c_i$:
 
-$$\text{WAFCD} = \frac{\sum_{i=1}^K D_i \cdot c_i \cdot \mathbf{1}_{\{\text{coupon\_type}_i = \text{FLOATING}\}}}{\sum_{i=1}^K D_i}$$
+$$\text{WAFCD} = \frac{\sum_{i=1}^K D_i \cdot c_i \cdot \mathbf{1}_{\{\text{coupon-type}_i = \text{FLOATING}\}}}{\sum_{i=1}^K D_i}$$
 
 Where $\mathbf{1}_{\{\cdot\}}$ is the indicator function. If interest rate spreads are redacted or unavailable, the system **fails closed** (`stated_coupon = None`), strictly forbidding synthetic SOFR imputation ($I_{01}$).
 
@@ -393,7 +393,7 @@ $$\text{RSS} \ge 1.20 \implies \text{Solvency Distress Tripwire Active} \implies
 
 When projecting candidate metrics onto multi-dimensional factor spaces, environmental correlations distort distance metrics. During crises, cross-correlations surge toward unity ($\rho \to 1.0$), rendering the sample covariance matrix $S$ ill-conditioned:
 
-$$\operatorname{cond}(S) = \frac{\lambda_{\max}(S)}{\lambda_{\min}(S)} > 10^{15}$$
+$$\mathrm{cond}(S) = \frac{\lambda_{\max}(S)}{\lambda_{\min}(S)} > 10^{15}$$
 
 Inverting an ill-conditioned matrix causes numerical explosion, amplifying sensor noise and corrupting portfolio or actuation weights.
 
@@ -405,13 +405,13 @@ $$\mathbf{x}_3^{\text{res}} = \mathbf{x}_3 - 0.65 \cdot \left(\frac{\mathbf{x}_3
 
 ### 8.3 Stage 2: Analytical Ledoit-Wolf Shrinkage
 
-The sample covariance matrix $S \in \mathbb{R}^{p \times p}$ is shrunk toward a well-conditioned spherical target $F = \frac{\operatorname{Tr}(S)}{p} I_p$:
+The sample covariance matrix $S \in \mathbb{R}^{p \times p}$ is shrunk toward a well-conditioned spherical target $F = \frac{\mathrm{Tr}(S)}{p} I_p$:
 
 $$\Sigma_{\text{LW}} = (1 - \lambda^*) S + \lambda^* F$$
 
 Where the optimal shrinkage intensity $\lambda^* \in [0, 1]$ is computed analytically (Ledoit & Wolf, 2004) without cross-validation overhead. The shrinkage guarantees an invertible, positive-definite matrix satisfying the stability assertion:
 
-$$\operatorname{cond}(\Sigma_{\text{LW}}) \le 10^{12} \quad (\text{Invariant } I_{11})$$
+$$\mathrm{cond}(\Sigma_{\text{LW}}) \le 10^{12} \quad (\text{Invariant } I_{11})$$
 
 ### 8.4 Stage 3: Eigenvalue-Clamped Symmetrical ZCA Whitening
 
@@ -421,13 +421,13 @@ Decompose $\Sigma_{\text{LW}}$ via spectral eigendecomposition:
 
 $$\Sigma_{\text{LW}} = U \Lambda U^T$$
 
-Where $\Lambda = \operatorname{diag}(\lambda_1, \dots, \lambda_p)$ and $U$ is the orthogonal eigenvector matrix. Let $\mu = \frac{\operatorname{Tr}(\Sigma_{\text{LW}})}{p}$. To prevent alpha penalization and suppress micro-eigenvalue noise, eigenvalues are clamped:
+Where $\Lambda = \mathrm{diag}(\lambda_1, \dots, \lambda_p)$ and $U$ is the orthogonal eigenvector matrix. Let $\mu = \frac{\mathrm{Tr}(\Sigma_{\text{LW}})}{p}$. To prevent alpha penalization and suppress micro-eigenvalue noise, eigenvalues are clamped:
 
 $$\lambda_{\text{safe}, i} = \min\left(\max\left(\lambda_i, \; \epsilon_{\text{floor}} \lambda_{\max}\right), \; \max(1.0, \mu)\right)$$
 
 The symmetrical ZCA whitening transform matrix $W_{\text{ZCA}}$ is:
 
-$$W_{\text{ZCA}} = U \;\operatorname{diag}\left(\frac{1}{\sqrt{\lambda_{\text{safe}, 1}}}, \dots, \frac{1}{\sqrt{\lambda_{\text{safe}, p}}}\right) U^T$$
+$$W_{\text{ZCA}} = U \;\mathrm{diag}\left(\frac{1}{\sqrt{\lambda_{\text{safe}, 1}}}, \dots, \frac{1}{\sqrt{\lambda_{\text{safe}, p}}}\right) U^T$$
 
 The decorrelated, white telemetry matrix $X_{\text{decorrelated}}$ is obtained as:
 

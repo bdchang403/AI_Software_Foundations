@@ -20,9 +20,9 @@ $$\cos(\mathbf{q}, \mathbf{d}_i) = \frac{\mathbf{q} \cdot \mathbf{d}_i}{\|\mathb
 
 While high-dimensional embeddings excel at thematic clustering, they exhibit catastrophic **Sign Blindness** and **Relational Inversion** when applied to discrete software specifications, mathematical equations, and clinical parameters:
 
-$$\cos\left(\mathbf{v}_{\text{bolus\_administration\_authorized}}, \; \mathbf{v}_{\text{bolus\_administration\_prohibited}}\right) \ge \mathbf{0.94}$$
-$$\cos\left(\mathbf{v}_{\text{allow\_synthetic\_mock\_fallbacks}}, \; \mathbf{v}_{\text{prohibit\_synthetic\_mock\_fallbacks}}\right) \ge \mathbf{0.93}$$
-$$\cos\left(\mathbf{v}_{\text{capital\_expansion\_mode}}, \; \mathbf{v}_{\text{capital\_liquidation\_mode}}\right) \ge \mathbf{0.95}$$
+$$\cos\left(\mathbf{v}_{\text{bolus-administration-authorized}}, \; \mathbf{v}_{\text{bolus-administration-prohibited}}\right) \ge \mathbf{0.94}$$
+$$\cos\left(\mathbf{v}_{\text{allow-synthetic-mock-fallbacks}}, \; \mathbf{v}_{\text{prohibit-synthetic-mock-fallbacks}}\right) \ge \mathbf{0.93}$$
+$$\cos\left(\mathbf{v}_{\text{capital-expansion-mode}}, \; \mathbf{v}_{\text{capital-liquidation-mode}}\right) \ge \mathbf{0.95}$$
 
 Because the cosine distance between diametrically opposed software rules is virtually zero, Naive Vector RAG routinely injects obsolete, contradictory, or negative guidance directly into the agent's working memory.
 
@@ -109,7 +109,7 @@ The ADR-016 standard establishes physical file size ceilings and surgical contex
 - **The 400-LOC Hard Ceiling:** No production, test, or configuration file may exceed **400 physical lines of code**. Monolithic files (>500 LOC) induce attention degradation, leading refactoring agents to silently delete defensive code.
 - **The 350-LOC Refactoring Trigger:** When a file reaches **350 LOC**, an automated pre-commit warning is issued. The file enters a refactoring freeze: no new features may be added until the file is decomposed into cohesive domain submodules.
 - **Non-Anchor LOC Exemption:** SHA1 Invariant Anchor blocks (`# === INVARIANT-BLOCK v1 ... ===`) are excluded from the line count calculation:
-  $$\text{non\_anchor\_loc} = \text{total\_file\_lines} - \text{anchor\_block\_lines} \le 400$$
+  $$\text{non-anchor-loc} = \text{total-file-lines} - \text{anchor-block-lines} \le 400$$
 
 ### 3.2 The 80-Line Surgical View Window
 
@@ -213,7 +213,7 @@ External content creators, vendors, and analysts frequently deploy sensationalis
 
 When the ingestion engine detects affiliate links, sponsored disclaimers, or promotional monetization funnels (`commercial_conflict: true`), the stored sentiment polarity is discounted by **80% ($W_{\text{commercial}} = 0.20$)**:
 
-$$\text{Polarity}_{\text{stored}} = \operatorname{round}\left(\text{Polarity}_{\text{raw}} \times 0.20, \; 2\right)$$
+$$\text{Polarity}_{\text{stored}} = \mathrm{round}\left(\text{Polarity}_{\text{raw}} \times 0.20, \; 2\right)$$
 
 The effective Brier reliability weight $W_{\text{eff}}$ of the source is similarly penalized:
 

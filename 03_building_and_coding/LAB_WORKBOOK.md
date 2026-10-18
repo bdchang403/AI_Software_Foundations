@@ -20,7 +20,7 @@ The invariant predicate states:
 
 ### Your Task
 1. Write a Python script to compute the deterministic 8-character SHA1 checksum using the formula:
-   $$\text{Checksum} = \operatorname{SHA1}\left(\text{"I02|ADR-029|Execution guardrail \|P\_exec - EMA\_5\| <= max(3*ATR, 0.08*EMA)"}\right)[:8]$$
+   $$\text{Checksum} = \mathrm{SHA1}\left(\text{AnchorPayload}\right)[:8]$$
 2. Confirm that the computed checksum equals `037a1c64`.
 3. Construct the complete code comment anchor block.
 

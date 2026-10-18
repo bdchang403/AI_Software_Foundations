@@ -10,7 +10,7 @@ The verification framework treats every curriculum module, architectural rule, m
 1. **Specification as Sole Arbiter**: Every test asserts compliance against explicit mathematical formulations, system invariants ($I_{01}–I_{22}$), AST static inspection rules (ZM001–ZM007), and enterprise interface contracts specified in `PROJECT.md` and `ORIGINAL_REQUEST.md`.
 2. **Absolute Zero-Mock Doctrine**: Mocking production data, falling back to static numeric constants in `except` blocks, or smuggling synthetic sentinels is strictly forbidden. Tests verify that systems fail closed when live data is missing or corrupted.
 3. **Hermetic Execution Isolation**: Tests execute in complete network isolation via operating system socket interception (`pytest-socket`). Any unauthorized outbound TCP/UDP connection attempt raises `SocketBlockedError` immediately.
-4. **Cryptographic Invariant Anchoring**: Every safety invariant is embedded in code-adjacent `# === INVARIANT-BLOCK v1` structures protected by 8-character SHA1 checksums asserting $(\text{inv\_id} \parallel \text{adr} \parallel \text{predicate})$ parity.
+4. **Cryptographic Invariant Anchoring**: Every safety invariant is embedded in code-adjacent `# === INVARIANT-BLOCK v1` structures protected by 8-character SHA1 checksums asserting $(\text{inv-id} \parallel \text{adr} \parallel \text{predicate})$ parity.
 
 ---
 

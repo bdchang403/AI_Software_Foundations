@@ -87,7 +87,7 @@ Architecture and implementation do not occur in isolation. Within the cross-func
 │                                                                                                  │
 │   4. Code-Adjacent SHA1 Invariant Anchors                                                        │
 │      • Machine-parseable `# === INVARIANT-BLOCK v1` comments embedded directly in code           │
-│      • Deterministic checksum verification: $\text{sha1}(\text{inv\_id}\|\text{adr}\|\text{pred})[:8]$   │
+│      • Deterministic checksum verification: $\text{sha1}(\text{inv-id}\|\text{adr}\|\text{pred})[:8]$   │
 │      • LOC counter excludes anchor blocks to prevent penalizing safety documentation             │
 │                                                                                                  │
 │   5. Zero-Drift Pre-Commit & CI Gates                                                            │

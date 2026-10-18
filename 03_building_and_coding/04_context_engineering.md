@@ -10,8 +10,8 @@ $$\cos(\mathbf{u}, \mathbf{v}) = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}
 
 Cosine similarity measures thematic and conceptual proximity, not mathematical or structural correctness. In high-stakes engineering, vector embeddings suffer from catastrophic **Sign Blindness and Inversion Inability**:
 
-$$\cos(\mathbf{u}_{\text{cash\_expansion}}, \mathbf{v}_{\text{cash\_contraction}}) \ge 0.94$$
-$$\cos(\mathbf{u}_{\text{rate\_clamp\_positive}}, \mathbf{v}_{\text{rate\_clamp\_negative}}) \ge 0.92$$
+$$\cos(\mathbf{u}_{\text{cash-expansion}}, \mathbf{v}_{\text{cash-contraction}}) \ge 0.94$$
+$$\cos(\mathbf{u}_{\text{rate-clamp-positive}}, \mathbf{v}_{\text{rate-clamp-negative}}) \ge 0.92$$
 
 Two blocks of code representing polar opposite actions—such as expanding vs contracting an order book, or infusing vs withdrawing a vasopressor—share identical technical vocabulary (currencies, rates, variables, timestamps). In embedding space, their vector representations are nearly collinear ($\cos \ge 0.94$). 
 

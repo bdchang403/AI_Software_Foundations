@@ -60,7 +60,7 @@ To mathematically prove the ROI of the Context Factory, BuilderOps teams must ex
 **Objective:** Measure the elapsed time from feature conception to production deployment.  
 **Hypothesis:** Constraining AI agents with machine-readable Semantic Blueprints eliminates architectural rework, reducing lead time by $60\%$.
 
-$$\text{Lead Time} = T_{\text{deploy}} - T_{\text{first\_commit}}$$
+$$\text{Lead Time} = T_{\text{deploy}} - T_{\text{first-commit}}$$
 
 **GitHub API Extraction Protocol:**
 ```bash
@@ -74,7 +74,7 @@ gh pr list --state merged --limit 100 --json number,createdAt,mergedAt,commits \
 **Objective:** Track the percentage of production deployments requiring emergency rollbacks, hotfixes, or incident mitigation.  
 **Hypothesis:** Programmatic AST Zero-Mock enforcement (rules ZM001–ZM007) and adversarial red-teaming maintain $\text{CFR} \le 5\%$, preventing AI-generated bugs from reaching production.
 
-$$\text{CFR} = \frac{N_{\text{hotfix\_deployments}} + N_{\text{rollback\_events}}}{N_{\text{total\_deployments}}} \times 100\%$$
+$$\text{CFR} = \frac{N_{\text{hotfix-deployments}} + N_{\text{rollback-events}}}{N_{\text{total-deployments}}} \times 100\%$$
 
 **GitHub API Extraction Protocol:**
 ```bash

@@ -69,10 +69,10 @@ The 22 Canonical Invariants constitute the formal mathematical and structural co
 | **$I_{05}$** | **Closed-World Fallback** | ADR-029<br>ADR-045 | HARD-SAFETY | On bundle or upstream DB failure with verified spot price: prompt receives closed-world fallback schema with 4 Pillars `UNAVAILABLE`, stops `UNAVAILABLE`, and action forced to `WATCH`. | `query_orchestrator.py`<br>`data_ingest.py` | `test_cross_channel_conformal_fuzz.py` |
 | **$I_{06}$** | **MOS Bounded Multipliers** | ADR-043<br>ADR-034 | MATH-BOUND | Risk sizing multiplier $M \in [0.20, 1.25]$. Margin of Safety $\text{MOS} \in [-1.0, 1.0]$. Computed values outside bounds are clamped deterministically with telemetry alarms. | `quant_engine.py`<br>`composite_mos.py` | `test_math_stress_invariants.py` |
 | **$I_{07}$** | **Div-by-Zero Domain Safety** | ADR-043 | MATH-BOUND | $\forall a/b: b = 0 \implies \text{defined finite fallback}$ (zero NaN/Inf propagation). Logarithmic and square-root operations must assert non-negativity of arguments before evaluation. | `quant_engine.py`<br>`breakout_scout.py` | `test_math_stress_invariants.py` |
-| **$I_{08}$** | **Growth-Adjusted Hurdle** | ADR-031 | MATH-BOUND | $\text{EGR} = \text{FCF\_Yield} + \min(g, 0.25)$. For high-growth units ($g \ge 10\%$), action authorization requires $\text{EGR} \ge r_{\text{baseline}}$. Growth factor $g$ is hard-capped at $0.25$. | `quant_engine.py` | `test_growth_adjusted_hurdle.py` |
+| **$I_{08}$** | **Growth-Adjusted Hurdle** | ADR-031 | MATH-BOUND | $\text{EGR} = \text{FCF-Yield} + \min(g, 0.25)$. For high-growth units ($g \ge 10\%$), action authorization requires $\text{EGR} \ge r_{\text{baseline}}$. Growth factor $g$ is hard-capped at $0.25$. | `quant_engine.py` | `test_growth_adjusted_hurdle.py` |
 | **$I_{09}$** | **Compensatory Confluence** | ADR-024 | MATH-BOUND | $\text{Action Approved} \iff \sum_{k=1}^4 \mathbb{I}(P_k \ge 0.35) \ge 2 \;\land\; \neg \text{FatalContagion}$. No single orthogonal pillar possesses unilateral veto authority over confluence. | `consensus_service.py`<br>`debate/matrix.py` | `test_compensatory_confluence.py` |
 | **$I_{10}$** | **Bandit Prior Integrity** | ADR-034 | MATH-BOUND | Contextual Thompson Sampling policy over exactly 6 discrete action arms. Beta conjugate priors clamped $\alpha, \beta \ge 0.5$. Rewards update on beta-stripped residual delta $r_{\text{resid}}$. | `contextual_bandit_rl.py` | `test_contextual_bandit_rl.py` |
-| **$I_{11}$** | **Whitening Stability** | ADR-039 | MATH-BOUND | Ledoit-Wolf shrinkage matrix condition number $\operatorname{cond}(\Sigma_{\text{LW}}) \le 10^{12}$. Symmetrical ZCA whitening clamps eigenvalues $\lambda \ge \epsilon_{\text{floor}} \lambda_{\max}$ to prevent alpha destruction. | `quant_engine.py`<br>`debate/matrix.py` | `test_zca_whitening.py` |
+| **$I_{11}$** | **Whitening Stability** | ADR-039 | MATH-BOUND | Ledoit-Wolf shrinkage matrix condition number $\mathrm{cond}(\Sigma_{\text{LW}}) \le 10^{12}$. Symmetrical ZCA whitening clamps eigenvalues $\lambda \ge \epsilon_{\text{floor}} \lambda_{\max}$ to prevent alpha destruction. | `quant_engine.py`<br>`debate/matrix.py` | `test_zca_whitening.py` |
 | **$I_{12}$** | **Conformal Coverage** | ADR-040 | MATH-BOUND | Split-conformal prediction intervals calibrated over rolling 120-day window. Plausibility band width is monotonically non-decreasing in market stress / volatility regime buckets. | `quant_engine.py` | `test_conformal_calibration.py` |
 | **$I_{13}$** | **Remote-First Freshness** | ADR-000<br>ADR-038 | SCHEMA-PARITY | Canonical truth resides in distributed remote ledger. Mandatory pull-before-push (`sync_data.py --pull`). Local worker cache reads $> 3 \text{ days}$ stale fail closed (`StaleDataCircuitBreaker`). | `api_client.py`<br>`live_price_engine.py` | `test_spot_price_enforcement.py` |
 | **$I_{14}$** | **Cross-Channel Sync** | ADR-038 | SCHEMA-PARITY | Immutable server-composed directional header lock in prompts. Table `channel_verdict_audit` logs all presentation events; automated daily sentinel detects any inter-channel divergence. | `consensus_service.py`<br>`query_orchestrator.py` | `test_cross_channel_verdict_parity.py` |
@@ -118,9 +118,9 @@ def validate_execution_price(p_exec: float, ema_5: float, atr_14: float) -> bool
 
 The 8-character hex checksum appended to `# /INVARIANT [sha1:xxxxxxxx]` is deterministically generated from the concatenation of the Invariant ID, Governing ADR, and Predicate string:
 
-$$\text{raw\_payload} = \text{inv\_id.strip()} \parallel \text{adr.strip()} \parallel \text{predicate.strip()}$$
+$$\text{raw-payload} = \text{inv-id} \parallel \text{adr.strip()} \parallel \text{predicate.strip()}$$
 
-$$\text{anchor\_hash} = \operatorname{SHA1}\left(\text{raw\_payload.encode('utf-8')}\right)\left[:8\right]$$
+$$\text{anchor-hash} = \mathrm{SHA1}\left(\text{RawPayload}\right)\left[:8\right]$$
 
 ### 3.3 AST Verification Scanner & Physical LOC Calculation
 
@@ -128,7 +128,7 @@ The pre-commit script `scripts/verify_code_invariants.py` parses the AST of ever
 
 To ensure that detailed invariant documentation does not penalize engineers under the ADR-016 400-LOC ceiling, the AST scanner computes physical non-anchor LOC as:
 
-$$\text{non\_anchor\_loc} = \text{total\_file\_lines} - \text{anchor\_block\_lines} \le 400$$
+$$\text{non-anchor-loc} = \text{total-file-lines} - \text{anchor-block-lines} \le 400$$
 
 If any developer or AI agent edits an invariant predicate without updating the corresponding test and recalculating the SHA1 hash, CI immediately rejects the commit with a cryptographic tampering error.
 

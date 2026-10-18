@@ -69,12 +69,12 @@ def validate_execution_guardrail(proposed_price: float, ema_5: float, atr_14: fl
 ### 2. Cryptographic Checksum Formula
 The anchor hash is calculated using a deterministic 8-character SHA1 digest over the invariant ID, governing ADR, and trimmed predicate string:
 
-$$\text{hash} = \operatorname{SHA1}\left(\text{inv\_id.strip()} \;\|\; \text{adr.strip()} \;\|\; \text{predicate.strip()}\right)[:8]$$
+$$\text{hash} = \mathrm{SHA1}\left(\text{inv-id} \;\|\; \text{adr.strip()} \;\|\; \text{predicate.strip()}\right)[:8]$$
 
 #### Exact Canonical Example ($I_{02}$ Execution Guardrail):
-* $\text{inv\_id} = \text{"I02"}$
+* $\text{inv-id} = \text{"I02"}$
 * $\text{adr} = \text{"ADR-029"}$
-* $\text{predicate} = \text{"Execution guardrail |P\_exec - EMA\_5| <= max(3*ATR, 0.08*EMA)"}$
+* $\text{predicate} = \text{Predicate}$
 * Raw string: `"I02|ADR-029|Execution guardrail |P_exec - EMA_5| <= max(3*ATR, 0.08*EMA)"`
 * Complete SHA1: `037a1c64b18f88880d60c238b1eb7cfb39e6a0d4`
 * Truncated 8-char Hash: `037a1c64`

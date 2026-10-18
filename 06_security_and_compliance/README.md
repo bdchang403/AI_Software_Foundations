@@ -67,7 +67,7 @@ If the proposed execution exceeds the plausibility band, the order is rejected i
 
 ### Pillar 3: Immutable Ledger Quarantine ($I_{04}$ / Immutable Quarantine Guardrail)
 In mission-critical auditability, raw SQL `DELETE` commands are permanently banned across all operational databases:
-$$\forall r \in \text{Ledger}: \operatorname{DELETE}(r) = \emptyset$$
+$$\forall r \in \text{Ledger}: \mathrm{DELETE}(r) = \emptyset$$
 When bugs, corrupted rows, or synthetic poison (Crisis 3) are detected, records are atomically migrated into `consensus_quarantine` accompanied by the bug issue number, invalidating agent ID, and UTC timestamp. Historical provenance is preserved forever.
 
 ### Pillar 4: Nightly Mark-to-Market Reconciliation & Automated AI-SBOM

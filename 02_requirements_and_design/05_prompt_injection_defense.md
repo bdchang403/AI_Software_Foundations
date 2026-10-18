@@ -64,7 +64,7 @@ This automatically slashes the impact of promotional hype and social media manip
 
 ### 4. The Deterministic Math Solver Barrier
 In compliant architecture, **an LLM is never permitted to issue execution commands directly**. The natural language output of an LLM is treated as an untrusted qualitative candidate. It must be converted to numeric log-odds and fed into a **Deterministic Convex Solver**:
-$$l_{\text{posterior}} = l_{\text{quant}} + (\text{entropy\_discount} \times l_{\text{triad}}) + \Delta l_{\text{social}}$$
+$$l_{\text{posterior}} = l_{\text{quant}} + (\text{entropy-discount} \times l_{\text{triad}}) + \Delta l_{\text{social}}$$
 The convex solver is pure Python code, immune to prompt injection.
 
 ### 5. Runtime Plausibility Guardrails (Invariant $I_{02}$)

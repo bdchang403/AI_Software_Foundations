@@ -59,7 +59,7 @@ External unstructured media must be tagged strictly as `OBSERVED_CLAIM` (crowd p
 
 ### 2. The 80% Commercial Funnel Discount Formula
 When a video, article, or transcript contains commercial sales funnels, course sales, or affiliate links (`commercial_conflict: true`), its raw polarity score is discounted by 80%:
-$$\text{Polarity}_{\text{stored}} = \operatorname{round}(\text{Polarity}_{\text{raw}} \times 0.20, \; 2)$$
+$$\text{Polarity}_{\text{stored}} = \mathrm{round}(\text{Polarity}_{\text{raw}} \times 0.20, \; 2)$$
 
 The effective Brier reliability weight is similarly discounted:
 $$W_{\text{eff}} = W_{\text{Brier}} \times W_{\text{commercial}} = W_{\text{Brier}} \times 0.20$$
@@ -71,7 +71,7 @@ Under this discount, an extreme sensationalist video with raw polarity $-8.5$ is
 ## 🗄️ Immutable Ledger Quarantine (Invariant $I_{04}$ / Immutable Quarantine Guardrail)
 
 Under regulatory record-keeping frameworks—such as FDA 21 CFR Part 11 (§11.10(e) Audit Trails) and SEC Rule 17a-4 / FINRA Rule 4511 (Electronic Records Preservation)—audit trails must be **immutable**, ensuring record modifications do not obscure previously recorded information. To satisfy these statutory mandates and support the model change tracking required by Federal Reserve SR 11-7, software engineers must never execute raw database deletions:
-$$\forall r \in \text{Ledger}: \operatorname{DELETE}(r) = \emptyset$$
+$$\forall r \in \text{Ledger}: \mathrm{DELETE}(r) = \emptyset$$
 
 ### The Quarantine Ledger Protocol
 1. **Raw `DELETE` Prohibited**: CI pre-commit chains scan all SQL migrations and source code. Any script containing `DELETE FROM consensus` or `DROP TABLE` is blocked immediately.

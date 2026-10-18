@@ -112,4 +112,4 @@ In an automated closed-loop intravenous drug delivery system, edge cases #1, #6,
 ### Callout 3: Aerospace Fly-by-Wire Avionics (DO-178C Level A)
 In a digital flight control computer, edge cases #7, #9, #18, and #20 govern flight safety:
 - **Edge Case #7 (Out-of-Order Timestamps)**: A delayed CAN bus packet arrives out of sequence. If processed, it would cause the actuator to snap to a previous pitch angle, inducing severe structural g-load oscillations. The BA blueprint requires monotonic timestamp sequencing:
-  $$t_{\text{packet}} > t_{\text{last\_processed}} \implies \text{Process}, \quad \text{else} \implies \text{Discard with Bus Anomaly Log}$$
+  $$t_{\text{packet}} > t_{\text{last-processed}} \implies \text{Process}, \quad \text{else} \implies \text{Discard with Bus Anomaly Log}$$

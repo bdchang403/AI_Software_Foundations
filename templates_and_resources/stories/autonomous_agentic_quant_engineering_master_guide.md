@@ -523,7 +523,7 @@ The crisis was permanently eliminated by codifying four architectural invariants
 3. **Continuous Polarity Accumulation with Exponential Half-Life Decay (ADR-003)**:
    Polarity accumulates continuously within $P(t) \in [-10.0, +10.0]$:
    $$P(t) = P_0 \cdot \left(\frac{1}{2}\right)^{\frac{\Delta t}{t_{1/2}}}, \quad t_{1/2} \in \{30\text{d structural}, 7\text{d tactical}, 1\text{d ephemeral}\}$$
-   New evidence updates polarity by $\Delta P = \text{sign}(\text{event}) \cdot M \cdot T \cdot (1 + \text{cluster\_bonus})$. Crossing $\pm 6.0$ triggers an Eruption, after which polarity resets to a baseline level ($4.0$) to prevent infinite re-trigger loops.
+   New evidence updates polarity by $\Delta P = \text{sign}(\text{event}) \cdot M \cdot T \cdot (1 + \text{cluster-bonus})$. Crossing $\pm 6.0$ triggers an Eruption, after which polarity resets to a baseline level ($4.0$) to prevent infinite re-trigger loops.
 4. **Micro-USD Daily Spend Quota (ADR-011)**: Strict global cap of **$0.40/day** rolling 24-hour spend and **$0.08/day** single-ticker quarantine cap, tracked in integer micro-USD ($\mu\text{USD}$, $1\text{ USD} = 1,000,000\,\mu\text{USD}$).
 5. **The ADR-016 400 LOC Hard Ceiling**: Strict 400 LOC ceiling across all files, 350 LOC refactor trigger, 80-line targeted view windows, and Anti-Feature-Erasure (Rule 14).
 
@@ -1500,7 +1500,7 @@ To neutralize this structural skew without blinding the system to genuine retail
 1. **Schema Extraction**: The extraction prompt forces the model to audit whether the transcript contains sales pitches, Patreon links, affiliate promotion, or course teasers (`"commercial_conflict": true`).
 2. **Polarity Slashing**: If `commercial_conflict` is detected, the stored sentiment polarity is immediately slashed by **80%**, scaled by the canonical constant $W_{\text{commercial}} = 0.20$ defined in `src/v3/config/invariant_constants.py`:
 
-$$\text{Polarity}_{\text{stored}} = \text{round}(\text{Polarity}_{\text{raw}} \times 0.20, 2) \quad \text{if } \text{commercial\_conflict} = \text{true}$$
+$$\text{Polarity}_{\text{stored}} = \text{round}(\text{Polarity}_{\text{raw}} \times 0.20, 2) \quad \text{if } \text{commercial-conflict} = \text{true}$$
 
 ```python
 # src/v3/scout/youtube_scanner.py:344-347
@@ -1681,17 +1681,17 @@ The outputs of the qualitative triad ($P_f, P_c, P_a$) do not form a consensus v
 The solver converts probabilities into log-odds space ($\text{logit}(p) = \ln\frac{p}{1-p}$):
 
 1. **Deterministic Quantitative Contribution**:
-$$l_{\text{quant}} = 0.55 \cdot \text{logit}(P_{\text{pillar}}) + 0.45 \cdot \text{logit}(P_{\text{valuation}}) - \max(0.0, \text{macro\_beta\_penalty})$$
+$$l_{\text{quant}} = 0.55 \cdot \text{logit}(P_{\text{pillar}}) + 0.45 \cdot \text{logit}(P_{\text{valuation}}) - \max(0.0, \text{macro-beta-penalty})$$
 
 2. **Epistemic Triad Contribution with Entropy Dampening**:
 Subagent log-odds are combined using Bayesian contextual bandit weights ($w_f, w_c, w_a$ normalized such that $\sum w_j = 1$):
 $$l_{\text{triad}} = w_f \cdot \text{logit}(P_{\text{forensic}}) + w_c \cdot \text{logit}(P_{\text{catalyst}}) + w_a \cdot \text{logit}(P_{\text{adversarial}})$$
 
 To prevent subjective triad disagreement from poisoning high-conviction quantitative signals, the triad's contribution is scaled by an **entropy discount factor** derived from the Jensen-Shannon Divergence ($\text{JSD}$) between bull and bear projections:
-$$\text{entropy\_discount} = \max\left(0.15, 1.0 - \lambda_{\text{JSD}} \cdot \text{JSD}(P_{\text{bull}} \parallel P_{\text{bear}})\right)$$
+$$\text{entropy-discount} = \max\left(0.15, 1.0 - \lambda_{\text{JSD}} \cdot \text{JSD}(P_{\text{bull}} \parallel P_{\text{bear}})\right)$$
 
 3. **Complete Posterior Formulation**:
-$$l_{\text{posterior}} = l_{\text{quant}} + (\text{entropy\_discount} \times l_{\text{triad}}) + w_{\text{rag}} l_{\text{rag}} + \Delta l_{\text{social}}$$
+$$l_{\text{posterior}} = l_{\text{quant}} + (\text{entropy-discount} \times l_{\text{triad}}) + w_{\text{rag}} l_{\text{rag}} + \Delta l_{\text{social}}$$
 
 $$P_{\text{posterior}} = \frac{1}{1 + e^{-l_{\text{posterior}}}}$$
 
@@ -1769,9 +1769,9 @@ The thesis was completely dead, yet the system presented it as a live recommenda
 #### 2.7.2 Mathematical Continuous Half-Life Decay Formulations
 In `src/v3/utils/consensus_decay.py`, every signal decays continuously according to an exponential half-life formulation:
 
-$$\text{decay\_factor} = (0.5)^{\frac{\Delta t}{t_{1/2}}}$$
+$$\text{decay-factor} = (0.5)^{\frac{\Delta t}{t_{1/2}}}$$
 
-$$\text{effective\_confidence} = \text{int}\left(\text{round}\left(\text{confidence}_{\text{raw}} \times \text{decay\_factor}\right)\right)$$
+$$\text{effective-confidence} = \text{int}\left(\text{round}\left(\text{confidence}_{\text{raw}} \times \text{decay-factor}\right)\right)$$
 
 #### 2.7.3 Horizon-Matched Decay Taxonomy (ADR-033)
 Different quantitative strategies possess vastly different economic shelf-lives. StockAnalysis V3 enforces a strategy-specific taxonomy (`HORIZON_DECAY_PROFILES`):
@@ -1862,7 +1862,7 @@ def should_summon_researcher(self, context: Dict[str, Any]) -> bool:
 #### 2.8.3 Non-Linear Hyperbolic Tangent Log-Odds Scaling
 Rather than allowing social sentiment to linearly dominate trade sizing, `solve_convex_debate_verdict` applies bounded non-linear scaling using a hyperbolic tangent ($\tanh$) operator:
 
-$$\Delta l_{\text{social}} = 0.15 \times \text{trust}_{\text{clamped}} \times \tanh\left(\frac{\text{social\_sentiment\_skew}}{5.0}\right)$$
+$$\Delta l_{\text{social}} = 0.15 \times \text{trust}_{\text{clamped}} \times \tanh\left(\frac{\text{social-sentiment-skew}}{5.0}\right)$$
 
 ```python
 # src/v3/debate/evidence_fusion.py:327-334
@@ -1900,7 +1900,7 @@ In strict accordance with the Zero-Mock doctrine, models and parsers are **prohi
 From the normalized discrete tranches, the forensic accounting engine evaluates two decisive quantitative metrics:
 
 1. **Weighted Average Floating Coupon Debt (WAFCD)**:
-   $$\text{WAFCD} = \frac{\sum_{i=1}^{K} D_i \cdot c_i \cdot \mathbf{1}_{\{\text{coupon\_type}_i = \text{FLOATING}\}}}{\sum_{i=1}^{K} D_i}$$
+   $$\text{WAFCD} = \frac{\sum_{i=1}^{K} D_i \cdot c_i \cdot \mathbf{1}_{\{\text{coupon-type}_i = \text{FLOATING}\}}}{\sum_{i=1}^{K} D_i}$$
    WAFCD isolates the company's immediate structural vulnerability to monetary policy tightening and benchmark interest rate shocks.
 
 2. **Refinancing Stress Score (RSS)**:
@@ -2539,11 +2539,11 @@ Operating as an ADR-016 compliant engine ($\le 400$ LOC), the scanner compiles a
 | Rule ID | AST Node Inspected | Trigger Condition | Rationale & Required Fix |
 | :--- | :--- | :--- | :--- |
 | **`ZM001_EXCEPT_NUMERIC_RETURN`** | `ast.ExceptHandler` $\to$ `ast.Return` | `node.value > 0` and is `int` or `float` | **Positive numeric return in `except` block.** Returning static numbers masquerades as real data on network errors. Must return `None` or re-raise. |
-| **`ZM002_EXCEPT_DICT_RETURN`** | `ast.ExceptHandler` $\to$ `ast.Return` | `node.value` is `ast.Dict` with key $\in \text{FINANCIAL\_KEYS}$ and value $\neq \text{None}$ | **Synthetic financial dictionary.** Returning `{"dark_pool_ratio": 0.45, "score": 3.8}` in catch blocks injects fake signals. Must fail closed. |
+| **`ZM002_EXCEPT_DICT_RETURN`** | `ast.ExceptHandler` $\to$ `ast.Return` | `node.value` is `ast.Dict` with key $\in \text{FINANCIAL-KEYS}$ and value $\neq \text{None}$ | **Synthetic financial dictionary.** Returning `{"dark_pool_ratio": 0.45, "score": 3.8}` in catch blocks injects fake signals. Must fail closed. |
 | **`ZM003_BANNED_VARIABLE_PREFIX`** | `ast.Assign` | Target name starts with `MOCK_`, `DUMMY_`, `SYNTHETIC_`, `FALLBACK_RATIO`, `FALLBACK_PRICE` | **Hardcoded mock identifiers.** Prevents engineers and LLMs from declaring static benchmark arrays or mock prices in production modules. |
 | **`ZM004_STATIC_PROFILE_REGISTRY`** | `ast.Assign` | Target ends with `_PROFILES` and dictionary values contain financial metrics | **Static company profile constants.** Forbids embedding static PE ratios, capitalization rates, or NOI numbers. Values must resolve dynamically from D1/FMP. |
 | **`ZM005_NUMERIC_ARG_DEFAULT`** | `ast.FunctionDef`, `ast.AsyncFunctionDef` | Financial parameter (`price`, `strike`, `fed_funds`, `discount_rate`) has default $> 0$ | **Default financial argument.** Forbids `def dcf(price: float = 200.0)`. Parameters must default to `None` or be strictly required without defaults. |
-| **`ZM006_GET_NUMERIC_FALLBACK`** | `ast.Call` | Call to `.get(key, fallback)` where key $\in \text{FINANCIAL\_KEYS}$ and `fallback > 0` | **Dictionary fallback constants.** Forbids `dict.get("dark_pool_ratio", 0.50)`. Must call `dict.get("dark_pool_ratio")` and assert `if val is None: return None`. |
+| **`ZM006_GET_NUMERIC_FALLBACK`** | `ast.Call` | Call to `.get(key, fallback)` where key $\in \text{FINANCIAL-KEYS}$ and `fallback > 0` | **Dictionary fallback constants.** Forbids `dict.get("dark_pool_ratio", 0.50)`. Must call `dict.get("dark_pool_ratio")` and assert `if val is None: return None`. |
 | **`ZM007_OR_NUMERIC_FALLBACK`** | `ast.BoolOp` | Expression `x or <number>` where left term contains financial key and right is constant $> 0$ | **Boolean fallback injection.** Forbids `ratio = payload.get("dark_pool") or 0.50`. Must evaluate without fallback or fail closed. |
 
 #### 3.4.2 Concrete Python AST Visitor Implementation
@@ -2800,7 +2800,7 @@ Autonomous LLM agents run continuously 24/7. When prompted on a weekend, an unco
 
 #### 3.6.3 Nightly Mark-to-Market Reconciliation
 To prevent cumulative drift between paper ledger state and exchange realities, `reconcile_portfolio_marks()` executes an automated nightly reconciliation pass:
-$$\text{Recomputed PnL}_i = \text{Shares}_i \times \left(P_{\text{canonical\_close}, i} - P_{\text{entry}, i}\right)$$
+$$\text{Recomputed PnL}_i = \text{Shares}_i \times \left(P_{\text{canonical-close}, i} - P_{\text{entry}, i}\right)$$
 It computes the total portfolio mark-to-market divergence against tolerance:
 $$\text{Allowed Tolerance} = \max\left(\$250.00, \, \text{NAV} \times \frac{25\text{ bps}}{10,000}\right) = \max(\$250.00, \, \$250.00) = \$250.00$$
 Any unhedged divergence exceeding $\$250$ trips an operational discrepancy alert for forensic audit.
@@ -2868,23 +2868,23 @@ When a spot price is requested, `LivePriceEngine` executes a deterministic 4-tie
 #### 3.7.2 Alg #95: Flow-Verified Asymmetric Retracement Ratchet
 Once in a live trade, exit pricing must adapt dynamically to institutional order flow rather than relying on static trailing stops. Registered as **Algorithm #95** (Asymmetric Retracement Ratchet), `evaluate_asymmetric_retracement_ratchet()` computes institutional distribution pressure $d_{\text{inst}}$:
 
-$$d_{\text{inst}} = z_{\text{lit\_down}} - z_{\text{dark\_net}} - z_{\text{cvd}}$$
+$$d_{\text{inst}} = z_{\text{lit-down}} - z_{\text{dark-net}} - z_{\text{cvd}}$$
 
 Where:
-- $z_{\text{lit\_down}}$ is the 3-day z-score of lit-exchange downside selling volume.
-- $z_{\text{dark\_net}}$ is the 3-day z-score of net off-exchange dark pool accumulation slope.
+- $z_{\text{lit-down}}$ is the 3-day z-score of lit-exchange downside selling volume.
+- $z_{\text{dark-net}}$ is the 3-day z-score of net off-exchange dark pool accumulation slope.
 - $z_{\text{cvd}}$ is the 3-day z-score of intraday Cumulative Volume Delta.
 
 The exit barrier dynamically bifurcates based on $d_{\text{inst}}$:
 1. **Confirmed Institutional Dumping ($d_{\text{inst}} > 0.50$)**:
    The engine triggers `TIGHT_FLOW_DISTRIBUTION_RATCHET`, collapsing the trailing stop tightly against the peak price:
-   $$\text{Exit Barrier} = \max\left(P_{\text{entry}} \times (1 - \text{stop\_pct}), \, P_{\text{peak}} \times (1 - \max(0.025, \, 0.25 \cdot r_{\text{peak}}))\right)$$
+   $$\text{Exit Barrier} = \max\left(P_{\text{entry}} \times (1 - \text{stop-pct}), \, P_{\text{peak}} \times (1 - \max(0.025, \, 0.25 \cdot r_{\text{peak}}))\right)$$
 2. **Healthy Consolidation ($d_{\text{inst}} \le 0.50$)**:
    The engine expands to `WIDE_FLOW_VERIFIED_BUFFER`, granting the position breathing room:
    $$\text{Wide Buffer} = \text{clamp}\left(\frac{2.5 \times \text{ATR}_{14}}{P_{\text{peak}}}, \, 0.055, \, 0.095\right)$$
-   $$\text{Breakeven Floor} = \begin{cases} P_{\text{entry}} \times 1.005 & \text{if } r_{\text{peak}} \ge 0.075 \\ P_{\text{entry}} \times (1 - \text{stop\_pct}) & \text{otherwise} \end{cases}$$
+   $$\text{Breakeven Floor} = \begin{cases} P_{\text{entry}} \times 1.005 & \text{if } r_{\text{peak}} \ge 0.075 \\ P_{\text{entry}} \times (1 - \text{stop-pct}) & \text{otherwise} \end{cases}$$
    $$\text{Exit Barrier} = \max\left(\text{Breakeven Floor}, \, P_{\text{peak}} \times (1 - \text{Wide Buffer})\right)$$
-3. **Pre-Earnings T-1 Whisper Trap Check**: If $1 \le \text{days\_to\_earnings} \le 2$ and $W_{\text{trap}} \ge 1.40$ with positive unrealized gain, executes immediate `T_MINUS_1_WHISPER_TRAP_HARVEST`.
+3. **Pre-Earnings T-1 Whisper Trap Check**: If $1 \le \text{days-to-earnings} \le 2$ and $W_{\text{trap}} \ge 1.40$ with positive unrealized gain, executes immediate `T_MINUS_1_WHISPER_TRAP_HARVEST`.
 4. **Hard Stop Floor**: Regardless of flow state, an initial hard stop at $r_{\text{curr}} \le -6.0\%$ preserves the zero-blowup invariant.
 
 ---
@@ -3066,7 +3066,7 @@ To bridge high-level Architecture Decision Records (ADRs) and concrete Python im
 | **$I_{05}$** | **Closed-World Fallback** | ADR-029, ADR-045 | HARD-SAFETY | On bundle/D1 failure with verified spot: prompt receives closed-world schema with 4-Pillars UNAVAILABLE, stops UNAVAILABLE, baseline WATCH. | `query_orchestrator.py`<br>`data_ingest.py` | `test_cross_channel_conformal_fuzz.py` |
 | **$I_{06}$** | **MOS Bounded Multipliers** | ADR-043, ADR-034 | MATH-BOUND | Risk sizing multiplier $M \in [0.20, 1.25]$. Margin of Safety $\text{MOS} \in [-1.0, 1.0]$. Values outside are clamped with telemetry event. | `quant_engine.py`<br>`composite_mos.py` | `test_math_stress_invariants.py` |
 | **$I_{07}$** | **Div-by-Zero Domain Safety** | ADR-043 | MATH-BOUND | $\forall a/b: b = 0 \implies \text{defined fallback}$ (never NaN/Inf propagation). Log/sqrt inputs must assert domain non-negativity. | `quant_engine.py`<br>`predictive_breakout_scout.py` | `test_math_stress_invariants.py` |
-| **$I_{08}$** | **Growth-Adjusted Hurdle** | ADR-031 | MATH-BOUND | $\text{EGR} = \text{FCF\_Yield} + \min(g, 0.25)$. For compounders ($g \ge 10\%$), BUY requires $\text{EGR} \ge r_{\text{fed\_funds}}$. Growth cap is $0.25$. | `quant_engine.py` | `test_growth_adjusted_hurdle.py` |
+| **$I_{08}$** | **Growth-Adjusted Hurdle** | ADR-031 | MATH-BOUND | $\text{EGR} = \text{FCF-Yield} + \min(g, 0.25)$. For compounders ($g \ge 10\%$), BUY requires $\text{EGR} \ge r_{\text{fed-funds}}$. Growth cap is $0.25$. | `quant_engine.py` | `test_growth_adjusted_hurdle.py` |
 | **$I_{09}$** | **Compensatory Confluence** | ADR-024 | MATH-BOUND | $\text{BUY} \iff \sum_{k=1}^4 \mathbb{I}(P_k \ge 0.35) \ge 2 \land \neg \text{FatalContagion}$. Single metrics cannot act as isolated vetoes. | `consensus_service.py`<br>`debate/matrix.py` | `test_compensatory_confluence.py` |
 | **$I_{10}$** | **Bandit Prior Integrity** | ADR-034 | MATH-BOUND | Thompson Sampling over exactly 6 discrete action arms. Beta priors $\alpha, \beta \ge 0.5$. Updates evaluate beta-stripped residual return $r_{\text{resid}}$. | `contextual_bandit_rl.py` | `test_contextual_bandit_rl.py` |
 | **$I_{11}$** | **Whitening Stability** | ADR-039 | MATH-BOUND | Ledoit-Wolf shrinkage $\to$ symmetrical ZCA whitening on 4-pillar vector. If condition number $\text{cond}(\Sigma) > 10^{12}$, apply regularized floor. | `quant_engine.py`<br>`debate/matrix.py` | `test_zca_whitening.py` |
@@ -3097,7 +3097,7 @@ To prevent documentation drift, every bound module embeds a machine-readable anc
 # === /INVARIANT-BLOCK ===
 ```
 The CI script `scripts/verify_code_invariants.py` scans every Python module, parses invariant blocks, and asserts:
-$$\text{SHA1}(\text{inv\_id} \parallel \text{adr} \parallel \text{predicate})[:8] == \text{anchor\_hash}$$
+$$\text{SHA1}(\text{inv-id} \parallel \text{adr} \parallel \text{predicate})[:8] == \text{anchor-hash}$$
 Furthermore, `verify_code_invariants.py` subtracts the anchor block lines from total file length and asserts that non-anchor code strictly adheres to the 400 LOC ceiling ($I_{22}$ / ADR-016).
 
 ---
@@ -3668,7 +3668,7 @@ The bandit selects between six discrete policy configurations:
 
 #### 4.7.2 Contextual Thompson Sampling Utility
 1. **Context Vector**: Four market state metrics normalized to $[-1, 1]$:
-   $$X_t = [\text{macro\_stress}, \, \text{volatility\_regime}, \, \text{trend\_kinematics\_z20}, \, \text{pillar\_confluence}]^T$$
+   $$X_t = [\text{macro-stress}, \, \text{volatility-regime}, \, \text{trend-kinematics-z20}, \, \text{pillar-confluence}]^T$$
 2. **Context Alignment Bonus**: Evaluates arm alignment with current market context:
    $$\Delta_a = \tanh\left( \sum_{j=1}^4 w_{a,j} X_{t,j} \right)$$
 3. **Thompson Sampling Draw**: Samples arm performance from Beta posterior distributions:

@@ -42,10 +42,10 @@ flowchart TD
 * **Key Assertions**:
   1. **Zero-Mock Boundary & Telemetry Provenance**: Verifies that exception handlers returning `None` or re-raising exceptions pass, while positive numeric fallbacks and empty pass blocks are rejected. Enforces that telemetry payloads without a verified `data_source` fail closed, and asserts `sanitize_or_block_verdict` correctly demotes unverified feeds to `HALT_TRADING_DUE_TO_UNVERIFIED_DATA` with confidence = 0.
   2. **Domain Safety**: Division-by-zero protection across logit clamping ($\epsilon = 10^{-7}$), attention entropy with zero weights, and half-life decay with non-positive values ($I_{07}$).
-  3. **Covariance Matrix Conditioning**: Verifies that the condition number $\operatorname{cond}(\Sigma) \le 10^{12}$ holds even for collinear and ill-conditioned matrices via Ledoit-Wolf analytical shrinkage ($I_{11}$).
+  3. **Covariance Matrix Conditioning**: Verifies that the condition number $\mathrm{cond}(\Sigma) \le 10^{12}$ holds even for collinear and ill-conditioned matrices via Ledoit-Wolf analytical shrinkage ($I_{11}$).
   4. **Modularity Ceiling <= 400 LOC**: Enforces that non-anchor lines of code do not exceed 400 lines, with warning triggers at 350 LOC.
   5. **SHA1 Invariant Anchors**: Verifies that in-code SHA1 checksums match:
-     $$\text{anchor\_hash} = \operatorname{SHA1}\left(\text{inv\_id.strip()} \parallel \text{adr.strip()} \parallel \text{predicate.strip()}\right)[:8]$$
+     $$\text{anchor-hash} = \mathrm{SHA1}\left(\text{inv-id} \parallel \text{adr.strip()} \parallel \text{predicate.strip()}\right)[:8]$$
 
 ### Tier 3: Cross-Chapter & Cross-Channel Parity
 * **Objective**: Validates multi-agent debate consensus, epistemic routing, and presentation-layer synchronization.
@@ -108,7 +108,7 @@ $$\text{FatalContagion} \iff (\text{SCSI} \le -0.35) \lor (\text{ClimaxCollapse}
 
 #### Growth-Adjusted Capitalized ROIC Margin of Safety (GAC-ROIC-MOS Guardrail)
 To permanently eliminate the \$0.00 DCF artifact for secular compounders:
-$$\text{MOS}_{\text{GAC}} = 0.50 \cdot \text{MOS}_{\text{DCF}} + 0.30 \cdot \left(\frac{\text{ROIC} - \text{WACC}}{0.08}\right) + 0.20 \cdot \operatorname{clamp}\left(\frac{g - 15\%}{30\%}, \; -0.50, \; 1.00\right)$$
+$$\text{MOS}_{\text{GAC}} = 0.50 \cdot \text{MOS}_{\text{DCF}} + 0.30 \cdot \left(\frac{\text{ROIC} - \text{WACC}}{0.08}\right) + 0.20 \cdot \mathrm{clamp}\left(\frac{g - 15\%}{30\%}, \; -0.50, \; 1.00\right)$$
 Compounder unblocking predicate:
 $$\text{ROIC} \ge 15\% \land g \ge 15\% \land \text{MOS}_{\text{GAC}} > 0.0 \implies \text{DCF Floored at Spot Support}$$
 

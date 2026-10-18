@@ -78,7 +78,7 @@ Any module implementing this ADR must embed the following machine-parseable anch
 ```
 
 ### Deterministic Hash Calculation
-$$\text{Checksum} = \operatorname{SHA1}\left(\text{INV\_ID.strip()} \;\|\; \text{ADR-ID.strip()} \;\|\; \text{PREDICATE.strip()}\right)[:8]$$
+$$\text{Checksum} = \mathrm{SHA1}\left(\text{INV-ID} \;\|\; \text{ADR-ID.strip()} \;\|\; \text{PREDICATE.strip()}\right)[:8]$$
 
 ---
 

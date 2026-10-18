@@ -116,7 +116,7 @@ The crisis was permanently eliminated by establishing five foundational architec
 3. **Continuous Polarity Accumulation with Exponential Half-Life Decay Guardrail**:
    Polarity accumulates continuously within $P(t) \in [-10.0, +10.0]$:
    $$P(t) = P_0 \cdot \left(\frac{1}{2}\right)^{\frac{\Delta t}{t_{1/2}}}, \quad t_{1/2} \in \{30\text{d structural}, 7\text{d tactical}, 1\text{d ephemeral}\}$$
-   New evidence updates polarity by $\Delta P = \text{sign}(\text{event}) \cdot M \cdot T \cdot (1 + \text{cluster\_bonus})$. Crossing $\pm 6.0$ triggers an Eruption, after which polarity resets to a baseline level ($4.0$) to prevent infinite re-trigger loops.
+   New evidence updates polarity by $\Delta P = \text{sign}(\text{event}) \cdot M \cdot T \cdot (1 + \text{cluster-bonus})$. Crossing $\pm 6.0$ triggers an Eruption, after which polarity resets to a baseline level ($4.0$) to prevent infinite re-trigger loops.
 4. **Micro-USD Daily Spend Quota Guardrail**:
    Strict global cap of **$0.40/day** rolling 24-hour spend and **$0.08/day** single-ticker quarantine cap, tracked in integer micro-USD ($\mu\text{USD}$, $1\text{ USD} = 1,000,000\,\mu\text{USD}$).
 5. **The Architectural Modularity Ceiling (400 LOC) & Rule 14**:

@@ -75,7 +75,7 @@ def fetch_risk_free_rate() -> float:
 This pattern contained three fatal flaws:
 1. **The Dark Pool Illusion**: In equity markets, baseline FINRA off-exchange volume typically fluctuates between 35% and 42%. A reading of 50% represents extreme institutional accumulation. By defaulting unhandled exceptions to `0.50`, the system falsely flagged thousands of dormant, illiquid equities as undergoing massive institutional accumulation.
 2. **The TSLA Liquidation Disaster**: In October 2026, an upstream API authentication token expired in `fred_fetcher.py`. The fetcher silently fell back to the `5.25%` interest rate stub. However, real-world rates had dropped to `3.75%`. The artificial 150 bps interest rate spike compressed the calculated Equity Risk Premium into negative territory:
-   $$\text{ERP} = \text{Earnings Yield} - r_{\text{risk\_free}} = \frac{E}{P} - 0.0525 < 0$$
+   $$\text{ERP} = \text{Earnings Yield} - r_{\text{risk-free}} = \frac{E}{P} - 0.0525 < 0$$
    The platform interpreted this as an acute macroeconomic solvency crisis, triggering an automated emergency panic liquidation of over **\$150,000** in high-conviction TSLA shares into SGOV cash equivalents—directly prior to an explosive **+35% earnings breakout rally**.
 3. **900,000 Polluted Rows**: Over an eight-week window, 900,000 tainted synthetic rows accumulated silently in Cloudflare D1 tables (`event_logs`, `daily_prices`, and `consensus_verdicts`), poisoning machine learning weights and historical backtests.
 
@@ -89,7 +89,7 @@ The synthetic defaults propagated through non-linear valuation and risk models, 
   $$f^* = \frac{p(b + 1) - 1}{b}$$
   Artificially elevated win rates ($p$) resulting from synthetic 0.50 accumulation scores inflated recommended position sizing by $+66.5\%$, inducing dangerous tail risk.
 * **Bayesian Conjugate Prior Collapse**:
-  Injecting synthetic default observations into conjugate Beta priors ($\alpha \leftarrow \alpha + \text{synthetic}$) drove prior variance $\operatorname{Var}(\theta) = \frac{\alpha \beta}{(\alpha + \beta)^2 (\alpha + \beta + 1)} \to 0$, creating unwarranted mathematical certainty in corrupt data.
+  Injecting synthetic default observations into conjugate Beta priors ($\alpha \leftarrow \alpha + \text{synthetic}$) drove prior variance $\mathrm{Var}(\theta) = \frac{\alpha \beta}{(\alpha + \beta)^2 (\alpha + \beta + 1)} \to 0$, creating unwarranted mathematical certainty in corrupt data.
 * **Omega Ratio Explosion**:
   $$\Omega(L) = \frac{\int_L^\infty (1 - F(r))\,dr}{\int_{-\infty}^L F(r)\,dr}$$
   Truncating downside tail risk with static defaults caused the calculated Omega ratio to explode, hiding structural downside risk from risk engines.
@@ -196,7 +196,7 @@ $$\text{BUY Consideration} \iff \left( \sum_{k=1}^4 \mathbb{I}(P_k \ge +0.35) \g
 
 #### Growth-Adjusted Capitalized ROIC Margin of Safety (GAC-ROIC-MOS Guardrail)
 To unblock secular compounders from the 0.00 DCF artifact, the Growth-Adjusted Capitalized ROIC Margin of Safety (GAC-ROIC-MOS) Guardrail established the composite valuation metric:
-$$\text{MOS}_{\text{GAC}} = 0.50 \cdot \text{MOS}_{\text{DCF}} + 0.30 \cdot \left(\frac{\text{ROIC} - \text{WACC}}{0.08}\right) + 0.20 \cdot \operatorname{clamp}\left(\frac{g - 15\%}{30\%}, \; -0.50, \; 1.00\right)$$
+$$\text{MOS}_{\text{GAC}} = 0.50 \cdot \text{MOS}_{\text{DCF}} + 0.30 \cdot \left(\frac{\text{ROIC} - \text{WACC}}{0.08}\right) + 0.20 \cdot \mathrm{clamp}\left(\frac{g - 15\%}{30\%}, \; -0.50, \; 1.00\right)$$
 
 If $\text{ROIC} \ge 15\%$ and revenue growth $g \ge 15\%$, and $\text{MOS}_{\text{GAC}} > 0.0$, the company is unblocked, and DCF is floored at current market support.
 

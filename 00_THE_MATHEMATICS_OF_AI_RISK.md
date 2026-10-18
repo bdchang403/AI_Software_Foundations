@@ -118,7 +118,7 @@ Let $x \in [0.0, 1.0]$ represent the normalized token coordinate within a contex
 
 $$F(x) = \begin{cases} 
 1.0 - k_1 x & x \in [0.0, 0.15] \quad \text{(High-Fidelity Primacy Zone)} \\
-F_{\text{valley}} + \epsilon(x) & x \in (0.15, 0.85) \quad \text{(Degradation Valley: 40%–75% Loss)} \\
+F_{\text{valley}} + \epsilon(x) & x \in (0.15, 0.85) \quad \text{(Degradation Valley: 40 to 75 percent loss)} \\
 1.0 - k_2 (1.0 - x) & x \in [0.85, 1.0] \quad \text{(High-Fidelity Recency Zone)}
 \end{cases}$$
 
@@ -130,7 +130,7 @@ F(x) Retrieval Fidelity
 0.8 ┼   └───┐                                               ┌───┘   │
 0.6 ┼       └───┐                                       ┌───┘       │
 0.4 ┼           └───────────────────────────────────────┘           │  Degradation Valley
-0.2 ┼                     (40% to 75% Information Loss)             │  (15% to 85% Zone)
+0.2 ┼                     (40 to 75 percent information loss)             │  (15% to 85% Zone)
 0.0 ┴───┬───────────────┬───────────────────────┬───────────────┬───┤
        0.0             0.15                    0.85            1.00
        [Primacy Zone]   <── Degradation Valley ──>    [Recency Zone]

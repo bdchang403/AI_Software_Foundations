@@ -31,7 +31,7 @@ Empirical evaluations of large context models demonstrate a pronounced U-shaped 
 
 $$F(x) = \begin{cases} 
 1.0 - k_1 x & x \in [0.0, 0.15] \quad \text{(Primacy Bias: High Recall)} \\
-0.35 + \epsilon(x) & x \in (0.15, 0.85) \quad \text{(Degradation Valley: 40%–75% Loss)} \\
+0.35 + \epsilon(x) & x \in (0.15, 0.85) \quad \text{(Degradation Valley: 40 to 75 percent loss)} \\
 1.0 - k_2 (1.0 - x) & x \in [0.85, 1.0] \quad \text{(Recency Bias: High Recall)}
 \end{cases}$$
 

@@ -12,7 +12,7 @@ When a 1,200-line monolithic file (~9,000 tokens) is loaded into an agent's cont
 
 $$F(x) = \begin{cases} 
 1.0 - k_1 x & x \in [0.0, 0.15] \quad \text{(Primacy Bias)} \\
-0.35 + \epsilon(x) & x \in (0.15, 0.85) \quad \text{(Degradation Valley: 40% to 75% Information Loss)} \\
+0.35 + \epsilon(x) & x \in (0.15, 0.85) \quad \text{(Degradation Valley: 40 to 75 percent information loss)} \\
 1.0 - k_2 (1.0 - x) & x \in [0.85, 1.0] \quad \text{(Recency Bias)}
 \end{cases}$$
 

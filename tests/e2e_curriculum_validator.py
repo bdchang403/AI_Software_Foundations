@@ -1128,13 +1128,31 @@ def extract_and_validate_latex(markdown_text: str) -> List[Dict[str, Any]]:
         formula = m.group(1).strip()
         open_braces = formula.count("{")
         close_braces = formula.count("}")
+        # Check GitHub KaTeX constraints:
+        # 1. No \operatorname (GitHub KaTeX sanitizer forbids \operatorname)
+        # 2. No unescaped % (LaTeX comment character in math)
+        # 3. No underscores inside \text{...}
+        # 4. No unbraced superscript/subscripts like ^_
+        syntax_errors = []
+        if r"\operatorname" in formula:
+            syntax_errors.append("Disallowed macro \\operatorname (use \\mathrm instead)")
+        if re.search(r"\\text\{[^}]*_[^}]*\}", formula):
+            syntax_errors.append("Underscore in \\text{...} triggers 'allowed only in math mode'")
+        if re.search(r"\^_", formula):
+            syntax_errors.append("Missing open brace for superscript: ^_")
+        # Check unescaped percent inside math
+        for line in formula.split("\n"):
+            line_clean = line.replace(r"\%", "")
+            if "%" in line_clean:
+                syntax_errors.append("Unescaped % comment symbol inside math block")
         balanced = (open_braces == close_braces)
         results.append({
             "type": "block",
             "formula": formula,
-            "balanced": balanced,
+            "balanced": balanced and (len(syntax_errors) == 0),
             "open_braces": open_braces,
             "close_braces": close_braces,
+            "syntax_errors": syntax_errors,
         })
         
     # Inline math $...$
@@ -1144,12 +1162,25 @@ def extract_and_validate_latex(markdown_text: str) -> List[Dict[str, Any]]:
         open_braces = formula.count("{")
         close_braces = formula.count("}")
         balanced = (open_braces == close_braces)
+        
+        syntax_errors = []
+        if r"\operatorname" in formula:
+            syntax_errors.append("Disallowed macro \\operatorname (use \\mathrm instead)")
+        if re.search(r"\\text\{[^}]*_[^}]*\}", formula):
+            syntax_errors.append("Underscore in \\text{...} triggers 'allowed only in math mode'")
+        if re.search(r"\^_", formula):
+            syntax_errors.append("Missing open brace for superscript: ^_")
+        line_clean = formula.replace(r"\%", "")
+        if "%" in line_clean:
+            syntax_errors.append("Unescaped % comment symbol inside inline math")
+
         results.append({
             "type": "inline",
             "formula": formula,
-            "balanced": balanced,
+            "balanced": balanced and (len(syntax_errors) == 0),
             "open_braces": open_braces,
             "close_braces": close_braces,
+            "syntax_errors": syntax_errors,
         })
         
     return results

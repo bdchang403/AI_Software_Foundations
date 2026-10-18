@@ -242,7 +242,7 @@ class DailySpendCircuitBreaker:
 | :--- | :--- | :--- | :--- | :--- |
 | **Naive Polling Architecture** | 8:00 PM nightly cron sweeps across 35 equities in sequential for-loops. | Polling glucose or arterial lactate every 30 minutes in closed-loop ICU infusion systems. | Polling airspeed and angle-of-attack sensors on a 1-second background task loop. | Batch end-of-day file transfer (NACHA/SWIFT) sweeping 50,000 corporate wire transfers. |
 | **Real-World Catastrophe** | 16-hour reaction lag during flash crashes; burns $500+/mo debating flat equities. | Patient experiences acute hypoglycemic shock within 8 minutes; missed by 30m poller. | 1-second lag during atmospheric microburst causes pilot-induced oscillation or wing stall. | Settlement delays expose bank to 12-hour counterparty insolvency and daylight overdrafts. |
-| **Permanent Mechanism** | Event-driven edge webhooks + 3-Tier triage funnel ($0 compute standby). | Sub-millisecond hardware interrupt-driven sensor sampling with direct micro-bolus adjustment. | Interrupt-driven avionics databus (ARINC 429) operating at $\ge 100\,\text{Hz}$ with hardware limiters. | Real-time ISO 20022 message-event validation with atomic distributed balance locks. |
+| **Permanent Mechanism** | Event-driven edge webhooks + 3-Tier triage funnel (\$0 compute standby). | Sub-millisecond hardware interrupt-driven sensor sampling with direct micro-bolus adjustment. | Interrupt-driven avionics databus (ARINC 429) operating at $\ge 100\,\text{Hz}$ with hardware limiters. | Real-time ISO 20022 message-event validation with atomic distributed balance locks. |
 :::
 
 ---

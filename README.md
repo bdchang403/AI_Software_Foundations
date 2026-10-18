@@ -99,7 +99,7 @@ Every enterprise discipline possesses a designated operational domain, specific 
 | **Validation Leads & Quality Engineers (QE)** | `04_testing_and_validation`<br>`06_security_and_compliance` | Programmatic AST Zero-Mock scanning (ZM001–ZM007), hermetic socket isolation (`pytest-socket`), SHA1 anchor verification, Cartesian fuzzing. | $I_{01}, I_{09}, I_{10}, I_{12}, I_{22}$ | `scripts/scan_mock_data.py`, `tests/conftest.py` |
 | **Scrum Masters & Agile Coaches** | `07_team_process_and_flow` | Bounded task decomposition (<200 LOC blast radius), context debt telemetry, tracking DORA/SPACE metrics, 120-day phased rollout guidance. | $I_{13}, I_{14}, I_{16}, I_{17}$ | Context Debt Dashboard, Sprint Retrospective Monitors |
 | **Deployment Leads & BuilderOps** | `05_deployment_and_operations` | Zero-drift CI pre-commit gates, AI-SBOM metadata generation, nightly mark-to-market reconciliation, dual-storage parity sync. | $I_{04}, I_{13}, I_{14}, I_{15}$ | `.github/workflows/verify_ai_sbom.yml`, `sync_data.py` |
-| **Multi-Agent Orchestrators** | `09_ai_agent_orchestration`<br>`08_final_capstone_project` | Dialectical Adversarial Triad (Path C), deterministic convex log-odds solver, Level-2 $0-compute JSD bypass, plausibility bands. | $I_{02}, I_{03}, I_{09}, I_{10}, I_{11}$ | `solve_convex_debate_verdict()`, Runtime Breakers |
+| **Multi-Agent Orchestrators** | `09_ai_agent_orchestration`<br>`08_final_capstone_project` | Dialectical Adversarial Triad (Path C), deterministic convex log-odds solver, Level-2 \$0-compute JSD bypass, plausibility bands. | $I_{02}, I_{03}, I_{09}, I_{10}, I_{11}$ | `solve_convex_debate_verdict()`, Runtime Breakers |
 
 ---
 
@@ -109,7 +109,7 @@ The curriculum is organized into six progressive, interconnected milestones:
 
 ### Milestone 1: Foundations, Mathematics & Invariants (Root Modules)
 - [**00_THE_MATHEMATICS_OF_AI_RISK.md**](./00_THE_MATHEMATICS_OF_AI_RISK.md)  
-  *Textbook treatise:* $O(N^2)$ Transformer attention entropy $\mathcal{H}(A_i)$, U-shaped "Lost in the Middle" degradation $F(x)$, exponential half-life decay $w(\Delta t)$, conjunctive gate collapse ($0.243\%$) vs. compensatory confluence, log-odds convex evidence fusion with JSD discounting, Ledoit-Wolf shrinkage, symmetrical ZCA whitening, Deflated Sharpe Ratio (DSR $\ge 0.95$), and pre-action plausibility bands.
+  *Textbook treatise:* $O(N^2)$ Transformer attention entropy $\mathcal{H}(A_i)$, U-shaped "Lost in the Middle" degradation $F(x)$, exponential half-life decay $w(\Delta t)$, conjunctive gate collapse (0.243%) vs. compensatory confluence, log-odds convex evidence fusion with JSD discounting, Ledoit-Wolf shrinkage, symmetrical ZCA whitening, Deflated Sharpe Ratio (DSR $\ge 0.95$), and pre-action plausibility bands.
 - [**00_ENTERPRISE_CONSTITUTION.md**](./00_ENTERPRISE_CONSTITUTION.md)  
   *Constitutional law:* The 10 Inviolable Commandments, the Master Canonical Invariant Matrix ($I_{01}-I_{22}$), the Fail-Closed Telemetry Doctrine, the Zero Hard-Deletes Mandate, cryptographic SHA1 anchor blocks, and Articles I through VII.
 - [**00_THE_CONTEXT_PIPELINE.md**](./00_THE_CONTEXT_PIPELINE.md)  
@@ -153,7 +153,7 @@ The curriculum is organized into six progressive, interconnected milestones:
 - [**08_final_capstone_project/**](./08_final_capstone_project/README.md)  
   *Capstone Integration:* Full-scale multi-role enterprise simulation assembling an autonomous agent system for a regulated, mission-critical workflow.
 - [**09_ai_agent_orchestration/**](./09_ai_agent_orchestration/README.md)  
-  *Agent Orchestrator Hub:* Dialectical Adversarial Triad (Path C), deterministic convex log-odds solver (`solve_convex_debate_verdict`), Level-2 $0-compute JSD bypass, and runtime execution plausibility bands ($I_{02}$).
+  *Agent Orchestrator Hub:* Dialectical Adversarial Triad (Path C), deterministic convex log-odds solver (`solve_convex_debate_verdict`), Level-2 \$0-compute JSD bypass, and runtime execution plausibility bands ($I_{02}$).
 
 ---
 

@@ -100,22 +100,33 @@ def test_markdown_core_documents_syntax_validity():
 # ============================================================================
 
 def test_latex_formula_delimiter_and_brace_balance_in_specs():
-    """Verify that LaTeX formulas in authoritative guide have balanced delimiters and braces."""
-    guide_path = os.path.join(
-        REPO_ROOT,
-        "templates_and_resources",
-        "stories",
-        "autonomous_agentic_quant_engineering_master_guide.md"
-    )
-    assert os.path.exists(guide_path), f"Authoritative guide missing at {guide_path}"
-    with open(guide_path, "r", encoding="utf-8") as f:
-        content = f.read()
+    """Verify that LaTeX formulas across all curriculum files have balanced delimiters and zero KaTeX syntax traps."""
+    md_files = glob.glob(os.path.join(REPO_ROOT, "0[0-9]_*/**/*.md"), recursive=True)
+    md_files.extend(glob.glob(os.path.join(REPO_ROOT, "00_*.md")))
+    md_files.append(os.path.join(REPO_ROOT, "README.md"))
+    md_files.append(os.path.join(REPO_ROOT, "templates_and_resources", "stories", "autonomous_agentic_quant_engineering_master_guide.md"))
     
-    extracted = extract_and_validate_latex(content)
-    assert len(extracted) >= 10, f"Expected at least 10 LaTeX formulas in guide, found {len(extracted)}"
+    total_formulas = 0
+    failures = []
     
-    unbalanced = [e for e in extracted if not e["balanced"]]
-    assert len(unbalanced) == 0, f"Found unbalanced LaTeX formulas: {unbalanced}"
+    for filepath in md_files:
+        if not os.path.exists(filepath):
+            continue
+        with open(filepath, "r", encoding="utf-8") as f:
+            content = f.read()
+        
+        # Remove code blocks so code snippets with $ are not flagged
+        clean_content = re.sub(r"```[\s\S]*?```", "", content)
+        extracted = extract_and_validate_latex(clean_content)
+        total_formulas += len(extracted)
+        
+        unbalanced = [e for e in extracted if not e["balanced"]]
+        if unbalanced:
+            for u in unbalanced:
+                failures.append(f"{os.path.relpath(filepath, REPO_ROOT)}: {u.get('syntax_errors') or 'unbalanced braces'} in {u['formula'][:60]}")
+    
+    assert total_formulas >= 50, f"Expected at least 50 LaTeX formulas across curriculum, found {total_formulas}"
+    assert len(failures) == 0, f"Found LaTeX KaTeX errors:\n" + "\n".join(failures[:20])
 
 
 def test_latex_attention_entropy_mathematical_formulation():

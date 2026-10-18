@@ -76,7 +76,7 @@ Every feature extracted during the Survey phase is mapped to an assigned milesto
 | 25 | Bounded Task Decomposition | Replacing monolithic velocity with context-bounded cognitive units | M5 | Survey §8 |
 | 26 | AI Blast Radius & DORA Metrics | Telemetry tracking hallucination loops, PR churn, review choke-points | M5 | Survey §8 |
 | 27 | Dialectical Debate Triad | 3-stage Bull, Bear, Auditor debate arbitrated by convex solver | M5 | Survey §3 (#10) |
-| 28 | Level-2 $0-Compute JSD Bypass | Zero-compute consensus bypass when pillar divergence $\text{JSD} \le 0.12$ | M5 | Survey §3 (#11) |
+| 28 | Level-2 \$0-Compute JSD Bypass | Zero-compute consensus bypass when pillar divergence $\text{JSD} \le 0.12$ | M5 | Survey §3 (#11) |
 | 29 | Pre-Action Plausibility Bands | Runtime envelope $|V_{\text{exec}} - \text{Baseline}| \le \text{Band}$ across domains | M5 | Survey §3 (#19) |
 | 30 | Nightly Reconciliation Loop | Automated mark-to-market reconciliation and state integrity audit | M5 | Survey §3 (#19) |
 | 31 | 6 Forensic Failure-Mode Crises | Deep case studies (Cron Poller, Context Drift, Synthetic Poison, 99% Gate, Epistemic Priming, Channel Desync)| M1-M5 | Survey §6 |

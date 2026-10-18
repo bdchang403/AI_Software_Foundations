@@ -199,7 +199,7 @@ if __name__ == "__main__":
 │   • Threat: Automated trading desks suffered losses following spoofed social media sentiment     │
 │     announcing a phantom bank run.                                                               │
 │   • Defense: Enforced Unidirectional Epistemic Air-Gap. Raw social sentiment discounted by 80%   │
-│     ($W_{	ext{comm}} = 0.20$). Wire routing required confluence across central bank reserves    │
+│     ($W_{\text{comm}} = 0.20$). Wire routing required confluence across central bank reserves    │
 │     and verified SWIFT settlement confirmations.                                                 │
 │   • Result: Bank infrastructure successfully ignored spoofed panic, preserving liquidity.       │
 │                                                                                                  │

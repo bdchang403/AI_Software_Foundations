@@ -50,7 +50,7 @@
 - [2. Epistemic Discipline, Bias Quarantining & Dialectical Multi-Agent Triads](#2-epistemic-discipline-bias-quarantining--dialectical-multi-agent-triads)
   - [2.1 The Pathology of Confirmation Bias & Cognitive Priming in Multi-Agent LLMs](#21-the-pathology-of-confirmation-bias--cognitive-priming-in-multi-agent-llms)
     - [2.1.1 The Epistemic Priming Breakdown & Circular Corroboration](#211-the-epistemic-priming-breakdown--circular-corroboration)
-    - [2.1.2 Institutional Case Study: The October 2026 Simulated $150,000 TSLA $\rightarrow$ SGOV Liquidation Scenario](#212-institutional-case-study-the-october-2026-simulated-150000-tsla-rightarrow-sgov-liquidation-scenario)
+    - [2.1.2 Institutional Case Study: The October 2026 Simulated \$150,000 TSLA $\rightarrow$ SGOV Liquidation Scenario](#212-institutional-case-study-the-october-2026-simulated-150000-tsla-rightarrow-sgov-liquidation-scenario)
     - [2.1.3 Omniscient Prompt Pollution](#213-omniscient-prompt-pollution)
     - [2.1.4 The 9-Agent Debate Fallacy](#214-the-9-agent-debate-fallacy)
   - [2.2 Forensic Case Study 5: The Epistemic Priming & Liquidation Incident (October 2026)](#22-forensic-case-study-5-the-epistemic-priming--liquidation-incident-october-2026)
@@ -1225,7 +1225,7 @@ This produces a **circular corroboration feedback loop**:
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-#### 2.1.2 Institutional Case Study: The October 2026 Simulated $150,000 TSLA $\rightarrow$ SGOV Liquidation Scenario
+#### 2.1.2 Institutional Case Study: The October 2026 Simulated \$150,000 TSLA $\rightarrow$ SGOV Liquidation Scenario
 In October 2026, this failure mode materialized during an automated multi-agent stress test across a simulated $150,000 production portfolio. An upstream mock macro stub injected an unverified 5.25% Federal Reserve funds rate, an inverted Treasury yield curve, and 14 synthetic macro sirens into the pipeline context. Simultaneously, the system ingested a newly uploaded YouTube video from Bravos Research titled *"A Once in a Lifetime Monetary Reset is Coming."*
 
 The LLM extraction agent—operating without an epistemic firewall—was hydrated with both the video transcript and the internal pipeline's macro state. Rather than recognizing the video for what it was—a retail sales funnel leveraging apocalyptic hyperbole to sell a $2,000 trading mentorship off a routine 25 bps Federal Reserve policy adjustment—the model evaluated the video through the prism of its own internal panic. The model's synthesized verdict explicitly stated:
@@ -1794,7 +1794,7 @@ High-quality secular compounders (e.g., MSFT, GOOGL, NVDA) must not be shaken ou
 #### 2.7.5 Conformal Hurdle Clamping & Auto-Demotion
 As signals age, the resolver applies strict status transitions:
 - **`ACTIVE` ($\Delta t \le t_{1/2}$)**: Raw recommendation is preserved.
-- **`DECAYING` ($t_{1/2} < \Delta t \le \text{expiry}$)**: Actionable `BUY` signals require an effective confidence of at least $70\%$ (the conformal hurdle). If decay reduces effective confidence below $70\%$, the signal is automatically demoted to `WATCH` (if $\ge 50\%$) or `HOLD` (if $< 50\%$).
+- **`DECAYING` ($t_{1/2} < \Delta t \le \text{expiry}$)**: Actionable `BUY` signals require an effective confidence of at least 70% (the conformal hurdle). If decay reduces effective confidence below 70%, the signal is automatically demoted to `WATCH` (if confidence $\ge 50\%$) or `HOLD` (if confidence $< 50\%$).
 - **`EXPIRED` ($\Delta t > \text{expiry}$)**: The signal is immediately stripped of actionable standing, demoted to `"NEUTRAL (EXPIRED)"`, and flagged with `pending_re_evaluation = True`.
 
 #### 2.7.6 The Zero-Leakage Presentation Gateway
@@ -1904,7 +1904,7 @@ From the normalized discrete tranches, the forensic accounting engine evaluates 
    WAFCD isolates the company's immediate structural vulnerability to monetary policy tightening and benchmark interest rate shocks.
 
 2. **Refinancing Stress Score (RSS)**:
-   $$\text{RSS} = \frac{\sum_{t \le 2\text{yr}} D_t}{\text{Annual FCF} + \text{Cash & Equivalents}}$$
+   $$\text{RSS} = \frac{\sum_{t \le 2\text{yr}} D_t}{\text{Annual FCF} + \text{Cash and Equivalents}}$$
    Where $\sum_{t \le 2\text{yr}} D_t$ represents the cumulative debt maturity wall maturing within the next 24 months. If $\text{RSS} \ge 1.20$, the issuer faces acute refinancing friction under elevated sovereign yields, triggering an immediate audit flag in the forensic accounting triad.
 
 ##### 4. Cost-Optimized 3-Tier Escalation Ladder
@@ -1978,16 +1978,16 @@ A forensic investigation unmasked five distinct technical root causes:
    confidence = max(40, int(round(100.0 - abs(avg_conviction - 50.0) * 2)))
    ```
    When `avg_conviction = 50.0%` (representing maximum disagreement and a 50/50 split between bulls and bears), `abs(50 - 50) * 2 = 0`, producing:
-   $$\text{Confidence} = 100.0 - 0 = \mathbf{100\%}$$
+   $$\text{Confidence} = 100.0 - 0 = \mathbf{100\text{ percent}}$$
    Maximum uncertainty generated a verdict of **HOLD (100% confidence)**! Conversely, when conviction rose to 65% (clear directional bias), confidence paradoxically dropped to 70%.
 4. **Conversational Hedging ("Green Board, Brown Advice")**: Presentation prompts allowed LLMs to compose the final recommendation headline. When presented with complex multi-factor tables, LLMs exhibited conversational hedging: even when quantitative pre-gates had locked a `BUY` verdict with 4-pillar confluence, the LLM's prose output would hedge: *"While quantitative metrics indicate Buy, investors should exercise caution and Hold given broader uncertainties."*
 5. **Multi-Ticker Loop Contamination (Invariant $I_{16}$)**: In batch screening loops, loop-carried variables (e.g. `last_verified_spot`) persisted across loop iterations when an API call failed for ticker $N$, causing ticker $N$'s prompt to be evaluated with ticker $N-1$'s spot price.
 
 #### 2.9.3 The False Solutions
 Initial attempts to patch cross-channel desync failed because they treated symptoms rather than architectural root causes:
-- **Naive `COUNT(DISTINCT signal) > 1` Cron Checks**: Developers ran a cron job asserting that all database rows for a ticker on a given date must have identical signals. This failed under red-team review: the email digest represents an actionable `RECOMMENDATION`, whereas Slack is often an interactive `STATUS_PULL`, and IDE CLI queries are often developer `DEBUG_QUERY` exploratory scenarios (*"What if NVDA drops 20%?"*). Grouping all three caused massive false positive alarm floods.
+- **Naive `COUNT(DISTINCT signal) > 1` Cron Checks**: Developers ran a cron job asserting that all database rows for a ticker on a given date must have identical signals. This failed under red-team review: the email digest represents an actionable `RECOMMENDATION`, whereas Slack is often an interactive `STATUS_PULL`, and IDE CLI queries are often developer `DEBUG_QUERY` exploratory scenarios (*"What if NVDA drops 20 percent?"*). Grouping all three caused massive false positive alarm floods.
 - **Headline Token Locking**: Forcing the prompt to output `*Consensus: BUY*`. The model adhered to the token header but contradicted it in the body paragraph ("Green Board, Brown Advice").
-- **Synthetic Fallback Constants**: Injecting a synthetic volatility stop ($3\% \times \text{spot}$) when historical bars were $< 15$, which directly violated ADR-029 and introduced synthetic divergence between channels.
+- **Synthetic Fallback Constants**: Injecting a synthetic volatility stop ($(0.03 \times \text{spot})$) when historical bars were $< 15$, which directly violated ADR-029 and introduced synthetic divergence between channels.
 
 #### 2.9.4 The Permanent Invariant & Mechanism
 The permanent resolution was codified across **ADR-038 (Cross-Channel Verdict Synchronization)**, **ADR-045 (Decoupled Ingress & Closed-World Telemetry)**, **ADR-027 (Immutable Quarantine)**, and **Invariant $I_{14}$**:
@@ -2227,7 +2227,7 @@ To ensure robust implementation in autonomous production environments, verify th
 | 3 | **Epistemic Slicing** | Inspect `slice_epistemic_view_for_agent()` in `src/v3/debate/context_slicer.py`. | Agents receive only their domain allowlist; no pure-math debate. |
 | 4 | **Solvency Pre-Gate** | Assert Merton $D_D \ge 1.75$ in `src/v3/debate/epistemic_triad_orchestrator.py`. | Insolvent candidates vetoed in $<25\text{ms}$ with zero LLM spend. |
 | 5 | **JSD Entropy Discount** | Assert `entropy_discount = max(0.15, 1.0 - lambda * JSD)` in `evidence_fusion.py`. | Disagreement dampens qualitative triad weighting automatically. |
-| 6 | **Level-2 $0 JSD Bypass**| Run `should_bypass_dialectical_debate()` on pillar vectors. | Bypasses LLMs when $\text{JSD} \le 0.12$ and mean $\ge 0.70$ or $\le 0.30$. |
+| 6 | **Level-2 \$0 JSD Bypass**| Run `should_bypass_dialectical_debate()` on pillar vectors. | Bypasses LLMs when $\text{JSD} \le 0.12$ and mean $\ge 0.70$ or $\le 0.30$. |
 | 7 | **Signal Decay Gateway** | Search codebase for raw `consensus` SQL queries. | Presentation strictly routed through `ConsensusService.get_active_verdict()`. |
 | 8 | **Zero Hard-Deletes** | Search codebase for `DELETE FROM consensus`. | Zero matches; all invalidations routed through `QuarantineManager`. |
 | 9 | **Compounder Guard** | Assert `COMPOUNDER_HOLD_LOCK_DAYS = 20` and $t_{1/2} = 90\text{d}$. | Secular compounders protected from tactical 7-day shakeouts. |
@@ -2361,7 +2361,7 @@ The silent contamination cascaded through the system:
    $$\text{ERP} = \text{Earnings Yield} - R_f$$
    Substituting $R_f = 5.25\%$ rather than $R_f = 3.75\%$ compressed calculated ERP by **150 basis points**, artificially driving risk premia negative. The Macro Regime Agent signaled an existential sovereign yield crisis, triggering an automated liquidation: **over $150,000 in equities was liquidated into cash equivalents (SGOV T-Bills)**. Weeks later, TSLA initiated an explosive +35% earnings breakout, inflicting massive alpha drag.
 4. **Mathematical Error Compounding**:
-   - *DCF Terminal Value Inflation*: In two-stage DCF models, substituting a synthetic fallback WACC of $W = 0.080$ for true capital cost $W = 0.095$ with $g_{\infty} = 0.025$ shrinks the terminal denominator from $0.070$ to $0.055$, generating $\mathbf{+27.3\%}$ artificial valuation inflation.
+   - *DCF Terminal Value Inflation*: In two-stage DCF models, substituting a synthetic fallback WACC of $W = 0.080$ for true capital cost $W = 0.095$ with $g_{\infty} = 0.025$ shrinks the terminal denominator from $0.070$ to $0.055$, generating **+27.3%** artificial valuation inflation.
    - *Kelly Criterion Leverage Ruin*: If a synthetic dark pool ratio of $0.50$ artificially inflates win probability $p$ from $0.52$ to $0.60$ with payoff odds $b = 1.5$, optimal Kelly allocation expands from $20.0\%$ to $33.3\%$ NAV—a **+66.5% unhedged leverage expansion**.
    - *Bayesian Posterior Drift*: Injecting synthetic observations $r_{\text{obs}} = 0.50$ into conjugate Beta priors artificially inflates effective sample size $N_{\text{eff}} = \alpha + \beta$, collapsing posterior variance and inducing unwarranted certainty in hallucinated beliefs.
    - *Keating-Shadwick Omega Explosion*: Replacing missing downside tail bars with synthetic zeros collapses the denominator $\mathbb{E}[\max(0, -R)]$, causing $\Omega(0)$ to explode artificially past the $+1.25$ threshold.
@@ -3312,7 +3312,7 @@ $$\text{MOS}_{\text{GAC}} = 0.50 \cdot \text{MOS}_{\text{DCF}} + 0.30 \cdot \lef
 
 ##### 5. Multi-Tranche Execution Calculus & Asymmetric Payoffs
 Capital allocation scales with progressive market confirmation, avoiding full-position risk at initial entry:
-- **Tranche 1 (Starter, $0.33\times$)**: Deployed upon 2-of-4 Confluence with a mechanical hard stop at $-8.0\%$. Risk budget is strictly capped at $28\text{ bps NAV}$.
+- **Tranche 1 (Starter, $0.33\times$)**: Deployed upon 2-of-4 Confluence with a mechanical hard stop at -8.0%. Risk budget is strictly capped at $28\text{ bps NAV}$.
 - **Tranche 2 (Proof, $0.66\times$ total)**: Released only after price advances $P \ge P_0 \times 1.035$ with close exceeding $\text{EMA}_{5\text{d}}$.
 - **Tranche 3 (Full, $1.00\times$ total)**: Released at $P \ge P_0 \times 1.070$ without climax volume distribution.
 - **Harvest Ladder**: First profit target TP1 ($+8.0\%$, trailing stop ratcheted to breakeven), TP2 ($+16.0\%$, trailing stop ratcheted to $+8.0\%$), and runner tranche ($33.34\%$) trailing the 20-day EMA.

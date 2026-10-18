@@ -43,10 +43,10 @@ Requirements Leads must explicitly categorize all ingress telemetry into one of 
 
 | Horizon Classification | Half-Life ($t_{1/2}$) | Hard Expiry ($2 \cdot t_{1/2}$) | Domain Telemetry: Healthcare (FDA SaMD) | Domain Telemetry: Core Banking |
 | :--- | :--- | :--- | :--- | :--- |
-| **1. Kinematic / Momentum** | $5.0\text{ days}$ ($120\text{ hrs}$) | $10.0\text{ days}$ | Acute hemodynamic pulse, continuous glucose rate | Foreign exchange intraday spot volatility |
-| **2. Tactical Operational** | $7.0\text{ days}$ ($168\text{ hrs}$) | $14.0\text{ days}$ | 24-hour clinical fluid balance, body temperature | Interbank settlement queue depth, short-term repo |
-| **3. Structural Solvency** | $21.0\text{ days}$ ($504\text{ hrs}$) | $42.0\text{ days}$ | Serum creatinine clearance ($Kt/V$), liver panels | Correspondent bank debt maturity, counterparty CDS|
-| **4. Secular Quality** | $90.0\text{ days}$ ($2,160\text{ hrs}$)| $180.0\text{ days}$ | 90-day HbA1c trajectory, chronic dialysis status | 10-K audited cash flow, Tier-1 capital ratio |
+| **1. Kinematic / Momentum** | $5.0\text{ days}$ (120 hrs) | $10.0\text{ days}$ | Acute hemodynamic pulse, continuous glucose rate | Foreign exchange intraday spot volatility |
+| **2. Tactical Operational** | $7.0\text{ days}$ (168 hrs) | $14.0\text{ days}$ | 24-hour clinical fluid balance, body temperature | Interbank settlement queue depth, short-term repo |
+| **3. Structural Solvency** | $21.0\text{ days}$ (504 hrs) | $42.0\text{ days}$ | Serum creatinine clearance ($Kt/V$), liver panels | Correspondent bank debt maturity, counterparty CDS |
+| **4. Secular Quality** | $90.0\text{ days}$ (2,160 hrs) | $180.0\text{ days}$ | 90-day HbA1c trajectory, chronic dialysis status | 10-K audited cash flow, Tier-1 capital ratio |
 
 When $\Delta t > 2 \cdot t_{1/2}$, the telemetry is **strictly expired**: the agent must discard the data point, fail closed, and request fresh observations.
 

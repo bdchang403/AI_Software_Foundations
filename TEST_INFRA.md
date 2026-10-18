@@ -43,7 +43,7 @@ The test suite is structured into four deterministic tiers of increasing integra
 │                                           ▼                                                      │
 │   [Tier 3: Cross-Chapter Parity]                                                                 │
 │   • Dialectical Adversarial Triad (Path C: Bull, Bear, Auditor) log-odds convex solver fusion    │
-│   • Level-2 $0-Compute JSD Bypass logic (JSD <= 0.12 consensus trigger vs divergence escalation) │
+│   • Level-2 \$0-Compute JSD Bypass logic (JSD <= 0.12 consensus trigger vs divergence escalation) │
 │   • Cross-channel synchronization: ConsensusService, remote D1 freshness, stale DB breakers     │
 │   • Role playbook cross-functional handoffs (PO -> BA -> Architect -> QE -> Scrum -> Ops)        │
 │   • Threshold: 100% Pass; zero divergence between presentations; JSD discount verified           │
@@ -87,7 +87,7 @@ Every feature specified in `PROJECT.md` is mapped to its implementing test suite
 | 9 | Architectural Modularity Ceiling (400 LOC) | Non-anchor line counting, 350-LOC refactor trigger warning, 400-LOC CI rejection | $I_{22}$ | `test_tier2_boundary_invariants.py` |
 | 10 | SHA1 Invariant Anchor Parity | Cryptographic hash calculation and tampering detection for code-adjacent anchors | $I_{22}$ | `test_tier2_boundary_invariants.py` |
 | 11 | Dialectical Adversarial Triad | Path C Bull, Bear, and Auditor deliberation arbitrated by log-odds convex solver with bounded multiplier $M \in [0.20, 1.25]$ | $I_{03}, I_{06}, I_{09}$ | `test_tier3_cross_chapter_parity.py` |
-| 12 | Level-2 $0-Compute JSD Bypass | Zero-compute consensus bypass when pillar divergence $\text{JSD} \le 0.12$ and mean $\ge 0.70$ or $\le 0.30$ | $I_{09}$ | `test_tier3_cross_chapter_parity.py` |
+| 12 | Level-2 \$0-Compute JSD Bypass | Zero-compute consensus bypass when pillar divergence $\text{JSD} \le 0.12$ and mean $\ge 0.70$ or $\le 0.30$ | $I_{09}$ | `test_tier3_cross_chapter_parity.py` |
 | 13 | Cross-Channel Synchronization | Single-source `ConsensusService`, remote D1 freshness gate ($I_{13}$), and immutable server-composed verdict lock ($I_{14}$) | $I_{13}, I_{14}, I_{15}, I_{16}$ | `test_tier3_cross_chapter_parity.py` |
 | 14 | Role Playbook Handoffs | Cross-functional contracts (PO $\to$ BA $\to$ Architect $\to$ QE $\to$ Scrum Master $\to$ Deployment) with living context | $I_{05}, I_{15}, I_{20}, I_{21}$ | `test_tier3_cross_chapter_parity.py` |
 | 15 | Replay of 6 Forensic Crises | Full replay and permanent mechanism assertion for Crises 1 through 6 | $I_{01}, I_{02}, I_{03}, I_{04}, I_{13}, I_{20}, I_{21}, I_{22}$ | `test_tier4_real_world_workloads.py` |

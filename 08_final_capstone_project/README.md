@@ -145,4 +145,34 @@ To achieve formal capstone certification, the submitted agent repository must sa
 
 ---
 
+## 📊 Empirical Telemetry & Governance Standards
+
+The capstone project requires assembling an agent pipeline that survives adversarial verification and achieves production cost efficiency. For the canonical reference data and multi-model economic teardown, consult:
+
+- [**Empirical AI Telemetry, Repository Economics & Governance Benchmark**](../templates_and_resources/EMPIRICAL_AI_TELEMETRY_AND_GOVERNANCE_BENCHMARK.md):
+  - **Decoupled Multi-Model Pipeline Economics (83.8% Cost Savings)**: Complete economic teardown demonstrating how routing tasks through specialized tiers (Router @ \$0.80/M, Reasoner @ \$0.27/M in / \$1.10/M out, Auditor @ \$3.00/M) slashes operating costs from \$157.50 to \$25.50 per 1,000 tasks compared to naive monolithic frontier models (Benchmark §6.1–§6.3).
+  - **Cross-Framework Compliance Attestation**: Operational mapping showing how the capstone's 7-layer architecture satisfies the requirements of NIST AI RMF 1.0, ISO/IEC 42001:2023, and EU AI Act (Regulation (EU) 2024/1689) (Benchmark §7.1–§7.3, §9).
+  - **The 22 Canonical Invariants & 10 Commandments**: Master summary table linking each architectural invariant ($I_{01}-I_{22}$) to empirical failure modes and statutory mandates (Benchmark §9).
+
+---
+
+## Production Reality & Operational Failure Modes in the AI Era
+
+### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
+In mid-2026, 75\%-84\% of enterprise engineering pods approach "agentic capstones" by wrapping a commercial frontier model in an ad-hoc loop with a vague system prompt ("You are an expert financial router" or "You are a clinical dosing assistant"). They pipe unvalidated production JSON into chat sidebars, rely on inline autocomplete ghost-text for glue code, and test against 3-5 cherry-picked happy-path prompts. The result is catastrophic: monolithic frontier queries burn \$157.50 per 1,000 tasks, while the team suffers from the 2026 DORA Verification Trap. Reviewers face a +91\% Faros AI PR review bloat because they are forced to manually inspect non-deterministic agent outputs that look syntactically pristine but suffer from subtle deceptive compliance—quietly violating cross-file invariants and regulatory audit mandates.
+
+### Ungoverned Production Failure Modes
+When engineering pods bypass capstone architecture and ship ad-hoc LLM glue code into production environments:
+- **Financial & Operational Catastrophe**: Without the decoupled multi-model pipeline, inference OpEx runs 5x-6x higher than budgeted, bleeding \$132.00 of wasted spend per 1,000 transactions compared to the \$25.50 decoupled baseline.
+- **Silent Invariant Decay & Clinical/Fiscal Liability**: Under prompt injection or unexpected sensor packet formats (`NaN`, corrupted timestamps), unanchored agents invent plausible synthetic fallbacks. In Track A, this manifests as delivering an unclamped insulin dose exceeding physiological envelopes ($I_{02}$); in Track B, it manifests as routing high-value interbank wires without compensatory orthogonal quorum ($I_{09}$).
+- **Regulatory Sanctions**: Regulators under FDA 21 CFR Part 820.30 or Federal Reserve SR 11-7 will not penalize the foundation model vendor; they issue warning letters or consent decrees to the operating organization for failing to demonstrate deterministic design controls, hermetic test isolation, and an immutable quarantine trail ($I_{04}$).
+
+### Deterministic Engineering Defenses & Operational Takeaways
+1. **Enforce Hermetic Socket Isolation in CI**: Run `pytest tests/ --disable-socket`. If any test suite fails when offline or attempts to reach a remote model endpoint during unit testing, fail the build immediately. Zero external dependencies in verification.
+2. **Clamp Every Actuator with Invariant $I_{02}$**: Wrap all final agent state mutations in deterministic mathematical clamping assertions (e.g., physiological dose limits or statistical volatility bands $|T - \mu| \le 3.5\sigma$). If the assertion fails, trip the circuit breaker and halt execution.
+3. **Deploy the Decoupled Routing Tier**: Immediately break monolithic frontier calls into a three-tier pipeline: Tier 1 AST Classifier (\$0.80/M), Tier 2 Bounded Reasoner (\$0.27/M input), and Tier 3 Deterministic Validator (\$3.00/M), capturing an immediate 83.8\% token savings.
+4. **Ban Hard Deletion in Ingress Telemetry ($I_{04}$)**: Route every rejected, corrupted, or malformed sensor/transaction packet to an append-only quarantine ledger with full provenance and non-null error context.
+
+---
+
 [**Proceed to Capstone Hands-On Lab Workbook →**](./LAB_WORKBOOK.md) | [**Return to Root Curriculum Overview →**](../README.md)

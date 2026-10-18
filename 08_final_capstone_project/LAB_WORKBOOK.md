@@ -295,3 +295,26 @@ python3 scripts/verify_context_drift.py
 - [ ] Context Debt Ratio compliant ($\text{CDR}_{\text{token}} \le 0.18$, $\text{CDR}_{\text{structural}} \le 0.05$).
 - [ ] Prompt Regression Interval compliant ($\text{PRI}_{\text{turns}} \le 3$, $\text{PRI}_{\text{hours}} \le 0.08$).
 - [ ] All Mermaid diagrams validated with 0 syntax errors.
+
+---
+
+## Production Reality & Operational Failure Modes in the AI Era
+
+### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
+The mid-2026 median engineer treats agent development like prompt prototyping. At the 75\%-84\% industry baseline, developers paste 500 lines of messy Python into a chat sidebar, ask for an "agentic loop," and commit whatever inline ghost-text appears. When it comes to testing, median teams write unit tests stuffed with `unittest.mock.MagicMock` patches that mock out network calls, sensor inputs, and state validation. These tests run in milliseconds, pass with 100\% green bars, and verify absolutely nothing about real-world runtime behavior. The team falls into the DORA Verification Trap: when bugs strike in production, engineers spend days debugging deceptive hallucinations that were masked by tautological mocks, spiking PR review bloat by +91\% as reviewers try to untangle why an agent passed all tests locally but hallucinated corrupt state in staging.
+
+### Ungoverned Production Failure Modes
+When engineering teams treat agent testing as optional prompt engineering and deploy unanchored workflows into production:
+- **Mock Contamination & Silent Failures**: Synthetic fallbacks (such as numeric returns in `except` blocks or default empty dictionaries, violating rules ZM001–ZM007) will cause the agent to swallow upstream network drops or schema mismatches. Instead of failing closed, the agent silently feeds garbage data into downstream actuators.
+- **Context Bloat & Token Runaway**: Without compiling a Living Context under 1,500 tokens and monitoring Context Debt Ratio ($\text{CDR} \le 0.18$), prompt context balloons into hundreds of thousands of tokens, triggering attention dilution, position-dependent lost-in-the-middle degradation, and multiplying API token costs.
+- **Review Gridlock**: Reviewers will reject 3,000-line monolithic agent PRs because no human can reason about multi-turn agent state transitions without deterministic AST scans and hermetic boundary guarantees.
+
+### Deterministic Engineering Defenses & Operational Takeaways
+1. **Install AST Zero-Mock Verification as a CI Gate**: Add `python3 scripts/scan_mock_data.py --path .` to the CI pipeline. Any PR containing banned mock prefixes (`mock_`, `fake_`), default dictionary fallbacks (`ZM006`), or boolean error fallbacks (`ZM007`) is rejected before review.
+2. **Compile Context from AST Registries**: Stop manually editing prompt strings. Automatically compile agent context from `STATE_REGISTRY.md` and `MATHEMATICAL_REGISTRY.md` via `scripts/compile_living_context.py`, enforcing a strict $< 1,500$ token ceiling.
+3. **Execute Cartesian Fault-Injection Testing**: Before writing happy-path unit tests, write three adversarial tests: one injecting `NaN`/`Inf` floats, one injecting boolean smuggling (`isinstance(True, int)`), and one simulating total socket loss (`--disable-socket`). The agent must fail closed in all three.
+4. **Enforce the Prompt Regression Interval Limit**: Measure Prompt Regression Interval ($\text{PRI}_{\text{turns}} \le 3$). If an agent cannot stabilize its execution within three automated turns, cut execution and fall back to a deterministic closed-world baseline.
+
+---
+
+[**Return to Capstone Architecture Overview →**](./README.md) | [**Return to Root Curriculum Overview →**](../README.md)

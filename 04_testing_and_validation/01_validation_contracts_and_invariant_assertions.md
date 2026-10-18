@@ -150,3 +150,26 @@ Draft the complete 3-Part Directive instructing an AI agent to author the test s
 1. **Context Boundary**: Directs the agent to `docs/specs/DEBT_SOLVENCY_BLUEPRINT.md` and explicitly forbids reading `src/solvency/`.
 2. **Task Instruction**: Explicitly requires tests for redacted coupon spreads, zero imputation, RSS calculation boundaries at $1.19$ vs $1.20$, and division-by-zero protection when FCF is zero ($I_{07}$).
 3. **Format Constraints**: Enforces zero ZM001–ZM007 violations, hermetic execution, and test file line bounds.
+
+---
+
+## Production Reality & Failure Modes in the AI Era
+
+### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
+In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), automated testing functions as an exercise in **Circular Verification** (the 2026 Google DORA Verification Trap). After prompting an AI assistant to generate a feature implementation, developers issue unstructured test requests: *"Write unit tests for `execution_gateway.py` to get code coverage above 85\%."*
+
+The model inspects the implementation code it just synthesized, reverse-engineers assertions to match whatever the code currently emits, and generates tests that pass immediately. If the implementation silently swallowed an exception and returned `0.50`, the generated test asserts `assert calculate_risk() == 0.50`. Test pipelines report 100\% pass rates and SonarQube dashboards display elevated line coverage, but the system has merely codified self-reinforcing tautologies. The AI grades its own implementation without reference to independent architectural specifications. No invariants are validated, negative boundary conditions remain unexercised, and catastrophic logic flaws are codified into regression suites.
+
+### Failure Modes & Drift Dynamics in Ungoverned Production
+Operating under circular test generation without contract-first validation leads to three severe production failure modes:
+1. **Codification of Regressions into CI**: When an AI agent introduces a subtle logic defect (e.g., failing open on missing authentication headers), conversational test generation authors tests asserting that failing open is expected behavior. When production is breached, automated test suites remain green.
+2. **The High-Coverage Illusion**: Management relies on 90\% code coverage metrics that provide zero fault-detection capability. The first real-world edge case (e.g., null payloads, NaN floats, expired tokens) triggers critical system outages across paths deemed fully covered.
+3. **Review Fatigue from Tautological Boilerplate**: Senior engineers spend excessive hours forensically parsing hundreds of lines of AI-generated mock boilerplate that tests trivial syntactic accessors rather than domain invariants, driving PR review times up by +91\% (Faros AI telemetry).
+
+### Deterministic Engineering Defenses & Operational Takeaways
+To permanently eliminate circular verification and enforce contract-first validation, engineering teams enforce these operational invariants:
+- **Enforce Strict Epistemic Air-Gapping**: Forbid test-generation prompts from ingesting implementation source files in `src/`. Test-generating models must be provided exclusively with Closed-World Semantic Blueprints, ADRs, and Invariant predicates, forcing validation against specifications rather than implementation artifacts.
+- **Mandate QE 3-Part Directives**: Require all automated test authoring to employ the QE 3-Part Directive, explicitly enumerating negative boundary cases ($\text{NaN}$, $\pm\infty$, `None`, missing fields) and invariant bindings ($I_{01}$--$I_{22}$).
+- **Enforce Fail-Closed Test Assertions**: Require test suites to assert that missing or corrupted external inputs fail closed (raising explicit domain exceptions or returning `None`) rather than defaulting to synthetic constants.
+- **Measure Mutation Score Over Raw LOC Coverage**: Retire raw line coverage as an authoritative quality gate. Require mutation testing or fault-injection verification to confirm that test suites reliably detect injected regressions and boundary anomalies.
+

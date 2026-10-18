@@ -81,3 +81,25 @@ Before approving any Epic for engineering decomposition, the Strategy Lead must 
 - [ ] **Fail-Closed Binding ($I_{01}, I_{05}$)**: Does the Epic specify what happens when third-party APIs return null or time out? (Must mandate fail-closed demotion rather than synthetic defaults).
 - [ ] **Immutable Audit Binding ($I_{04}$)**: Are data invalidations archived to quarantine ledgers rather than raw SQL `DELETE` calls?
 - [ ] **Negative Boundary Specification**: Has the Strategy Lead explicitly stated what downstream AI builders are *forbidden* to do?
+
+---
+
+## Production Reality & Failure Modes in the AI Era
+
+### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
+In median mid-2026 enterprise teams, adversarial red-teaming of AI systems is largely absent or reduced to naive prompt-level instructions ("Act as an adversarial tester"). When constructing data pipelines, engineering pods routinely hydrate extraction prompts with rich internal operational state—current revenue shortfalls, existing portfolio allocations, clinical departmental deficits, or production incident histories—alongside untrusted external streams (social sentiment, sponsored whitepapers, commercial marketing). This architectural flaw triggers immediate epistemic priming and sycophantic bias: the model generates plausible, highly agreeable rationalizations that confirm internal organizational anxieties while mistaking affiliate marketing for empirical ground truth.
+
+### Failure Modes & Drift Dynamics in Ungoverned Production
+Failing to establish unidirectional epistemic air-gaps and commercial discounts induces critical operational breakdowns:
+1. **Forensic Crisis 5 (Epistemic Priming & Panic Action)**: An unstructured news ingestion agent primed with internal drawdown or deficit figures interprets sponsored vendor marketing as proof of an existential crisis, triggering automated liquidations at market lows or unjustified clinical protocol shifts.
+2. **Deceptive Compliance in Vendor Ingestion**: Modern reasoning models parsing third-party technical documents or medical literature extract commercial claims as high-confidence empirical facts unless programmatically discounted, introducing unvetted liabilities into core models.
+3. **Forensic Evidence Destruction ($I_{04}$)**: When errant telemetry corrupts downstream databases, agents attempting automated remediation execute raw SQL `DELETE` operations, erasing audit trails required under ISO/IEC 42001, SOX Section 404, and FDA Part 11.
+
+### Deterministic Engineering Defenses & Operational Takeaways
+To isolate autonomous pipelines from epistemic contagion, engineering organizations must enforce four structural safeguards:
+1. **Unidirectional Epistemic Air-Gap Guardrail**: Structurally isolate external data parsers. Ingestion prompts are strictly forbidden from receiving internal financial, clinical, or operational state variables. Extractors must operate as strictly isolated courtroom scribes.
+2. **Programmatic 80% Commercial Funnel Discount**: All external intelligence flagged with marketing links, affiliate codes, or corporate sponsorship (`commercial_conflict: true`) must mathematically discount weights: $W_{\text{eff}} = W_{\text{Brier}} \times 0.20$ and $\text{Polarity}_{\text{stored}} = \text{round}(\text{Polarity}_{\text{raw}} \times 0.20, \; 2)$.
+3. **Role-Based Context Allowlisting**: Partition system context into disjoint domain allowlists (`FORENSIC_ALLOWLIST`, `CATALYST_ALLOWLIST`, `ADVERSARIAL_ALLOWLIST`). Sentiment ingestion workers cannot access internal ledger state.
+4. **Permanent Prohibition of SQL DELETE ($I_{04}$)**: Revoke `DELETE` privileges for all automated agent database roles. Corrupted or invalid records must be atomically routed to an append-only `quarantine_ledger` with mandatory trace identifiers ($I_{15}$) and audit rationale.
+
+

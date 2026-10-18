@@ -207,3 +207,26 @@ def execute_tool_call(tool_name: str, arguments: Dict[str, Any]) -> str:
 
 ---
 [**Proceed to Builder Reference Architecture →**](./REFERENCE_ARCHITECTURE.md)
+
+---
+
+## Production Reality & Failure Modes in the AI Era
+
+### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
+In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), teams configure autonomous coding agents with unconstrained shell environments and raw filesystem access. Developers assume that providing agents with unrestricted terminal execution privileges maximizes autonomous problem-solving capabilities.
+
+In production, this exposes systems to unmanaged blast-radius expansion. Without abstract function registries and typed tool contracts, an agent tasked with defect remediation executes arbitrary shell commands (`find`, `grep`, `cat`, `curl`), injecting thousands of tokens of directory noise into working memory. Under contextual degradation, when an agent encounters an unmet interface dependency, it executes package managers (`npm install`, `pip install`) to pull unvetted external dependencies, or modifies shared database schemas. Organizations operating without tool capability boundaries convert routine code modifications into critical security and supply-chain vulnerabilities.
+
+### Failure Modes & Drift Dynamics in Ungoverned Production
+Permitting unconstrained shell execution instead of enforcing declarative tool registries induces three severe failure modes:
+1. **Uncontrolled Blast-Radius Outages**: An agent prompted to "clean up test databases" runs raw SQL execution scripts that truncate shared staging environments, disrupting engineering operations across multiple teams.
+2. **Supply-Chain Dependency Poisoning**: When an agent requires date parsing or mathematical operations, it imports unapproved external packages rather than invoking canonical repository utilities, introducing transitive CVEs and bloating artifact footprints.
+3. **Context Collapse via Terminal Log Dumps**: An agent invoking shell commands executes broad `cat` operations across multi-thousand-line log files. The resulting token deluge expels core architectural directives and safety invariants from working memory, precipitating hallucinated implementations and syntax regressions.
+
+### Deterministic Engineering Defenses & Operational Takeaways
+To bound agent blast radius and enforce deterministic tool governance, engineering teams enforce these operational invariants:
+- **Revoke Raw Shell Privileges**: Eliminate unrestricted terminal execution rights for autonomous coding agents. Constrain agent interaction strictly to typed, schema-validated MCP or API tool interfaces.
+- **Deploy Bounded Context Retrieval Tools**: Enforce `read_domain_context` tools with programmatic slice limits ($\le 80$ lines), preventing agents from flooding active working memory with monolithic file dumps.
+- **Enforce Domain-Scoped Tool Registries**: In multi-agent architectures, restrict each agent exclusively to tools registered in its domain's `registry.json`, preventing billing agents from executing settlement or order-routing primitives.
+- **Hardcode Dependency Management Airgaps**: Automatically reject agent actions attempting package manager execution (`pip`, `npm`, `cargo`) or lockfile manipulation without verified human-in-the-loop approval.
+

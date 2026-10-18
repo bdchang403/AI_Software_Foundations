@@ -117,6 +117,27 @@ flowchart TD
 
 ## 📋 Module Summary & Practical Next Step
 
-Agile Leaders must never treat AI failure as an engineering mystery. Trace the failure back to the role that emitted the imperfect context, execute the standardized coaching script, and enforce the structural guardrail.
+---
+
+## Production Reality & Operational Failure Modes in the AI Era
+
+### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
+In the median mid-2026 pod, when an AI-generated implementation fails or gets rejected in code review, teams frequently treat it as an individual developer failure: *"The engineer doesn't know how to prompt the model,"* or *"AI tools just hallucinate too much."* Developers sit alone at their desks engaging in unstructured prompt hacking—iterating with an IDE chat assistant 8 to 12 times, arguing over library imports, copy-pasting compiler errors back into prompts, and consuming thousands of tokens without progress. Teams rarely step back to analyze the context assembly line. There is no concept of upstream context failure; nobody audits whether the Product Owner supplied an unconstrained directive, the Business Analyst failed to specify edge-case matrices, or the Architect omitted the JSON schema contract.
+
+### Ungoverned Production Failure Modes
+Treating AI generation errors as random stochastic accidents rather than systemic upstream pipeline failures causes severe operational damage:
+- **Engineering Capacity Hemorrhage**: Developers spend 30% to 40% of their sprint capacity trapped in unproductive prompt-retry death loops. Token expenditures spike while working software output stagnates.
+- **Sprint Delivery Collapse**: Stories that appear "almost done" on Day 2 of a two-week sprint linger in review paralysis or prompt debugging through Day 10, completely destroying sprint predictability and team morale.
+- **Viral Technical Debt Ingestion**: Engineers under deadline pressure eventually accept whatever functioning workaround the model provides, committing anti-patterns, duplicate helper functions (the GitClear cloning inversion), and bypassed security checks into production branches.
+
+### Deterministic Engineering Defenses & Operational Takeaways
+To transform the software factory into a deterministic delivery engine, engineering organizations must enforce four operational protocols:
+1. **Enforce the "3-Iteration Prompt Circuit Breaker"**: If an engineer cannot generate a compiling, passing implementation within 3 prompt iterations, they must halt re-prompting. They must inspect and identify which upstream context asset (AST registry, schema, or invariant boundary) is missing or corrupted.
+2. **Execute Standardized Factory Coaching Scripts**: When a PR is rejected for architectural drift or review bloat, leads must intervene using role-specific coaching scripts (BA for missing edge cases, Architect for missing schemas, Builder for oversized task slices).
+3. **Institute Daily Context-Blocker Standup Triage**: In daily standups, replace passive status recitations with targeted blockers: *"Did any AI workflow fail to produce clean code on the first pass, and what upstream contract was missing?"*
+4. **Mandate Bounded Task Slicing Before Prompting**: Never permit a developer to prompt a model for an entire feature. Tasks must be pre-sliced into Bounded Task Units (BTUs) targeting under 80 lines of diff before any prompt is executed.
+
+---
 
 [**Proceed to Module 3: Tooling and Analysis (The Determinism Proof) →**](./03_tooling_and_analysis.md)
+

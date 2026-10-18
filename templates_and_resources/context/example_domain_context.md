@@ -5,7 +5,7 @@
 - [Rule 1, e.g., Never call the database directly; use the [RepositoryName] tool.]
 
 ## Mandatory ADRs
-- [ADR-XXX: Name of Architectural Decision](../../docs/adr/XXX_description.md)
+- [ADR-XXX: Name of Architectural Decision](../../03_building_and_coding/adr_template.md)
 
 ## Validation Rules
 - [Rule 2, e.g., All monetary values MUST be handled using BigInt.]

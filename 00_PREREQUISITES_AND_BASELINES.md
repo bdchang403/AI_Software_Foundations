@@ -159,4 +159,23 @@ Prior to launching Phase 1 of the 120-Day Rollout Roadmap, every squad member mu
 
 ---
 
+## Production Reality & Operational Failure Modes in the AI Era
+
+### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
+In mid-2026, 75\%-84\% of engineering pods dive headfirst into AI tools without establishing baseline telemetry or hermetic environments. Developers paste code snippets into personal browser accounts (shadow AI) because corporate tooling feels clunky. Teams lack historical 90-day baselines for DORA and SPACE metrics, leaving engineering managers unable to answer whether AI adoption is genuinely accelerating delivery or merely inflating LOC churn. Tests are riddled with live socket calls and flaky mocks that pass locally but fail intermittently in CI. When PR review bloat climbs by +91\% (Faros AI) and deployment stability degrades by 7.2\% (DORA), the pod has no diagnostic data to identify that un-anchored AI code generation is the root cause.
+
+### Ungoverned Production Failure Modes
+When engineering teams ignore Day Zero prerequisites and generate code without baseline guardrails:
+- **Flaky CI Pipelines & Socket Leaks**: Without `pytest-socket` active by default, unit tests silently make network calls to external APIs. When an upstream service experiences latency or outages, the entire build pipeline grinds to a halt.
+- **Shadow AI Intellectual Property Leaks**: Developers using un-airgapped consumer LLMs accidentally leak proprietary algorithms, database credentials, and regulated PII into public training sets.
+- **Blind Flying on Productivity**: Without a 90-day baseline, leadership misinterprets vanity commit spikes as success, masking the accumulation of catastrophic context debt and architectural drift until a major outage strikes.
+
+### Deterministic Engineering Defenses & Operational Takeaways
+1. **Activate Offline Socket Interception Immediately**: Add `pytest-socket` with `--disable-socket` to the base `pytest.ini` or `conftest.py`. Fail any test that attempts outbound network access during unit testing.
+2. **Lock Down the 90-Day DORA/SPACE Baseline**: Capture historical lead time, change failure rate, and PR review turnaround times before enabling AI agent features in the repository.
+3. **Configure SQLite Edge Storage with WAL & 30s Timeouts**: Standardize local databases with Write-Ahead Logging (`PRAGMA journal_mode = WAL;`) and busy timeouts (`PRAGMA busy_timeout = 30000;`) to prevent locked database exceptions during concurrent agent runs.
+4. **Enforce Role-by-Role Day Zero Checklists**: Require that every role (BA, Architect, QE, Scrum Master) verifies their prerequisite items—especially semantic blueprint schemas and AST registries—before opening sprint work to AI assistance.
+
+---
+
 [**Next: Root Curriculum Overview →**](./README.md)

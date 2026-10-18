@@ -198,3 +198,26 @@ class ContextAssembler:
 
 ---
 [**Proceed to Module 6: Information Routing Structure & Pre-Commit Sentinels →**](./06_information_routing_structure.md)
+
+---
+
+## Production Reality & Failure Modes in the AI Era
+
+### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
+In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), developers permit autonomous coding agents to traverse repositories without deterministic routing constraints. Developers provide broad search tooling or terminal execution privileges with open-ended prompts: *"Find where we handle invoice discounts, see how discounts are applied, and add a 15\% promotional coupon logic."*
+
+What follows is an operational and economic failure mode. The agent spends 30,000 to 50,000 tokens recursively traversing directory trees, inspecting test fixtures, and parsing obsolete migration scripts. Under the mathematics of compounded step error ($P_{\text{success}} = p^{10} = (0.95)^{10} \approx 59.8\%$), an unconstrained 10-hop exploration exhibits a 40.2\% probability of anchoring on a deprecated pattern. The agent frequently discovers an obsolete `discounts_v1_deprecated.py` file, modifies it, and emits a syntactically valid pull request while the active production service in `src/billing/` remains untouched.
+
+### Failure Modes & Drift Dynamics in Ungoverned Production
+Operating without 1-hop precision context chaining precipitates three severe production failure modes:
+1. **API Spend Burnout**: Ungoverned multi-hop exploratory agents consume tens of thousands of tokens per run, depleting organizational LLM allocations rapidly without producing verified production logic.
+2. **The Multi-Hop Hallucination Cascade**: Autonomous agents traversing un-indexed codebases inevitably anchor onto mock fixtures or prototype code in `tests/`, implementing production features that depend on synthetic data and failing immediately upon merge.
+3. **Working Memory Exhaustion & Degradation**: Accumulating 40,000 tokens of file directory listings, tool outputs, and conversational filler in an agent's context window pushes critical architectural invariants and negative constraints directly into the attention degradation valley ($F(x) \approx 0.35$). The agent hallucinates function signatures and strips safety checks because its working memory is saturated with repository debris.
+
+### Deterministic Engineering Defenses & Operational Takeaways
+To eliminate exploratory token waste and establish deterministic 1-hop execution, engineering teams enforce these operational invariants:
+- **Prohibit Exploratory Multi-Hop Repository Traversal**: Ban autonomous coding agents from running raw exploratory directory walks or broad recursive greps. Context assembly must be deterministic, programmatic, and 1-hop.
+- **Implement the 2-Tier Routing Model**: Deploy a thin ($<50$ lines) Tier 1 router in `.github/copilot-instructions.md`, `CLAUDE.md`, or `.cursorrules` that deterministically routes active file paths to authoritative Tier 2 domain files in `docs/context/`.
+- **Enforce a 4,000-Token Surgical Payload Budget**: Cap the total prompt payload (system persona, living context digest, domain ADR, active story, and 80-line target code slice) at $\le 4,000$ tokens, guaranteeing $<4$-second execution latency.
+- **Inject Living Context Programmatically**: Require orchestrator harnesses to inject the minified table-to-DTO map (`openrouter_context.json`) directly into the prompt payload, eliminating the need for models to infer database schemas or DTO relationships.
+

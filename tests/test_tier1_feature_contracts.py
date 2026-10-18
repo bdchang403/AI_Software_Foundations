@@ -12,6 +12,7 @@ import glob
 import math
 import os
 import re
+import urllib.parse
 import numpy as np
 import pytest
 
@@ -94,6 +95,75 @@ def test_markdown_core_documents_syntax_validity():
             # Code fence closure must be 100% clean
             unclosed = [i for i in issues if "Unclosed code fence" in i]
             assert len(unclosed) == 0, f"Unclosed code fence in {doc}: {unclosed}"
+
+
+def test_curriculum_relative_markdown_links_resolve():
+    """Verify that all relative markdown links across curriculum resolve to valid files on disk."""
+    md_files = []
+    # 00_ through 09_ curriculum directories and root files
+    md_files.extend(glob.glob(os.path.join(REPO_ROOT, "0[0-9]_*/**/*.md"), recursive=True))
+    md_files.extend(glob.glob(os.path.join(REPO_ROOT, "0[0-9]_*.md")))
+    # Root documents
+    for root_doc in ["README.md", "PROJECT.md"]:
+        p = os.path.join(REPO_ROOT, root_doc)
+        if os.path.exists(p):
+            md_files.append(p)
+    # templates_and_resources/
+    md_files.extend(glob.glob(os.path.join(REPO_ROOT, "templates_and_resources/**/*.md"), recursive=True))
+    md_files.extend(glob.glob(os.path.join(REPO_ROOT, "templates_and_resources/*.md")))
+
+    md_files = sorted(list(set(md_files)))
+    assert len(md_files) >= 15, f"Expected at least 15 markdown curriculum files, found {len(md_files)}"
+
+    link_pattern = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+    broken_links = []
+    total_links = 0
+
+    for filepath in md_files:
+        with open(filepath, "r", encoding="utf-8") as f:
+            content = f.read()
+
+        # Remove code blocks to avoid extracting code examples
+        clean_content = re.sub(r"```[\s\S]*?```", "", content)
+        clean_content = re.sub(r"`[^`]*`", "", clean_content)
+        file_dir = os.path.dirname(filepath)
+
+        for match in link_pattern.finditer(clean_content):
+            total_links += 1
+            link_text = match.group(1).strip()
+            raw_target = match.group(2).strip()
+
+            # Ignore external URLs
+            if raw_target.startswith(("http://", "https://", "mailto:", "ftp://", "tel:")):
+                continue
+
+            # Strip anchor tags (#...)
+            target_path = raw_target.split("#")[0].strip()
+
+            # Pure anchor within current document is valid
+            if not target_path:
+                continue
+
+            # URL decode path (e.g. %20 -> space)
+            target_path = urllib.parse.unquote(target_path)
+
+            # Resolve relative link
+            if target_path.startswith("/"):
+                resolved = os.path.abspath(os.path.join(REPO_ROOT, target_path.lstrip("/")))
+            else:
+                resolved = os.path.abspath(os.path.join(file_dir, target_path))
+
+            if not os.path.exists(resolved):
+                broken_links.append(
+                    f"{os.path.relpath(filepath, REPO_ROOT)}: '[{link_text}]({raw_target})' -> "
+                    f"resolved to '{os.path.relpath(resolved, REPO_ROOT)}' which does not exist"
+                )
+
+    assert total_links >= 100, f"Expected at least 100 markdown links across curriculum, found {total_links}"
+    assert len(broken_links) == 0, (
+        f"Found {len(broken_links)} broken relative markdown links across curriculum:\n"
+        + "\n".join(broken_links)
+    )
 
 
 # ============================================================================

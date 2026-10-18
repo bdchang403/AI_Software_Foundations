@@ -195,8 +195,23 @@ def test_valid_settlement_passes():
 
 ---
 
-## 📋 Module Summary & Practical Next Step
+## Production Reality & Operational Failure Modes in the AI Era
 
-Never trust an agent configuration based solely on functional unit test passes. Execute conformal fuzzing, float smuggling checks, and AST Zero-Mock scans before deploying to staging.
+### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
+In mid-2026, the typical enterprise team tests agent configurations by entering five prompt variations into a web console, seeing reasonable English answers, and declaring the agent "validated." In automated CI, their tests consist of `unittest.mock.MagicMock` wrappers around the LLM API client, asserting that `client.chat.completions.create` was invoked. These tests run in 0.05 seconds, always pass, and test absolutely nothing about real failure behavior. They fail to test how the agent responds when upstream APIs return HTTP 503, when network sockets drop, or when adversarial actors pass non-finite floats. Reviewers spend 91\% more time triaging production incidents because CI never tested real boundaries.
+
+### Ungoverned Production Failure Modes
+When engineering teams ignore adversarial configuration testing and rely on shallow unit test passes:
+- **Float & Boolean Smuggling Exploits**: Attackers or corrupted data pipelines smuggle `NaN`, `Inf`, or boolean flags (`isinstance(True, int) == True`) past standard checks. Because IEEE 754 comparisons like `NaN > 0` evaluate to `False`, unhardened guardrails fail open and execute catastrophic transactions.
+- **Deceptive Mock Fallbacks**: Code using `dict.get(k, default)` (ZM006) or returning fallback numbers in `except` blocks (ZM001) swallows real infrastructure outages, causing agents to make decisions based on fabricated default values.
+- **Regulatory Audit Sanctions**: Regulators conducting model validation under FDA 21 CFR 820.30(g) or Federal Reserve SR 11-7 demand objective evidence of boundary testing and fault injection. Showing green mock tests results in immediate audit failure and remediation consent decrees.
+
+### Deterministic Engineering Defenses & Operational Takeaways
+1. **Enforce Hermetic Network Isolation in CI**: Run `pytest tests/ --disable-socket`. Every unit and contract test must execute without outbound network calls, proving zero reliance on live cloud endpoints or unverified external state.
+2. **Add Cartesian Boundary Fuzzing for Numeric Inputs**: In every test suite, inject `float('nan')`, `float('inf')`, `-float('inf')`, and `True` into numeric payloads, asserting that the validation layer immediately raises a typed exception.
+3. **Run the Static AST Zero-Mock Scanner**: Execute `python3 scripts/scan_mock_data.py` on pre-commit to reject any code containing rules ZM001–ZM009 violations (banned variable prefixes, fake profile registries, and silent try/except fallbacks).
+4. **Automate Prompt Injection Regression Suites**: Maintain an adversarial test suite of at least 20 prompt injection payloads ("Ignore previous instructions", "System maintenance override"), verifying that the agent maintains Invariant $I_{01}$ and fails closed every time.
+
+---
 
 [**Proceed to Module 4: Context Mapping Matrix & Surgical Slicing →**](./04_context_mapping_matrix.md)

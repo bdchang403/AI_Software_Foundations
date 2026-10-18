@@ -153,3 +153,25 @@ flowchart TD
 Strategic decomposition is an inviolable mathematical requirement. By enforcing Bounded Task Units (BTUs), Strategy Leads maintain model attention in the $>95\%$ precision zone, eliminate code bloat, and protect organizational capital.
 
 [**Proceed to Module 4: Context Engineering & Registry Maps →**](./04_epistemic_firewalls_and_market_airgaps.md)
+
+---
+
+## Production Reality & Failure Modes in the AI Era
+
+### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
+In median mid-2026 engineering pods, developers and technical leads treat LLMs as full-stack architects with unbounded context retention. Teams feed massive monolithic epics ("Migrate authorization to OAuth2, implement distributed telemetry, and re-index the customer data model") in 35,000-token prompts. Due to $O(N^2)$ transformer attention dilution and the U-shaped "Lost in the Middle" degradation curve ($F(x) \approx 0.35$ at midpoint), the model forgets middle constraints, hallucinates deprecated library APIs, and outputs a 900-line monolithic diff. Senior engineers then face the Faros AI review bottleneck (+91% PR cycle time), struggling to verify subtle boundary omissions across dozens of files.
+
+### Failure Modes & Drift Dynamics in Ungoverned Production
+Failing to enforce mathematical Bounded Task Units (BTUs) and attention budgeting leads to three severe failure patterns:
+1. **The GitClear Churn Spiral (+39% Churn, 10x Cloned Code)**: When given unbounded scope, models duplicate existing utility classes rather than refactor shared abstractions. When tests fail, developers repeatedly prompt-patch on top of earlier patches, creating extreme code churn.
+2. **Attention Entropy & Invariant Dropping**: Critical business logic, input sanitization rules, and safety invariants placed in the middle of a 20,000-token prompt suffer from attention entropy $\mathcal{H}(A_i) \to \ln N$, resulting in silent omissions of security gates.
+3. **Delivery Stability Drop (DORA Empirical Paradox)**: Enterprise delivery stability degrades by 7.2% per 25% increase in AI adoption because large-blast-radius PRs conceal subtle semantic regressions that evade standard unit tests.
+
+### Deterministic Engineering Defenses & Operational Takeaways
+To restore engineering velocity and maintain high-fidelity model execution, teams must enforce four mathematical decomposition rules:
+1. **The 4,000-Token BTU Ceiling**: Decompose all epics into discrete Bounded Task Units. No individual agent task may ingest > 4,000 tokens of input context or generate > 400 lines of modified code.
+2. **Exploit U-Curve Primacy & Recency Slots**: Structure prompts so that typed input/output schemas sit strictly in the top 10% (primacy zone) and negative boundary assertions ($I_{01}, I_{02}, I_{04}$) sit in the bottom 10% (recency zone). Never place critical safety invariants in the 15% to 85% attention trough.
+3. **Automated PR Size Gate ($\le 200$ LOC)**: Configure CI pipelines to reject any AI-assisted PR modifying > 200 lines of code across > 2 files, requiring the change to be sliced into atomic, independently testable units.
+4. **Single Architectural Boundary per Task**: A BTU must touch data ingestion OR mathematical calculation OR persistence—never all three in a single execution step.
+
+

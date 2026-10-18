@@ -144,3 +144,25 @@ The primary strategic artifact emitted by the Strategy Lead / Product Owner is t
 - **Enforcement**: An academic preprint reporting high efficacy for a novel drug combination is sponsored by the pharmaceutical manufacturer. The medical research agent flags `commercial_conflict: true`. The efficacy claim is discounted by 80%:
   $$W_{\text{eff}} = W_{\text{trial}} \times 0.20$$
   The system classifies the finding as `SPONSORED_CLAIM`, requiring independent FDA or peer-reviewed validation before modifying clinical treatment pathways.
+
+---
+
+## Production Reality & Failure Modes in the AI Era
+
+### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
+In median mid-2026 teams constructing autonomous retrieval and ingestion pipelines, context management is commonly reduced to piping live social streams, RSS feeds, raw web scrapes, and internal databases into a single RAG vector database. Teams treat all data sources as equally authoritative and permanently valid. External promotional noise is ingested with the same epistemic weight as immutable internal ledger transactions. When upstream schemas mutate or vendor APIs time out, developers introduce ad-hoc try/except fallbacks with static numbers (`except: price = last_price`), silently corrupting production data stores with unverified synthetic values.
+
+### Failure Modes & Drift Dynamics in Ungoverned Production
+Operating without epistemic firewalls and temporal decay kinetics leads to three critical production failures:
+1. **The Stale Telemetry Zombie Loop ($I_{17}$)**: Telemetry older than its operational half-life continues driving automated execution decisions. In trading systems, 5-day-old sentiment leads to purchasing securities after fundamental catalysts have dissolved; in clinical controllers, stale vitals trigger inappropriate drug titrations.
+2. **Epistemic Market Poisoning**: Un-discounted marketing content (sponsored influencer campaigns, corporate PR releases) primes reasoning agents into hallucinating consensus, executing unauthorized transactions or altering clinical pathways.
+3. **Forensic Audit Destruction ($I_{04}$)**: Automated agents attempting data remediation issue raw SQL `DELETE` calls, destroying forensic evidence mandated under SEC Rule 17a-4, FDA 21 CFR Part 11, or ISO/IEC 42001.
+
+### Deterministic Engineering Defenses & Operational Takeaways
+To ensure epistemic integrity and defend against synthetic corruption, engineering teams must deploy four deterministic mechanisms:
+1. **Continuous Horizon-Matched Half-Life Decay ($I_{17}$)**: Programmatically decay all external signals via $w(\Delta t) = w_0 \cdot 2^{-\Delta t / t_{1/2}}$. Any signal older than $2 t_{1/2}$ must be automatically demoted to `EXPIRED` status and excluded from decision engines.
+2. **Revocation of SQL DELETE ($I_{04}$)**: Revoke `DELETE` privileges for all agent database connections. Errant or invalid records must be atomically routed to an immutable `quarantine_ledger` containing audit reasons and UUIDv4 trace identifiers ($I_{15}$).
+3. **Mandatory Provenance Verification ($I_{01}$)**: Ingestion components must validate payloads against a strict `VERIFIED_PROVENANCE_ALLOWLIST`. If provenance is missing or unverified, fail closed: emit `None` or status `"UNAVAILABLE"`.
+4. **Programmatic 80% Commercial Funnel Discount**: Automatically flag all external intelligence containing monetization links or affiliate codes (`commercial_conflict: true`), applying $W_{\text{eff}} = W_{\text{Brier}} \times 0.20$ before persistence.
+
+

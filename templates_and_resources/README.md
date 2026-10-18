@@ -18,6 +18,9 @@ This directory contains the "Cognitive Scaffolding" for your AI Agents. These te
 ### 3. Auditability (The AI Trailer)
 Every template now includes mandatory **AI Trailers** for commit messages and PR reviews. This ensures that AI-assisted changes are distinguishable from human-only changes in the audit log.
 
+### 4. Empirical Telemetry & Governance Benchmark (Canonical Standard)
+- [**Empirical AI Telemetry, Repository Economics & Governance Benchmark**](./EMPIRICAL_AI_TELEMETRY_AND_GOVERNANCE_BENCHMARK.md): The canonical empirical reference manual for enterprise autonomous software engineering. Codifies longitudinal developer telemetry, the GitClear 211M LOC code churn and duplicate logic inversion (+39% churn, 10x duplicate blocks), Google Cloud DORA 2024–2026 delivery stability telemetry and the 2026 DORA Verification Trap, Faros AI PR review bloat (+91% cycle duration, +9% defects), the Stack Overflow 63.3% Context Wall, repository noise analysis (83% non-source clutter), the 5-Level Comparative Context Maturity Model, quantitative multi-model pipeline economics (83.8% OpEx reduction, \$25.50 vs \$157.50), and statutory mappings across NIST AI RMF 1.0, ISO/IEC 42001:2023, and EU AI Act (Regulation (EU) 2024/1689).
+
 ---
 
 ## 🛠️ Usage

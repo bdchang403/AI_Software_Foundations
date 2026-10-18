@@ -158,6 +158,27 @@ flowchart TD
 
 ## 📋 Module Summary & Practical Next Step
 
-Agile Leaders must never manage autonomous engineering through intuition. Measure CDR, PRI, QDF, and TBQ systematically. When a metric trips, trace the defect directly to the upstream Context Factory hand-off.
+---
+
+## Production Reality & Operational Failure Modes in the AI Era
+
+### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
+In the median mid-2026 enterprise, engineering leaders often manage by vanity dashboards. Management proudly reports to executive leadership that AI assistant adoption is at 82%, pull request volume is up 35%, and lines of code committed grew by 40%. Meanwhile, on the ground, engineering flow is grinding to a halt. According to Faros AI's telemetry across over 100,000 pull requests, PR review time has surged by +91%, and defect rates have climbed by +9%. Senior engineers spend their afternoons reviewing 600-line, machine-generated diffs containing subtle invariant drift. GitClear's 211M LOC research reveals a +39% surge in code churn and a 10x collapse in code refactoring relative to duplication. Teams walk head-first into the 2026 DORA Verification Trap: generation is cheap, but human verification has become an unsustainable operational bottleneck.
+
+### Ungoverned Production Failure Modes
+Managing engineering teams by raw AI commit velocity without tracking flow telemetry introduces severe organizational pathologies:
+- **Senior Engineering Burnout & Attrition**: Principal contributors suffer extreme review fatigue. Spending excessive hours each week parsing machine-generated boilerplate and debugging "almost right" code leads to severe burnout and turnover among high-leverage architects.
+- **Delivery Pipeline Gridlock**: Pull request queues back up from hours to weeks. Because PR sizes balloon beyond 400 LOC, reviewers either delay reviews indefinitely or rubber-stamp changes without rigorous verification, allowing catastrophic defects to reach production.
+- **The DORA Instability Collapse**: DORA 2024-2026 telemetry demonstrates that for every 25% increase in ungoverned AI adoption, delivery stability drops by 7.2%. Change Failure Rate (CFR) surges, transforming continuous delivery pipelines into emergency firefighting wards.
+
+### Deterministic Engineering Defenses & Operational Takeaways
+To break free from the Verification Trap and re-establish sustainable engineering flow, teams must enforce four operational practices:
+1. **Eliminate LOC and PR Volume as Productivity Metrics**: Forbid reporting raw lines of code or raw PR counts to executive leadership. Replace them with Context Debt Ratio (CDR, threshold $< 0.18$) and PR Review Latency.
+2. **Cap Pull Requests at 200 LOC of AI Code**: Configure the repository merge queue to automatically flag or reject any pull request containing $> 200$ lines of AI-assisted code. Require developers to decompose tasks into Bounded Task Units (BTUs).
+3. **Track the 14-Day Code Churn / Rework Ratio**: Measure how much code committed today is modified or deleted within 14 days. If churn exceeds $15\%$, halt feature work in that pod to re-engineer upstream context registries.
+4. **Audit PR Review Time vs. Author Time**: If PR review duration exceeds authoring duration by $> 2\times$, declare a process intervention. The pod is generating low-context code that shifts cognitive burden from generator to reviewer.
+
+---
 
 [**Proceed to Module 2: Intervening in the Factory →**](./02_intervening_in_the_factory.md)
+

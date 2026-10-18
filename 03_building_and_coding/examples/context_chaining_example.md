@@ -105,3 +105,26 @@ Emit output as a C unified diff.
 | **Diff Accuracy** | 42% (frequent syntax/import errors) | 99.4% (deterministic 1st-try success) |
 | **Schema Hallucinations** | High (invents non-existent SQL columns) | 0% (grounded in Living Context DTO map) |
 | **Safety Invariant Retention** | Low (erases retry/safety logic via Rule 14) | 100% (anchored with SHA1 checksums) |
+
+---
+
+## Production Reality & Failure Modes in the AI Era
+
+### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
+In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), developers interact with frontier models through unstructured conversational prompts: *"Hey, look at our repo and add the order execution plausibility check from ticket FEAT-101."*
+
+This conversational anti-pattern triggers immediate operational failure. The agent consumes 45,000 tokens traversing irrelevant directories, inspects outdated markdown documents, and hallucinates non-existent database columns (`SELECT * FROM historical_sentiment`). Because the prompt lacks explicit fail-closed boundaries, the model encounters a missing quote and writes `spot = quote.price or 100.0`, smuggling synthetic constants straight past duck-typed interfaces. Developers spend disproportionate engineering hours rectifying hallucinated imports and corrupted line diffs, negating purported AI velocity gains.
+
+### Failure Modes & Drift Dynamics in Ungoverned Production
+Relying on open-ended conversational prompts instead of pre-assembled context payloads precipitates three severe production failure modes:
+1. **The 42\% Diff Failure Rate**: Unstructured conversational prompting produces broken, malformed unified diffs in over half of execution attempts. Engineers waste hours manually resolving patch rejections and debugging hallucinated variable names.
+2. **Synthetic Data Contamination**: Without constitutional constraints injected directly into the prompt payload, models default to pleasing bias—inventing fallback numbers (`or 150.0`) when telemetry is unavailable, violating fail-closed invariants and poisoning downstream analytics.
+3. **Severe Token Latency & Cost Blowouts**: Conversational multi-turn debugging sessions consume 50,000+ tokens and require 90+ seconds per turn, burning through compute budgets while generating fragile, unmaintainable implementations.
+
+### Deterministic Engineering Defenses & Operational Takeaways
+To transition software delivery from conversational chatbot prompting to deterministic 1-hop execution, engineering teams enforce these operational invariants:
+- **Prohibit Naked Conversational Prompts for Code Changes**: Forbid developers from using free-form chat prompts for production implementation. Require all prompt payloads to be assembled programmatically using the 5-section Context Chaining blueprint.
+- **Enforce the 5-Section Surgical Payload Standard**: Mandate that every machine instruction bundle includes: (1) System Persona, (2) Constitutional Commandments, (3) Living Context (<500 tokens of DTOs/schemas), (4) Governing ADRs & Invariants, and (5) Active Story with surgical line slices ($\le 80$ lines).
+- **Enforce Pure Diff Output**: Instruct models to emit output strictly as raw unified diffs with zero conversational filler, preventing output token truncation and enabling automated patch validation.
+- **Embed Invariant Anchors in Every Task Payload**: Require prompts to include the exact SHA1 anchor block specification, instructing the agent to embed the checksum directly above the newly authored method.
+

@@ -148,3 +148,26 @@ You are operating under the Zero-Drift Quality Gate contract.
 
 ---
 [**Proceed to Lab Workbook: Registries, Chaining & Routing →**](./LAB_WORKBOOK.md)
+
+---
+
+## Production Reality & Failure Modes in the AI Era
+
+### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
+In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), system prompts read as generic motivational instructions: *"You are an expert software engineer. Write clean, modular, maintainable, and idiomatic code."*
+
+These generic stylistic prompts supply zero deterministic guardrails. When an agent is tasked with modifying a complex legacy module containing 150 lines of rate limiters, fallback retries, and assertion handlers, the model interprets those lines as syntactic clutter and replaces them with a 20-line method that appears concise but lacks fault tolerance. The model invents positive numeric defaults (`timeout = 30.0`), returns empty dictionaries in catch blocks to suppress crashes, and hallucinates external libraries. Engineering organizations rely on prompt vibes rather than deterministic behavioral overrides.
+
+### Failure Modes & Drift Dynamics in Ungoverned Production
+Deploying autonomous models with conversational prompts lacking injectable behavioral skills produces three severe failure modes:
+1. **The Legacy Amputation Regression**: When prompted to refactor critical execution gateways or payment controllers without explicit skills such as `LEGACY_REFACTOR_WITH_ASSERTIONS`, models strip defensive retry logic and safety assertions, causing unhandled production crashes during transient network faults.
+2. **Synthetic Data Smuggling**: Lacking `STRICT_COMPONENT_SCAFFOLDING`, models inject synthetic defaults into function signatures (`def calculate_tax(amount, rate=0.08)`) and `.get()` dictionary lookups, silently poisoning downstream financial calculations or medical dosages with fabricated constants.
+3. **Registry Drift and Pipeline Blockage**: Without automated behavioral constraints like `AST_ZERO_DRIFT_ENFORCER`, agents modify classes and method signatures without synchronizing `STATE_REGISTRY.md` or `openrouter_context.json`, breaking remote CI quality gates and stranding deployment pipelines.
+
+### Deterministic Engineering Defenses & Operational Takeaways
+To replace prompt vibes with compiler-grade behavioral constraints, engineering teams enforce these operational invariants:
+- **Eliminate Generic Persona Prompts**: Permanently retire vague prompts (*"You are a senior developer"*). Inject explicit, task-specific skill payloads (`STRICT_COMPONENT_SCAFFOLDING`, `LEGACY_REFACTOR_WITH_ASSERTIONS`, `INVARIANT_ANCHOR_EMBEDDER`) directly into the system instruction boundary.
+- **Mandate the Constitutional Critique Phase**: Require models to execute an explicit `<CRITIQUE>` verification step evaluating data minimization, fail-closed safety, and modularity before emitting executable unified diffs.
+- **Enforce Rule 14 Anti-Feature-Erasure as an Invariant**: Inject explicit constraints forbidding models from truncating, commenting out, or deleting existing error recovery handlers to satisfy line limits, classifying `# ...` comments as immediate grounds for task termination.
+- **Automate the AST Zero-Drift Requirement**: Require all code-generating agents to execute the atomic pre-commit sequence (`python3 scripts/update_state_registry.py && git diff --exit-code`) as a mandatory verification gate prior to task sign-off.
+

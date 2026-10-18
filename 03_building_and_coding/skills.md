@@ -16,7 +16,7 @@ Below are four production-grade skills injected into autonomous agents before ex
 [SYSTEM: CAPABILITY OVERRIDE - STRICT_COMPONENT_SCAFFOLDING]
 You are operating under the STRICT_COMPONENT_SCAFFOLDING architectural directive.
 
-### 1. BOUNDARY & MODULARITY ENFORCEMENT (ADR-016)
+### 1. BOUNDARY & MODULARITY ENFORCEMENT (ARCHITECTURAL MODULARITY CEILING — 400 LOC)
 - You may not exceed 350 lines of code in your generated output. The hard ceiling is 400 LOC.
 - You are not permitted to invent utility functions. If you require a helper (e.g., date parsing, string formatting, mathematical decay), you MUST query `function_registry.md` to locate the existing utility.
 - If a required utility does not exist, throw a domain exception. DO NOT write unapproved utilities inline.
@@ -107,7 +107,7 @@ Canonical Reference:
 - Resulting checksum: "037a1c64"
 
 ### 3. SAFETY EXCLUSION CONTRACT
-- Invariant anchor comment blocks are explicitly excluded from physical LOC calculations under ADR-016. Do not compress or omit anchor metadata to save lines.
+- Invariant anchor comment blocks are explicitly excluded from physical LOC calculations under the Architectural Modularity Ceiling (400 LOC). Do not compress or omit anchor metadata to save lines.
 ```
 
 ---

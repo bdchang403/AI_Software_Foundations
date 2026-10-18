@@ -31,7 +31,7 @@ When an AI agent needs to understand domain rules, it must call this tool to ret
       },
       "max_lines": {
         "type": "integer",
-        "description": "Hard limit on lines returned to prevent token attention dilution (ADR-016 compliant). Maximum 80 lines.",
+        "description": "Hard limit on lines returned to prevent token attention dilution (Architectural Modularity Ceiling compliant). Maximum 80 lines.",
         "default": 80
       }
     },

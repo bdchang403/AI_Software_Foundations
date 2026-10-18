@@ -3,7 +3,7 @@
 ## 🎯 Lab Objectives
 By completing this workbook, Software Engineers and System Architects will master:
 1. **Embedding & Verifying SHA1 Invariant Anchors**: Programmatically generating and validating `# === INVARIANT-BLOCK` checksums ($I_{01}$–$I_{22}$).
-2. **Constructing an AST State Registry Parser**: Extracting physical line counts, classes, public function signatures, and ADR-016 health flags.
+2. **Constructing an AST State Registry Parser**: Extracting physical line counts, classes, public function signatures, and Architectural Modularity Ceiling (400 LOC) health flags.
 3. **Compiling Living Context Payloads**: Generating minified JSON (<1,500 tokens) with strict dual-schema table-to-DTO mappings.
 4. **Executing the Zero-Drift Pre-Commit Chain**: Enforcing `git diff --exit-code` and resolving AST drift in local development.
 5. **Enforcing Rule 14 Anti-Feature-Erasure**: Decomposing files $\ge 350$ LOC without truncating error handlers or assertions.

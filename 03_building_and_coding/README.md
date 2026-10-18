@@ -56,7 +56,7 @@ Architecture and implementation do not occur in isolation. Within the cross-func
 | Pipeline Phase | Inbound Artifacts | Architectural Transformation | Outbound Contract | Downstream Consumer |
 | :--- | :--- | :--- | :--- | :--- |
 | **Requirements $\to$ Architecture** | Semantic Blueprint (`docs/specs/*.md`), 3-Part Directive, 20 Edge Cases, Invariant Bindings ($I_k$). | Parse boundary constraints, evaluate Big-O implications, verify database table parity, decompose into $\le 80$-line surgical slices. | Architectural Decision Record (ADR), Module Decomposition Plan, 2-Tier Route Pointers. | Autonomous AI Builder / Implementation Engineer |
-| **Architecture $\to$ Code** | ADR, 2-Tier Domain Context (`docs/context/*.md`), Living Context (`openrouter_context.json`). | Implement logic adhering to ADR-016 ($\le 400$ LOC), embed code-adjacent SHA1 Invariant Anchors, update registries. | Compiled Source Modules, Checksummed Anchor Blocks, Updated AST Registries. | Pre-Commit Verification Gate / Quality Engineer |
+| **Architecture $\to$ Code** | ADR, 2-Tier Domain Context (`docs/context/*.md`), Living Context (`openrouter_context.json`). | Implement logic adhering to the Architectural Modularity Ceiling ($\le 400$ LOC), embed code-adjacent SHA1 Invariant Anchors, update registries. | Compiled Source Modules, Checksummed Anchor Blocks, Updated AST Registries. | Pre-Commit Verification Gate / Quality Engineer |
 | **Code $\to$ Quality Engineering** | Staged Source Code, Generated AST Registries, SHA1 Checksums. | Execute atomic pre-commit chain (`git diff --exit-code`), verify zero AST drift in memory. | Clean Git Commit, Zero-Drift Attestation, Verifiable Execution Proof. | CI/CD Runner (`drift-monitor.yml`) & QE Test Harness |
 
 ---

@@ -126,7 +126,7 @@ The crisis was permanently eliminated by establishing five foundational architec
 
 ## 💻 Production Reference Implementation: Polarity Escalator & Spend Breaker
 
-The following self-contained Python implementation illustrates the **Polarity Escalator with Category-Specific Half-Life Decay** and the **Micro-USD Daily Spend Circuit Breaker**, complying fully with ADR-016 ($\le 400$ LOC):
+The following self-contained Python implementation illustrates the **Polarity Escalator with Category-Specific Half-Life Decay** and the **Micro-USD Daily Spend Circuit Breaker**, complying fully with the Architectural Modularity Ceiling ($\le 400$ LOC):
 
 ```python
 """
@@ -261,7 +261,7 @@ Before submitting code generated with AI assistance, every software engineer and
 3. **The Schema Parity Audit**:
    - [ ] Did the AI introduce any new SQL table names or column names?
    - [ ] Are all database queries cross-referenced against the active `openrouter_context.json` table-to-DTO mapping?
-4. **The Modularity Audit (ADR-016)**:
+4. **The Modularity Audit (Architectural Modularity Ceiling — 400 LOC)**:
    - [ ] Run `python3 -c "print(len(open('target_file.py').readlines()))"`.
    - [ ] Is the physical line count $\le 400$ lines?
    - [ ] If the file exceeds 350 lines, has an architectural decomposition plan been executed?

@@ -199,7 +199,7 @@ Inside `InvoiceSettlementService.mark_settled()`, construct and publish `Invoice
 - Dispatch via `EventBus.publish("invoices.generated", event.to_payload())`.
 
 ### 3. FORMAT & ARCHITECTURAL CONSTRAINTS
-- ADR-016 CEILING: Ensure total file LOC remains $< 350$ lines.
+- ARCHITECTURAL MODULARITY CEILING: Ensure total file LOC remains $< 350$ lines (enforcing the 400-LOC Ceiling).
 - RULE 14 PRESERVATION: Retain all database transaction rollback blocks and dead-letter queue routing verbatim.
 - ZERO-MOCK COMPLIANCE: Do not supply a fallback amount or default UUID. If fields are missing, raise `UnprocessableSettlementError`.
 - OUTPUT: Emit unified diff only.

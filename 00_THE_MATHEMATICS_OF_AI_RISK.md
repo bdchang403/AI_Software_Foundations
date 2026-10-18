@@ -40,14 +40,14 @@ $$\mathcal{H}(A_i) = -\sum_{j=1}^N A_{ij} \ln(A_{ij} + \epsilon), \quad A_{ij} \
 
 Where $\epsilon = 10^{-12}$ provides an $\epsilon$-floor preventing numerical underflow and division-by-zero traps (with $0 \ln 0 \equiv 0$ by continuity). Because the natural logarithm is used, entropy is measured in nats ($\mathcal{H} \ge 0$). As sequence length $N \to \infty$, uniform dispersion yields maximum entropy $\mathcal{H}_{\max} = \ln N$, diluting negative constraints, system instructions, and type invariants.
 *   **Operational Guardrail**: Hard prompt ceiling of $\le 2,500$ tokens per task.
-*   **Deep Implementation**: [Strategic Decomposition (01_03)](./01_strategy_and_vision/03_decomposition.md) and [Context Engineering (03_04)](./03_building_and_coding/04_context_engineering.md).
+*   **Deep Implementation**: [Strategic Decomposition (01_03)](./01_strategy_and_vision/03_epic_decomposition_and_blast_radius.md) and [Context Engineering (03_04)](./03_building_and_coding/04_ast_registries_and_living_context.md).
 
 ---
 
 ### Pillar 2: Attention Dilution & Semantic Structural Scoping
 Empirical testing reveals that when context exceeds 20,000 lines of code, cross-module retention drops sharply below $60\%$ due to context dilution and interference.
 *   **Operational Guardrail**: Architectural Modularity Heuristic (recommended $\le 400$ LOC per file, with refactoring reviews triggered at 350 LOC to preserve single responsibility) and Semantic Structural Scoping (agents inspect cohesive AST functions and classes rather than arbitrary line windows).
-*   **Deep Implementation**: [Code Decomposition & Modularity (03_03)](./03_building_and_coding/03_decomposition.md).
+*   **Deep Implementation**: [Code Decomposition & Modularity (03_03)](./03_building_and_coding/03_code_modularity_ceiling_and_pr_slicing.md).
 
 ---
 
@@ -61,7 +61,7 @@ $$F(x) = \begin{cases}
 \end{cases}$$
 
 *   **Operational Guardrail**: Critical invariants and tool schemas must be pinned strictly to prompt inception ($x \le 0.15$) and prompt termination ($x \ge 0.85$).
-*   **Deep Implementation**: [Context Engineering (03_04)](./03_building_and_coding/04_context_engineering.md) and [Context Mapping Matrix (09_04)](./09_ai_agent_orchestration/04_context_mapping_matrix.md).
+*   **Deep Implementation**: [Context Engineering (03_04)](./03_building_and_coding/04_ast_registries_and_living_context.md) and [Context Mapping Matrix (09_04)](./09_ai_agent_orchestration/04_context_mapping_matrix.md).
 
 ---
 
@@ -78,7 +78,7 @@ System telemetry is partitioned into four operational half-life horizons:
 3. *Structural Solvency*: $t_{1/2} = 21.0\text{ days}$ (Hard expiry: $42.0\text{ days}$)
 4. *Secular Quality*: $t_{1/2} = 90.0\text{ days}$ (Hard expiry: $180.0\text{ days}$)
 *   **Operational Guardrail**: Any telemetry with $\Delta t > 2 \cdot t_{1/2}$ is demoted to `EXPIRED` (Invariant $I_{17}$).
-*   **Deep Implementation**: [Adversarial Requirements (02_02)](./02_requirements_and_design/02_adversarial_thinking.md) and [Adversarial Building (03_02)](./03_building_and_coding/02_adversarial_thinking.md).
+*   **Deep Implementation**: [Adversarial Requirements (02_02)](./02_requirements_and_design/02_telemetry_decay_and_edge_case_matrix.md) and [Adversarial Building (03_02)](./03_building_and_coding/02_builder_red_teaming_and_cron_crisis.md).
 
 ---
 
@@ -92,7 +92,7 @@ Stacking just 5 conjunctive boolean gates with independent pass rate $p_k = 0.30
 $$P_{\text{confluence}} = \mathbb{P}\left(\sum_{j=1}^4 \mathbb{I}(S_j \ge 0.35) \ge 2 \;\land\; \neg \text{FatalContagion}\right) \approx 34.83\% \quad (\text{vs. } 0.243\%)$$
 
 *   **Operational Guardrail**: Requires positive confirmation across $\ge 2$ of 4 orthogonal pillars with isolated fatal contagion veto ($I_{03}$).
-*   **Deep Implementation**: [Requirements Decomposition (02_03)](./02_requirements_and_design/03_decomposition.md) and [Testing Architecture (04_TEST_ARCHITECTURE)](./04_testing_and_validation/TEST_ARCHITECTURE.md).
+*   **Deep Implementation**: [Requirements Decomposition (02_03)](./02_requirements_and_design/03_feature_slicing_and_confluence.md) and [Testing Architecture (04_TEST_ARCHITECTURE)](./04_testing_and_validation/TEST_ARCHITECTURE.md).
 
 ---
 

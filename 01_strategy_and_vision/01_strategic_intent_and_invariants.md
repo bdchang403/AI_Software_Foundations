@@ -1,4 +1,4 @@
-# Module 1: The 3-Part Directive with Invariant Bindings
+# Module 1: Strategic Intent Directives & Invariant Governance
 
 ## 🎯 The Failure of Traditional User Stories in the AI Era
 

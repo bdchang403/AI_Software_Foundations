@@ -1,4 +1,4 @@
-# Module 1: The BA 3-Part Directive & Invariant Binding
+# Module 1: Business Analyst Semantic Contracts & Invariant Bindings
 
 ## 🎯 The Death of Ambiguous Requirements in Autonomous Systems
 

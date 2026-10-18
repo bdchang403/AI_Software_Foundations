@@ -1,4 +1,4 @@
-# Module 3: Feature-Level Decomposition, Bounded Subsystems & Compensatory Confluence
+# Module 3: Feature Slicing, Bounded Subsystems & Compensatory Confluence
 
 ---
 
@@ -139,4 +139,4 @@ flowchart TD
 
 By replacing brittle conjunctive filters with Compensatory Confluence and bounding tasks to the 400-LOC ceiling, Requirements Leads create robust, deterministic specifications that AI agents can implement safely.
 
-[**Proceed to Module 4: Context Engineering & Registry Maps →**](./04_context_engineering.md)
+[**Proceed to Module 4: Context Engineering & Registry Maps →**](./04_semantic_blueprints_and_closed_world_schemas.md)

@@ -1,4 +1,4 @@
-# Module 3: Pipeline Decomposition, Modular Action Ceilings & Canary Wave Deployment
+# Module 3: Deployment Pipeline Modularity & Progressive Canary Rollouts
 
 ## 🧠 Theory: Pipeline Modularity & Blast Radius Containment
 
@@ -144,4 +144,4 @@ runs:
 
 ---
 
-[**Next: Module 4 — Infrastructure Context Engineering & The Resource Map →**](./04_context_engineering.md) | [**Return to Deployment Lead Hub →**](./README.md)
+[**Next: Module 4 — Infrastructure Context Engineering & The Resource Map →**](./04_cloud_resource_maps_and_staging_airgaps.md) | [**Return to Deployment Lead Hub →**](./README.md)

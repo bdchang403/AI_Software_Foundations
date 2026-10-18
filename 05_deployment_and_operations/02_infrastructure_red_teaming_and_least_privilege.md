@@ -1,4 +1,4 @@
-# Module 2: Adversarial Infrastructure Red-Teaming & Structural Least Privilege
+# Module 2: Infrastructure Red-Teaming & Structural Least Privilege
 
 ## 🧠 Theory: Structural Hardening vs. Prompt-Based Security
 
@@ -126,4 +126,4 @@ permissions:
 
 ---
 
-[**Next: Module 3 — Pipeline Decomposition & Rolling Waves →**](./03_decomposition.md) | [**Return to Deployment Lead Hub →**](./README.md)
+[**Next: Module 3 — Pipeline Decomposition & Rolling Waves →**](./03_pipeline_modularity_and_canary_rollouts.md) | [**Return to Deployment Lead Hub →**](./README.md)

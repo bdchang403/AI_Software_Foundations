@@ -1,4 +1,4 @@
-# Module 4: Strategic Context Engineering & Epistemic Firewalls
+# Module 4: Strategic Epistemic Firewalls & Market Air-Gaps
 
 ## 🧠 The Strategy Lead as Governor of Context Attention
 

@@ -1,4 +1,4 @@
-# Module 1: Auditing the 3-Part Directive (Governance at the Root & Epistemic Air-Gapping)
+# Module 1: Root Epistemic Governance & Proxy Variable Risk Auditing
 
 ## 🧠 Theory: Upstream Governance vs. Downstream Remediation
 

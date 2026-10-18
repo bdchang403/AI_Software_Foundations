@@ -1,4 +1,4 @@
-# Module 2: Adversarial Requirements Engineering, Telemetry Decay & The 20 Edge-Case Matrix
+# Module 2: Temporal Telemetry Decay & The 20 Edge-Case Precondition Matrix
 
 ---
 
@@ -139,4 +139,4 @@ Every Semantic Blueprint authored by a Requirements Lead must explicitly define 
 
 Adversarial requirements engineering prevents autonomous agents from inventing dangerous fallbacks. By specifying temporal decay horizons and the 20 boundary edge cases, Requirements Leads establish deterministic guardrails for downstream builders.
 
-[**Proceed to Module 3: Feature-Level Decomposition & Bounded Subsystems →**](./03_decomposition.md)
+[**Proceed to Module 3: Feature-Level Decomposition & Bounded Subsystems →**](./03_feature_slicing_and_confluence.md)

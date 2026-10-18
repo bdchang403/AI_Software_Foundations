@@ -63,17 +63,17 @@ flowchart TD
 ### 1. The AST State Registry (`STATE_REGISTRY.md`)
 *   **Purpose**: Lightweight topographic index (<5,000 tokens) compiled directly from Python native `ast.parse` over git-tracked files.
 *   **Contents**: Module paths, physical line counts, classes, public function signatures, and modularity health status (`✅ Healthy (<350 LOC)` vs `⚠️ Near 400 LOC Cap`).
-*   **Deep Implementation**: [Context Engineering (03_04)](./03_building_and_coding/04_context_engineering.md).
+*   **Deep Implementation**: [Context Engineering (03_04)](./03_building_and_coding/04_ast_registries_and_living_context.md).
 
 ### 2. The Canonical Mathematical Registry (`MATHEMATICAL_REGISTRY.md`)
 *   **Purpose**: Catalogs all safety and quantitative algorithms with exact AST start/end line coordinates (`L_start` to `L_end`), LaTeX formulas, and linked unit tests.
 *   **Contents**: 100+ formal algorithms with zero line-drift.
-*   **Deep Implementation**: [Context Engineering (03_04)](./03_building_and_coding/04_context_engineering.md).
+*   **Deep Implementation**: [Context Engineering (03_04)](./03_building_and_coding/04_ast_registries_and_living_context.md).
 
 ### 3. The Living Context Compiler (`living_context.json`)
 *   **Purpose**: Token-dense JSON context payload (<1,500 tokens) injected into model prompts before execution.
 *   **Contents**: Active model routing matrix, database schema parity map (SQL DTOs to Pydantic models), and governing invariants.
-*   **Deep Implementation**: [Context Engineering (03_04)](./03_building_and_coding/04_context_engineering.md) and [Context Mapping Matrix (09_04)](./09_ai_agent_orchestration/04_context_mapping_matrix.md).
+*   **Deep Implementation**: [Context Engineering (03_04)](./03_building_and_coding/04_ast_registries_and_living_context.md) and [Context Mapping Matrix (09_04)](./09_ai_agent_orchestration/04_context_mapping_matrix.md).
 
 ### 4. Zero-Drift Pre-Commit Hook & Remote CI Monitor
 *   **Purpose**: Guaranteed byte-parity between physical code and documentation.

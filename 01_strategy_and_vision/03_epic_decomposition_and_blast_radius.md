@@ -1,4 +1,4 @@
-# Module 3: Strategic Decomposition Mathematics & Blast Radius Management
+# Module 3: Epic Decomposition Mathematics & Organizational Blast Radius
 
 ---
 
@@ -152,4 +152,4 @@ flowchart TD
 
 Strategic decomposition is an inviolable mathematical requirement. By enforcing Bounded Task Units (BTUs), Strategy Leads maintain model attention in the $>95\%$ precision zone, eliminate code bloat, and protect organizational capital.
 
-[**Proceed to Module 4: Context Engineering & Registry Maps →**](./04_context_engineering.md)
+[**Proceed to Module 4: Context Engineering & Registry Maps →**](./04_epistemic_firewalls_and_market_airgaps.md)

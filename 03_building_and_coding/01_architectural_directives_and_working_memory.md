@@ -1,4 +1,4 @@
-# Module 1: The 3-Part Directive for Architecture & Systems Engineering
+# Module 1: Architectural Engineering Directives & Working Memory Limits
 
 ## 🧠 Theory: The Physics of LLM Task Execution & Working Memory Limits
 
@@ -206,4 +206,4 @@ Inside `InvoiceSettlementService.mark_settled()`, construct and publish `Invoice
 ```
 
 ---
-[**Proceed to Module 2: Adversarial Thinking & Red-Teaming for Builders →**](./02_adversarial_thinking.md)
+[**Proceed to Module 2: Adversarial Thinking & Red-Teaming for Builders →**](./02_builder_red_teaming_and_cron_crisis.md)

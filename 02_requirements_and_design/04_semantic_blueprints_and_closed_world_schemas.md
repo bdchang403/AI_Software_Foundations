@@ -1,4 +1,4 @@
-# Module 4: Semantic Context Engineering & Closed-World Schemas
+# Module 4: Semantic Blueprints & Closed-World Fallback Schemas
 
 ## 🧠 Writing the AI's "Search and Routing Algorithm"
 

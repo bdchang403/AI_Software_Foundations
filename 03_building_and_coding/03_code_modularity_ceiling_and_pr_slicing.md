@@ -1,4 +1,4 @@
-# Module 3: Code Decomposition, Architectural Modularity Ceiling (400 LOC) & Rule 14 Anti-Feature-Erasure
+# Module 3: Code Modularity Ceilings (400 LOC) & Anti-Feature-Erasure PR Slicing
 
 ## 🧠 Theory: Token Economics, Working Memory & The U-Curve Collapse
 
@@ -203,4 +203,4 @@ When an architectural epic requires substantial new functionality, do not attemp
 ```
 
 ---
-[**Proceed to Module 4: Context Engineering (The Builder's Guardrails) →**](./04_context_engineering.md)
+[**Proceed to Module 4: Context Engineering (The Builder's Guardrails) →**](./04_ast_registries_and_living_context.md)

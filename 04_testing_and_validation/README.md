@@ -113,16 +113,16 @@ High-stakes quality engineering transcends financial markets. The mathematical a
 Follow these modules in sequence to master enterprise-grade quality engineering and zero-mock validation:
 
 ### 1. Core Theory & Directives
-1. [**Module 1: The 3-Part Directive for Validation Leads**](./01_3_part_directives.md)
+1. [**Module 1: Validation Contracts & Invariant Assertion Directives**](./01_validation_contracts_and_invariant_assertions.md)
    * Binding context boundaries, negative constraints, and architectural invariants into test-generation directives.
-2. [**Module 2: Adversarial Thinking & Forensic Failure-Mode Analysis**](./02_adversarial_thinking.md)
+2. [**Module 2: Forensic Failure-Mode Analysis & Frontier Model Deception Testing**](./02_forensic_failure_modes_and_deception_testing.md)
    * Deep forensic breakdown of **Crisis 3: The 900,000-Row Synthetic Poison Catastrophe** and **Crisis 4: The 99% Gate Paralysis Crisis**.
    * Mathematical error compounding in DCF, Kelly Criterion, and Bayesian priors.
    * Proof of conjunctive boolean gate collapse vs. Compensatory 4-Pillar Confluence Guardrail (Invariant I09).
-3. [**Module 3: Test Suite Decomposition & Hermetic Socket Isolation**](./03_decomposition.md)
+3. [**Module 3: Test Suite Decomposition & Hermetic Socket Sandboxing**](./03_test_isolation_and_socket_sandboxing.md)
    * Modular test isolation under the Architectural Modularity Ceiling (<= 400 LOC).
    * Eliminating external network egress via `pytest-socket` and `SocketBlockedError`.
-4. [**Module 4: Programmatic AST Zero-Mock Code Enforcement & Runtime Breakers**](./04_context_engineering.md)
+4. [**Module 4: Programmatic AST Zero-Mock Code Enforcement & Runtime Circuit Breakers**](./04_ast_zero_mock_scanning_and_circuit_breakers.md)
    * Codification and implementation of static AST scanning rules ZM001–ZM007.
    * Deep recursive telemetry verification across 15 immutable data provenances.
 

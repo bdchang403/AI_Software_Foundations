@@ -1,4 +1,4 @@
-# Module 1: The 3-Part Directive for Infrastructure as Code (IaC Traceability)
+# Module 1: Infrastructure as Code Directives & State Traceability Contracts
 
 ## 🧠 Theory: Strict Bounds for State Traceability and Infrastructure Guardrails
 
@@ -169,4 +169,4 @@ resource "aws_s3_bucket_public_access_block" "clinical_s3_block" {
 
 ---
 
-[**Next: Module 2 — Adversarial Infrastructure Red-Teaming →**](./02_adversarial_thinking.md) | [**Return to Deployment Lead Hub →**](./README.md)
+[**Next: Module 2 — Adversarial Infrastructure Red-Teaming →**](./02_infrastructure_red_teaming_and_least_privilege.md) | [**Return to Deployment Lead Hub →**](./README.md)

@@ -1,4 +1,4 @@
-# Module 4: Programmatic AST Zero-Mock Enforcement & Runtime Circuit Breakers
+# Module 4: Programmatic AST Zero-Mock Code Enforcement & Runtime Circuit Breakers
 
 ## 🧠 Theory: Static AST Auditing vs. Runtime Defenses
 

@@ -1,4 +1,4 @@
-# Module 3: Test Suite Decomposition & Hermetic Socket Isolation
+# Module 3: Test Suite Decomposition & Hermetic Socket Sandboxing
 
 ## 🧠 Theory: Bounded Context Slicing & The Danger of Monolithic Test Suites
 

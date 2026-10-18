@@ -1,4 +1,4 @@
-# Module 2: Adversarial Thinking & Red-Teaming for Builders
+# Module 2: Builder Adversarial Red-Teaming & Batch Failure Defenses
 
 ## 🧠 Theory: The Pleasing Bias and Cognitive Laziness of LLMs
 
@@ -267,4 +267,4 @@ Before submitting code generated with AI assistance, every software engineer and
    - [ ] If the file exceeds 350 lines, has an architectural decomposition plan been executed?
 
 ---
-[**Proceed to Module 3: Code Decomposition (PR Slicing) & Architectural Modularity →**](./03_decomposition.md)
+[**Proceed to Module 3: Code Decomposition (PR Slicing) & Architectural Modularity →**](./03_code_modularity_ceiling_and_pr_slicing.md)

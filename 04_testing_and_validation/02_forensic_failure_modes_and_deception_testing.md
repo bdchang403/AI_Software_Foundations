@@ -1,4 +1,4 @@
-# Module 2: Adversarial Thinking & Forensic Failure-Mode Case Studies
+# Module 2: Forensic Failure-Mode Analysis & Frontier Model Deception Testing
 
 ## 🧠 Theory: The Evolution from Hallucination to Sophisticated Deception: The Modern Frontier & Chinese Models Paradigm
 

@@ -1,4 +1,4 @@
-# Module 2: Adversarial Thinking & Strategic Red-Teaming
+# Module 2: Strategic Red-Teaming & Executive Moat Protection
 
 ## 🛡️ The Doctrine of Autonomous Vulnerability
 

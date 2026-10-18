@@ -92,7 +92,7 @@ Any cumulative divergence exceeding **\$250.00** halts autonomous operations. Fu
 
 Follow these modules to master regulatory compliance, red-teaming, and model risk auditing for autonomous AI systems:
 
-1. [**Module 1: Auditing the 3-Part Directive (Epistemic Governance & Proxy Risk)**](./01_3_part_directives.md)
+1. [**Module 1: Root Epistemic Governance & Proxy Variable Risk Auditing**](./01_epistemic_governance_and_proxy_risk_auditing.md)
    * Detecting proxy variable discrimination, enforcing the 80% commercial discount, and auditing immutable quarantine migrations.
 2. [**Module 2: Regulatory Red-Teaming, Plausibility Envelopes & Model Risk**](./02_regulatory_red_teaming.md)
    * Red-teaming against prompt injections, mathematical implementation of pre-action plausibility bands, and nightly reconciliation loops.

@@ -1,4 +1,4 @@
-# Module 4: Context Engineering, AST Registries & Living Context Compilation
+# Module 4: AST Code Registries & Living Context Compilation
 
 ## 🧠 Theory: Ground Truth in Large Repositories — Why Naive Vector RAG Fails
 

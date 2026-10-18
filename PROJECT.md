@@ -131,26 +131,26 @@ AI_Software_Foundations/
 ├── TEST_READY.md (published upon test suite completion)
 ├── 01_strategy_and_vision/
 │   ├── README.md
-│   ├── 01_3_part_directives.md
-│   ├── 02_adversarial_thinking.md
-│   ├── 03_decomposition.md
-│   ├── 04_context_engineering.md
+│   ├── 01_strategic_intent_and_invariants.md
+│   ├── 02_strategic_red_teaming.md
+│   ├── 03_epic_decomposition_and_blast_radius.md
+│   ├── 04_epistemic_firewalls_and_market_airgaps.md
 │   └── LAB_WORKBOOK.md
 ├── 02_requirements_and_design/
 │   ├── README.md
-│   ├── 01_3_part_directives.md
-│   ├── 02_adversarial_thinking.md
-│   ├── 03_decomposition.md
-│   ├── 04_context_engineering.md
+│   ├── 01_ba_semantic_contracts_and_invariants.md
+│   ├── 02_telemetry_decay_and_edge_case_matrix.md
+│   ├── 03_feature_slicing_and_confluence.md
+│   ├── 04_semantic_blueprints_and_closed_world_schemas.md
 │   ├── 05_prompt_injection_defense.md
 │   ├── SEMANTIC_BLUEPRINT_SPECIFICATION.md
 │   └── LAB_WORKBOOK.md
 ├── 03_building_and_coding/
 │   ├── README.md
-│   ├── 01_3_part_directives.md
-│   ├── 02_adversarial_thinking.md
-│   ├── 03_decomposition.md
-│   ├── 04_context_engineering.md
+│   ├── 01_architectural_directives_and_working_memory.md
+│   ├── 02_builder_red_teaming_and_cron_crisis.md
+│   ├── 03_code_modularity_ceiling_and_pr_slicing.md
+│   ├── 04_ast_registries_and_living_context.md
 │   ├── 05_context_chaining_and_routing.md
 │   ├── 06_information_routing_structure.md
 │   ├── adr_template.md
@@ -161,25 +161,25 @@ AI_Software_Foundations/
 │   └── LAB_WORKBOOK.md
 ├── 04_testing_and_validation/
 │   ├── README.md
-│   ├── 01_3_part_directives.md
-│   ├── 02_adversarial_thinking.md
-│   ├── 03_decomposition.md
-│   ├── 04_context_engineering.md
+│   ├── 01_validation_contracts_and_invariant_assertions.md
+│   ├── 02_forensic_failure_modes_and_deception_testing.md
+│   ├── 03_test_isolation_and_socket_sandboxing.md
+│   ├── 04_ast_zero_mock_scanning_and_circuit_breakers.md
 │   ├── TEST_ARCHITECTURE.md
 │   ├── examples/
 │   └── LAB_WORKBOOK.md
 ├── 05_deployment_and_operations/
 │   ├── README.md
-│   ├── 01_3_part_directives.md
-│   ├── 02_adversarial_thinking.md
-│   ├── 03_decomposition.md
-│   ├── 04_context_engineering.md
+│   ├── 01_iac_traceability_and_state_contracts.md
+│   ├── 02_infrastructure_red_teaming_and_least_privilege.md
+│   ├── 03_pipeline_modularity_and_canary_rollouts.md
+│   ├── 04_cloud_resource_maps_and_staging_airgaps.md
 │   ├── 05_automated_traceability.md
 │   ├── github_action_trace_example.yml
 │   └── LAB_WORKBOOK.md
 ├── 06_security_and_compliance/
 │   ├── README.md
-│   ├── 01_3_part_directives.md
+│   ├── 01_epistemic_governance_and_proxy_risk_auditing.md
 │   ├── 02_regulatory_red_teaming.md
 │   └── LAB_WORKBOOK.md
 ├── 07_team_process_and_flow/

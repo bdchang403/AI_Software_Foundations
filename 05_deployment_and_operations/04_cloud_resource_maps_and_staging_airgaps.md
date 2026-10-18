@@ -1,4 +1,4 @@
-# Module 4: Infrastructure Context Engineering, Cloud Resource Maps & Deterministic Topology
+# Module 4: Cloud Resource Maps & Staging Environment Air-Gapping
 
 ## 🧠 Theory: Bounding the Cloud Resource Graph
 

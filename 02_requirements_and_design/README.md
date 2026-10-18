@@ -99,13 +99,13 @@ In digital flight control systems, the BA specifies autopilot control laws:
 
 Business Analysts and Requirements Leads should master these modules in order:
 
-1. [**Module 1: The BA 3-Part Directive & Invariant Binding**](./01_3_part_directives.md)  
+1. [**Module 1: Business Analyst Semantic Contracts & Invariant Bindings**](./01_ba_semantic_contracts_and_invariants.md)  
    *Writing machine-executable requirements with explicit invariant links ($I_{01}-I_{22}$).*
-2. [**Module 2: Adversarial Thinking & The 20 Edge-Case Matrix**](./02_adversarial_thinking.md)  
+2. [**Module 2: Temporal Telemetry Decay & The 20 Edge-Case Precondition Matrix**](./02_telemetry_decay_and_edge_case_matrix.md)  
    *Enumerating boundary conditions, numerical limits, and Case Study 5 forensic takeaways.*
-3. [**Module 3: Feature-Level Decomposition & Blast Radius**](./03_decomposition.md)  
+3. [**Module 3: Feature Slicing, Bounded Subsystems & Compensatory Confluence**](./03_feature_slicing_and_confluence.md)  
    *Slicing Epics into context-bounded user stories adhering to the Architectural Modularity Ceiling (400 LOC).*
-4. [**Module 4: Semantic Context Engineering & Closed-World Schemas**](./04_context_engineering.md)  
+4. [**Module 4: Semantic Blueprints & Closed-World Fallback Schemas**](./04_semantic_blueprints_and_closed_world_schemas.md)  
    *Authoring Semantic Blueprints, mapping business terms to AST paths, and defining fallback sinks ($I_{05}$).*
 5. [**Module 5: Prompt Injection Defense & Epistemic Sanitization**](./05_prompt_injection_defense.md)  
    *Defending autonomous requirements pipelines against indirect prompt injections and payload smuggling.*

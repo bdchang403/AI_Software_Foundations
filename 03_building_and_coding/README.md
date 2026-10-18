@@ -237,13 +237,13 @@ flowchart LR
 
 Explore the technical modules of Milestone 3:
 
-1. [**Module 1: The 3-Part Directive for Architecture**](./01_3_part_directives.md)
+1. [**Module 1: Architectural Engineering Directives & Working Memory Limits**](./01_architectural_directives_and_working_memory.md)
    * The physics of prompt boundaries: Context Boundary, Task Instruction, and Architectural Constraint.
-2. [**Module 2: Adversarial Thinking & Red-Teaming for Builders**](./02_adversarial_thinking.md)
+2. [**Module 2: Builder Adversarial Red-Teaming & Batch Failure Defenses**](./02_builder_red_teaming_and_cron_crisis.md)
    * Root causes of Crisis 1 (Cron Poller); closing the Fail-Soft trap and intercepting silent failures.
-3. [**Module 3: Code Decomposition (PR Slicing) & Architectural Modularity (400 LOC)**](./03_decomposition.md)
+3. [**Module 3: Code Modularity Ceilings (400 LOC) & Anti-Feature-Erasure PR Slicing**](./03_code_modularity_ceiling_and_pr_slicing.md)
    * Enforcing Architectural Modularity Heuristics (<= 400 LOC), 350-LOC trigger, Semantic AST Scoping, and Rule 14 Anti-Feature-Erasure.
-4. [**Module 4: Context Engineering (The Builder's Guardrails)**](./04_context_engineering.md)
+4. [**Module 4: AST Code Registries & Living Context Compilation**](./04_ast_registries_and_living_context.md)
    * Root causes of Crisis 2 (Context Drift); building AST State and Mathematical Registries and the Living Context Compiler.
 5. [**Module 5: Context Chaining & Precision Routing (The Orchestrator)**](./05_context_chaining_and_routing.md)
    * Literal Python/TypeScript context assembler scripts; token budgeting and 1-hop execution.
@@ -263,4 +263,4 @@ Explore the technical modules of Milestone 3:
     * Concrete prompt assembly examples comparing naive chatbot queries with chained payloads.
 
 ---
-[**Proceed to Module 1: The 3-Part Directive for Architecture →**](./01_3_part_directives.md)
+[**Proceed to Module 1: Architectural Engineering Directives & Working Memory Limits →**](./01_architectural_directives_and_working_memory.md)

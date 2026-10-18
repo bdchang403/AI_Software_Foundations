@@ -1,4 +1,4 @@
-# Module 1: The 3-Part Directive for Quality Engineers & Validation Leads
+# Module 1: Validation Contracts & Invariant Assertion Directives
 
 ## 🧠 Theory: Epistemic Isolation — Test the Contract, Not the AI's Code
 

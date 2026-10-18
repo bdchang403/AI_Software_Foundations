@@ -134,13 +134,13 @@ The table below explains how BuilderOps principles operate across two distinct h
 
 Explore the dedicated chapters in this directory to master autonomous deployment and operations:
 
-1. [**Module 1: The 3-Part Directive for Infrastructure as Code**](./01_3_part_directives.md)
+1. [**Module 1: Infrastructure as Code Directives & State Traceability Contracts**](./01_iac_traceability_and_state_contracts.md)
    * Write declarative, defensive deployment prompts that eliminate wildcard permissions and force idempotent execution.
-2. [**Module 2: Adversarial Infrastructure Red-Teaming**](./02_adversarial_thinking.md)
+2. [**Module 2: Infrastructure Red-Teaming & Structural Least Privilege**](./02_infrastructure_red_teaming_and_least_privilege.md)
    * Conduct automated security audits against AI-generated cloud configs, container definitions, and Kubernetes manifests.
-3. [**Module 3: Pipeline Decomposition & Rolling Release Waves**](./03_decomposition.md)
+3. [**Module 3: Deployment Pipeline Modularity & Progressive Canary Rollouts**](./03_pipeline_modularity_and_canary_rollouts.md)
    * Decompose monolithic cloud updates into atomic deployment waves with automated rollback triggers.
-4. [**Module 4: Infrastructure Context Engineering & Environment Air-Gapping**](./04_context_engineering.md)
+4. [**Module 4: Cloud Resource Maps & Staging Environment Air-Gapping**](./04_cloud_resource_maps_and_staging_airgaps.md)
    * Build deterministic Infrastructure Registries, Cloud Resource Maps, and strictly isolated staging environments.
 5. [**Module 5: Automated Traceability, CI Drift Monitors & AI-SBOM Standards**](./05_automated_traceability.md)
    * Implement the GitHub Actions CI zero-drift monitor and enforce machine-readable SPDX 3.0 AI-SBOM metadata headers.
@@ -149,4 +149,4 @@ Explore the dedicated chapters in this directory to master autonomous deployment
 
 ---
 
-[**Next: Module 1 — The 3-Part Directive for IaC →**](./01_3_part_directives.md) | [**Return to Root Curriculum Overview →**](../README.md)
+[**Next: Module 1 — IaC Directives & State Traceability Contracts →**](./01_iac_traceability_and_state_contracts.md) | [**Return to Root Curriculum Overview →**](../README.md)

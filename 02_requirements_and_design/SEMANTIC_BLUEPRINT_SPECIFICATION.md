@@ -19,7 +19,7 @@ Every production Semantic Blueprint must contain these five mandatory sections:
 │            Explicit mapping from business domain terms to physical code paths         │
 ├────────────────────────────────────────────────────────────────────────────────────────┤
 │ Section 3: Mathematical & Epistemic Contracts                                          │
-│            LaTeX formulas, ADR-030 Air-Gap, 80% Commercial Discount, Log-Odds Fusion  │
+│            LaTeX formulas, Unidirectional Epistemic Air-Gap Guardrail, 80% Commercial Discount, Log-Odds Fusion  │
 ├────────────────────────────────────────────────────────────────────────────────────────┤
 │ Section 4: The 20 Pre-condition Boundary Edge-Case Specification                       │
 │            Deterministic behaviors across null, negative, NaN, stale, & panic states  │
@@ -41,7 +41,7 @@ Every production Semantic Blueprint must contain these five mandatory sections:
 - **Epic ID**: `[EPIC-YYY-NNN]`
 - **Bounded Subsystem**: `[Path to Subsystem Module]`
 - **Max Token Budget**: `[<= 4,000 tokens]`
-- **Target File LOC**: `[<= 400 lines of code per ADR-016]`
+- **Target File LOC**: `[<= 400 lines of code per Architectural Modularity Ceiling (<= 400 LOC)]`
 - **Governing Invariants**: `[e.g., I01, I02, I04, I07, I15, I20, I22]`
 - **Required AST Skill Profile**: `[e.g., EXPERT_PYTHON_NUMERICAL_AGENT]`
 
@@ -57,7 +57,7 @@ The autonomous builder agent is contractually restricted to these exact file pat
 ## 3. Mathematical & Epistemic Contracts
 - **Primary Mathematical Formula**:
   $$[LaTeX Formula Defining Primary Logic]$$
-- **Epistemic Air-Gap (ADR-030)**:
+- **Epistemic Air-Gap (Unidirectional Epistemic Air-Gap Guardrail)**:
   Unstructured sources must be isolated from internal state. Marketing sources (`commercial_conflict: true`) are discounted by 80%:
   $$W_{\text{eff}} = W_{\text{Brier}} \times 0.20, \quad \text{Polarity}_{\text{stored}} = \text{round}(\text{Polarity}_{\text{raw}} \times 0.20, \; 2)$$
 
@@ -136,7 +136,7 @@ $$\frac{|P_{\text{exec}} - P_{\text{Friday}}|}{|P_{\text{Friday}}|} \le 0.01$$
 # === INVARIANT-BLOCK v1 (DO NOT EDIT MANUALLY) ===
 # INVARIANT: I02
 # NAME: Execution-Price Guardrail
-# ADR: ADR-029
+# GUARDRAIL: Pre-Action Execution Plausibility Envelope ($I_{02}$)
 # CLASS: HARD-SAFETY
 # ROLE: CANONICAL_IMPL
 # PREDICATE: Execution guardrail |P_exec - EMA_5| <= max(3*ATR, 0.08*EMA)
@@ -179,7 +179,7 @@ $$\text{Rate}_{\text{exec}} \in [0.01, \; 0.50]\,\mu\text{g/kg/min}$$
 # === INVARIANT-BLOCK v1 (DO NOT EDIT MANUALLY) ===
 # INVARIANT: I02
 # NAME: Execution-Price Guardrail
-# ADR: ADR-029
+# GUARDRAIL: Pre-Action Execution Plausibility Envelope ($I_{02}$)
 # CLASS: HARD-SAFETY
 # ROLE: CANONICAL_IMPL
 # PREDICATE: Execution guardrail |P_exec - EMA_5| <= max(3*ATR, 0.08*EMA)

@@ -114,6 +114,29 @@ $$\text{ROIC} \ge 15\% \land g \ge 15\% \land \text{MOS}_{\text{GAC}} > 0.0 \imp
 
 ---
 
+
+### Statistical Significance & Multiple-Testing Bias: Deflated Sharpe Ratio (DSR)
+
+When an autonomous agent runs thousands of optimization iterations or prompt refactorings, standard p-values become invalid due to **selection bias under multiple testing** (P-hacking). A strategy or feature that appears profitable or robust after testing $K$ variations is likely a statistical artifact.
+
+To prevent agent over-fitting, the Validation Lead enforces the **Deflated Sharpe Ratio (DSR $\ge 0.95$)** (Bailey & López de Prado, 2014):
+
+$$\mathrm{DSR} \equiv \mathrm{Prob}\left[\mathrm{SR}^* > 0 \mid \{\mathrm{SR}_k\}_{k=1}^K\right] = \Phi\left(\frac{(\widehat{\mathrm{SR}} - \mathrm{SR}_0)\sqrt{T-1}}{\sqrt{1 - \hat{\gamma}_3 \widehat{\mathrm{SR}} + \frac{\hat{\gamma}_4 - 1}{4} \widehat{\mathrm{SR}}^2}}\right)$$
+
+Where:
+*   $\widehat{\mathrm{SR}}$ is the estimated performance Sharpe ratio.
+*   $T$ is the number of observation periods.
+*   $\hat{\gamma}_3$ and $\hat{\gamma}_4$ are the sample skewness and kurtosis of returns.
+*   $\Phi(\cdot)$ is the standard normal cumulative distribution function.
+*   $\mathrm{SR}_0$ is the expected maximum Sharpe ratio under the null hypothesis of zero true predictive skill across $K$ independent trials:
+
+$$\mathrm{SR}_0 = \sqrt{2 \ln K} \left(1 - \frac{\gamma}{\sqrt{2 \ln K}}\right) + \frac{\ln(4\pi \ln K)}{2\sqrt{2\ln K}}$$
+
+Where $\gamma \approx 0.577215$ is the Euler-Mascheroni constant.
+*   **Validation Gate**: The test suite requires $\mathrm{DSR} \ge 0.95$. Any agent discovery failing this hurdle is rejected as a statistical artifact.
+
+---
+
 ## 🌪️ Cartesian Fault-Injection & Conformal Fuzzing
 
 Safety-critical quality engineering demands stress testing beyond linear parameter variations. The testing suite employs **Cartesian Fault Injection**:

@@ -6,20 +6,20 @@ In autonomous agentic engineering, **Context Engineering** is not prompt writing
 
 The Strategy Lead and Product Owner are responsible for establishing the **Strategic Context Envelope**. This envelope dictates:
 1. What information the agent is permitted to know (**Epistemic Allowlisting**).
-2. What external sources must be discounted or firewalled (**The ADR-030 Epistemic Air-Gap**).
+2. What external sources must be discounted or firewalled (**The Unidirectional Epistemic Air-Gap Guardrail**).
 3. How unstructured narrative claims are mapped to machine-verifiable data structures (**The Epic Semantic Blueprint**).
 
 ---
 
-## 🛡️ The ADR-030 Epistemic Air-Gap
+## 🛡️ The Unidirectional Epistemic Air-Gap Guardrail
 
 The most dangerous vulnerability in multi-agent intelligence extraction is **Cognitive Priming**. When an agent reading external unstructured sources (e.g., industry news, analyst podcasts, vendor marketing, medical preprints) is aware of internal vulnerabilities, portfolio weights, or clinical deficits, it inevitably reads those sources through its primed confirmation bias.
 
-Under **ADR-030**, the system enforces a strict, unidirectional epistemic air-gap:
+Under **Unidirectional Epistemic Air-Gap Guardrail**, the system enforces a strict, unidirectional epistemic air-gap:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                        ADR-030: THE EPISTEMIC AIR-GAP FIREWALL                          │
+│                        Unidirectional Epistemic Air-Gap Guardrail: THE EPISTEMIC AIR-GAP FIREWALL                          │
 ├────────────────────────────────────────────────────────────────────────────────────────┤
 │  External Unstructured Streams (Podcasts, Social Media, Sponsored Whitepapers)        │
 │                                           │                                            │
@@ -70,7 +70,7 @@ flowchart TD
         RAW3["Regulatory Filings: SEC 10-K / FDA Clinical Trials"]
     end
 
-    subgraph EpistemicAirGap ["ADR-030: Epistemic Air-Gap Firewall"]
+    subgraph EpistemicAirGap ["Unidirectional Epistemic Air-Gap Guardrail"]
         EXTRACT["Zero-Context Extraction Contract"]
         RAW1 & RAW2 & RAW3 --> EXTRACT
         EXTRACT --> CLASSIFY{"Epistemic Classification Engine"}
@@ -112,7 +112,7 @@ The primary strategic artifact emitted by the Strategy Lead / Product Owner is t
 - **Max Token Budget**: `3,500 tokens`
 - **Governing Invariants**: `I01, I04, I17, I20`
 
-## 2. Epistemic Allowlist (ADR-044)
+## 2. Epistemic Allowlist (Role-Based Epistemic Slicing Guardrail)
 - **Included Context**: `schemas/telemetry_event.py`, `config/verified_provenance_allowlist.json`
 - **Excluded Context (Air-Gapped)**: `portfolio/live_positions.db`, `clinical/patient_records.db`
 

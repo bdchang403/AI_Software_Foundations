@@ -9,7 +9,7 @@
 - **Target Subsystem**: `[Bounded Subsystem Domain Path]`
 - **Max Token Budget**: `[<= 15,000 tokens for entire Epic]`
 - **Max Story Blast Radius**: `[<= 4,000 tokens per child story]`
-- **Target File LOC**: `[<= 400 lines per module per ADR-016]`
+- **Target File LOC**: `[<= 400 lines per module per Architectural Modularity Ceiling (<= 400 LOC)]`
 - **Governing Invariants**: `[e.g., I01, I02, I04, I07, I15, I20]`
 
 ---
@@ -21,10 +21,10 @@
 
 ---
 
-## 3. Epistemic Sandbox & Domain Boundaries (ADR-044)
+## 3. Epistemic Sandbox & Domain Boundaries (Role-Based Epistemic Slicing Guardrail)
 *Enforce strict context bounding to prevent token bloat and cognitive attention dilution.*
 - **Included Code Paths (In Sandbox)**: `[e.g., src/telemetry/*, schemas/events.py]`
-- **Air-Gapped Context (ADR-030 Prohibited)**: `[e.g., portfolio/live_positions.db, clinical/patient_records.db]`
+- **Air-Gapped Context (Unidirectional Epistemic Air-Gap Guardrail Prohibited)**: `[e.g., portfolio/live_positions.db, clinical/patient_records.db]`
 - **Out-of-Bounds Systems**: `[e.g., legacy/billing/*, admin/console/*]`
 
 ---
@@ -32,7 +32,7 @@
 ## 4. Mathematical Contracts & De-Biasing Filters
 - **Primary Formulation**:
   $$[LaTeX Mathematical Formulation]$$
-- **Unstructured Intelligence Discount (ADR-030)**:
+- **Unstructured Intelligence Discount (Unidirectional Epistemic Air-Gap Guardrail)**:
   All external media or vendor marketing with commercial conflicts (`commercial_conflict: true`) must apply the 80% discount:
   $$W_{\text{eff}} = W_{\text{Brier}} \times 0.20, \quad \text{Polarity}_{\text{stored}} = \text{round}(\text{Polarity}_{\text{raw}} \times 0.20, \; 2)$$
 - **Telemetry Decay ($I_{17}$)**:

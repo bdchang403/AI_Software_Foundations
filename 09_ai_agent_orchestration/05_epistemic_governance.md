@@ -71,7 +71,24 @@ $$\mathbf{\Sigma}_{\text{LW}} = (1 - \delta^*) \mathbf{S} + \delta^* \mathbf{F}$
 *   $\mathbf{F} = \frac{\text{Tr}(\mathbf{S})}{p} \mathbf{I}$ is the scaled identity matrix (shrinkage target).
 *   $\delta^* \in [0, 1]$ is the optimal shrinkage intensity parameter.
 
-ZCA whitening decorrelates the input streams while preserving maximal spatial alignment with the original physical sensor axes, preventing the agent from being deceived by redundant signals.
+
+### Spectral Eigendecomposition & Symmetrical ZCA Whitening
+To transform the regularized covariance matrix into decorrelated factor space without arbitrary rotational bias, the system applies **Zero-Phase Component Analysis (ZCA) Whitening**:
+
+1. Decompose $\mathbf{\Sigma}_{\text{LW}}$ into its orthogonal eigenvectors $U$ and diagonal eigenvalues $\Lambda$:
+$$\mathbf{\Sigma}_{\text{LW}} = U \Lambda U^T = U \;\mathrm{diag}(\lambda_1, \dots, \lambda_p) U^T$$
+
+2. Calculate the matrix trace mean $\mu = \frac{\mathrm{Tr}(\mathbf{\Sigma}_{\text{LW}})}{p}$. To suppress micro-eigenvalue noise and prevent alpha penalization, clamp eigenvalues within physiological safety limits:
+$$\lambda_{\text{safe}, i} = \min\left(\max\left(\lambda_i, \; \epsilon_{\text{floor}} \lambda_{\max}\right), \; \max(1.0, \mu)\right)$$
+
+3. Formulate the symmetrical ZCA whitening transformation matrix $W_{\text{ZCA}}$:
+$$W_{\text{ZCA}} = U \;\mathrm{diag}\left(\frac{1}{\sqrt{\lambda_{\text{safe}, 1}}}, \dots, \frac{1}{\sqrt{\lambda_{\text{safe}, p}}}\right) U^T$$
+
+4. The decorrelated telemetry matrix $X_{\text{decorrelated}}$ is calculated as:
+$$X_{\text{decorrelated}} = (X - \bar{X}) W_{\text{ZCA}}^T + \bar{X}$$
+
+This transformation satisfies Invariant $I_{11}$, guaranteeing an invertibility condition number $\mathrm{cond}(\mathbf{\Sigma}_{\text{LW}}) \le 10^{12}$ while preserving 100% of the original spatial axes.
+
 
 ---
 

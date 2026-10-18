@@ -23,7 +23,7 @@ Every user story or technical requirement authored by a Business Analyst must fo
 ├────────────────────────────────────────────────────────────────────────────────────────┤
 │ 1. ROLE (Epistemic Sandbox & Tool Allowlists)                                          │
 │    • Explicit agent persona and execution domain.                                      │
-│    • Strict epistemic allowlist (ADR-044): allowable context files and tool methods.   │
+│    • Strict epistemic allowlist (Role-Based Epistemic Slicing Guardrail): allowable context files and tool methods.   │
 ├────────────────────────────────────────────────────────────────────────────────────────┤
 │ 2. TASK (Deterministic Algorithmic Transformation)                                     │
 │    • Strongly-typed input schemas and data provenances.                                │
@@ -32,7 +32,7 @@ Every user story or technical requirement authored by a Business Analyst must fo
 ├────────────────────────────────────────────────────────────────────────────────────────┤
 │ 3. FORMAT & CONSTRAINTS (Constitutional Locks & Invariant Bindings)                    │
 │    • Explicit bindings to Canonical Invariants (I_01 through I_22).                    │
-│    • ADR-016 400-LOC modular ceiling and 350-LOC refactor trigger.                     │
+│    • Architectural Modularity Ceiling (400 LOC) and 350-LOC refactor trigger.                     │
 │    • Fail-Closed Telemetry Doctrine: return None or raise domain exception.            │
 └────────────────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -119,4 +119,4 @@ Before committing a 3-Part Directive to engineering, the Requirements Lead must 
 - [ ] **Deterministic Typing**: Are all inputs and outputs defined with typed schemas rather than generic strings or raw JSON?
 - [ ] **Explicit Invariant Linkage**: Does the constraint section explicitly cite at least two governing Invariants ($I_{01}-I_{22}$)?
 - [ ] **Negative Boundary Conditions**: Are forbidden behaviors (e.g., synthetic mock fallbacks, raw SQL `DELETE`s) explicitly enumerated?
-- [ ] **ADR-016 Modularity**: Is the task sized so that the implementation and unit test can each fit within 400 LOC?
+- [ ] **Architectural Modularity Ceiling (400 LOC)**: Is the task sized so that the implementation and unit test can each fit within 400 LOC?

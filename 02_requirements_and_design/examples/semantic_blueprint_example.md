@@ -15,7 +15,7 @@ Below are two exhaustive production-grade Semantic Blueprint examples from high-
 - **Epic ID**: `EPIC-RISK-02`
 - **Bounded Subsystem**: `02_requirements_and_specifications`, `src/execution/guardrails.py`
 - **Max Token Budget**: `3,200 tokens`
-- **Target File LOC**: `280 lines of code (ADR-016 <= 400)`
+- **Target File LOC**: `280 lines of code (Architectural Modularity Ceiling <= 400)`
 - **Governing Invariants**: `I01, I02, I04, I07, I15`
 - **Required Skill Level**: `EXPERT_PYTHON_QUANT_SYSTEM_PROMPT`
 
@@ -51,7 +51,7 @@ $$\frac{|P_{\text{exec}} - P_{\text{Friday}}|}{|P_{\text{Friday}}|} \le 0.01$$
 - **Epic ID**: `EPIC-CLIN-03`
 - **Bounded Subsystem**: `src/clinical/titration_guardrail.py`
 - **Max Token Budget**: `3,500 tokens`
-- **Target File LOC**: `310 lines of code (ADR-016 <= 400)`
+- **Target File LOC**: `310 lines of code (Architectural Modularity Ceiling <= 400)`
 - **Governing Invariants**: `I01, I02, I03, I04, I05, I07, I15`
 - **Required Skill Level**: `EXPERT_EMBEDDED_SAFETY_SYSTEM_PROMPT`
 

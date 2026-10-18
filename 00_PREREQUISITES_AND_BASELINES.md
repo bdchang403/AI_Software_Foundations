@@ -47,7 +47,7 @@ Organizations must evaluate a representative sample of 50 recent AI interactions
 
 Through structured interviews with principal architects and senior builders, leadership must map the exact threshold where developer productivity inverts:
 - **The File Count / LOC Threshold:** Identify the specific codebase size (typically $> 400$ LOC per file or $> 15$ files per module) where developers stop using AI because the model "gets lost," hallucinates obsolete methods, or breaks existing tests.
-- **Root Cause Isolation:** This threshold empirically validates the necessity of the **ADR-016 400-LOC modular ceiling** and the **AST State Registry**, pinpointing the exact subsystems requiring immediate architectural refactoring.
+- **Root Cause Isolation:** This threshold empirically validates the necessity of the **Architectural Modularity Ceiling (400 LOC)** and the **AST State Registry**, pinpointing the exact subsystems requiring immediate architectural refactoring.
 
 ---
 

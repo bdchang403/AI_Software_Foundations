@@ -41,11 +41,11 @@ The **Context Factory** replaces stochastic chatbot prompts with a deterministic
 │                                                                                                  │
 │   [Business Analysts / Requirements Leads] ──► 01_ Strategy & 02_ Requirements                   │
 │   • 3-Part Directives with Mathematical Invariant Bindings                                       │
-│   • Epistemic Air-Gap (ADR-030) & 80% Commercial Funnel Discount                                 │
+│   • Unidirectional Epistemic Air-Gap Guardrail & 80% Commercial Funnel Discount                                 │
 │   • Semantic Blueprints with 20 Mandatory Pre-Condition Edge Cases                               │
 │                                                                                                  │
 │   [Software Engineers & Architects]        ──► 03_ Building & Coding                             │
-│   • ADR-016 400-LOC Hard Ceiling & 80-line Surgical Slices                                       │
+│   • Architectural Modularity Ceiling (400 LOC) & 80-line Surgical Slices                                       │
 │   • AST State & Math Registries (`STATE_REGISTRY.md`, `MATHEMATICAL_REGISTRY.md`)               │
 │   • Living Context Compiler (<1,500 tokens) & Invariant SHA1 Anchors                             │
 │                                                                                                  │
@@ -71,7 +71,7 @@ The **Context Factory** replaces stochastic chatbot prompts with a deterministic
 ```mermaid
 flowchart TD
     PO["1. Product Owners & Executives<br>Enterprise Constitution & Invariants (I01-I22)"] --> BA["2. Business Analysts<br>Semantic Blueprints & 20 Edge Cases"]
-    BA --> DEV["3. Software Engineers<br>ADR-016 400-LOC Ceiling & AST Living Context"]
+    BA --> DEV["3. Software Engineers<br>Architectural Modularity Ceiling (400 LOC) & AST Living Context"]
     DEV --> QE["4. Quality Engineers<br>AST Zero-Mock (ZM001-ZM007) & Socket Isolation"]
     QE --> OPS["5. Deployment & Operations<br>AI-SBOM Provenance & Quarantine Ledger"]
     OPS --> SM["6. Scrum Masters & Agile Coaches<br>DORA/SPACE Telemetry & Context Debt"]
@@ -95,7 +95,7 @@ Every enterprise discipline possesses a designated operational domain, specific 
 |:---|:---|:---|:---|:---|
 | **Product Owners & Regulated Executives** | `00_`<br>`01_strategy_and_vision` | Model risk governance, fail-closed capital doctrine, regulatory certification (FDA/DO-178C/SR 11-7), immutable quarantine oversight. | $I_{03}, I_{04}, I_{15}, I_{21}$ | `consensus_quarantine`, Executive DORA Dashboards |
 | **Business Analysts & Requirements Leads** | `02_requirements_and_design` | 3-Part Directives, epistemic air-gapping, 80% commercial discount filters, Semantic Blueprints with 20 pre-condition edge cases. | $I_{05}, I_{07}, I_{08}, I_{20}$ | `docs/stories/*.md`, Semantic Blueprint Validator |
-| **System Architects & Software Engineers** | `03_building_and_coding` | ADR-016 400-LOC modular ceiling, 80-line surgical slices, AST state/math registry compiler, living context (<1,500 tokens), SHA1 invariant anchors. | $I_{01}, I_{02}, I_{06}, I_{11}, I_{22}$ | `scripts/update_state_registry.py`, `drift-monitor.yml` |
+| **System Architects & Software Engineers** | `03_building_and_coding` | Architectural Modularity Ceiling (400 LOC), 80-line surgical slices, AST state/math registry compiler, living context (<1,500 tokens), SHA1 invariant anchors. | $I_{01}, I_{02}, I_{06}, I_{11}, I_{22}$ | `scripts/update_state_registry.py`, `drift-monitor.yml` |
 | **Validation Leads & Quality Engineers (QE)** | `04_testing_and_validation`<br>`06_security_and_compliance` | Programmatic AST Zero-Mock scanning (ZM001–ZM007), hermetic socket isolation (`pytest-socket`), SHA1 anchor verification, Cartesian fuzzing. | $I_{01}, I_{09}, I_{10}, I_{12}, I_{22}$ | `scripts/scan_mock_data.py`, `tests/conftest.py` |
 | **Scrum Masters & Agile Coaches** | `07_team_process_and_flow` | Bounded task decomposition (<200 LOC blast radius), context debt telemetry, tracking DORA/SPACE metrics, 120-day phased rollout guidance. | $I_{13}, I_{14}, I_{16}, I_{17}$ | Context Debt Dashboard, Sprint Retrospective Monitors |
 | **Deployment Leads & BuilderOps** | `05_deployment_and_operations` | Zero-drift CI pre-commit gates, AI-SBOM metadata generation, nightly mark-to-market reconciliation, dual-storage parity sync. | $I_{04}, I_{13}, I_{14}, I_{15}$ | `.github/workflows/verify_ai_sbom.yml`, `sync_data.py` |
@@ -113,7 +113,7 @@ The curriculum is organized into six progressive, interconnected milestones:
 - [**00_ENTERPRISE_CONSTITUTION.md**](./00_ENTERPRISE_CONSTITUTION.md)  
   *Constitutional law:* The 10 Inviolable Commandments, the Master Canonical Invariant Matrix ($I_{01}-I_{22}$), the Fail-Closed Telemetry Doctrine, the Zero Hard-Deletes Mandate, cryptographic SHA1 anchor blocks, and Articles I through VII.
 - [**00_THE_CONTEXT_PIPELINE.md**](./00_THE_CONTEXT_PIPELINE.md)  
-  *Systems architecture:* AST-compiled living context vs. naive vector RAG, ADR-016 400-LOC ceiling, 80-line surgical slices, Epistemic Air-Gap (ADR-030), 80% commercial discount, and the cross-functional Context Handshake.
+  *Systems architecture:* AST-compiled living context vs. naive vector RAG, ADR-016 400-LOC ceiling, 80-line surgical slices, Unidirectional Epistemic Air-Gap Guardrail, 80% commercial discount, and the cross-functional Context Handshake.
 - [**00_REGULATORY_MODEL_GOVERNANCE.md**](./00_REGULATORY_MODEL_GOVERNANCE.md)  
   *Compliance manual:* High-stakes model risk governance across FDA Class III (21 CFR Part 820/11), ISO 13485, Federal Reserve SR 11-7, FAA DO-178C Level A, and EU AI Act. Complete AI-SBOM specification and immutable quarantine schema (`consensus_quarantine`).
 - [**00_EXECUTIVE_ALIGNMENT_STRATEGY.md**](./00_EXECUTIVE_ALIGNMENT_STRATEGY.md)  
@@ -127,13 +127,13 @@ The curriculum is organized into six progressive, interconnected milestones:
 - [**01_strategy_and_vision/**](./01_strategy_and_vision/README.md)  
   *Strategy Lead Hub:* Bounded Epics, strategic decomposition, business-level adversarial thinking, and executive value stream mapping.
 - [**02_requirements_and_design/**](./02_requirements_and_design/README.md)  
-  *Requirements Lead Hub:* 3-Part Directives (Role, Task, Format), Semantic Blueprints, 20-edge-case pre-condition matrices, and ADR-030 epistemic air-gapping.
+  *Requirements Lead Hub:* 3-Part Directives (Role, Task, Format), Semantic Blueprints, 20-edge-case pre-condition matrices, and Unidirectional Epistemic Air-Gap guardrail.
 
 ---
 
 ### Milestone 3: Architecture, Modular Coding & Living Context
 - [**03_building_and_coding/**](./03_building_and_coding/README.md)  
-  *Builder & Architect Hub:* ADR-016 400-LOC modular ceiling, 350-LOC refactoring trigger, 80-line surgical context windows, `STATE_REGISTRY.md`, `MATHEMATICAL_REGISTRY.md`, Living Context compilation (`openrouter_context.json` <1,500 tokens), and zero-drift pre-commit chains.
+  *Builder & Architect Hub:* Architectural Modularity Ceiling (400 LOC), 350-LOC refactoring trigger, 80-line surgical context windows, `STATE_REGISTRY.md`, `MATHEMATICAL_REGISTRY.md`, Living Context compilation (`openrouter_context.json` <1,500 tokens), and zero-drift pre-commit chains.
 
 ---
 
@@ -163,7 +163,7 @@ The curriculum grounds all engineering principles in six historical production f
 
 1. **Crisis 1: The V1 Monolithic Cron Poller Crisis (May 2026):**  
    *Root Cause:* Nightly batch sweeps across 1,200-LOC monolithic scripts burned $750/month in tokens and suffered 16-hour reaction lags to intraday shocks.  
-   *Permanent Fix:* Event-driven webhook ingress (ADR-001), 3-tier triage funnel (ADR-002), continuous half-life decay (ADR-003), and ADR-016 400-LOC ceiling.
+   *Permanent Fix:* Event-Driven Ingress Guardrail, 3-Tier Severity Triage Funnel Guardrail, Continuous Half-Life Decay Guardrail, and ADR-016 400-LOC ceiling.
 2. **Crisis 2: The V2 Architectural & Context Drift Crisis (July 2026):**  
    *Root Cause:* 40+ prose markdown docs diverged from code; LLMs hallucinated non-existent database columns, crashing with SQLite locked errors.  
    *Permanent Fix:* Deterministic AST State Registry (`STATE_REGISTRY.md`), Mathematical Registry, Living Context Compiler (<1,500 tokens), and pre-commit zero-drift CI sentinels.
@@ -172,13 +172,13 @@ The curriculum grounds all engineering principles in six historical production f
    *Permanent Fix:* Static AST Code Scanner (ZM001–ZM007), Runtime Zero-Mock Circuit Breaker, Fail-Closed Telemetry Doctrine, and mandatory data citations.
 4. **Crisis 4: The 99% Gate Paralysis Crisis (September 2026):**  
    *Root Cause:* Stacking 100 sequential conjunctive boolean `AND` gates ($P_{\text{joint}} = \prod p_k = 0.243\%$) rejected premier growth compounders due to the DCF reinvestment paradox.  
-   *Permanent Fix:* Compensatory 4-Pillar Confluence (ADR-024), GAC-ROIC-MOS valuation (ADR-034), and Bayesian contextual bandit Thompson sampling.
+   *Permanent Fix:* Compensatory 4-Pillar Confluence Guardrail (Invariant I09), Growth-Adjusted Capitalized ROIC Margin of Safety (GAC-ROIC-MOS Guardrail), and Bayesian contextual bandit Thompson sampling.
 5. **Crisis 5: The Epistemic Priming & Liquidation Incident (October 2026):**  
    *Root Cause:* External media extractor was primed with internal portfolio loss alerts; interpreted a promotional YouTube trading course funnel as independent crash proof, triggering panic liquidation.  
-   *Permanent Fix:* Unidirectional Epistemic Air-Gap (ADR-030), 80% commercial funnel discount ($W_{\text{commercial}} = 0.20$), and role-based epistemic slicing (ADR-044).
+   *Permanent Fix:* Unidirectional Unidirectional Epistemic Air-Gap Guardrail, 80% commercial funnel discount ($W_{\text{commercial}} = 0.20$), and Role-Based Epistemic Slicing Guardrail.
 6. **Crisis 6: Cross-Channel Verdict Desynchronization (October 2026):**  
    *Root Cause:* Decoupled presentation channels querying divergent local replicas emitted conflicting verdicts (BUY vs SUPPRESS vs SELL) for the same entity on the same morning.  
-   *Permanent Fix:* Single-source routing via `ConsensusService` (ADR-038), remote-first freshness gates ($I_{13}$), server-composed directional headers ($I_{14}$), and Cartesian conformal fuzz testing.
+   *Permanent Fix:* Single-Source Routing via `ConsensusService` Guardrail, remote-first freshness gates ($I_{13}$), server-composed directional headers ($I_{14}$), and Cartesian conformal fuzz testing.
 
 ---
 

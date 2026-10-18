@@ -55,7 +55,7 @@ You are building an intelligence aggregator for executive decision-makers. The s
 
 #### Negative Boundary Constraint:
 ```markdown
-CONSTRAINT: ADR-030 Epistemic Firewall Active.
+CONSTRAINT: Unidirectional Epistemic Air-Gap Guardrail Active.
 Under no circumstances may the media extractor query internal portfolio risk limits, 
 unrealized PnL, or hospital clinical mortality baselines.
 All sources flagged with commercial_conflict: true MUST apply the 80% discount factor.

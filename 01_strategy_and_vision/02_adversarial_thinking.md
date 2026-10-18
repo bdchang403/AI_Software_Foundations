@@ -48,11 +48,11 @@ Before the true architectural root cause was addressed, the team attempted sever
 
 The crisis forced the creation of two permanent architectural standards:
 
-1. **ADR-030: The Unidirectional Epistemic Air-Gap**: External unstructured intelligence is ingested through a strictly isolated, zero-context extraction contract. The extractor has zero visibility into internal portfolio weights, current PnL, cash balances, or macro stress scores. The extractor operates as an objective, emotionless courtroom recorder, classifying media claims strictly into `OBSERVED_CLAIM` (subjective crowd psychology) versus `GROUND_TRUTH_FACT` (verified regulatory filings).
+1. **The Unidirectional Epistemic Air-Gap Guardrail**: External unstructured intelligence is ingested through a strictly isolated, zero-context extraction contract. The extractor has zero visibility into internal portfolio weights, current PnL, cash balances, or macro stress scores. The extractor operates as an objective, emotionless courtroom recorder, classifying media claims strictly into `OBSERVED_CLAIM` (subjective crowd psychology) versus `GROUND_TRUTH_FACT` (verified regulatory filings).
 2. **The 80% Commercial Funnel Discount ($W_{\text{commercial}} = 0.20$)**: If an unstructured source contains monetization links, sponsored affiliate codes, or promotional courses (`commercial_conflict: true`), its polarity and weight are automatically slashed by 80%:
    $$W_{\text{eff}} = W_{\text{Brier}} \times W_{\text{commercial}} = W_{\text{Brier}} \times 0.20$$
    $$\text{Polarity}_{\text{stored}} = \text{round}(\text{Polarity}_{\text{raw}} \times 0.20, 2)$$
-3. **ADR-044: Role-Based Epistemic Slicing**: System context is partitioned into disjoint allowlists (`FORENSIC_ALLOWLIST`, `CATALYST_ALLOWLIST`, `ADVERSARIAL_ALLOWLIST`), ensuring agents only see context relevant to their specific role.
+3. **Role-Based Epistemic Slicing Guardrail**: System context is partitioned into disjoint allowlists (`FORENSIC_ALLOWLIST`, `CATALYST_ALLOWLIST`, `ADVERSARIAL_ALLOWLIST`), ensuring agents only see context relevant to their specific role.
 
 ---
 
@@ -61,7 +61,7 @@ The crisis forced the creation of two permanent architectural standards:
 ### Callout 1: Clinical Decision Support Literature Extraction
 In an FDA-regulated Clinical Decision Support (CDS) system assisting oncologists, an autonomous agent ingests medical research to evaluate drug efficacy.
 - **The Epistemic Priming Trap**: If the research agent is hydrated with the hospital's internal operating deficit and pharmaceutical procurement contracts, it may be primed to favor higher-margin chemotherapeutic protocols. When reading a manufacturer-sponsored clinical preprint, the primed agent interprets preliminary marketing abstracts as definitive, double-blind peer-reviewed proof.
-- **The Red-Team Patch**: Enforce ADR-030. The medical research agent is air-gapped from hospital procurement financials. Unverified preprints and industry-sponsored whitepapers are flagged with `commercial_conflict: true` and subjected to the 80% commercial discount:
+- **The Red-Team Patch**: Enforce Unidirectional Epistemic Air-Gap Guardrail. The medical research agent is air-gapped from hospital procurement financials. Unverified preprints and industry-sponsored whitepapers are flagged with `commercial_conflict: true` and subjected to the 80% commercial discount:
   $$W_{\text{eff}} = W_{\text{credibility}} \times 0.20$$
   The system strictly classifies claims as `SPONSORED_CLAIM`, requiring verified Phase III double-blind peer-reviewed data before updating treatment recommendation weights.
 
@@ -76,7 +76,7 @@ In an aviation safety system analyzing flight telemetry following an in-flight u
 
 Before approving any Epic for engineering decomposition, the Strategy Lead must verify:
 
-- [ ] **Zero Epistemic Priming**: Does this Epic expose external unstructured extractors to internal financial, clinical, or operational state? (If yes, mandate ADR-030 air-gap).
+- [ ] **Zero Epistemic Priming**: Does this Epic expose external unstructured extractors to internal financial, clinical, or operational state? (If yes, mandate the Unidirectional Epistemic Air-Gap Guardrail).
 - [ ] **Commercial Discount Binding**: Does this initiative ingest third-party vendor whitepapers, sponsored studies, or social media? (If yes, mandate the 80% discount factor $W_{\text{commercial}} = 0.20$).
 - [ ] **Fail-Closed Binding ($I_{01}, I_{05}$)**: Does the Epic specify what happens when third-party APIs return null or time out? (Must mandate fail-closed demotion rather than synthetic defaults).
 - [ ] **Immutable Audit Binding ($I_{04}$)**: Are data invalidations archived to quarantine ledgers rather than raw SQL `DELETE` calls?

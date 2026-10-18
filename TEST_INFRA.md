@@ -36,7 +36,7 @@ The test suite is structured into four deterministic tiers of increasing integra
 │   • Zero-mock exception interception (numeric fallback, synthetic dict, boolean/NaN smuggling) │
 │   • Division-by-zero domain safety, epsilon floors, and non-negative log/sqrt assertions        │
 │   • Condition number stability: cond(Sigma) <= 10^12 under singular and collinear matrices      │
-│   • ADR-016 400 LOC modular ceiling, 350 LOC refactor warnings, non-anchor LOC counting         │
+│   • Architectural Modularity Ceiling (400 LOC), 350 LOC refactor warnings, non-anchor LOC counting         │
 │   • SHA1 invariant anchor block checksum validation and tampering detection                      │
 │   • Threshold: 100% Pass; 0 unhandled domain exceptions; >=5 tests per boundary feature         │
 │                                           │                                                      │
@@ -64,7 +64,7 @@ The test suite is structured into four deterministic tiers of increasing integra
 | Tier | Name | Focus | Key Invariants Verified | Required Test Density | Pass Threshold |
 |---|---|---|---|---|---|
 | **Tier 1** | **Feature Contracts** | Markdown AST, LaTeX equations, Invariant catalog ($I_{01}-I_{22}$), 10 Commandments, AST Rules (ZM001–ZM007) | $I_{01}, I_{05}, I_{15}, I_{20}, I_{22}$ | $\ge 5$ tests per feature area ($\ge 25$ total) | 100% Pass, 0 syntax/AST errors |
-| **Tier 2** | **Boundary Invariants** | Zero-mock interception, Div-by-zero safety, Condition number $\text{cond}(\Sigma) \le 10^{12}$, ADR-016 400 LOC ceiling, SHA1 anchor parity | $I_{02}, I_{06}, I_{07}, I_{11}, I_{22}$ | $\ge 5$ tests per boundary area ($\ge 25$ total) | 100% Pass, 0 uncaught exceptions |
+| **Tier 2** | **Boundary Invariants** | Zero-mock interception, Div-by-zero safety, Condition number $\text{cond}(\Sigma) \le 10^{12}$, Architectural Modularity Ceiling (400 LOC), SHA1 anchor parity | $I_{02}, I_{06}, I_{07}, I_{11}, I_{22}$ | $\ge 5$ tests per boundary area ($\ge 25$ total) | 100% Pass, 0 uncaught exceptions |
 | **Tier 3** | **Cross-Chapter Parity** | Dialectical Triad arbitration, Level-2 JSD bypass ($\text{JSD} \le 0.12$), Cross-channel sync, Role playbook handoffs | $I_{03}, I_{08}, I_{09}, I_{13}, I_{14}, I_{16}$ | Pairwise cross-feature permutations | 100% Pass, zero channel desync |
 | **Tier 4** | **Real-World Workloads** | Replay of 6 Forensic Crises, Dual-Use (FDA vs Fintech), Ledoit-Wolf shrinkage & ZCA whitening, Plausibility bands | $I_{01}–I_{22}$ (Full Matrix) | Full forensic scenarios & mathematical execution | 100% Pass, zero failure recurrence |
 
@@ -84,7 +84,7 @@ Every feature specified in `PROJECT.md` is mapped to its implementing test suite
 | 6 | Zero-Mock Exception Interception | Catch-block interception, boolean/NaN/Inf smuggling, FRED/SEC live provenance verification | $I_{01}$, ZM001, ZM002, ZM006, ZM007 | `test_tier2_boundary_invariants.py` |
 | 7 | Division-by-Zero Safety | Domain boundary safety across PE, Sharpe, RSS, log-odds, continuous decay, zero attention weights | $I_{07}$ | `test_tier2_boundary_invariants.py` |
 | 8 | Condition Number Limits | Ledoit-Wolf shrinkage stability assertion $\text{cond}(\Sigma) \le 10^{12}$ on ill-conditioned/singular matrices | $I_{11}$ | `test_tier2_boundary_invariants.py` |
-| 9 | ADR-016 400 LOC Hard Ceiling | Non-anchor line counting, 350-LOC refactor trigger warning, 400-LOC CI rejection | $I_{22}$ | `test_tier2_boundary_invariants.py` |
+| 9 | Architectural Modularity Ceiling (400 LOC) | Non-anchor line counting, 350-LOC refactor trigger warning, 400-LOC CI rejection | $I_{22}$ | `test_tier2_boundary_invariants.py` |
 | 10 | SHA1 Invariant Anchor Parity | Cryptographic hash calculation and tampering detection for code-adjacent anchors | $I_{22}$ | `test_tier2_boundary_invariants.py` |
 | 11 | Dialectical Adversarial Triad | Path C Bull, Bear, and Auditor deliberation arbitrated by log-odds convex solver with bounded multiplier $M \in [0.20, 1.25]$ | $I_{03}, I_{06}, I_{09}$ | `test_tier3_cross_chapter_parity.py` |
 | 12 | Level-2 $0-Compute JSD Bypass | Zero-compute consensus bypass when pillar divergence $\text{JSD} \le 0.12$ and mean $\ge 0.70$ or $\le 0.30$ | $I_{09}$ | `test_tier3_cross_chapter_parity.py` |

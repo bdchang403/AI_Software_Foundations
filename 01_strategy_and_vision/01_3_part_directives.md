@@ -36,7 +36,7 @@ Every strategic directive delivered to downstream autonomous agents consists of 
 ### Component Breakdown
 
 ### 1. Role (Epistemic Allowlist & Bounded Identity)
-Defines the agent's exact operational persona and enforces ADR-044 role-based epistemic slicing. The agent is explicitly informed of what data it may observe and what tools it is permitted to invoke. It is strictly denied access to out-of-scope domain state to prevent cognitive priming.
+Defines the agent's exact operational persona and enforces Role-Based Epistemic Slicing Guardrail. The agent is explicitly informed of what data it may observe and what tools it is permitted to invoke. It is strictly denied access to out-of-scope domain state to prevent cognitive priming.
 
 ### 2. Task (Deterministic Functional Transformation)
 Specifies the input data contract, the mathematical or algorithmic operation to perform, and the exact output schema. Vague adjectives (*"user-friendly"*, *"fast"*, *"robust"*) are prohibited; only typed specifications and deterministic criteria are accepted.
@@ -60,7 +60,7 @@ When authoring strategic directives, the Strategy Lead binds business requiremen
 | **$I_{07}$** | **Div-by-Zero Safety** | All denominator terms must be clamped or checked. Log/sqrt operations must assert domain non-negativity. | Risk Analytics / Medical Dosing Calculations |
 | **$I_{18}$** | **Compounder Hold Lock** | Enforce minimum time-in-state windows (e.g., 20 trading days or therapeutic course completion) to stop churn. | Asset Management / Pharmacokinetic Regimens |
 | **$I_{20}$** | **Epistemic News Isolation** | Unstructured external media must be ingested behind a unidirectional air-gap with an 80% commercial discount. | Market Sentiment / Clinical Trial Literature |
-| **$I_{22}$** | **400-LOC & Test Hygiene** | All implementation modules must adhere to ADR-016 ($\le 400$ LOC) and embed verifiable SHA1 invariant anchors. | Software Engineering Architecture |
+| **$I_{22}$** | **400-LOC & Test Hygiene** | All implementation modules must adhere to Architectural Modularity Ceiling (400 LOC) ($\le 400$ LOC) and embed verifiable SHA1 invariant anchors. | Software Engineering Architecture |
 
 ---
 

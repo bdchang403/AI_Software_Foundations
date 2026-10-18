@@ -5,7 +5,7 @@ In the enterprise Context Pipeline, the **Business Analyst (BA) / Requirements L
 In autonomous software engineering, a requirement is not a conversational story; it is a **Machine-Ingestible Semantic Contract**. The Requirements Lead is responsible for:
 1. Converting Epic directives into **3-Part Directives with Invariant Bindings**.
 2. Constructing the **Context-Enriched Semantic Blueprint** with **20 Pre-condition Boundary Edge Cases**.
-3. Enforcing the **ADR-030 Epistemic Air-Gap** and the **80% Commercial Funnel Discount** on all external unstructured data ingestion.
+3. Enforcing the **Unidirectional Epistemic Air-Gap Guardrail** and the **80% Commercial Funnel Discount** on all external unstructured data ingestion.
 4. Defining **Closed-World Fallback Schemas ($I_{05}$)** to ensure systems fail closed rather than hallucinating synthetic defaults.
 
 ---
@@ -18,7 +18,7 @@ The Requirements Lead orchestrates the critical interface between the Product Ow
 | :--- | :--- | :--- | :--- |
 | **Epic Semantic Blueprint** (from Strategy Lead / PO) | Deconstruct into token-bounded user stories (< 4k tokens); identify terminology ambiguities | **3-Part Directives with Invariant Bindings** | Autonomous Coding Agents / Builders |
 | **Domain Data Schemas & Business Rules** | Systematically generate the 20-edge-case boundary matrix; define typed validation predicates | **Context-Enriched Semantic Blueprint** | System Architects & Quality Engineers |
-| **External Telemetry & Vendor Inputs** | Classify sources into `OBSERVED_CLAIM` vs `GROUND_TRUTH_FACT`; enforce 80% discount | **Sanitized Telemetry Contract (ADR-030)** | Ingestion & Quant Engineers |
+| **External Telemetry & Vendor Inputs** | Classify sources into `OBSERVED_CLAIM` vs `GROUND_TRUTH_FACT`; enforce 80% discount | **Sanitized Telemetry Contract (Unidirectional Epistemic Air-Gap Guardrail)** | Ingestion & Quant Engineers |
 
 ---
 
@@ -36,18 +36,18 @@ flowchart TD
 
     subgraph BARequirementsEngine ["Business Analyst Semantic Contract Engine"]
         BA_INPUT --> DIRECTIVE["3-Part Directive Authoring: Role, Task, Format"]
-        DIRECTIVE --> AIRGAP["Epistemic Air-Gap & 80% Commercial Funnel Filter: ADR-030"]
+        DIRECTIVE --> AIRGAP["Epistemic Air-Gap & 80% Commercial Funnel Filter: Unidirectional Epistemic Air-Gap Guardrail"]
         AIRGAP --> EDGE_MATRIX["20-Edge-Case Pre-condition Matrix Enumeration"]
         EDGE_MATRIX --> BLUEPRINT["Compile Semantic Blueprint: SEMANTIC_BLUEPRINT_SPECIFICATION.md"]
     end
 
     subgraph DownstreamHandoff ["Downstream Engineering & Quality Assurance"]
-        BLUEPRINT --> BUILDER["Architect & Software Engineer: ADR-016 <= 400 LOC Implementation"]
+        BLUEPRINT --> BUILDER["Architect & Software Engineer: Architectural Modularity Ceiling <= 400 LOC Implementation"]
         BLUEPRINT --> QE["Quality Engineer: Zero-Mock AST Verification & Hermetic Tests"]
         BUILDER --> CI_GATE{"Zero-Drift CI Sentinel: drift-monitor.yml"}
         QE --> CI_GATE
         CI_GATE -->|"All 82 Tests Pass"| PROD["Production Deployment with AI-SBOM"]
-        CI_GATE -->|"Assertion Failure"| FAIL_CLOSED["Fail-Closed Quarantine Ledger: ADR-027"]
+        CI_GATE -->|"Assertion Failure"| FAIL_CLOSED["Fail-Closed Quarantine Ledger: Immutable Quarantine Ledger Guardrail (Invariant I04)"]
     end
 
     style StrategyIntake fill:#e1f5fe,stroke:#0288d1,stroke-width:2px;
@@ -71,7 +71,7 @@ An autonomous agent will find every edge case you fail to define—and resolve i
 - Fail-closed sinks (graceful degradation without synthetic constants).
 
 ### 3. Epistemic Air-Gapping & The 80% Commercial Funnel Discount
-When business requirements involve ingesting external media or market transcripts, the BA enforces ADR-030. Unstructured sources are firewalled from internal execution state and discounted by 80%:
+When business requirements involve ingesting external media or market transcripts, the BA enforces Unidirectional Epistemic Air-Gap Guardrail. Unstructured sources are firewalled from internal execution state and discounted by 80%:
 $$W_{\text{eff}} = W_{\text{Brier}} \times 0.20, \quad \text{Polarity}_{\text{stored}} = \text{round}(\text{Polarity}_{\text{raw}} \times 0.20, \; 2)$$
 
 ---
@@ -104,7 +104,7 @@ Business Analysts and Requirements Leads should master these modules in order:
 2. [**Module 2: Adversarial Thinking & The 20 Edge-Case Matrix**](./02_adversarial_thinking.md)  
    *Enumerating boundary conditions, numerical limits, and Case Study 5 forensic takeaways.*
 3. [**Module 3: Feature-Level Decomposition & Blast Radius**](./03_decomposition.md)  
-   *Slicing Epics into context-bounded user stories adhering to the ADR-016 400-LOC ceiling.*
+   *Slicing Epics into context-bounded user stories adhering to the Architectural Modularity Ceiling (400 LOC).*
 4. [**Module 4: Semantic Context Engineering & Closed-World Schemas**](./04_context_engineering.md)  
    *Authoring Semantic Blueprints, mapping business terms to AST paths, and defining fallback sinks ($I_{05}$).*
 5. [**Module 5: Prompt Injection Defense & Epistemic Sanitization**](./05_prompt_injection_defense.md)  

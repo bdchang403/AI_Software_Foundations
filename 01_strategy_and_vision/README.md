@@ -13,7 +13,7 @@ The Strategy Lead sits between enterprise stakeholders and downstream requiremen
 | Stage | Inbound Artifact | Role Operational Action | Outbound Artifact | Target Recipient |
 | :--- | :--- | :--- | :--- | :--- |
 | **Strategic Intake** | Executive Vision, Market Research, Regulatory Directives | Decompose intent into bounded problem spaces; eliminate omniscient prompt leaks | **Epic 3-Part Directive** | Business Analysts / Requirements Leads |
-| **Epistemic Air-Gap** | Voice-of-Customer, Vendor Marketing, Industry Media | Classify narrative claims as subjective telemetry; apply 80% commercial discount | **Sanitized Telemetry Contract (ADR-030)** | Requirements Leads / Quant Engineers |
+| **Epistemic Air-Gap** | Voice-of-Customer, Vendor Marketing, Industry Media | Classify narrative claims as subjective telemetry; apply 80% commercial discount | **Sanitized Telemetry Contract (Unidirectional Epistemic Air-Gap Guardrail)** | Requirements Leads / Quant Engineers |
 | **Invariant Binding** | Enterprise Constitution (Articles I–VII) | Anchor business logic to canonical system invariants ($I_{01}-I_{22}$) | **Epic Semantic Blueprint** | System Architects / Lead Engineers |
 
 ---
@@ -23,7 +23,7 @@ The Strategy Lead sits between enterprise stakeholders and downstream requiremen
 ### 1. 3-Part Directives with Invariant Bindings
 Traditional user stories (*"As a user, I want..."*) lack the formal precision required by autonomous agents. Autonomous agents interpret vague natural language through probabilistic training distributions, frequently hallucinating dangerous default behaviors. Strategy Leads author **3-Part Directives** consisting of **Role**, **Task**, and **Constraint**, binding every initiative directly to the 22 Canonical Invariants (e.g., $I_{01}$ Zero-Simulated-Data, $I_{02}$ Execution-Price Guardrail, $I_{04}$ Immutable Quarantine, $I_{20}$ Epistemic News Isolation).
 
-### 2. Epistemic Air-Gapping of Unstructured Intelligence (ADR-030)
+### 2. Epistemic Air-Gapping of Unstructured Intelligence (Unidirectional Epistemic Air-Gap Guardrail)
 When strategic initiatives ingest external market reports, customer feedback, or clinical trial literature, agents must not be primed with internal operational state or existing portfolio holdings. Exposing an AI extractor to internal vulnerabilities causes confirmation bias and circular corroboration loops. The Strategy Lead mandates a unidirectional epistemic firewall separating external narrative sentiment from internal execution state.
 
 ### 3. Mathematical Blast Radius & Token Economics
@@ -63,6 +63,6 @@ Product Owners and Strategy Leads should complete these foundational modules in 
 3. [**Module 3: Decomposition Mathematics & Blast Radius**](./03_decomposition.md)  
    *Decomposing complex enterprise initiatives into token-bounded sandbox domains ($< 50\text{k}$ tokens).*
 4. [**Module 4: Strategic Context Engineering & Epistemic Firewalls**](./04_context_engineering.md)  
-   *Building the Epic Semantic Blueprint and enforcing the ADR-030 Epistemic Air-Gap.*
+   *Building the Epic Semantic Blueprint and enforcing the Unidirectional Epistemic Air-Gap Guardrail.*
 5. [**Lab Workbook: Practical Strategy Exercises**](./LAB_WORKBOOK.md)  
    *Hands-on labs: Decomposing high-stakes Epics, applying the 80% commercial discount, and authoring blueprint contracts.*

@@ -20,7 +20,7 @@ If fed directly to an AI agent, this requirement will induce catastrophic vulner
 
 ### Your Task
 Rewrite this requirement into a rigorous **3-Part Directive**:
-1. Define the isolated **Role** and epistemic tool boundaries (ADR-044).
+1. Define the isolated **Role** and epistemic tool boundaries (Role-Based Epistemic Slicing Guardrail).
 2. Formulate the deterministic mathematical **Task** with typed schemas.
 3. Bind the directive to Canonical Invariants ($I_{01}, I_{02}, I_{04}, I_{07}, I_{15}$).
 
@@ -78,7 +78,7 @@ You are auditing an automated requirements intake workflow that ingested a vendo
 ### Your Task
 1. Calculate the stored polarity $\text{Polarity}_{\text{stored}}$ and effective credibility weight $W_{\text{eff}}$ using the 80% Commercial Funnel Discount:
    $$W_{\text{eff}} = W_{\text{Brier}} \times 0.20, \quad \text{Polarity}_{\text{stored}} = \text{round}(\text{Polarity}_{\text{raw}} \times 0.20, \; 2)$$
-2. Formulate the ADR-030 negative air-gap constraint.
+2. Formulate the Unidirectional Epistemic Air-Gap Guardrail negative air-gap constraint.
 
 ### Answer Key (Compare Your Work)
 
@@ -86,9 +86,9 @@ You are auditing an automated requirements intake workflow that ingested a vendo
 $$\text{Polarity}_{\text{stored}} = \text{round}(+8.50 \times 0.20, \; 2) = \mathbf{+1.70}$$
 $$W_{\text{eff}} = 0.50 \times 0.20 = \mathbf{0.10}$$
 
-#### ADR-030 Negative Air-Gap Constraint:
+#### Unidirectional Epistemic Air-Gap Guardrail Negative Air-Gap Constraint:
 ```markdown
-CONSTRAINT: ADR-030 Epistemic Air-Gap Active.
+CONSTRAINT: Unidirectional Epistemic Air-Gap Guardrail Active.
 1. The extraction agent MUST NOT receive internal hospital clinical trial results or current ICU mortality benchmarks.
 2. The extracted finding is classified as SPONSORED_CLAIM (Weight = 0.10, Polarity = +1.70).
 3. The claim is contractually prohibited from updating clinical alarm threshold algorithms without independent FDA 510(k) cleared peer-reviewed evidence.
@@ -117,7 +117,7 @@ Draft the **Context-Enriched Semantic Blueprint**, incorporating:
 - **Epic ID**: `EPIC-AED-01`
 - **Bounded Subsystem**: `src/clinical/ecg_classifier.py`
 - **Max Token Budget**: `3,000 tokens`
-- **Target File LOC**: `260 lines of code (ADR-016 <= 400)`
+- **Target File LOC**: `260 lines of code (Architectural Modularity Ceiling <= 400)`
 - **Governing Invariants**: `I01, I03, I05, I07, I15`
 
 ## 2. Bounded Subsystem Execution Map
@@ -144,7 +144,7 @@ If electrode pad contact impedance $> 300\,\Omega$ or signal is saturated:
 # === INVARIANT-BLOCK v1 (DO NOT EDIT MANUALLY) ===
 # INVARIANT: I03
 # NAME: Fatal-Contagion Veto
-# ADR: ADR-024
+# GUARDRAIL: Compensatory 4-Pillar Confluence (Invariant I09)
 # CLASS: HARD-SAFETY
 # ROLE: CANONICAL_IMPL
 # PREDICATE: Fatal telemetry corruption or pad fault vetos shock authorization

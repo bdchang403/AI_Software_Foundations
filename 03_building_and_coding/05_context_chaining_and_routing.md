@@ -166,7 +166,7 @@ class ContextAssembler:
 | :--- | :--- | :--- | :--- |
 | **Tier 1 Traffic Router** | Directs AI to market microstructure domain context (`docs/context/microstructure.md`). | Directs AI to pump actuation and sensor debounce context (`docs/context/actuator.md`). | Directs AI to flight surface actuation context (`docs/context/flight_controls.md`). |
 | **Living Context Injection** | Injects D1 SQL order book tables, tick size schemas, and active model matrix. | Injects EEPROM calibration tables, sensor analog-to-digital converter (ADC) scales. | Injects ARINC 424 waypoint binary schemas and avionics bus message identifiers. |
-| **Domain Guardrail Enforcement** | Enforces Pre-Trade Plausibility Bands ($|P_{\text{exec}} - \text{EMA}_5| \le \text{Band}$). | Enforces Medical Basal Clamping ($|\text{Rate}_{\text{new}} - \text{Rate}_{\text{cur}}| \le 10\%$). | Enforces Aerodynamic Envelope Limiting ($\delta_{\text{rudder}} \le 5^{\circ}$). |
+| **Domain Guardrail Enforcement** | Enforces Pre-Trade Plausibility Bands ($\lvert P_{\text{exec}} - \text{EMA}_5 \rvert \le \text{Band}$). | Enforces Medical Basal Clamping ($\lvert \text{Rate}_{\text{new}} - \text{Rate}_{\text{cur}} \rvert \le 10\%$). | Enforces Aerodynamic Envelope Limiting ($\delta_{\text{rudder}} \le 5^{\circ}$). |
 | **Token ROI** | Eliminates 30,000-token directory searches, executing in <4,000 tokens in under 4 seconds. | Prevents model from inspecting patient PHI or unrelated telemetry logs during firmware fixes. | Prevents model from reviewing passenger entertainment systems when patching flight guidance. |
 :::
 

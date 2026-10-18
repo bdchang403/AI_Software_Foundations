@@ -53,7 +53,7 @@ When authoring strategic directives, the Strategy Lead binds business requiremen
 | Invariant | Name | Strategic Intent & Governance Rule | Target Regulated Domain |
 | :--- | :--- | :--- | :--- |
 | **$I_{01}$** | **Zero-Simulated-Data** | Banish all synthetic mock fallbacks in runtime code. If live data is unavailable, fail closed immediately. | Fintech (Live Prices) / MedTech (Vital Signs) |
-| **$I_{02}$** | **Execution Guardrails** | Enforce pre-action plausibility bands: $\|V_{\text{exec}} - \text{Baseline}\| \le \text{Band}$. Halt out-of-bound executions. | Trading (Slippage) / Infusion Pumps (Dose Limit) |
+| **$I_{02}$** | **Execution Guardrails** | Enforce pre-action plausibility bands: $\lVert V_{\text{exec}} - \text{Baseline} \rVert \le \text{Band}$. Halt out-of-bound executions. | Trading (Slippage) / Infusion Pumps (Dose Limit) |
 | **$I_{03}$** | **Fatal-Contagion Veto** | Critical risk metrics (e.g., bankruptcy risk, toxic sensor readings) trigger an immediate, unilateral halt. | Credit Solvency / Toxic Biomarker Overdose |
 | **$I_{04}$** | **Immutable Quarantine** | Raw `DELETE` operations are strictly banned. Invalid or corrupted data must be archived to an audit ledger. | Audit Compliance (SR 11-7, 21 CFR Part 11) |
 | **$I_{05}$** | **Closed-World Fallback** | When telemetry is degraded, emit a closed-world schema with missing attributes explicitly flagged as `UNAVAILABLE`. | Degraded Sensor Telemetry / Network Partitions |

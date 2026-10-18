@@ -130,6 +130,44 @@ def test_latex_formula_delimiter_and_brace_balance_in_specs():
     assert len(failures) == 0, f"Found LaTeX KaTeX errors:\n" + "\n".join(failures[:20])
 
 
+def test_markdown_tables_have_matching_column_counts_and_no_unescaped_math_pipes():
+    """Verify that every markdown table across the repo has consistent column counts and zero unescaped math pipes."""
+    md_files = glob.glob(os.path.join(REPO_ROOT, "**/*.md"), recursive=True)
+    broken_lines = []
+    
+    for filepath in md_files:
+        if not os.path.exists(filepath):
+            continue
+        with open(filepath, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+        
+        expected_cols = None
+        in_table = False
+        for idx, line in enumerate(lines):
+            line_s = line.strip()
+            if line_s.startswith("|") and line_s.endswith("|"):
+                cols = [c.strip() for c in line_s.split("|")[1:-1]]
+                if not in_table:
+                    in_table = True
+                    expected_cols = len(cols)
+                else:
+                    if all(set(c).issubset({"-", ":", " "}) for c in cols):
+                        continue
+                    if len(cols) != expected_cols:
+                        broken_lines.append(
+                            f"{os.path.relpath(filepath, REPO_ROOT)}:{idx+1} "
+                            f"(expected {expected_cols} cols, got {len(cols)}) -> {line_s[:70]}"
+                        )
+            else:
+                in_table = False
+                expected_cols = None
+
+    assert len(broken_lines) == 0, (
+        f"Found {len(broken_lines)} markdown table rows with column count mismatches "
+        f"(often caused by raw math pipes | or \\| splitting table cells):\n" + "\n".join(broken_lines)
+    )
+
+
 def test_latex_attention_entropy_mathematical_formulation():
     """Verify attention entropy formula mechanics: H(A_i) = -sum(A_ij * ln(A_ij))."""
     # Uniform attention over N=10 tokens gives maximum entropy ln(10)

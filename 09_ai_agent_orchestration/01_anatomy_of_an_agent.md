@@ -64,7 +64,7 @@ The seven functional layers defined in Chapter 08 map directly into the runtime 
 | **Layer 3** | **AST Memory & Registries** | Software Architect | Living Context JSON (<1,500 tokens) | Invariant $I_{22}$ (Zero-Drift Registry Parity) |
 | **Layer 4** | **Actuation Tools & Sandbox** | Software Builder | Function Registry (OpenAPI / MCP Tools) | Architectural Modularity Heuristic ($\le 400$ LOC) |
 | **Layer 5** | **Adversarial Bounds & Plausibility** | Validation Lead (QE) | Programmatic AST Zero-Mock Rules (ZM001–ZM009) | Invariant $I_{01}$ (Zero-Simulated-Data) |
-| **Layer 6** | **Physical Clamps & Circuit Breakers** | Security Auditor | Pre-Action Plausibility Bands ($|V - B| \le \Delta$) | Invariant $I_{02}$ (Execution Plausibility Band) |
+| **Layer 6** | **Physical Clamps & Circuit Breakers** | Security Auditor | Pre-Action Plausibility Bands ($\lvert V - B \rvert \le \Delta$) | Invariant $I_{02}$ (Execution Plausibility Band) |
 | **Layer 7** | **Audit Custody & Provenance** | BuilderOps Engineer | CI Zero-Drift Workflow & AI-SBOM Header | Invariant $I_{15}$ (UUID Cryptographic Trace) |
 
 ---

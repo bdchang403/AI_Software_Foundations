@@ -46,7 +46,7 @@ The Business Analyst binds user stories directly to the system's 22 Canonical In
 | Invariant | Name | Class | BA Operational Requirement |
 | :--- | :--- | :--- | :--- |
 | **$I_{01}$** | **Zero-Simulated-Data** | HARD-SAFETY | All input fields must originate from verified live sources in `ALLOWLIST`. Banish all fallback constants in except blocks. If live telemetry drops, return `None` or fail closed. |
-| **$I_{02}$** | **Execution Guardrails** | HARD-SAFETY | Define strict pre-action plausibility bands: $\|V_{\text{exec}} - \text{Baseline}\| \le \text{Band}$. Halt and alert on out-of-band commands. |
+| **$I_{02}$** | **Execution Guardrails** | HARD-SAFETY | Define strict pre-action plausibility bands: $\lVert V_{\text{exec}} - \text{Baseline} \rVert \le \text{Band}$. Halt and alert on out-of-band commands. |
 | **$I_{03}$** | **Fatal-Contagion Veto** | HARD-SAFETY | Critical safety violations (e.g., bankruptcy risk, toxic sensor readings) override all positive confluence, commanding an immediate, unilateral halt. |
 | **$I_{04}$** | **Immutable Quarantine** | HARD-SAFETY | Forbid raw SQL `DELETE` calls. Invalidated, corrupt, or rejected records must be archived to a designated quarantine ledger with an audit timestamp and reason. |
 | **$I_{05}$** | **Closed-World Fallback** | HARD-SAFETY | When upstream dependencies fail, emit a typed closed-world schema with missing attributes explicitly flagged as `UNAVAILABLE`. Never extrapolate. |

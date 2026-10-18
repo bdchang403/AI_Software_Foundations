@@ -44,11 +44,11 @@ The **Enterprise AI Constitution** establishes the non-negotiable legal and arch
 | ID | Name | Class | Governing Invariant Predicate | Enforcing Module | Verification Test |
 |:---|:---|:---|:---|:---|:---|
 | **$I_{01}$** | **Zero-Simulated-Data** | `HARD-SAFETY` | $\forall d \in \text{Prod}: d \notin \text{Synthetic} \land \text{finite}(d)$ | `04_TEST`, `06_01` | `test_zero_mock_runtime_breaker` |
-| **$I_{02}$** | **Plausibility Band** | `HARD-SAFETY` | $|P_{\text{exec}} - \text{Baseline}| \le \min(\Delta_{\text{dyn}}, \Delta_{\text{max}})$ | `03_06`, `06_02` | `test_dual_use_pre_action_band` |
+| **$I_{02}$** | **Plausibility Band** | `HARD-SAFETY` | $\lvert P_{\text{exec}} - \text{Baseline} \rvert \le \min(\Delta_{\text{dyn}}, \Delta_{\text{max}})$ | `03_06`, `06_02` | `test_dual_use_pre_action_band` |
 | **$I_{03}$** | **Fatal Contagion Veto**| `HARD-SAFETY` | $\text{Hazard} = \text{True} \implies \text{Verdict} = \text{HALT}$ | `04_02`, `09_02` | `test_crisis_4_replay_paralysis` |
 | **$I_{04}$** | **Immutable Quarantine**| `HARD-SAFETY` | $\forall r \in \text{Ledger}: \mathrm{DELETE}(r) = \emptyset$ | `06_01`, `08_LAB` | `test_cross_channel_audit_table` |
 | **$I_{05}$** | **Epistemic Air-Gap** | `HARD-SAFETY` | $W_{\text{eff}} = W_{\text{raw}} \cdot 0.20 \land \text{airgapped}$ | `02_02`, `09_05` | `test_crisis_5_replay_priming` |
-| **$I_{06}$** | **Logit Bound Clamp** | `MATH-BOUND` | $P \in [\epsilon, 1-\epsilon] \implies |\mathrm{logit}(P)| \le 13.815$ | `09_02` | `test_div_by_zero_logit_boundary`|
+| **$I_{06}$** | **Logit Bound Clamp** | `MATH-BOUND` | $P \in [\epsilon, 1-\epsilon] \implies \lvert \mathrm{logit}(P) \rvert \le 13.815$ | `09_02` | `test_div_by_zero_logit_boundary`|
 | **$I_{07}$** | **Div-by-Zero Safety** | `MATH-BOUND` | $\forall a/b: b = 0 \implies \text{fallback}(\epsilon)$ | `03_02`, `04_02` | `test_div_by_zero_entropy` |
 | **$I_{08}$** | **Growth Hurdle** | `MATH-BOUND` | $\text{EGR} = \text{Yield} + \min(g, 0.25) \ge r_{\text{hurdle}}$ | `04_02` | `test_growth_adjusted_hurdle` |
 | **$I_{09}$** | **Compensatory Flow** | `MATH-BOUND` | $\sum_{j=1}^4 \mathbb{I}(S_j \ge 0.35) \ge 2 \land \neg \text{Veto}$ | `02_03`, `09_02` | `test_confluence_formulation` |
@@ -70,32 +70,60 @@ The **Enterprise AI Constitution** establishes the non-negotiable legal and arch
 
 ## 📋 Cross-Chapter Constitutional Integration Map
 
+The **10 Inviolable Commandments** and **22 Canonical Invariants** govern every stage of the autonomous engineering lifecycle. To ensure seamless traceability, the curriculum organizes implementation into **6 Milestones (Phases)** spanning Chapters `00_` through `09_`:
+
+### 1. The 6 Enterprise Lifecycle Milestones & Chapter Mapping
+
+| Milestone / Phase | Operational Focus & Lifecycle Stage | Curriculum Modules | Governing Commandments & Invariants | Key Foundational Deliverables |
+|:---|:---|:---|:---|:---|
+| **Phase 00: Foundations & Risk Architecture** | Mathematical risk foundations, regulatory governance, token economics, and Day Zero baseline metrics. | `00_THE_MATHEMATICS_OF_AI_RISK.md`<br>`00_ENTERPRISE_CONSTITUTION.md`<br>`00_THE_CONTEXT_PIPELINE.md`<br>`00_REGULATORY_MODEL_GOVERNANCE.md`<br>`00_EXECUTIVE_ALIGNMENT_STRATEGY.md`<br>`00_PREREQUISITES_AND_BASELINES.md` | Commandments 1–10<br>(Invariants $I_{01}$–$I_{22}$) | Bedrock Constitution, AI-SBOM spec, Regulatory Compliance Matrix, 80% Commercial Discount, Living Context Compiler. |
+| **Phase 01: Strategy & Vision** | Strategic decomposition, business value modeling, and executive guardrails. | `01_strategy_and_vision/` | Commandment 5 (Epistemic air-gap)<br>Commandment 8 (Modularity)<br>(Invariants $I_{02}, I_{05}, I_{21}$) | Bounded Epics, Micro-USD token quotas ($400,000\,\mu\text{USD}$/day), value stream mapping. |
+| **Phase 02: Requirements & Design** | 3-Part Directives (Role, Task, Format), Semantic Blueprints, and 20 pre-condition edge cases. | `02_requirements_and_design/` | Commandment 3 (Fatal veto)<br>Commandment 5 (Commercial discount)<br>Commandment 6 (Horizon decay)<br>Commandment 7 (Confluence)<br>(Invariants $I_{03}, I_{05}, I_{07}, I_{08}, I_{09}, I_{17}$) | Unidirectional Epistemic Air-Gap, 80% commercial discount filters, typed closed-world schemas. |
+| **Phase 03: Building & Coding** | Living Context compilation, AST state/math registries, and modular software construction. | `03_building_and_coding/` | Commandment 2 (Plausibility bands)<br>Commandment 8 (400 LOC ceiling)<br>Commandment 9 (SHA1 anchors)<br>(Invariants $I_{02}, I_{07}, I_{13}, I_{14}, I_{16}, I_{18}, I_{22}$) | `STATE_REGISTRY.md`, `MATHEMATICAL_REGISTRY.md`, `living_context.json` (<1,500 tokens), zero-drift pre-commit chains. |
+| **Phase 04: Testing & Security** | Zero-mock code scanning, socket isolation, regulatory red-teaming, and model risk audit. | `04_testing_and_validation/`<br>`06_security_and_compliance/` | Commandment 1 (Zero mocks)<br>Commandment 2 (Execution bounds)<br>Commandment 4 (Zero hard-deletes)<br>(Invariants $I_{01}, I_{02}, I_{03}, I_{04}, I_{10}, I_{12}, I_{19}$) | AST Zero-Mock Rules (ZM001–ZM009), hermetic `pytest-socket` sandbox, Deflated Sharpe Ratio ($\text{DSR} \ge 0.95$). |
+| **Phase 05: Operations & Multi-Agent Orchestration** | CI drift monitoring, team velocity metrics, Dialectical Adversarial Triads, and capstone assembly. | `05_deployment_and_operations/`<br>`07_team_process_and_flow/`<br>`08_final_capstone_project/`<br>`09_ai_agent_orchestration/` | Commandment 7 (Dialectical confluence)<br>Commandment 9 (Cryptographic anchors)<br>Commandment 10 (AI-SBOM provenance)<br>(Invariants $I_{06}, I_{07}, I_{09}, I_{11}, I_{15}, I_{20}, I_{22}$) | CI zero-drift sentinels, AI-SBOM headers, DORA/SPACE telemetry, Convex debate solver, Level-2 \$0-compute JSD bypass. |
+
+### 2. Constitutional Lifecycle Flow
+
 ```mermaid
 flowchart TD
-    CONST["Enterprise AI Constitution (00_ENTERPRISE_CONSTITUTION.md)"]
+    CONST["Enterprise AI Constitution (00_ENTERPRISE_CONSTITUTION.md)<br>10 Inviolable Commandments & 22 Canonical Invariants"]
     
-    CONST --> M1["Phase 01: Strategy & Vision (Pillars 1 & 2, Invariant I21)"]
-    CONST --> M2["Phase 02: Requirements & Design (Invariants I03, I05, I09, I17)"]
-    CONST --> M3["Phase 03: Building & Coding (Invariants I02, I13, I14, I16, I18, I22)"]
-    CONST --> M4["Phase 04: Testing & Validation (Invariants I01, I08, I10, I12, I19)"]
-    CONST --> M5["Phase 05: Deployment & BuilderOps (Invariants I15, I16, I20, I22)"]
-    CONST --> M6["Phase 06: Security & Compliance (Invariants I01, I02, I04, I05)"]
-    CONST --> M7["Phase 07: Agile Team Process & Flow (DORA Telemetry & CDR Quotas)"]
-    CONST --> M8["Phase 08: Final Capstone Assembly (Dual-Track Agent Certification)"]
-    CONST --> M9["Phase 09: Agent Orchestration (Invariants I06, I07, I09, I11, I18)"]
+    CONST --> M0["Phase 00: Foundational Architecture & Governance<br>(00_ Math, Pipeline, Regulatory, Strategy, Baselines)"]
+    M0 --> M1["Phase 01: Strategy & Vision (01_)<br>(Commandments 5 & 8 | Invariants I02, I05, I21)"]
+    M1 --> M2["Phase 02: Requirements & Design (02_)<br>(Commandments 3, 5, 6, 7 | Invariants I03, I05, I07, I08, I09, I17)"]
+    M2 --> M3["Phase 03: Building & Coding (03_)<br>(Commandments 2, 8, 9 | Invariants I02, I13, I14, I16, I18, I22)"]
+    M3 --> M4["Phase 04: Testing & Validation (04_) & Security (06_)<br>(Commandments 1, 2, 4 | Invariants I01, I02, I04, I12, I19)"]
+    M4 --> M5["Phase 05: Deployment (05_), Agile Flow (07_), Capstone (08_), Orchestration (09_)<br>(Commandments 7, 9, 10 | Invariants I06, I11, I15, I20, I22)"]
 
     style CONST fill:#f8f9fa,stroke:#343a40,stroke-width:3px;
+    style M0 fill:#e1bee7,stroke:#6a1b9a,stroke-width:2px;
     style M1 fill:#e8f4f8,stroke:#17a2b8,stroke-width:1.5px;
     style M2 fill:#e8f4f8,stroke:#17a2b8,stroke-width:1.5px;
     style M3 fill:#e8f4f8,stroke:#17a2b8,stroke-width:1.5px;
-    style M4 fill:#e8f4f8,stroke:#17a2b8,stroke-width:1.5px;
-    style M5 fill:#e8f4f8,stroke:#17a2b8,stroke-width:1.5px;
-    style M6 fill:#e8f4f8,stroke:#17a2b8,stroke-width:1.5px;
-    style M7 fill:#e8f4f8,stroke:#17a2b8,stroke-width:1.5px;
-    style M8 fill:#d4edda,stroke:#28a745,stroke-width:2px;
-    style M9 fill:#fef9e7,stroke:#ffc107,stroke-width:1.5px;
+    style M4 fill:#fff3e0,stroke:#e65100,stroke-width:1.5px;
+    style M5 fill:#d4edda,stroke:#28a745,stroke-width:2px;
 ```
 
 ---
 
-[**Proceed to The 3-Tier Context Pipeline →**](./00_THE_CONTEXT_PIPELINE.md) | [**Return to Main Curriculum Hub →**](./README.md)
+## 🧭 Executive Reading Path: Navigating the 00_ Foundational Architecture
+
+Before proceeding to tactical domain chapters (`01_` through `09_`), cross-functional teams must ground their domain practices in the complete **Phase 00 Foundational Suite**:
+
+1. [**00_THE_MATHEMATICS_OF_AI_RISK.md**](./00_THE_MATHEMATICS_OF_AI_RISK.md)  
+   *Mathematical Proofs:* Attention entropy $\mathcal{H}(A_i)$, U-shaped context loss $F(x)$, exponential half-life decay kinetics, conjunctive gate collapse (0.243%) vs. compensatory confluence, log-odds convex evidence fusion with JSD discounting, Ledoit-Wolf covariance shrinkage, and Deflated Sharpe Ratio.
+2. [**00_ENTERPRISE_CONSTITUTION.md**](./00_ENTERPRISE_CONSTITUTION.md)  
+   *Constitutional Bedrock:* The 10 Inviolable Commandments, 22 Canonical Invariants ($I_{01}$–$I_{22}$), Fail-Closed Telemetry Doctrine, and Immutable Quarantine Ledger. *(Current Document)*
+3. [**00_THE_CONTEXT_PIPELINE.md**](./00_THE_CONTEXT_PIPELINE.md)  
+   *Compilation Architecture:* 3-Tier Context Pipeline, AST State & Math Registries, living context compiler (`living_context.json` <1,500 tokens), and zero-drift pre-commit enforcement.
+4. [**00_REGULATORY_MODEL_GOVERNANCE.md**](./00_REGULATORY_MODEL_GOVERNANCE.md)  
+   *Statutory Compliance:* Mapping statutory mandates (FDA 21 CFR Part 820/11, Federal Reserve SR 11-7, FAA DO-178C Level A, and EU AI Act) to concrete engineering patterns and SPDX 3.0 AI-SBOM provenance.
+5. [**00_EXECUTIVE_ALIGNMENT_STRATEGY.md**](./00_EXECUTIVE_ALIGNMENT_STRATEGY.md)  
+   *C-Suite Strategy & Token Economics:* 85% to 95% token OpEx savings, Micro-USD quotas ($400,000\,\mu\text{USD}$/day), bounded task decomposition (<200 LOC blast radius), and the 120-day organizational transformation roadmap.
+6. [**00_PREREQUISITES_AND_BASELINES.md**](./00_PREREQUISITES_AND_BASELINES.md)  
+   *Day Zero Readiness Assessment:* Shadow AI elimination, 3 interaction maturity tiers, historical 90-day DORA and SPACE baseline telemetry extraction, and role-by-role readiness checklists.
+
+---
+
+[**Next in Phase 00: Proceed to The 3-Tier Context Pipeline Architecture →**](./00_THE_CONTEXT_PIPELINE.md) | [**Return to Main Curriculum Hub →**](./README.md)

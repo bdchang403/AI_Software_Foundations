@@ -25,7 +25,7 @@ If fed directly to an AI builder agent, the agent will attempt to ingest hospita
 | :--- | :--- | :--- | :--- | :--- |
 | **EPIC-CLIN-01** | **Bedside Arterial Waveform Ingestion** | 12,000 tokens | $I_{01}$ (Zero Mock), $I_{16}$ (Patient Isolation) | Cannot query billing or physician scheduling databases. |
 | **EPIC-CLIN-02** | **Hemodynamic Sepsis Risk Evaluator** | 8,000 tokens | $I_{02}$ (Plausibility Band), $I_{07}$ (Div-by-Zero) | Cannot issue automated infusion rate changes directly. |
-| **EPIC-CLIN-03** | **Closed-Loop Vasopressor Titration Stepper** | 6,000 tokens | $I_{02}$ (Dose Limiter), $I_{03}$ (Fatal Veto) | Titration changes capped at $|\Delta R| \le 0.05\,\mu\text{g/kg/min}$. |
+| **EPIC-CLIN-03** | **Closed-Loop Vasopressor Titration Stepper** | 6,000 tokens | $I_{02}$ (Dose Limiter), $I_{03}$ (Fatal Veto) | Titration changes capped at $\lvert \Delta R \rvert \le 0.05\,\mu\text{g/kg/min}$. |
 | **EPIC-CLIN-04** | **Sepsis Audit & Immutable Quarantine Ledger** | 5,000 tokens | $I_{04}$ (Zero Hard-Deletes), $I_{15}$ (UUID Trace) | Raw `DELETE` statements prohibited; all edits append-only. |
 
 ---

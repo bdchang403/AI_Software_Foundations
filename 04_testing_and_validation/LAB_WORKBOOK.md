@@ -157,7 +157,7 @@ def hermetic_socket_guard(monkeypatch):
 ## 🧪 Lab 4: Compensatory 4-Pillar Confluence vs. Conjunctive Gate Collapse
 
 ### Objective
-Write an algorithmic test proving that conjunctive sequential boolean gates collapse joint probability ($0.243\%$), while Compensatory 4-Pillar Confluence (ADR-024) unblocks high-reinvestment compounders while isolating fatal contagion vetoes ($I_{03}$).
+Write an algorithmic test proving that conjunctive sequential boolean gates collapse joint probability ($0.243\%$), while Compensatory 4-Pillar Confluence Guardrail (Invariant I09) unblocks high-reinvestment compounders while isolating fatal contagion vetoes ($I_{03}$).
 
 ### Step 1: Verified Answer Key
 ```python
@@ -170,7 +170,7 @@ def test_compensatory_confluence_unblocks_compounders():
     conjunctive_pass = (nvda_pillars[3] > 0.0) and (nvda_pillars[0] > 0.5) and (nvda_pillars[1] > 0.5)
     assert conjunctive_pass is False, "Conjunctive gate incorrectly passed!"
     
-    # Compensatory Confluence (ADR-024): Any 2 of 4 >= 0.35 passes BUY consideration
+    # Compensatory Confluence (Invariant I09): Any 2 of 4 >= 0.35 passes BUY consideration
     confluent_count = sum(1 for p in nvda_pillars if p >= 0.35)
     has_fatal_contagion = False  # SCSI > -0.35, Altman Z > 1.10
     

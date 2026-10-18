@@ -48,11 +48,11 @@ Every 3-Part Directive must be evaluated against three constitutional questions:
 
 ---
 
-## 🛡️ Epistemic Air-Gapping & The 80% Commercial Funnel Discount (ADR-030)
+## 🛡️ Epistemic Air-Gapping & The 80% Commercial Funnel Discount (Unidirectional Epistemic Air-Gap Guardrail)
 
 In Crisis 5 (The Epistemic Priming & Liquidation Incident), an AI agent parsed an external YouTube video titled *"Once in a Lifetime Monetary Reset"* and treated the creator's panic-driven claims as independent third-party market validation, liquidating **\$150,000** in TSLA shares. In reality, the creator was exaggerating a routine 25 bps rate cut to sell a **\$2,000 day-trading mentorship**.
 
-To prevent external promotional hype from polluting enterprise decision-making, ADR-030 enforces the **Epistemic Air-Gap**:
+To prevent external promotional hype from polluting enterprise decision-making, the **Unidirectional Epistemic Air-Gap Guardrail** enforces strict boundaries:
 
 ### 1. Epistemic Classification
 External unstructured media must be tagged strictly as `OBSERVED_CLAIM` (crowd psychology telemetry), never as `GROUND_TRUTH_FACT`. Any agent prompt generating assertions that external media "corroborates our internal thesis" triggers an immediate schema validation rejection.
@@ -68,7 +68,7 @@ Under this discount, an extreme sensationalist video with raw polarity $-8.5$ is
 
 ---
 
-## 🗄️ Immutable Ledger Quarantine (ADR-027 / Invariant $I_{04}$)
+## 🗄️ Immutable Ledger Quarantine (Invariant $I_{04}$ / Immutable Quarantine Guardrail)
 
 Under regulatory record-keeping frameworks—such as FDA 21 CFR Part 11 (§11.10(e) Audit Trails) and SEC Rule 17a-4 / FINRA Rule 4511 (Electronic Records Preservation)—audit trails must be **immutable**, ensuring record modifications do not obscure previously recorded information. To satisfy these statutory mandates and support the model change tracking required by Federal Reserve SR 11-7, software engineers must never execute raw database deletions:
 $$\forall r \in \text{Ledger}: \operatorname{DELETE}(r) = \emptyset$$

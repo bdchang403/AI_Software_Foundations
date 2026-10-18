@@ -50,7 +50,7 @@ flowchart TD
     end
 
     subgraph P5["Pillar 5: Mathematical Confluence"]
-        Conf["Compensatory 4-Pillar Engine<br/>(ADR-024)"]
+        Conf["Compensatory 4-Pillar Confluence Engine<br/>(Invariant I09)"]
         Veto["M-of-N Confluence with<br/>Isolated Fatal Contagion Veto"]
     end
 
@@ -88,7 +88,7 @@ Quality validation in this repository is structured into four hermetically isola
 | Tier | Focus Area | Scope & Objectives | Test Count | Failure Behavior |
 | :--- | :--- | :--- | :--- | :--- |
 | **Tier 1** | **Feature Contracts** | Markdown AST syntax, LaTeX balance, 22 Invariants completeness, 10 Commandments, AST ZM001–ZM007 scanner rules | 29 Tests | Blocks pre-commit; rejects PR |
-| **Tier 2** | **Boundary Invariants** | Zero-mock returns, Div-by-zero domain safety, Matrix condition number $\operatorname{cond}(\Sigma) \le 10^{12}$, ADR-016 400-LOC ceiling, SHA1 anchor checksums | 25 Tests | Fails CI build; halts release |
+| **Tier 2** | **Boundary Invariants** | Zero-mock returns, Div-by-zero domain safety, Matrix condition number $\operatorname{cond}(\Sigma) \le 10^{12}$, Architectural Modularity Ceiling (<= 400 LOC), SHA1 anchor checksums | 25 Tests | Fails CI build; halts release |
 | **Tier 3** | **Cross-Chapter Parity** | Dialectical Triad arbitration, Level-2 $\$0$-compute JSD consensus bypass ($\text{JSD} \le 0.12$), cross-channel synchronizer, role handoff contracts | 15 Tests | Rejects deployment artifact |
 | **Tier 4** | **Real-World Workloads** | Replay of 6 Forensic Failure Crises, Dual-Use safety equivalence (Fintech vs FDA Class III), Ledoit-Wolf shrinkage & ZCA whitening, Hermetic socket isolation | 13 Tests | Aborts staging promotion |
 
@@ -118,9 +118,9 @@ Follow these modules in sequence to master enterprise-grade quality engineering 
 2. [**Module 2: Adversarial Thinking & Forensic Failure-Mode Analysis**](./02_adversarial_thinking.md)
    * Deep forensic breakdown of **Crisis 3: The 900,000-Row Synthetic Poison Catastrophe** and **Crisis 4: The 99% Gate Paralysis Crisis**.
    * Mathematical error compounding in DCF, Kelly Criterion, and Bayesian priors.
-   * Proof of conjunctive boolean gate collapse vs. Compensatory 4-Pillar Confluence (ADR-024).
+   * Proof of conjunctive boolean gate collapse vs. Compensatory 4-Pillar Confluence Guardrail (Invariant I09).
 3. [**Module 3: Test Suite Decomposition & Hermetic Socket Isolation**](./03_decomposition.md)
-   * Modular test isolation under the ADR-016 400-LOC ceiling.
+   * Modular test isolation under the Architectural Modularity Ceiling (<= 400 LOC).
    * Eliminating external network egress via `pytest-socket` and `SocketBlockedError`.
 4. [**Module 4: Programmatic AST Zero-Mock Code Enforcement & Runtime Breakers**](./04_context_engineering.md)
    * Codification and implementation of static AST scanning rules ZM001–ZM007.

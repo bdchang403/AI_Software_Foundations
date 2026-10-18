@@ -115,7 +115,7 @@ When upstream dependencies fail, emit typed closed-world payload ($I_{05}$). Cod
 - **Epic ID**: `EPIC-RISK-02`
 - **Bounded Subsystem**: `02_requirements_and_specifications`, `src/execution/guardrails.py`
 - **Max Token Budget**: `3,200 tokens`
-- **Target File LOC**: `280 lines of code (ADR-016 <= 400)`
+- **Target File LOC**: `280 lines of code (Architectural Modularity Ceiling <= 400 LOC)`
 - **Governing Invariants**: `I01, I02, I04, I07, I15`
 
 ## 2. Bounded Subsystem Execution Map
@@ -158,7 +158,7 @@ $$\frac{|P_{\text{exec}} - P_{\text{Friday}}|}{|P_{\text{Friday}}|} \le 0.01$$
 - **Epic ID**: `EPIC-CLIN-03`
 - **Bounded Subsystem**: `src/clinical/titration_guardrail.py`
 - **Max Token Budget**: `3,500 tokens`
-- **Target File LOC**: `310 lines of code (ADR-016 <= 400)`
+- **Target File LOC**: `310 lines of code (Architectural Modularity Ceiling <= 400 LOC)`
 - **Governing Invariants**: `I01, I02, I03, I04, I05, I07, I15`
 
 ## 2. Bounded Subsystem Execution Map

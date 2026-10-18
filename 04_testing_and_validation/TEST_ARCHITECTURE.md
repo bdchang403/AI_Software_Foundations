@@ -9,7 +9,7 @@ flowchart TD
     subgraph Suite["Hermetic 4-Tier Test Harness (tests/)"]
         direction TB
         T1["Tier 1: Feature Contracts<br/>• Markdown & LaTeX AST<br/>• 22 Invariants & 10 Commandments<br/>• AST Scanner Rules ZM001–ZM009"]
-        T2["Tier 2: Boundary Invariants<br/>• Zero-Mock Returns & Div-by-Zero<br/>• Matrix cond(Sigma) <= 10^12<br/>• ADR-016 400-LOC Ceiling<br/>• SHA1 Invariant Anchors"]
+        T2["Tier 2: Boundary Invariants<br/>• Zero-Mock Returns & Div-by-Zero<br/>• Matrix cond(Sigma) <= 10^12<br/>• Modularity Ceiling <= 400 LOC<br/>• SHA1 Invariant Anchors"]
         T3["Tier 3: Cross-Chapter Parity<br/>• Dialectical Triad Arbitration<br/>• Level-2 $0-Compute JSD Bypass<br/>• Cross-Channel Synchronization"]
         T4["Tier 4: Real-World Workloads<br/>• Replay of 6 Forensic Crises<br/>• Dual-Use Safety Equivalence<br/>• Ledoit-Wolf & ZCA Whitening<br/>• Hermetic Socket Interception"]
         T1 --> T2 --> T3 --> T4
@@ -43,7 +43,7 @@ flowchart TD
   1. **Zero-Mock Boundary & Telemetry Provenance**: Verifies that exception handlers returning `None` or re-raising exceptions pass, while positive numeric fallbacks and empty pass blocks are rejected. Enforces that telemetry payloads without a verified `data_source` fail closed, and asserts `sanitize_or_block_verdict` correctly demotes unverified feeds to `HALT_TRADING_DUE_TO_UNVERIFIED_DATA` with confidence = 0.
   2. **Domain Safety**: Division-by-zero protection across logit clamping ($\epsilon = 10^{-7}$), attention entropy with zero weights, and half-life decay with non-positive values ($I_{07}$).
   3. **Covariance Matrix Conditioning**: Verifies that the condition number $\operatorname{cond}(\Sigma) \le 10^{12}$ holds even for collinear and ill-conditioned matrices via Ledoit-Wolf analytical shrinkage ($I_{11}$).
-  4. **ADR-016 400-LOC Ceiling**: Enforces that non-anchor lines of code do not exceed 400 lines, with warning triggers at 350 LOC.
+  4. **Modularity Ceiling <= 400 LOC**: Enforces that non-anchor lines of code do not exceed 400 lines, with warning triggers at 350 LOC.
   5. **SHA1 Invariant Anchors**: Verifies that in-code SHA1 checksums match:
      $$\text{anchor\_hash} = \operatorname{SHA1}\left(\text{inv\_id.strip()} \parallel \text{adr.strip()} \parallel \text{predicate.strip()}\right)[:8]$$
 
@@ -80,7 +80,7 @@ flowchart TD
         style Buy1 fill:#f99,stroke:#f66,stroke-width:2px
     end
 
-    subgraph CompensatoryConfluence["✅ Compensatory 4-Pillar Orthogonal Confluence (ADR-024)"]
+    subgraph CompensatoryConfluence["✅ Compensatory 4-Pillar Orthogonal Confluence (Invariant I09)"]
         direction TB
         Candidate["Candidate Asset"] --> P1["Pillar 1: Quality & Moat (ROIC >= 15%)"]
         Candidate --> P2["Pillar 2: Residual Momentum (RS > 70)"]
@@ -106,7 +106,7 @@ $$\text{BUY} \iff \left( \sum_{k=1}^4 \mathbb{I}(P_k \ge 0.35) \ge 2 \right) \;\
 Where:
 $$\text{FatalContagion} \iff (\text{SCSI} \le -0.35) \lor (\text{ClimaxCollapse} = \text{True}) \lor (\text{Altman Z} < 1.10 \land \text{NetDebt} > 0)$$
 
-#### Growth-Adjusted Capitalized ROIC Margin of Safety (GAC-ROIC-MOS, ADR-034)
+#### Growth-Adjusted Capitalized ROIC Margin of Safety (GAC-ROIC-MOS Guardrail)
 To permanently eliminate the \$0.00 DCF artifact for secular compounders:
 $$\text{MOS}_{\text{GAC}} = 0.50 \cdot \text{MOS}_{\text{DCF}} + 0.30 \cdot \left(\frac{\text{ROIC} - \text{WACC}}{0.08}\right) + 0.20 \cdot \operatorname{clamp}\left(\frac{g - 15\%}{30\%}, \; -0.50, \; 1.00\right)$$
 Compounder unblocking predicate:

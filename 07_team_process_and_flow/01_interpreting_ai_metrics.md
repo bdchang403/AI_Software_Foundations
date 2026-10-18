@@ -1,46 +1,151 @@
 # Module 1: Interpreting AI System Metrics (Signal vs. Noise)
 
-## 🧠 Theory: Metrics are the "Smoke Detectors" of Context
+---
 
-In a Context Factory, metrics are no longer about "Velocity"—they are about **Accuracy**. 
+## 🎯 Executive Overview & Theoretical Foundations
 
-If your team's velocity triples, but your technical debt also triples, you aren't more productive; you are just automatedly making things worse. As an Agile Leader, you must look for the **Context-to-Code Ratio**.
+In a traditional software factory, engineering throughput is measured using velocity indicators: story points completed per sprint, pull request velocity, and commit volume. In an enterprise **Context Factory**, traditional velocity indicators fail. When autonomous agents generate syntactically plausible code in seconds, high code velocity frequently conceals devastating architectural decay.
 
-### 🚥 Key Signals to Watch:
+Agile Leaders (Scrum Masters, Agile Coaches, Engineering Managers, and Delivery Leads) must shift focus from line-count velocity to **Epistemic Accuracy, Context Health, and Traceable Value**.
 
-#### 1. The "Hallucination Loop" (Lead Time Spiking)
-If the **Lead Time for Changes** is increasing while **PR Size** is decreasing, your builders are likely suffering from **Context Fatigue**. They are stuck in a loop of:
-- *Prompt AI* -> *AI breaks code* -> *Revert* -> *Try different prompt*.
-- **The Fix:** Coach the Requirements Lead to improve the **Semantic Blueprint**. Don't blame the Builder; blame the context.
-
-#### 2. The "Reviewer Choke-Point" (Comment Spikes)
-If the number of comments per PR increases while using AI, it means the human reviewer is working *harder* to catch the AI's mistakes. 
-- **The Signal:** The AI is ignoring your **Enterprise Constitution**.
-- **The Fix:** Audit the **Master Router**. Is the AI being fed the correct ADRs? If not, the AI is "guessing" the style guide, and humans are paying the price in review time.
-
-#### 3. The "Ghost Productivity" (Lines of Code Spiking)
-AI can generate 1,000 lines in 5 seconds. If your `LOC` metric is skyrocketing but your `Business Value Delivered` (Tickets closed) is flat, you have **Code Bloat**.
-- **The Signal:** The AI is implementing "extra" features or redundant logic because the **3-Part Directive** wasn't bounded.
-- **The Fix:** Coach the Strategy Lead on **Decomposition**. The AI should only solve the *exact* task, nothing more.
+```
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                           THE TRADITIONAL VS. AI METRIC DIVERGENCE                               │
+├────────────────────────────────┬─────────────────────────────────────────────────────────────────┤
+│ Traditional Metric (Flawed)    │ Context Factory Counterpart (Deterministic)                     │
+├────────────────────────────────┼─────────────────────────────────────────────────────────────────┤
+│ Velocity (Story Points / Iter) │ Bounded Task Units (BTU Throughput)                             │
+│ Lines of Code (LOC Added)      │ Net AST Delta (Zero Code Bloat Ceiling <= 400 LOC)              │
+│ Code Review Turnaround Time    │ Reviewer Epistemic Friction (Comments per Invariant Breach)      │
+│ Deployment Frequency           │ Deterministic Canary Convergence (Wave 0-3 Zero-Rollback Rate)  │
+│ Change Failure Rate (CFR)      │ Post-Release Quality Decay Factor (QDF)                         │
+└────────────────────────────────┴─────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## 🛠️ Exercise: The "Perfect Failure" Scenario
+## 📐 Mathematical Telemetry for Autonomous Engineering
 
-**Scenario:** 
-Team Alpha's dashboard shows:
-- **Deployment Frequency:** 5x faster than last month.
-- **Change Failure Rate:** 20% higher (bugs in production).
-- **PR Size:** Small (under 200 lines).
+Agile Leaders must monitor four objective mathematical telemetry indices across the engineering lifecycle:
 
-**Your Hypothesis:**
-Traditional metrics say the team is "High Performing" but "Losing Quality."
-**In the Context Factory view:** The team has mastered **PR Slicing** (Module 3) but failed **Adversarial Thinking** (Module 2). 
+### 1. Context Debt Ratio (CDR)
+Quantifies the proportion of model tokens wasted on prompt looping, refactoring, and code rollbacks caused by defective context:
 
-**Your Coaching Action:**
-*   **Don't** tell them to slow down.
-*   **Do** require a **Validation Lead Sign-off** on the Semantic Blueprint *before* the Builder starts the AI generation. This forces the "unhappy path" to be defined before the code is written.
+$$\text{CDR} = \frac{\text{Tokens Expended on Rework, Refactoring, and Rollbacks}}{\text{Total Production Tokens Expended}}$$
+
+*   **Operational Ceiling**: $\text{CDR} \le 0.18$ (Healthy).
+*   **Warning Threshold**: $0.18 < \text{CDR} \le 0.25$ (Context Drift Detected).
+*   **Emergency Halt**: $\text{CDR} > 0.25$ (Prompt looping; halt generation and audit AST Living Context).
+
+### 2. Prompt Regression Interval (PRI)
+Measures the temporal frequency of commit rollbacks and prompt churn:
+
+$$\text{PRI} = \frac{\sum_{i=1}^M \tau_{\text{revert}}^{(i)}}{\sum_{j=1}^N \tau_{\text{commit}}^{(j)}}$$
+
+Where $\tau_{\text{revert}}$ represents hours dedicated to reverting agent-generated pull requests, and $\tau_{\text{commit}}$ represents total active engineering hours.
+*   **Operational Target**: $\text{PRI} \le 0.08$.
+
+### 3. Quality Decay Factor (QDF)
+Correlates automated test passes against post-release defect escapes:
+
+$$\text{QDF} = \frac{\text{Post-Release Production Defects (Day 0–30)}}{\text{Automated AST Gate Passes}}$$
+
+A non-zero QDF indicates that unit tests are validating hallucinated mocks rather than true physical invariants (violating AST Zero-Mock Rules ZM001–ZM009).
+
+### 4. Token Burn Quota (TBQ)
+The hard token limit allocated per Bounded Task Unit (BTU):
+*   **Standard BTU Ceiling**: $\le 25,000$ tokens.
+*   If an agent exceeds 25,000 tokens on a single pull request, the orchestration engine cuts off execution to prevent runaway loop costs.
 
 ---
 
-[**Next Module: Intervening in the Factory →**](./02_intervening_in_the_factory.md)
+## 🔄 The AI Telemetry & Feedback Control Loop
+
+```mermaid
+flowchart TD
+    subgraph Metric_Telemetry ["Continuous Engineering Telemetry"]
+        A["Agent Execution Session"] --> B["Capture Token Usage (TBQ)"]
+        A --> C["Measure Review Churn (PRI)"]
+        A --> D["Track Reverts & Rollbacks (CDR)"]
+    end
+
+    subgraph Evaluation_Engine ["Process Evaluation Gates"]
+        B & C & D --> E{"CDR > 0.18 or PRI > 0.08?"}
+        E -- "No (Green Zone)" --> F["Continuous Delivery Pipeline"]
+        E -- "Yes (Red Zone)" --> G["Trip Diagnostic Alert to Agile Coach"]
+    end
+
+    subgraph Root_Cause_Triaging ["Context Factory Triage Matrix"]
+        G --> H{"Primary Diagnostic Symptom?"}
+        H -- "High CDR (Prompt Looping)" --> I["Root Cause: Defective Semantic Blueprint (Requirements Lead)"]
+        H -- "High Review Comments" --> J["Root Cause: Architectural Modularity Breach (Builder)"]
+        H -- "High QDF (Production Escapes)" --> K["Root Cause: AST Mock Smuggling (Validation Lead)"]
+    end
+
+    style Metric_Telemetry fill:#f8f9fa,stroke:#343a40,stroke-width:2px;
+    style Evaluation_Engine fill:#e8f4f8,stroke:#17a2b8,stroke-width:2px;
+    style Root_Cause_Triaging fill:#fef9e7,stroke:#ffc107,stroke-width:2px;
+    style G fill:#ffcdd2,stroke:#c62828,stroke-width:2px;
+```
+
+---
+
+## 🚥 Four Critical Diagnostic Failure Modes
+
+### 1. The "Hallucination Loop" (Lead Time Spiking, PR Size Shrinking)
+*   **Symptom**: Lead time spikes from 4 hours to 36 hours while average lines of code per pull request decreases.
+*   **Forensic Reality**: Builders are engaged in prompt fatigue—prompting the agent, observing broken builds, tweaking ad-hoc prompts, and retrying.
+*   **Root Cause**: The **Semantic Blueprint** lacks strict field constraints or contains ambiguous prose.
+*   **Coaching Intervention**: Intervene with the Requirements Lead. Require the 20-edge-case matrix before granting builder access to agent tools.
+
+### 2. The "Reviewer Choke-Point" (Comment Spikes on PRs)
+*   **Symptom**: Number of peer review comments per pull request triples. Reviewers complain of exhaustion.
+*   **Forensic Reality**: Human reviewers are manually acting as linters and compilers because the agent bypassed structural rules.
+*   **Root Cause**: The agent prompt was not grounded in the **Architectural Modularity Ceiling (max 400 LOC)** or **Enterprise Invariants ($I_{01}$–$I_{22}$)**.
+*   **Coaching Intervention**: Audit the agent context compiler. Ensure the AST Living Context (<1,500 tokens) is automatically injected into the agent runtime.
+
+### 3. "Ghost Productivity" (LOC Skyrocketing, Value Flat)
+*   **Symptom**: Code repository expands by 15,000 lines of code in one sprint, but Jira/Linear ticket completion remains flat.
+*   **Forensic Reality**: The agent is generating boilerplate scaffolds, redundant abstractions, and dead wrapper code.
+*   **Root Cause**: Absence of task decomposition boundaries. The agent was asked to "build feature X" without a single-purpose scope.
+*   **Coaching Intervention**: Enforce **Bounded Task Units (BTUs)**. Reject any pull request exceeding 400 lines of code.
+
+### 4. "Invariant Breach Spike" (Security Gate Failures)
+*   **Symptom**: Security scanner reports sudden surge in unverified data inputs and mocked dependencies.
+*   **Forensic Reality**: Frontier models (Moonshot Kimi K3, DeepSeek V4 Pro, Claude 3.5 Sonnet) used boolean smuggling or float bypasses to make tests pass superficially.
+*   **Root Cause**: Validation Lead used traditional `unittest.mock` rather than AST Zero-Mock constraints.
+*   **Coaching Intervention**: Run `scripts/scan_mock_data.py` as an unskippable pre-commit hook.
+
+---
+
+## 🏥 Dual-Use Industry Case Studies
+
+```
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                   INDUSTRY TELEMETRY CASE STUDY: RECOVERY COMPARISON                             │
+├──────────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                                  │
+│   CASE 1: REGULATED HEALTHCARE (FDA Class III Closed-Loop Infusion Device)                       │
+│   • Problem: Change Failure Rate rose 22% following adoption of autonomous code agents.          │
+│   • Diagnostic: Context Debt Ratio (CDR) was 0.38; developers were re-generating code 8x per PR.  │
+│   • Root Cause: Agent was hallucinating insulin calibration constants due to unpinned context.   │
+│   • Intervention: Enforced Invariant I02 (Physiological Bolus Clamp) and AST Living Context.     │
+│   • Result: CDR dropped from 0.38 to 0.09; zero calibration defects in pre-clinical trials.     │
+│                                                                                                  │
+│   CASE 2: CORE BANKING & FINANCIAL INFRASTRUCTURE (Cross-Border Wire Settlement)                 │
+│   • Problem: Lead time for foreign exchange settlement updates expanded from 2 days to 9 days.  │
+│   • Diagnostic: Review comments averaged 42 per PR; senior architects were reviewing line-by-line│
+│   • Root Cause: Agent introduced unapproved third-party cryptographic hashing libraries.         │
+│   • Intervention: Implemented Architectural Dependency Whitelist and AI-SBOM SPDX 3.0 headers.   │
+│   • Result: Review turnaround time reduced by 74%; 100% compliance with Federal Reserve SR 11-7. │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📋 Module Summary & Practical Next Step
+
+Agile Leaders must never manage autonomous engineering through intuition. Measure CDR, PRI, QDF, and TBQ systematically. When a metric trips, trace the defect directly to the upstream Context Factory hand-off.
+
+[**Proceed to Module 2: Intervening in the Factory →**](./02_intervening_in_the_factory.md)

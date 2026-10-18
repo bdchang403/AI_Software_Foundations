@@ -29,7 +29,7 @@ To produce the objective evidence required by these statutory mandates, modern s
 
 ---
 
-## 🛑 Pre-Action Execution Plausibility Bands ($I_{02}$ / ADR-029)
+## 🛑 Pre-Action Execution Plausibility Bands (Invariant $I_{02}$ / Pre-Action Plausibility Guardrail)
 
 The foundational doctrine of autonomous execution safety is that **no AI agent is permitted to execute unbounded actions**. Every proposed state change is intercepted by a deterministic mathematical execution gate before transmission to brokers, actuators, or ledgers:
 

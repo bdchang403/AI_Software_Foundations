@@ -51,7 +51,7 @@ Every directive authored by a Validation Lead or Quality Engineer must follow th
 │   • Authoritative specification document (e.g., `SEMANTIC_BLUEPRINT_SPECIFICATION.md`).          │
 │   • Binding System Invariants (e.g., Invariant $I_{01}$, Invariant $I_{02}$, Invariant $I_{09}$).  │
 │   • Explicit exclusion: FORBIDDEN from reading target implementation files in `src/`.             │
-│   • Test suite budget: maximum 400 lines per test module (ADR-016).                              │
+│   • Test suite budget: maximum 400 lines per test module (Architectural Modularity Ceiling).                              │
 │                                                                                                  │
 │   PART 2: TASK INSTRUCTION (Adversarial Edge-Case Generation)                                    │
 │   • Precise failure paths, negative boundaries, and edge cases to target.                        │
@@ -140,7 +140,7 @@ Generate rigorous fault-injection tests targeting `TitrationController.calculate
 ## 🛠️ Hands-On Exercise: Authoring the Invariant-Bound Test Directive
 
 ### The Scenario
-The engineering team is deploying a new service: `CorporateDebtSolvencyService`. This service computes the **Weighted Average Floating Coupon Debt (WAFCD)** and the **Refinancing Stress Score (RSS)** based on discrete SEC Form 10-K disclosures (ADR-032).
+The engineering team is deploying a new service: `CorporateDebtSolvencyService`. This service computes the **Weighted Average Floating Coupon Debt (WAFCD)** and the **Refinancing Stress Score (RSS)** based on discrete SEC Form 10-K disclosures (Discrete Debt Solvency & Refinancing Stress Guardrail).
 
 Under Invariant $I_{01}$, if an SEC filing contains a floating-rate debt tranche with a redacted or missing coupon spread, the service **must fail closed** (`stated_coupon = None`), rather than imputing a synthetic benchmark rate (such as assuming SOFR + 200 bps). Under Invariant $I_{03}$, if $\text{RSS} \ge 1.20$, the service must emit a hard `DISTRESS_INSOLVENCY_VETO`.
 

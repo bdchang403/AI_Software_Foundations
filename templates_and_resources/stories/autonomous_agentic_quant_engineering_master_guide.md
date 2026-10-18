@@ -1123,9 +1123,9 @@ flowchart TD
         G --> I["scripts/update_math_registry.py"]
         G --> J["scripts/generate_living_context.py"]
         
-        H -->|git ls-files + ast.parse| K["STATE_REGISTRY.md (<5k tokens)"]
-        I -->|AST Line Resolution L{start}-L{end}| L["docs/MATHEMATICAL_REGISTRY.md (100 Algs)"]
-        J -->|Compile Model Matrix + D1 DTOs| M["data/openrouter_context.json (<1.5k tokens)"]
+        H -->|"git ls-files + ast.parse"| K["STATE_REGISTRY.md (<5k tokens)"]
+        I -->|"Resolve AST Line Coordinates L_start to L_end"| L["docs/MATHEMATICAL_REGISTRY.md (100 Algs)"]
+        J -->|"Compile Model Matrix + Canonical DTOs"| M["data/openrouter_context.json (<1.5k tokens)"]
     end
 
     subgraph Prompt_Injection ["Autonomous Agent Execution"]
@@ -2017,7 +2017,7 @@ flowchart TB
     end
 
     subgraph Deterministic_Composition ["Deterministic Output Composition Engine"]
-        SRV_HDR["Server-Composed Directional Header<br/>🏛️ Machine Consensus: {signal} ({conf}%) | Spot: ${spot} | As-Of: {date}"]
+        SRV_HDR["Server-Composed Directional Header<br/>Machine Consensus: signal (conviction %) - Spot: price - As-Of: date"]
         LLM_REASON["LLM Non-Directional Narrative<br/>(Restricted to 4-Pillars & Catalysts)"]
         COMPOSED["Unified Verified Response<br/>(Zero Conversational Drift)"]
         
@@ -2918,13 +2918,13 @@ flowchart TD
         H2 -->|Yes| H3{"Sentinel Check<br/>5.25% / 0.50 / $200 / NaN"}
         H3 -->|Sentinel Detected| J1
         H3 -->|Clean| H4[Attach Traceable Citation Tag]
-        J1 --> J2[Demote to HALT_TRADING_DUE_TO_UNVERIFIED_DATA<br/>Confidence = 0 | Action = HALT]
+        J1 --> J2["Demote to HALT_TRADING_DUE_TO_UNVERIFIED_DATA<br/>Confidence: 0 - Action: HALT"]
     end
 
     subgraph EXECUTION_GUARDRAILS["4. Pre-Trade Execution Guardrails"]
         H4 --> K1[PaperPortfolioTracker / Execution Engine]
         K1 --> L1[validate_execution_price<br/>ADR-029 / Invariant I02]
-        L1 --> M1{"Plausibility Band Check<br/>|P - EMA5| <= max(3*ATR14, 0.08*EMA5)"}
+        L1 --> M1{"Plausibility Band Check<br/>abs(P - EMA5) <= max(3*ATR14, 0.08*EMA5)"}
         M1 -->|Exceeds Band| N1[REJECTED_EXECUTION_GUARDRAIL]
         M1 -->|Within Band| M2{"Exchange Session Check<br/>Weekend Drift <= 1.0%?"}
         M2 -->|"Weekend Drift > 1%"| N2[REJECTED_WEEKEND_SESSION]

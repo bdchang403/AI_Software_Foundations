@@ -13,7 +13,7 @@ By completing this workbook, Software Engineers and System Architects will maste
 ## 🧪 Lab 1: Embedding & Verifying an Invariant Anchor (Module 6)
 
 ### Scenario
-You are modifying the execution gateway in `src/v3/execution/execution_gateway.py`. The governing architectural decision is **ADR-029**, and the governing constraint is **Invariant $I_{02}$ (Execution-Price Guardrail)**.
+You are modifying the execution gateway in `src/v3/execution/execution_gateway.py`. The governing architectural decision is **ADR-029 (Pre-Action Execution Plausibility Envelope Guardrail)**, and the governing constraint is **Invariant $I_{02}$ (Execution-Price Guardrail)**.
 
 The invariant predicate states:
 `Execution guardrail |P_exec - EMA_5| <= max(3*ATR, 0.08*EMA)`
@@ -56,7 +56,7 @@ print("✅ Checksum verified: 037a1c64")
 ## 🧪 Lab 2: Building an AST State Registry Parser (Module 4)
 
 ### Scenario
-You must implement a standalone AST indexer that scans Python files in a directory, extracts non-private functions and classes, counts physical lines, and asserts whether the file satisfies the ADR-016 health threshold ($< 350$ lines).
+You must implement a standalone AST indexer that scans Python files in a directory, extracts non-private functions and classes, counts physical lines, and asserts whether the file satisfies the Architectural Modularity Ceiling health threshold ($< 350$ lines).
 
 ### Your Task
 Create `parse_module_topography(file_path: Path) -> dict` utilizing Python's native `ast` library.
@@ -130,7 +130,7 @@ def generate_living_context_payload() -> Dict[str, Any]:
             "Alg_89_ZCAWhitening": {"file": "src/v3/math/whitening.py", "symbol": "anchor_preserving_zca_whitening"}
         },
         "inviolable_rules": [
-            "ADR-016: 400 LOC ceiling per file.",
+            "Architectural Modularity Ceiling: 400 LOC ceiling per file.",
             "Zero-Mock: Return None or raise on missing data; zero synthetic constants.",
             "Compensatory Confluence: >=2 of 4 pillars unblock BUY."
         ]

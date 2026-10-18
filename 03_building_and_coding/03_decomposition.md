@@ -1,4 +1,4 @@
-# Module 3: Code Decomposition, ADR-016 Modularity & Rule 14 Anti-Feature-Erasure
+# Module 3: Code Decomposition, Architectural Modularity Ceiling (400 LOC) & Rule 14 Anti-Feature-Erasure
 
 ## 🧠 Theory: Token Economics, Working Memory & The U-Curve Collapse
 
@@ -23,13 +23,13 @@ In a 1,200-line monolith, functions positioned between lines 200 and 1,000 resid
 
 ---
 
-## 🏛️ The ADR-016 Architectural Standard
+## 🏛️ The Architectural Modularity Ceiling Standard (400 LOC)
 
-To eliminate monolithic degradation and guarantee 100% deterministic code modifications, enterprise context architecture codifies **ADR-016 (The 400-LOC Modular Ceiling)**:
+To eliminate monolithic degradation and guarantee 100% deterministic code modifications, enterprise context architecture codifies **Architectural Modularity Ceiling (The 400-LOC Guardrail)**:
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                             THE ADR-016 MODULAR ARCHITECTURE STANDARD                            │
+│                             THE ARCHITECTURAL MODULARITY CEILING STANDARD (400 LOC)                            │
 ├──────────────────────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                                  │
 │   1. THE 400-LOC HARD CEILING                                                                    │
@@ -65,20 +65,20 @@ When `paper_portfolio_tracker.py` grew to **480 lines of code**, adding tax-lot 
 #### The Anti-Pattern (Compression Cheating):
 An unconstrained AI agent was asked to "reduce `paper_portfolio_tracker.py` under 400 lines." The model deleted the 3-tier trailing stop ratchet and stripped drawdown calculation assertions, returning a 380-line file that silently broke portfolio risk stops in production.
 
-#### The ADR-016 & Rule 14 Compliant Decomposition:
+#### The Architectural Modularity & Rule 14 Compliant Decomposition:
 The system architect decomposed the module into three cohesive, single-responsibility units:
 1. `portfolio_risk_stops.py` (192 LOC): Extracted trailing stop ratchets, volatility bands, and high-water mark tracking.
 2. `paper_portfolio_metrics.py` (166 LOC): Extracted Sharpe ratio, Sortino ratio, max drawdown, and beta calculations.
 3. `paper_portfolio_tracker.py` (332 LOC): Retained core state machine, order execution hooks, and position persistence.
 
-*Result*: 100% of safety handlers and mathematical algorithms were preserved. All files satisfied ADR-016 ($< 350$ LOC).
+*Result*: 100% of safety handlers and mathematical algorithms were preserved. All files satisfied the Architectural Modularity Ceiling ($< 350$ LOC).
 
 ---
 
 ### Case Study B: Decomposing the Multi-Agent Debate Matrix
 The dialectical debate engine originally combined macro beta estimation, covariance whitening, and agent orchestration in a single 520-line file.
 
-#### The ADR-016 Modular Decomposition:
+#### The Modular Decomposition (400-LOC Ceiling):
 1. `macro_beta.py` (87 LOC): Mathematical estimation of market beta and idiosyncratic residual variance.
 2. `zca_whitening.py` (118 LOC): Alg #89 Anchor-Preserving Symmetrical ZCA Whitening and Ledoit-Wolf shrinkage.
 3. `epistemic_triad_orchestrator.py` (111 LOC): 3-stage Path C multi-agent debate coordination.
@@ -86,7 +86,7 @@ The dialectical debate engine originally combined macro beta estimation, covaria
 
 ---
 
-## 🔄 Visual Workflow: The ADR-016 Modular Refactoring Lifecycle
+## 🔄 Visual Workflow: The Architectural Modularity Refactoring Lifecycle (400-LOC Ceiling)
 
 The following Mermaid diagram details the deterministic decision tree executed before any code modification is merged:
 
@@ -170,13 +170,13 @@ When an architectural epic requires substantial new functionality, do not attemp
 ## ✍️ Hands-On Exercises: Slicing a Complex Enterprise Epic
 
 ### Exercise 3.1: Decomposing a Closed-Loop Infusion Controller
-**Scenario**: You are tasked with adding a "Pediatric Auto-Titration Mode" to an FDA Class III infusion pump. The existing `infusion_controller.c` file is at **365 physical lines** (in the ADR-016 Refactor Zone). The new feature requires:
+**Scenario**: You are tasked with adding a "Pediatric Auto-Titration Mode" to an FDA Class III infusion pump. The existing `infusion_controller.c` file is at **365 physical lines** (in the 350-400 LOC Refactor Zone). The new feature requires:
 1. A pediatric patient profile schema (weight, age, metabolic clearance rate).
 2. A pharmacokinetic drug concentration decay model: $C(t) = C_0 \cdot e^{-k_e \cdot t}$.
 3. Dynamic rate clamping based on measured blood pressure.
 
 #### Your Action:
-1. Write the ADR-016 refactoring plan to bring `infusion_controller.c` under 300 lines before adding the feature.
+1. Write the architectural modularity refactoring plan to bring `infusion_controller.c` under 300 lines before adding the feature.
 2. Define the submodules to extract and verify that Rule 14 Anti-Feature-Erasure is enforced.
 
 #### Model Solution:

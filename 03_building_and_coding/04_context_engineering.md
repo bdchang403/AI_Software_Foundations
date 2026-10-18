@@ -77,7 +77,7 @@ Within three weeks, the platform suffered total architectural breakdown:
 
 ### 4. The Permanent Invariants & Mechanisms
 The crisis was permanently eliminated by establishing **AST-Synchronized Living Context Compilation** backed by **Zero-Drift CI Quality Gates**:
-1. **The AST State Registry (`STATE_REGISTRY.md`)**: A lightweight index (<5,000 tokens) compiled directly via Python's native `ast.parse` over git-tracked files (`git ls-files`). It records physical line counts, classes, public function signatures, and ADR-016 health status (`✅ Healthy (<350 LOC)` vs `⚠️ Near 400 LOC Cap`), allowing agents to understand repository topography in <2 seconds.
+1. **The AST State Registry (`STATE_REGISTRY.md`)**: A lightweight index (<5,000 tokens) compiled directly via Python's native `ast.parse` over git-tracked files (`git ls-files`). It records physical line counts, classes, public function signatures, and modularity ceiling health status (`✅ Healthy (<350 LOC)` vs `⚠️ Near 400 LOC Cap`), allowing agents to understand repository topography in <2 seconds.
 2. **The Canonical Mathematical Registry (`docs/MATHEMATICAL_REGISTRY.md`)**: Catalogs all canonical quantitative algorithms with exact source paths, AST start/end line coordinates (`L{start}–L{end}`), LaTeX equations, and linked unit test suites.
 3. **The Living Context Compiler (`data/openrouter_context.json`)**: Compiles a token-dense (<1,500 tokens) JSON context payload containing the active model matrix, dual-schema parity map (mapping all 29 D1 SQL tables to Pydantic/dataclass models), and the 20 core architectural invariants. Injected into model prompts before execution, eliminating schema hallucinations.
 4. **Mandatory Atomic Pre-Commit Command Chain & `drift-monitor.yml`**: Codifies the single atomic command chain required before every commit (`update_state_registry.py && update_math_registry.py && generate_living_context.py && git diff --exit-code`), backed by remote CI gates that block merges on drift.
@@ -210,9 +210,9 @@ def load_openrouter_directives(compact: bool = True) -> str:
 
     digest = [
         "### CANONICAL AGENT DIRECTIVES (COMPACT AST DIGEST)",
-        "1. 400 LOC Hard Ceiling (ADR-016): Modularize files >=350 LOC.",
+        "1. 400 LOC Hard Ceiling: Modularize files >=350 LOC.",
         "2. Zero Simulated Data Mandate: NEVER emit mock/synthetic data. Fail closed (return None/raise).",
-        "3. Compensatory Confluence (ADR-024): >=2 of 4 pillars unblock BUY.",
+        "3. Compensatory Confluence (Invariant I09): >=2 of 4 pillars unblock BUY.",
         "4. Mandatory Pre-Commit Zero-Drift: State, Math, and Living Context registries must stay synchronized.",
         f"- Active Model Slugs: {json.dumps(c_data.get('active_models', {}))}",
         f"- Canonical Math Symbols: {', '.join(list(c_data.get('canonical_math_algorithms', {}).keys())[:15])}",
@@ -229,7 +229,7 @@ By substituting a 500-token compact AST digest for 4,000-token raw markdown spec
 ::: tip DUAL-USE ANALYSIS: AST REGISTRIES & GROUND TRUTH MAPPING
 | Regulated Domain | Quantitative Asset Management | FDA Class III Medical Device Firmware | Aerospace Flight Guidance Systems |
 | :--- | :--- | :--- | :--- |
-| **AST State Registry** | Indexes 300+ Python modules with class definitions, public methods, and ADR-016 health flags. | Indexes MISRA-C/C++ firmware modules, hardware register maps, and interrupt service routines (ISRs). | Indexes Ada/C avionics modules, flight control laws, and actuator bus interfaces under DO-178C. |
+| **AST State Registry** | Indexes 300+ Python modules with class definitions, public methods, and modularity ceiling health flags. | Indexes MISRA-C/C++ firmware modules, hardware register maps, and interrupt service routines (ISRs). | Indexes Ada/C avionics modules, flight control laws, and actuator bus interfaces under DO-178C. |
 | **Mathematical Registry** | 100 quantitative algorithms (CUSUM, Ledoit-Wolf, ZCA Whitening, GAC-ROIC-MOS) with line coordinates. | Pharmacokinetic/pharmacodynamic drug decay equations, insulin sensitivity factor algorithms, and sensor Kalman filters. | Aerodynamic lift/drag polars, barometric altitude correction, and inertial navigation integration algorithms. |
 | **Dual-Schema Parity** | 29 Cloudflare D1 SQL tables mapped to Pydantic/dataclass models (`openrouter_context.json`). | Medical Device Data Architecture: EEPROM parameter blocks mapped to firmware telemetry struct definitions. | ARINC 424 Navigation Database: Binary record structures mapped to flight computer navigation waypoint structs. |
 :::
@@ -244,8 +244,8 @@ flowchart TD
         A[Developer / Autonomous Agent Edit] --> B["Surgical View Windows <=80 LOC"]
         B --> C[File Modified in src/ or tests/]
         C --> D{"File LOC >= 350?"}
-        D -- Yes --> E[Trigger ADR-016 Modular Decomposition]
-        E --> F["Extract Submodules <400 LOC"]
+        D -- Yes --> E["Trigger Modular Decomposition (Split at 350 LOC, Cap at 400 LOC)"]
+        E --> F["Extract Submodules <= 400 LOC"]
         D -- No --> G[Pre-Commit Atomic Command Chain]
         F --> G
     end
@@ -255,9 +255,9 @@ flowchart TD
         G --> I["scripts/update_math_registry.py"]
         G --> J["scripts/generate_living_context.py"]
         
-        H -->|git ls-files + ast.parse| K["STATE_REGISTRY.md (<5k tokens)"]
-        I -->|AST Line Resolution L{start}-L{end}| L["docs/MATHEMATICAL_REGISTRY.md (100 Algs)"]
-        J -->|Compile Model Matrix + D1 DTOs| M["data/openrouter_context.json (<1.5k tokens)"]
+        H -->|"git ls-files + ast.parse"| K["STATE_REGISTRY.md (<5k tokens)"]
+        I -->|"Resolve AST Line Coordinates L_start to L_end"| L["docs/MATHEMATICAL_REGISTRY.md (100 Algs)"]
+        J -->|"Compile Model Matrix + Canonical DTOs"| M["data/openrouter_context.json (<1.5k tokens)"]
     end
 
     subgraph Prompt_Injection ["Autonomous Agent Execution"]

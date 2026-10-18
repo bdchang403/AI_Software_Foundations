@@ -33,7 +33,7 @@ enterprise-repo/
 │   ├── update_math_registry.py          <-- Line resolution & fail-closed test assertion
 │   ├── generate_living_context.py       <-- Dual-schema parity compiler
 │   └── verify_code_invariants.py        <-- SHA1 Invariant Anchor verification
-├── 🏗️ src/                              <-- Bounded Domain Modules (ADR-016 <= 400 LOC)
+├── 🏗️ src/                              <-- Bounded Domain Modules (Modularity Ceiling <= 400 LOC)
 │   ├── domain_billing/
 │   │   ├── models.py                    <-- Pydantic / Dataclass DTOs
 │   │   ├── service.py                   <-- Domain state machine with SHA1 Invariant Anchors
@@ -58,7 +58,7 @@ Every repository must establish an authoritative **Tier 1 Bootstrap Entry Point*
 | AI Toolchain | Canonical Entry Point Path | Purpose & Content |
 | :--- | :--- | :--- |
 | **GitHub Copilot** | `.github/copilot-instructions.md` | Auto-loaded system prompt; points agent to `docs/context/*.md` based on active file path. |
-| **Cursor** | `.cursorrules` (Repository Root) | Binds IDE agent to 80-line surgical slice protocol and ADR-016 400-LOC limits. |
+| **Cursor** | `.cursorrules` (Repository Root) | Binds IDE agent to 80-line surgical slice protocol and 400-LOC modularity limits. |
 | **Claude Code** | `CLAUDE.md` (Repository Root) | Configures CLI agent environment, pre-commit command chains, and testing mandates. |
 | **Antigravity** | `.antigravity/instructions.md` | Configures autonomous agent subagents, memory boundaries, and skill attachments. |
 
@@ -67,7 +67,7 @@ Every repository must establish an authoritative **Tier 1 Bootstrap Entry Point*
 # Enterprise Repository Architecture Rules (Tier 1)
 
 1. DOMAIN BOUNDARIES: You operate in a strictly bounded architecture. Before modifying any code, identify the domain from the file path and load the Tier 2 Domain Context from `docs/context/{domain}.md`.
-2. ADR-016 MODULAR CEILING: No file in `src/`, `workers/`, or `tests/` may exceed 400 lines of code. Any file >= 350 lines must be refactored into domain submodules BEFORE adding new features.
+2. ARCHITECTURAL MODULARITY CEILING: No file in `src/`, `workers/`, or `tests/` may exceed 400 lines of code. Any file >= 350 lines must be refactored into domain submodules BEFORE adding new features.
 3. RULE 14 ANTI-FEATURE-ERASURE: You are strictly forbidden from truncating, commenting out, or deleting existing retry cascades, fallback pricing, or assertions to meet line limits.
 4. ZERO-MOCK MANDATE: NEVER emit synthetic constants, positive numeric defaults in arguments (ZM005), or fallback constants in `except` blocks (ZM001). Fail closed (return None or raise).
 5. INVARIANT ANCHORS: Critical methods must maintain their `# === INVARIANT-BLOCK` with verified SHA1 checksums.
@@ -112,7 +112,7 @@ When an agent enters `src/domain_billing/`, it reads this localized registry and
 | Architectural Layer | Quantitative Asset Management (`StockAnalysis V3`) | FDA Class III Medical Device Firmware | Aerospace Avionics (RTCA DO-178C Level A) |
 | :--- | :--- | :--- | :--- |
 | **Tier 1 Global Router** | `.github/copilot-instructions.md` routing to quant strategies, execution gateways, risk stops. | `.cursorrules` routing to pump motor control, glucose sensing, hazard mitigations. | `CLAUDE.md` routing to flight control laws, sensor voting, air data computers. |
-| **Tier 2 Domain Context** | `docs/context/quant_engine.md` detailing ADR-024 Compensatory Confluence and Plausibility Bands. | `docs/context/titration.md` detailing 21 CFR Part 820.30 design controls and basal limits. | `docs/context/autopilot.md` detailing DO-178C Level A flight envelope limiters and fault recovery. |
+| **Tier 2 Domain Context** | `docs/context/quant_engine.md` detailing Compensatory Confluence (Invariant I09) and Plausibility Bands. | `docs/context/titration.md` detailing 21 CFR Part 820.30 design controls and basal limits. | `docs/context/autopilot.md` detailing DO-178C Level A flight envelope limiters and fault recovery. |
 | **Living Context Schema** | `data/openrouter_context.json` mapping 29 D1 SQL tables to Pydantic models. | Hardware register maps binding memory-mapped I/O addresses to C struct types. | ARINC 424 navigation database schemas binding binary records to flight plan structs. |
 | **Quality Gate** | Pre-commit zero-drift gate asserting AST registry and math symbol synchronization. | Device Master Record (DMR) compilation gate asserting firmware binaries match hazard traces. | Software Configuration Index (SCI) gate asserting source code matches low-level requirements. |
 :::

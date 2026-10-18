@@ -169,14 +169,14 @@ During the historic September 2026 market expansion, premier secular growth comp
 
 The root cause was the **DCF Reinvestment Paradox**: elite software compounders intentionally depress short-term Free Cash Flow (FCF) to invest heavily in R&D and customer acquisition. Classical DCF models returned an intrinsic value of **\$0.00**. Upstream financial APIs returned `0.00` for high-growth tech firms, which caused pullback detectors to require prices to drop to *negative dollars* before triggering a buy signal. Because DCF was an absolute boolean veto, zero compounders could ever be bought.
 
-### 4. Permanent Mechanism: Compensatory 4-Pillar Confluence (ADR-024)
+### 4. Permanent Mechanism: Compensatory 4-Pillar Confluence (Invariant I09)
 Quality engineering replaced conjunctive boolean collapse with **Compensatory Orthogonal Confluence**:
 
 $$\text{BUY Consideration} \iff \left( \sum_{k=1}^4 \mathbb{I}(P_k \ge +0.35) \ge 2 \right) \;\land\; \neg \text{FatalContagion}$$
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                 COMPENSATORY 4-PILLAR CONFLUENCE (ADR-024)                                       │
+│                 COMPENSATORY 4-PILLAR CONFLUENCE (INVARIANT I09)                                       │
 ├──────────────────────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                                  │
 │   PILLAR 1: QUALITY & MOAT        (ROIC, Gross Margin, Pricing Power)                            │
@@ -194,8 +194,8 @@ $$\text{BUY Consideration} \iff \left( \sum_{k=1}^4 \mathbb{I}(P_k \ge +0.35) \g
 └──────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-#### Growth-Adjusted Capitalized ROIC Margin of Safety (GAC-ROIC-MOS, ADR-034)
-To unblock secular compounders from the 0.00 DCF artifact, ADR-034 established the composite valuation metric:
+#### Growth-Adjusted Capitalized ROIC Margin of Safety (GAC-ROIC-MOS Guardrail)
+To unblock secular compounders from the 0.00 DCF artifact, the Growth-Adjusted Capitalized ROIC Margin of Safety (GAC-ROIC-MOS) Guardrail established the composite valuation metric:
 $$\text{MOS}_{\text{GAC}} = 0.50 \cdot \text{MOS}_{\text{DCF}} + 0.30 \cdot \left(\frac{\text{ROIC} - \text{WACC}}{0.08}\right) + 0.20 \cdot \operatorname{clamp}\left(\frac{g - 15\%}{30\%}, \; -0.50, \; 1.00\right)$$
 
 If $\text{ROIC} \ge 15\%$ and revenue growth $g \ge 15\%$, and $\text{MOS}_{\text{GAC}} > 0.0$, the company is unblocked, and DCF is floored at current market support.

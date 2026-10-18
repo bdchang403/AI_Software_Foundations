@@ -55,7 +55,7 @@ To guarantee deterministic, production-grade output, every machine instruction e
 │   • Pre-condition and post-condition invariants.                                                 │
 │                                                                                                  │
 │   PART 3: FORMAT & ARCHITECTURAL CONSTRAINTS (The Non-Negotiable Rules)                          │
-│   • ADR-016 Modular Ceiling: target file non-anchor LOC must remain $\le 400$ lines.             │
+│   • Architectural Modularity Ceiling: target file non-anchor LOC must remain $\le 400$ lines.             │
 │   • Rule 14 Anti-Feature-Erasure: zero deletion of fallback retries or telemetry handlers.       │
 │   • Fail-Closed Error Policy: raise domain exception or return `None`; zero synthetic fallbacks. │
 │   • AST Zero-Mock compliance: zero ZM001–ZM007 violations.                                       │
@@ -72,7 +72,7 @@ To guarantee deterministic, production-grade output, every machine instruction e
 
 #### ❌ The Naive Conversational Prompt (Failure Mode)
 > *"Update `execution_gateway.py` to make sure orders don't execute at crazy prices compared to market averages."*
-* **What Happens**: The AI inspects the 800-line monolithic file, invents a synthetic fallback price when the market feed is delayed (`spot = quote.price or 150.0`, violating ZM007), replaces 60 lines of FIX protocol error recovery with `# ... existing retry logic ...` (violating Rule 14), and leaves the file at 840 LOC (violating ADR-016).
+* **What Happens**: The AI inspects the 800-line monolithic file, invents a synthetic fallback price when the market feed is delayed (`spot = quote.price or 150.0`, violating ZM007), replaces 60 lines of FIX protocol error recovery with `# ... existing retry logic ...` (violating Rule 14), and leaves the file at 840 LOC (violating the 400-LOC Architectural Modularity Ceiling).
 
 #### ✅ The Architectural 3-Part Directive (Production Standard)
 ```markdown
@@ -90,13 +90,13 @@ $$|P_{\text{exec}} - \text{EMA}_5| \le \max(3.0 \cdot \text{ATR}_{14}, \; 0.08 \
 - If `ema_5 <= 0` or `atr_14 <= 0` or any input is non-finite (`NaN`/`Inf`), fail closed immediately by raising `InvalidTelemetryError`.
 
 ### 3. FORMAT & ARCHITECTURAL CONSTRAINTS
-- ADR-016 CEILING: `execution_gateway.py` currently stands at 320 LOC; your modification must not push total non-anchor lines above 350 LOC.
+- ARCHITECTURAL MODULARITY CEILING: `execution_gateway.py` currently stands at 320 LOC; your modification must not push total non-anchor lines above 350 LOC.
 - RULE 14 ANTI-FEATURE-ERASURE: Preserve all existing FIX tag assertions and latency timestamps verbatim.
 - ZERO-MOCK COMPLIANCE: Do not provide default values for `ema_5` or `atr_14` (violates ZM005). Do not return `True` in `except` blocks (violates ZM001).
 - INVARIANT ANCHOR: Embed the verified SHA1 Invariant Anchor for $I_{02}$ directly above `validate_order()`:
   `# === INVARIANT-BLOCK v1`
   `# INVARIANT: I02`
-  `# ADR: ADR-029`
+  `# GUARDRAIL: Pre-Action Execution Plausibility Envelope ($I_{02}$)`
   `# PREDICATE: Execution guardrail |P_exec - EMA_5| <= max(3*ATR, 0.08*EMA)`
   `# /INVARIANT [sha1:037a1c64]`
   `# === /INVARIANT-BLOCK ===`
@@ -182,7 +182,7 @@ $$H(s) = \frac{K_{\text{damper}} \cdot \tau s}{\tau s + 1}$$
 **Scenario**: The Business Analyst's Semantic Blueprint states: *"Emit an `InvoiceGeneratedEvent` to the shared event bus whenever an order is marked settled. The event must carry the immutable UUID and the total integer cents."*
 
 #### Your Action:
-Author the 3-Part Directive for the autonomous builder agent. Include the Context Boundary, Task Instruction, and Architectural Constraints (enforcing ADR-016 $\le 400$ LOC, Rule 14 Anti-Feature-Erasure, and zero synthetic fallbacks).
+Author the 3-Part Directive for the autonomous builder agent. Include the Context Boundary, Task Instruction, and Architectural Constraints (enforcing the Architectural Modularity Ceiling ($\le 400$ LOC), Rule 14 Anti-Feature-Erasure, and zero synthetic fallbacks).
 
 #### Model Solution:
 ```markdown

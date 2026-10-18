@@ -32,7 +32,7 @@ your-enterprise-repo/
 │   ├── generate_living_context.py       <-- Dual-Schema Parity & Context Minifier
 │   └── verify_code_invariants.py        <-- SHA1 Invariant Anchor Verifier
 └── 🏗️ src/
-    └── [your domain code adhering to ADR-016 <= 400 LOC]
+    └── [your domain code adhering to Architectural Modularity Ceiling <= 400 LOC]
 ```
 
 ### Tool-Specific Entry Points (Tier 1)
@@ -82,11 +82,11 @@ $$\text{hash} = \operatorname{SHA1}\left(\text{inv\_id.strip()} \;\|\; \text{adr
 If an agent alters the mathematical predicate, changes the governing ADR, or modifies the invariant ID, the computed checksum mismatches, immediately halting the commit.
 
 ### 3. Invariant Block Parser & Physical LOC Exclusion Logic
-To ensure that embedding safety anchors does not penalize developers under the **ADR-016 400-LOC modular ceiling**, line counter scripts explicitly exclude invariant anchor blocks:
+To ensure that embedding safety anchors does not penalize developers under the **Architectural Modularity Ceiling (400 LOC)**, line counter scripts explicitly exclude invariant anchor blocks:
 
 ```python
 def calculate_physical_loc(file_content: str) -> tuple[int, int]:
-    """Calculate (total_lines, non_anchor_lines) respecting ADR-016."""
+    """Calculate (total_lines, non_anchor_lines) respecting Architectural Modularity Ceiling (400 LOC)."""
     lines = file_content.splitlines()
     total = len(lines)
     non_anchor = 0
@@ -183,7 +183,7 @@ jobs:
 ::: tip DUAL-USE ANALYSIS: TRACEABILITY MATRICES & DRIFT GATES ACROSS REGULATED INDUSTRIES
 | Operational Dimension | Quantitative Asset Management | FDA Class III Medical Devices (21 CFR Part 820.30) | Aerospace Avionics (RTCA DO-178C Level A) |
 | :--- | :--- | :--- | :--- |
-| **Invariant Anchors** | Checksummed SHA1 anchors binding pre-trade plausibility checks to ADR-029 ($I_{02}$). | Checksummed anchors binding maximum drug delivery limits to Risk Management File hazard numbers ($I_{02\text{-MED}}$). | Checksummed anchors binding flight envelope boundary clamping to System Requirements Specifications ($I_{02\text{-AERO}}$). |
+| **Invariant Anchors** | Checksummed SHA1 anchors binding pre-trade plausibility checks to the Pre-Action Plausibility Envelope ($I_{02}$ / ADR-029). | Checksummed anchors binding maximum drug delivery limits to Risk Management File hazard numbers ($I_{02\text{-MED}}$). | Checksummed anchors binding flight envelope boundary clamping to System Requirements Specifications ($I_{02\text{-AERO}}$). |
 | **Pre-Commit Command Chain** | Generates AST registries, updates living context, and asserts zero git diff before commit. | Validates firmware register mappings against Device Master Record (DMR) before staging C builds. | Validates software requirements data (SRD) against software architecture data (SAD) before compiling Ada binaries. |
 | **Automated Traceability** | GitHub Actions blocks PR merges if code changes drift from mathematical registry coordinates. | FDA DHF (Design History File) audit blocks device firmware release if hazard mitigations lack code-level proof. | FAA certification audit verifies 1:1 bidirectional traceability from high-level requirements to verified object code. |
 :::
@@ -195,7 +195,7 @@ jobs:
 ### Exercise 6.1: Generating and Verifying an Anchor Checksum
 **Scenario**: You are implementing Invariant $I_{07}$ (Div-by-Zero Domain Safety) in `src/v3/math/ratio_engine.py`.
 * Invariant ID: `I07`
-* Governing ADR: `ADR-043`
+* Governing Architectural Decision: `ADR-043` (Cryptographic Invariant Anchor Block Specification)
 * Predicate: `forall a/b: b = 0 => defined fallback (never NaN/Inf propagation). Log/sqrt inputs must assert domain non-negativity.`
 
 #### Your Action:

@@ -32,7 +32,7 @@ As a **Security & Compliance Lead / Model Risk Auditor** in the Context Factory,
 ```mermaid
 flowchart TD
     subgraph P1["Pillar 1: Epistemic Air-Gap"]
-        AirGap["ADR-030 Air-Gap Firewall<br/>80% Commercial Discount"]
+        AirGap["Unidirectional Epistemic Air-Gap<br/>80% Commercial Discount"]
         Narrative["Classifies media as OBSERVED_CLAIM;<br/>bans thesis corroboration"]
     end
 
@@ -42,7 +42,7 @@ flowchart TD
     end
 
     subgraph P3["Pillar 3: Immutable Quarantine"]
-        Quar["ADR-027 Quarantine Ledger<br/>Bans raw DELETE commands"]
+        Quar["Immutable Quarantine Ledger<br/>Bans raw DELETE commands"]
         Migrate["Atomically archives corrupted<br/>records with audit trail"]
     end
 
@@ -57,15 +57,15 @@ flowchart TD
     Reconcile --> SBOM
 ```
 
-### Pillar 1: Epistemic Air-Gapping & Funnel De-Biasing (ADR-030)
+### Pillar 1: Epistemic Air-Gapping & Funnel De-Biasing (Unidirectional Epistemic Air-Gap Guardrail)
 External narrative telemetry (social media, analyst calls, press releases, video transcripts) must be air-gapped from internal portfolio weights and model state. Media is ingested strictly as objective crowd sentiment (`OBSERVED_CLAIM`), never as ground-truth facts. Promotional funnels are automatically discounted by 80% ($W_{\text{commercial}} = 0.20$), preventing epistemic priming crises (Crisis 5).
 
-### Pillar 2: Pre-Action Execution Plausibility Envelopes ($I_{02}$ / ADR-029)
+### Pillar 2: Pre-Action Execution Plausibility Envelopes ($I_{02}$ / Pre-Action Plausibility Guardrail)
 Before any autonomous action is committed—whether placing a financial order, administering a drug bolus, or trimming an aircraft flight control surface—the proposed parameter is evaluated against a dynamic physical plausibility band:
 $$|V_{\text{exec}} - \text{Baseline}| \le \text{Band}$$
 If the proposed execution exceeds the plausibility band, the order is rejected immediately at runtime with `REJECTED_EXECUTION_GUARDRAIL`, preventing catastrophic agent rogue execution.
 
-### Pillar 3: Immutable Ledger Quarantine (ADR-027 / $I_{04}$)
+### Pillar 3: Immutable Ledger Quarantine ($I_{04}$ / Immutable Quarantine Guardrail)
 In mission-critical auditability, raw SQL `DELETE` commands are permanently banned across all operational databases:
 $$\forall r \in \text{Ledger}: \operatorname{DELETE}(r) = \emptyset$$
 When bugs, corrupted rows, or synthetic poison (Crisis 3) are detected, records are atomically migrated into `consensus_quarantine` accompanied by the bug issue number, invalidating agent ID, and UTC timestamp. Historical provenance is preserved forever.

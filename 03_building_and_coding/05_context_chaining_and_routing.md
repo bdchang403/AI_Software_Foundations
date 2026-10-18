@@ -4,7 +4,7 @@
 
 In an enterprise codebase spanning hundreds of thousands of lines of code, an autonomous AI agent cannot "browse" or "hunt" through the repository. When agents are prompted to search directories or iteratively crawl files, they encounter three mathematical and economic failure modes:
 
-1. **Token Exhaustion & Latency Explosion**: An iterative file search burns between 15,000 and 40,000 tokens per hop, inducing minutes of latency and violating operational spend caps ($Q_{\text{limit}} = \$0.40$/day under ADR-011).
+1. **Token Exhaustion & Latency Explosion**: An iterative file search burns between 15,000 and 40,000 tokens per hop, inducing minutes of latency and violating operational spend caps ($Q_{\text{limit}} = \$0.40$/day under the Micro-USD Daily Spend Quota Guardrail).
 2. **Exponential Hallucination Cascades**: As shown in [The Mathematics of AI Risk](../00_THE_MATHEMATICS_OF_AI_RISK.md), if single-step accuracy is $p \approx 0.95$, an unconstrained multi-hop search across 10 steps compounds error geometrically:
    $$P_{\text{success}} = p^{10} = (0.95)^{10} \approx 59.8\%$$
    The agent has a 40.2% probability of picking an irrelevant file or following a deprecated code pattern.
@@ -80,7 +80,7 @@ In the Enterprise Context Factory, human engineers and automated CI runners do n
 """
 orchestrator_context_assembler.py
 Deterministic 1-Hop Context Assembly Engine for Autonomous Builders.
-ADR-016 compliant (<400 LOC).
+Architectural Modularity compliant (<400 LOC).
 """
 import json
 from pathlib import Path
@@ -109,7 +109,7 @@ class ContextAssembler:
         
         digest_lines = [
             "### LIVING CONTEXT DIGEST (<500 tokens)",
-            f"- ADR-016 Cap: 400 LOC ceiling, 350 LOC trigger. Files >=350 LOC require refactoring.",
+            f"- Modularity Cap: 400 LOC ceiling, 350 LOC trigger. Files >=350 LOC require refactoring.",
             f"- Active D1 SQL Tables: {', '.join(list(data.get('table_dto_map', {}).keys())[:12])}",
             f"- Canonical Algorithms: {', '.join(list(data.get('canonical_math_algorithms', {}).keys())[:10])}",
             f"- Active Invariants: {'; '.join(data.get('inviolable_rules', [])[:4])}"
@@ -146,7 +146,7 @@ class ContextAssembler:
 
         user_prompt = (
             f"=== 4. ACTIVE TASK REQUIREMENTS (SEMANTIC BLUEPRINT) ===\n{story}\n\n"
-            f"INSTRUCTION: Implement the task specified above. Adhere strictly to ADR-016 (<=400 LOC), "
+            f"INSTRUCTION: Implement the task specified above. Adhere strictly to the Architectural Modularity Ceiling (<=400 LOC), "
             f"Rule 14 Anti-Feature-Erasure, and Zero-Mock compliance. Emit output as a unified git diff."
         )
 
@@ -166,7 +166,7 @@ class ContextAssembler:
 | :--- | :--- | :--- | :--- |
 | **Tier 1 Traffic Router** | Directs AI to market microstructure domain context (`docs/context/microstructure.md`). | Directs AI to pump actuation and sensor debounce context (`docs/context/actuator.md`). | Directs AI to flight surface actuation context (`docs/context/flight_controls.md`). |
 | **Living Context Injection** | Injects D1 SQL order book tables, tick size schemas, and active model matrix. | Injects EEPROM calibration tables, sensor analog-to-digital converter (ADC) scales. | Injects ARINC 424 waypoint binary schemas and avionics bus message identifiers. |
-| **Domain ADR Enforcement** | Enforces ADR-029 Pre-Trade Plausibility Bands ($|P_{\text{exec}} - \text{EMA}_5| \le \text{Band}$). | Enforces ADR-014 Medical Basal Clamping ($|\text{Rate}_{\text{new}} - \text{Rate}_{\text{cur}}| \le 10\%$). | Enforces ADR-008 Aerodynamic Envelope Limiting ($\delta_{\text{rudder}} \le 5^{\circ}$). |
+| **Domain Guardrail Enforcement** | Enforces Pre-Trade Plausibility Bands ($|P_{\text{exec}} - \text{EMA}_5| \le \text{Band}$). | Enforces Medical Basal Clamping ($|\text{Rate}_{\text{new}} - \text{Rate}_{\text{cur}}| \le 10\%$). | Enforces Aerodynamic Envelope Limiting ($\delta_{\text{rudder}} \le 5^{\circ}$). |
 | **Token ROI** | Eliminates 30,000-token directory searches, executing in <4,000 tokens in under 4 seconds. | Prevents model from inspecting patient PHI or unrelated telemetry logs during firmware fixes. | Prevents model from reviewing passenger entertainment systems when patching flight guidance. |
 :::
 
@@ -183,8 +183,8 @@ class ContextAssembler:
 #### Model Solution:
 ```markdown
 ### 1. ASSEMBLED CONTEXT FILES
-- Global Router (Tier 1): `.github/copilot-instructions.md` (Traffic router and ADR-016 rules).
-- Domain Context (Tier 2): `docs/context/market_data.md` (Contains ADR-022: Database Schema Parity).
+- Global Router (Tier 1): `.github/copilot-instructions.md` (Traffic router and 400-LOC modularity rules).
+- Domain Context (Tier 2): `docs/context/market_data.md` (Contains Database Schema Parity Guardrails).
 - Active Task: `docs/stories/MIGRATION-042-liquidity-tier.md` (Semantic Blueprint specifying integer enum values: 1=High, 2=Mid, 3=Illiquid).
 - Schema Contract: `src/v3/schemas/daily_prices.py` (Current Pydantic DTO model).
 

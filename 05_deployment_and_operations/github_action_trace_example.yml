@@ -30,12 +30,12 @@ jobs:
           fi
           echo "Traceability validated."
 
-      - name: Assert ADR Compliance Link (Builder Sync)
+      - name: Assert Architectural Guardrail Compliance Link (Builder Sync)
         id: adr-check
         run: |
           # Validate the Builder agent adhered to the architecture standards.
-          if ! git log -1 --pretty=%B | grep -q '\[ADR-[0-9]\+\]'; then
-            echo "::warning::No [ADR-ID] found in the commit message."
+          if ! git log -1 --pretty=%B | grep -q -E '\[(ADR|GUARDRAIL)-[0-9A-Za-z_-]+\]'; then
+            echo "::warning::No [GUARDRAIL-ID] found in the commit message."
           fi
 
       - name: Emit DORA & SPACE Core Telemetry

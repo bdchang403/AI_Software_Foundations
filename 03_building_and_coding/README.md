@@ -10,7 +10,7 @@ To achieve production reliability in high-stakes regulated enterprises—such as
 1. **The Navigational Map**: 2-Tier Precision Routing that eliminates multi-hop repository scans.
 2. **The Living Memory**: AST-indexed State and Mathematical Registries compiled directly from source code.
 3. **The Surgical Payload**: Compressed Living Context (<1,500 tokens) with strict dual-schema database-to-DTO mappings.
-4. **The Bounded Sandbox**: The **ADR-016 400-LOC modular ceiling**, 350-LOC refactoring trigger, 80-line targeted context windows, and **Rule 14 Anti-Feature-Erasure**.
+4. **The Bounded Sandbox**: The **Architectural Modularity Ceiling (400 LOC)**, 350-LOC refactoring trigger, 80-line targeted context windows, and **Rule 14 Anti-Feature-Erasure**.
 5. **The Cryptographic Guardrails**: Code-adjacent SHA1 Invariant Anchors ($I_{01}$–$I_{22}$) and zero-drift atomic pre-commit gates.
 
 ---
@@ -31,12 +31,12 @@ Architecture and implementation do not occur in isolation. Within the cross-func
 │                                           ▼                                                      │
 │   [Business Analysts / Requirements Leads] ──► 01_ Strategy & 02_ Requirements                  │
 │     • 3-Part Directives (Role, Task, Format) with Invariant Bindings                             │
-│     • Epistemic Air-Gap (ADR-030) & 80% Commercial Funnel Discount ($W_{\text{commercial}} = 0.20$)│
+│     • Unidirectional Epistemic Air-Gap Guardrail & 80% Commercial Funnel Discount ($W_{\text{commercial}} = 0.20$)│
 │     • Semantic Blueprints with 20 Mandatory Pre-Condition Edge Cases                             │
 │                                           │                                                      │
 │                                           ▼                                                      │
 │   [Software Engineers & System Architects] ──► 03_ Building & Coding [CURRENT MODULE]            │
-│     • ADR-016 400-LOC Modular Ceiling, 350-LOC Refactor Trigger & 80-Line Surgical Slices        │
+│     • Architectural Modularity Ceiling (400 LOC), 350-LOC Refactor Trigger & 80-Line Surgical Slices        │
 │     • AST-Indexed State Registries (`STATE_REGISTRY.md`) & Math Registries (100 Verified Algs)   │
 │     • Living Context Compiler (<1,500 Tokens) vs Naive Vector RAG                                │
 │     • Zero-Drift Atomic Pre-Commit Command Chains (`git diff --exit-code`)                       │
@@ -68,7 +68,7 @@ Architecture and implementation do not occur in isolation. Within the cross-func
 │                   THE FIVE BEDROCK PILLARS OF BUILDER & ARCHITECT ARCHITECTURE                   │
 ├──────────────────────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                                  │
-│   1. ADR-016 Modular Hard Ceiling                                                                │
+│   1. Architectural Modularity Ceiling (400 LOC)                                                                │
 │      • 400 Physical LOC Ceiling per module                                                       │
 │      • 350 LOC Mandatory Refactoring Trigger                                                     │
 │      • 80-Line Surgical Context View Windows                                                     │
@@ -76,7 +76,7 @@ Architecture and implementation do not occur in isolation. Within the cross-func
 │                                                                                                  │
 │   2. Deterministic AST Registries                                                                │
 │      • `update_state_registry.py`: Native `ast.parse` over `git ls-files`                         │
-│      • Extracts LOC, classes, public function signatures, and ADR-016 health flags               │
+│      • Extracts LOC, classes, public function signatures, and modularity ceiling health flags               │
 │      • `update_math_registry.py`: Catalogs 100 canonical algorithms with exact AST coordinates   │
 │      • Fail-Closed verification: halts if symbol missing or linked test suite deleted             │
 │                                                                                                  │
@@ -112,11 +112,11 @@ To understand why these five pillars are non-negotiable, software engineers and 
   3. *SEC EDGAR 429 Blacklisting*: Rapid sequential scraping breached the SEC EDGAR 10 req/s rate limit, triggering HTTP `429 Too Many Requests` and IP bans that aborted runs mid-execution.
   4. *Context Collapse & Silent Feature Erasure*: In 1,200-line monoliths, transformer attention entropy ($\mathcal{H}(A_i)$) diluted focus. Autonomous refactoring agents suffered the "Lost in the Middle" degradation valley ($F(x) \approx 0.35$ for $x \in [0.15, 0.85]$) and silently truncated 200 lines of error handlers into comments like `# ... existing logic remains unchanged ...`.
 * **Permanent Architectural Mechanisms**:
-  - **ADR-001**: Event-driven asynchronous ingress via edge webhooks ($0 compute standby).
-  - **ADR-002**: 3-Tier Severity Triage Funnel (Tier 1 Breadcrumb $0, Tier 2 Accumulation $0 in-plan, Tier 3 Cognitive Escalation).
-  - **ADR-003**: Continuous polarity accumulation with exponential half-life decay ($w(\Delta t) = w_0 (1/2)^{\Delta t / t_{1/2}}$) and post-eruption reset.
-  - **ADR-011**: Integer micro-USD daily spend quota ($Q_{\text{limit}} = \$0.40$/day, $Q_{\text{ticker}} \le \$0.08$/day).
-  - **ADR-016**: 400-LOC modular hard ceiling and Rule 14 Anti-Feature-Erasure.
+  - **Event-Driven Ingress Guardrail (ADR-001)**: Event-driven asynchronous ingress via edge webhooks ($0 compute standby).
+  - **3-Tier Severity Triage Funnel Guardrail (ADR-002)**: 3-Tier Severity Triage Funnel (Tier 1 Breadcrumb $0, Tier 2 Accumulation $0 in-plan, Tier 3 Cognitive Escalation).
+  - **Exponential Half-Life Polarity Decay Guardrail (ADR-003)**: Continuous polarity accumulation with exponential half-life decay ($w(\Delta t) = w_0 (1/2)^{\Delta t / t_{1/2}}$) and post-eruption reset.
+  - **Micro-USD Daily Spend Quota Guardrail (ADR-011)**: Integer micro-USD daily spend quota ($Q_{\text{limit}} = \$0.40$/day, $Q_{\text{ticker}} \le \$0.08$/day).
+  - **Architectural Modularity Ceiling Guardrail (ADR-016)**: 400-LOC modular hard ceiling and Rule 14 Anti-Feature-Erasure.
 
 ### Forensic Case Study 2: The V2 Architectural & Context Drift Crisis (July 2026)
 * **The Naive Initial Architecture**: Migration to asynchronous edge workers (Cloudflare Workers, Queues, and D1 SQLite) documented across 40+ prose Markdown blueprints (`docs/specs/01_Foundation.md` through `07_Debate_Logic_Matrix.md`). Autonomous AI agents were instructed to "read the documentation before implementing code."
@@ -142,7 +142,7 @@ To ensure enterprise generalizability, the architectural mechanisms in this modu
 | System Component | Quantitative Asset Management (`StockAnalysis V3`) | FDA Class III Medical Device Firmware (21 CFR Part 820/11) | Aerospace Navigation & Flight Guidance (DO-178C / ARINC 424) | Mission-Critical Banking Mainframe Gateway (ISO 20022 / Fedwire) |
 | :--- | :--- | :--- | :--- | :--- |
 | **Living Schema / Register Parity** | Dual-schema mapping: 29 Cloudflare D1 SQL tables mapped to Pydantic/dataclass DTOs (`openrouter_context.json`). Prevents SQL column hallucination (`historical_sentiment`). | **MISRA-C Hardware Register Map**: Memory-mapped I/O registers for peristaltic pump actuators and pressure transducers indexed in AST registry. Prevents AI from hallucinating register offsets. | **ARINC 424 Navigation Database Registry**: Waypoints, airway segments, and terminal procedures indexed by AST with bit-accurate line coordinates. Prevents flight plan hallucination. | **COBOL Copybook Parity Registry**: Packed-decimal field layouts and record lengths mapped to Java DTOs. Prevents silent byte alignment truncation in payment gateways. |
-| **Modular Line Ceiling (ADR-016)** | Strict 400 LOC ceiling, 350 LOC trigger, 80-line view slices. Eliminates token attention dilution and prevents truncation of multi-tier price waterfalls. | **MISRA-C Function Complexity Bounds**: Functions strictly bounded to $\le 100$ LOC and cyclomatic complexity $\le 10$. Eliminates stack overflow risk in safety-critical firmware loops. | **DO-178C Structural Coverage Slicing**: Units bounded to single-responsibility modules to ensure 100% Modified Condition/Decision Coverage (MC/DC) traceability. | **Single-Transaction Translation Unit**: Message parsing isolated from debit/credit ledger commit. Units bounded $\le 300$ LOC to ensure verifiable concurrency. |
+| **Architectural Modularity Ceiling (400 LOC)** | Strict 400 LOC ceiling, 350 LOC trigger, 80-line view slices. Eliminates token attention dilution and prevents truncation of multi-tier price waterfalls. | **MISRA-C Function Complexity Bounds**: Functions strictly bounded to $\le 100$ LOC and cyclomatic complexity $\le 10$. Eliminates stack overflow risk in safety-critical firmware loops. | **DO-178C Structural Coverage Slicing**: Units bounded to single-responsibility modules to ensure 100% Modified Condition/Decision Coverage (MC/DC) traceability. | **Single-Transaction Translation Unit**: Message parsing isolated from debit/credit ledger commit. Units bounded $\le 300$ LOC to ensure verifiable concurrency. |
 | **Anti-Feature-Erasure (Rule 14)** | Bans replacing 200 lines of API retry cascades and fallback pricing with `# ... existing logic remains unchanged ...`. | **Watchdog Interrupt Preservation**: Bans AI refactoring agents from commenting out hardware watchdog kick routines (`WDT_FEED()`) or sensor debounce filters. | **Fail-Safe Envelope Limiter Preservation**: Forbids AI coding tools from truncating aerodynamic boundary clamping loops during autopilot code refactoring. | **Audit Trail Logging Preservation**: Forbids AI tools from deleting cryptographic ledger hashing or dual-custody approval verifications. |
 | **Zero-Drift Pre-Commit Gate** | `git diff --exit-code` asserts generated state and math registries match source code before commit. | **Device Master Record (DMR) CI Sentinel**: Asserts firmware binaries, register maps, and hazard traceability matrices match git commit hash. | **DO-178C Software Lifecycle Environment Gate**: Asserts object code, source code, and low-level requirements maintain 1:1 bidirectional traceability. | **Mainframe Ledger Verification Gate**: Asserts database schema migrations maintain zero-divergence with dual-entry accounting contracts. |
 :::
@@ -161,8 +161,8 @@ flowchart TD
         A[Developer / Autonomous Agent Edit] --> B["Surgical View Windows <= 80 LOC"]
         B --> C[File Modified in src/ or tests/]
         C --> D{"File LOC >= 350?"}
-        D -- Yes --> E[Trigger ADR-016 Modular Decomposition]
-        E --> F["Extract Submodules < 400 LOC (Rule 14 Anti-Feature-Erasure)"]
+        D -- Yes --> E["Trigger Modular Decomposition (Split at 350 LOC, Cap at 400 LOC)"]
+        E --> F["Extract Submodules <= 400 LOC (Rule 14 Anti-Feature-Erasure)"]
         D -- No --> G[Pre-Commit Atomic Command Chain]
         F --> G
     end
@@ -172,9 +172,9 @@ flowchart TD
         G --> I["scripts/update_math_registry.py"]
         G --> J["scripts/generate_living_context.py"]
         
-        H -->|git ls-files + ast.parse| K["STATE_REGISTRY.md (<5,000 tokens)"]
-        I -->|AST Line Resolution L{start}-L{end}| L["docs/MATHEMATICAL_REGISTRY.md (100 Algs)"]
-        J -->|Compile Model Matrix + D1 DTOs| M["data/openrouter_context.json (<1,500 tokens)"]
+        H -->|"git ls-files + ast.parse"| K["STATE_REGISTRY.md (<5,000 tokens)"]
+        I -->|"Resolve AST Line Coordinates L_start to L_end"| L["docs/MATHEMATICAL_REGISTRY.md (100 Algs)"]
+        J -->|"Compile Model Matrix + Canonical DTOs"| M["data/openrouter_context.json (<1,500 tokens)"]
     end
 
     subgraph Prompt_Injection ["Autonomous Agent Execution"]
@@ -216,7 +216,7 @@ flowchart LR
 
     subgraph Tier2_Surgical_Payload ["Tier 2: Domain Context & Active Task"]
         T2A & T2B & T2C --> SP1["Active Semantic Blueprint (docs/stories/FEAT-*.md)"]
-        T2A & T2B & T2C --> SP2["Domain ADRs (docs/adrs/ADR-*.md)"]
+        T2A & T2B & T2C --> SP2["Domain Architectural Standards"]
         T2A & T2B & T2C --> SP3["Living Context Digest (<500 tokens JSON)"]
     end
 
@@ -241,7 +241,7 @@ Explore the technical modules of Milestone 3:
    * The physics of prompt boundaries: Context Boundary, Task Instruction, and Architectural Constraint.
 2. [**Module 2: Adversarial Thinking & Red-Teaming for Builders**](./02_adversarial_thinking.md)
    * Root causes of Crisis 1 (Cron Poller); closing the Fail-Soft trap and intercepting silent failures.
-3. [**Module 3: Code Decomposition (PR Slicing) & ADR-016 Modularity**](./03_decomposition.md)
+3. [**Module 3: Code Decomposition (PR Slicing) & Architectural Modularity (400 LOC)**](./03_decomposition.md)
    * Enforcing the 400-LOC ceiling, 350-LOC refactor trigger, 80-line targeted slices, and Rule 14 Anti-Feature-Erasure.
 4. [**Module 4: Context Engineering (The Builder's Guardrails)**](./04_context_engineering.md)
    * Root causes of Crisis 2 (Context Drift); building AST State and Mathematical Registries and the Living Context Compiler.

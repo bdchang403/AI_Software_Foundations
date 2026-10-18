@@ -6,8 +6,8 @@ In large-scale enterprise systems, automated test suites frequently suffer from 
 
 Under the transformer's $O(N^2)$ attention mechanism and the U-shaped positional attention curve, an AI modifying a monolithic test file loses track of earlier mock setups, accidentally deletes shared fixtures, and introduces unasserted side effects.
 
-### The ADR-016 Modular Test Ceiling
-To maintain deterministic test quality, the **ADR-016 400-LOC Modular Ceiling** applies equally to test code:
+### The Architectural Modularity Test Ceiling (400 LOC)
+To maintain deterministic test quality, the **Architectural Modularity Ceiling (400 LOC)** applies equally to test code:
 1. **Hard 400-LOC Ceiling**: No single test file in `tests/` may exceed 400 physical non-anchor lines of code.
 2. **350-LOC Refactoring Trigger**: When a test file reaches 350 lines, it must be decomposed into cohesive, isolated sub-suites before adding new test cases.
 3. **80-Line Surgical Test Slices**: Test authoring directives must operate within targeted 80-line focus windows.
@@ -24,7 +24,7 @@ To maintain deterministic test quality, the **ADR-016 400-LOC Modular Ceiling** 
 │   │ • Attention decay leads to silent fixture deletion & test flakiness                      │   │
 │   └──────────────────────────────────────────────────────────────────────────────────────────┘   │
 │                                                                                                  │
-│   ✅ DECOMPOSED HERMETIC TEST PYRAMID (ADR-016 COMPLIANT)                                        │
+│   ✅ DECOMPOSED HERMETIC TEST PYRAMID (400-LOC MODULAR CEILING COMPLIANT)                                        │
 │   ┌────────────────────────┐  ┌────────────────────────┐  ┌────────────────────────┐             │
 │   │ test_order_math.py     │  │ test_guardrails.py     │  │ test_conformal_fuzz.py │             │
 │   │ (Pure math, <250 LOC)  │  │ (Fail-closed, <300 LOC)│  │ (Fault inject, <350 LOC)│            │

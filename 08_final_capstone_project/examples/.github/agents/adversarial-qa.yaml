@@ -29,7 +29,7 @@ tools:
 # 3. THE GUARDRAILS (From PO's Bounding Rules)
 constraints:
   - "Do not approve a PR if coverage is below 90%."
-  - "Reject any PR that uses floating-point math for currency domains (refer to ADR-042)."
+  - "Reject any PR that uses floating-point math for currency domains (refer to High-Precision Fixed-Point Decimal Currency Guardrail)."
 
 # 4. ACTIVATION (From DevOps Tracing)
 on:

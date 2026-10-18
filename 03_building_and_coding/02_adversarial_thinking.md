@@ -106,33 +106,33 @@ In live deployment, this naive system failed catastrophically across four interr
 ### 4. The Permanent Invariants & Mechanisms
 The crisis was permanently eliminated by establishing five foundational architectural invariants:
 
-1. **Event-Driven Asynchronous Ingress (ADR-001)**:
+1. **Event-Driven Asynchronous Ingress Guardrail**:
    The batch cron poller was dismantled. The system sits dormant at **$0 compute cost** until activated by external market webhooks (SEC EDGAR RSS, FMP price alerts, FINRA dark pool reports) buffered through Cloudflare Queues.
-2. **3-Tier Severity Triage Funnel (ADR-002)**:
+2. **3-Tier Severity Triage Funnel Guardrail**:
    Events pass through a cost and severity filter:
    * *Tier 1 (Breadcrumb - $0 Compute)*: Minor analyst notes or routine price ticks are parsed by lightweight edge workers and logged directly to D1 storage. Zero LLMs are invoked.
    * *Tier 2 (Accumulation - $0 In-Plan Cost)*: Clusters of related signals elevate an asset to Watchlist status; fast zero-marginal-cost models (Gemini Flash) evaluate initial threat vectors.
    * *Tier 3 (Eruption - Cognitive Escalation)*: Only when cumulative polarity crosses $\pm 6.0$ or price volatility erupts $\ge 8\%$ is the multi-agent cognitive engine awakened.
-3. **Continuous Polarity Accumulation with Exponential Half-Life Decay (ADR-003)**:
+3. **Continuous Polarity Accumulation with Exponential Half-Life Decay Guardrail**:
    Polarity accumulates continuously within $P(t) \in [-10.0, +10.0]$:
    $$P(t) = P_0 \cdot \left(\frac{1}{2}\right)^{\frac{\Delta t}{t_{1/2}}}, \quad t_{1/2} \in \{30\text{d structural}, 7\text{d tactical}, 1\text{d ephemeral}\}$$
    New evidence updates polarity by $\Delta P = \text{sign}(\text{event}) \cdot M \cdot T \cdot (1 + \text{cluster\_bonus})$. Crossing $\pm 6.0$ triggers an Eruption, after which polarity resets to a baseline level ($4.0$) to prevent infinite re-trigger loops.
-4. **Micro-USD Daily Spend Quota (ADR-011)**:
+4. **Micro-USD Daily Spend Quota Guardrail**:
    Strict global cap of **$0.40/day** rolling 24-hour spend and **$0.08/day** single-ticker quarantine cap, tracked in integer micro-USD ($\mu\text{USD}$, $1\text{ USD} = 1,000,000\,\mu\text{USD}$).
-5. **The ADR-016 400 LOC Hard Ceiling & Rule 14**:
+5. **The Architectural Modularity Ceiling (400 LOC) & Rule 14**:
    Strict 400 LOC ceiling across all files, 350 LOC refactor trigger, 80-line targeted view windows, and Anti-Feature-Erasure (Rule 14).
 
 ---
 
 ## 💻 Production Reference Implementation: Polarity Escalator & Spend Breaker
 
-The following self-contained Python implementation illustrates the **Polarity Escalator with Category-Specific Half-Life Decay** (ADR-003) and the **Micro-USD Daily Spend Circuit Breaker** (ADR-011), complying fully with ADR-016 ($\le 400$ LOC):
+The following self-contained Python implementation illustrates the **Polarity Escalator with Category-Specific Half-Life Decay** and the **Micro-USD Daily Spend Circuit Breaker**, complying fully with ADR-016 ($\le 400$ LOC):
 
 ```python
 """
 production_reference_polarity_and_budget.py
-Self-contained reference implementation of ADR-003 Polarity Escalator 
-and ADR-011 Daily Spend Circuit Breaker (ADR-016 compliant, <400 LOC).
+Self-contained reference implementation of Polarity Escalator 
+and Daily Spend Circuit Breaker (Architectural Modularity compliant, <400 LOC).
 """
 import math
 import time
@@ -140,7 +140,7 @@ from typing import Dict, Optional, Tuple
 
 
 class PolarityEscalator:
-    """Bi-directional polarity accumulator with category-specific half-life decay (ADR-003)."""
+    """Bi-directional polarity accumulator with category-specific half-life decay."""
     POLARITY_MIN: float = -10.0
     POLARITY_MAX: float = 10.0
     ERUPTION_THRESHOLD: float = 6.0
@@ -199,7 +199,7 @@ class PolarityEscalator:
 
 
 class DailySpendCircuitBreaker:
-    """Integer micro-USD spend ledger enforcing strict daily budget ceilings (ADR-011)."""
+    """Integer micro-USD spend ledger enforcing strict daily budget ceilings."""
     MICRO_USD_PER_USD: int = 1_000_000
 
     def __init__(self, global_daily_limit_usd: float = 0.40, ticker_cap_usd: float = 0.08):
@@ -242,7 +242,7 @@ class DailySpendCircuitBreaker:
 | :--- | :--- | :--- | :--- | :--- |
 | **Naive Polling Architecture** | 8:00 PM nightly cron sweeps across 35 equities in sequential for-loops. | Polling glucose or arterial lactate every 30 minutes in closed-loop ICU infusion systems. | Polling airspeed and angle-of-attack sensors on a 1-second background task loop. | Batch end-of-day file transfer (NACHA/SWIFT) sweeping 50,000 corporate wire transfers. |
 | **Real-World Catastrophe** | 16-hour reaction lag during flash crashes; burns $500+/mo debating flat equities. | Patient experiences acute hypoglycemic shock within 8 minutes; missed by 30m poller. | 1-second lag during atmospheric microburst causes pilot-induced oscillation or wing stall. | Settlement delays expose bank to 12-hour counterparty insolvency and daylight overdrafts. |
-| **Permanent Mechanism** | Event-driven edge webhooks (ADR-001) + 3-Tier triage funnel ($0 compute standby). | Sub-millisecond hardware interrupt-driven sensor sampling with direct micro-bolus adjustment. | Interrupt-driven avionics databus (ARINC 429) operating at $\ge 100\,\text{Hz}$ with hardware limiters. | Real-time ISO 20022 message-event validation with atomic distributed balance locks. |
+| **Permanent Mechanism** | Event-driven edge webhooks + 3-Tier triage funnel ($0 compute standby). | Sub-millisecond hardware interrupt-driven sensor sampling with direct micro-bolus adjustment. | Interrupt-driven avionics databus (ARINC 429) operating at $\ge 100\,\text{Hz}$ with hardware limiters. | Real-time ISO 20022 message-event validation with atomic distributed balance locks. |
 :::
 
 ---
@@ -267,4 +267,4 @@ Before submitting code generated with AI assistance, every software engineer and
    - [ ] If the file exceeds 350 lines, has an architectural decomposition plan been executed?
 
 ---
-[**Proceed to Module 3: Code Decomposition (PR Slicing) & ADR-016 Modularity →**](./03_decomposition.md)
+[**Proceed to Module 3: Code Decomposition (PR Slicing) & Architectural Modularity →**](./03_decomposition.md)

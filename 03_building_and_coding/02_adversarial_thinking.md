@@ -46,12 +46,12 @@ To an inexperienced engineer, the system appears resilient because it never cras
 
 ---
 
-## 🔬 Forensic Case Study 1: The V1 Monolithic Cron Poller Crisis (May 2026)
+## 🔬 Forensic Case Study 1: The Initial Batch Architecture ("V1") Monolithic Cron Poller Crisis (May 2026)
 
-To understand why adversarial thinking must be codified into architectural mechanisms rather than prompt guidelines, builders must examine the root causes and permanent remediations of the **V1 Monolithic Cron Poller Crisis**.
+To understand why adversarial thinking must be codified into architectural mechanisms rather than prompt guidelines, builders must examine the root causes and permanent remediations of the initial monolithic batch prototype (historically referred to as **"V1"** of the reference autonomous market intelligence platform).
 
-### 1. The Naive Initial Architecture
-In May 2026, the initial production architecture of an autonomous market analysis platform operated as a scheduled cron job executed once per business day at 8:00 PM Eastern Time (00:00 UTC), following the close of US markets:
+### 1. The Naive Initial Architecture (V1)
+In May 2026, the initial production architecture (V1) of an autonomous market analysis platform operated as a scheduled cron job executed once per business day at 8:00 PM Eastern Time (00:00 UTC), following the close of US markets:
 * **Static Target Watchlist**: A hardcoded array of 35 large-cap equities (AAPL, MSFT, NVDA, TSLA, GOOGL, JNJ, JPM, etc.).
 * **Monolithic Procedural Scripts (`daily_runner.py`)**: Script files extending between 600 and 1,200+ physical lines of code handling external socket I/O, HTML/RSS scraping, regex parsing, prompt assembly, and direct HTTP requests to LLMs in tight procedural loops.
 * **Unconstrained Multi-Agent Deliberation**: For every ticker in the static list, the cron job sequentially triggered an expensive multi-agent debate (calling frontier LLMs) with prompts containing historical price tables, financial ratios, and scraped news transcripts (~8,000 tokens per ticker).

@@ -27,8 +27,8 @@
     - [1.3.3 Temporal Non-Stationarity and Lack of Signal Decay](#133-temporal-non-stationarity-and-lack-of-signal-decay)
     - [1.3.4 Empirical DCF Overvaluation Traps: The CRWV Forensic Case Study](#134-empirical-dcf-overvaluation-traps-the-crwv-forensic-case-study)
     - [1.3.5 API Drift and Stale Code Retrieval](#135-api-drift-and-stale-code-retrieval)
-  - [1.4 Forensic Case Study 1: The V1 Monolithic Cron Poller Crisis (May 2026)](#14-forensic-case-study-1-the-v1-monolithic-cron-poller-crisis-may-2026)
-  - [1.5 Forensic Case Study 2: The V2 Architectural & Context Drift Crisis (July 2026)](#15-forensic-case-study-2-the-v2-architectural--context-drift-crisis-july-2026)
+  - [1.4 Forensic Case Study 1: The Initial Batch Architecture ("V1") Monolithic Cron Poller Crisis (May 2026)](#14-forensic-case-study-1-the-initial-batch-architecture-v1-monolithic-cron-poller-crisis-may-2026)
+  - [1.5 Forensic Case Study 2: The Asynchronous Edge Prototype ("V2") Architectural & Context Drift Crisis (July 2026)](#15-forensic-case-study-2-the-asynchronous-edge-prototype-v2-architectural--context-drift-crisis-july-2026)
   - [1.6 The AST Registry Architecture: Deterministic Repository Indexing](#16-the-ast-registry-architecture-deterministic-repository-indexing)
     - [1.6.1 Repository Topography Indexer: scripts/update_state_registry.py](#161-repository-topography-indexer-scriptsupdate_state_registrypy)
     - [1.6.2 Algorithm Conflict Auditor: scripts/update_math_registry.py](#162-algorithm-conflict-auditor-scriptsupdate_math_registrypy)
@@ -203,11 +203,11 @@ Every architectural invariant, circuit breaker, and state machine codified in Au
 │                        THE 6 HISTORICAL FAILURE-MODE CRISES                            │
 ├────────────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                        │
-│   [CRISIS 1: MAY 2026] The V1 Monolithic Cron Poller Crisis                            │
+│   [CRISIS 1: MAY 2026] Initial Batch Prototype ("V1") Monolithic Cron Poller Crisis    │
 │   • Pathology: \$500+/mo token burn on flat stocks, 16h crash reaction lag, IP bans     │
 │   • Breakthrough: Event-driven edge triggers, 3-tier triage, ADR-016 400 LOC ceiling   │
 │                                                                                        │
-│   [CRISIS 2: JULY 2026] The V2 Architectural & Context Drift Crisis                    │
+│   [CRISIS 2: JULY 2026] Asynchronous Edge Prototype ("V2") Architecture & Drift Crisis │
 │   • Pathology: Code-spec divergence, schema hallucination, queue drops, broken diffs   │
 │   • Breakthrough: AST State & Math Registries, Living Context, zero-drift CI           │
 │                                                                                        │
@@ -460,10 +460,10 @@ When code-generation agents query vector databases for repository context, naive
 
 ---
 
-### 1.4 Forensic Case Study 1: The V1 Monolithic Cron Poller Crisis (May 2026)
+### 1.4 Forensic Case Study 1: The Initial Batch Architecture ("V1") Monolithic Cron Poller Crisis (May 2026)
 
-#### 1.4.1 The Naive Initial Architecture
-In May 2026, the initial architecture of Quantitative Asset Management Pipeline followed conventional backend batch-processing patterns. The system operated as a scheduled cron job executed once per business day at 8:00 PM Eastern Time (00:00 UTC), following the close of US equity markets.
+#### 1.4.1 The Naive Initial Architecture (V1)
+In May 2026, the initial architecture (historically referred to as "V1") of the reference Quantitative Asset Management Pipeline followed conventional backend batch-processing patterns. The system operated as a scheduled cron job executed once per business day at 8:00 PM Eastern Time (00:00 UTC), following the close of US equity markets.
 
 The naive system comprised three primary structural components:
 1. **Static Target Watchlist**: A hardcoded array of 35 large-cap equities (e.g., AAPL, MSFT, NVDA, TSLA, GOOGL, AMZN, JNJ, JPM).
@@ -639,10 +639,10 @@ class DailySpendCircuitBreaker:
 
 ---
 
-### 1.5 Forensic Case Study 2: The V2 Architectural & Context Drift Crisis (July 2026)
+### 1.5 Forensic Case Study 2: The Asynchronous Edge Prototype ("V2") Architectural & Context Drift Crisis (July 2026)
 
-#### 1.5.1 The Naive Initial Architecture
-In July 2026, Quantitative Asset Management Pipeline migrated to an asynchronous edge-native architecture (V2) to resolve V1's batch bottlenecks:
+#### 1.5.1 The Naive Initial Architecture (V2)
+In July 2026, the reference Quantitative Asset Management Pipeline migrated to an asynchronous edge-native architecture prototype (historically referred to as "V2") to resolve the V1 batch bottlenecks:
 - **Cloudflare Edge Workers**: Serverless TypeScript workers ingesting live webhooks (SEC, FMP, FINRA) with sub-millisecond edge latency.
 - **Cloudflare Queues**: Message broker buffering burst events and triggering processing workflows.
 - **Cloudflare D1 SQL**: A distributed serverless SQLite database acting as canonical remote ground truth.

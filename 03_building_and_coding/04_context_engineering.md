@@ -21,12 +21,12 @@ To establish infallible ground truth, builders construct **Deterministic Abstrac
 
 ---
 
-## 🔬 Forensic Case Study 2: The V2 Architectural & Context Drift Crisis (July 2026)
+## 🔬 Forensic Case Study 2: The Asynchronous Edge Prototype ("V2") Architectural & Context Drift Crisis (July 2026)
 
-The necessity of AST-indexed living context was proven by the catastrophic breakdown of the V2 asynchronous edge architecture.
+The necessity of AST-indexed living context was proven by the catastrophic breakdown of the reference platform's second-generation asynchronous edge architecture (historically referred to as **"V2"**).
 
-### 1. The Naive Initial Architecture
-In July 2026, an autonomous market analysis platform migrated from batch cron scripts to an event-driven edge topology:
+### 1. The Naive Initial Architecture (V2)
+In July 2026, the autonomous market analysis platform migrated from the initial V1 batch cron scripts to an event-driven edge topology (V2):
 * **Cloudflare Workers & Queues**: Serverless edge handlers ingesting SEC filings and financial price webhooks.
 * **Cloudflare D1 SQL**: A distributed serverless SQLite database acting as canonical remote ground truth.
 * **40+ Markdown Architectural Blueprints**: An exhaustive suite of documentation specifications (`docs/specs/01_Foundation.md` through `07_Debate_Logic_Matrix.md`) detailing schemas, JSON payloads, and mathematical formulas.

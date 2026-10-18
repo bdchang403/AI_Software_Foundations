@@ -159,13 +159,13 @@ The curriculum is organized into six progressive, interconnected milestones:
 
 ## 🔍 The Six Forensic Failure-Mode Case Studies
 
-The curriculum grounds all engineering principles in six historical production failure-mode crises, analyzing the naive architecture, silent failure mode, false solutions attempted, and permanent architectural mechanisms:
+The curriculum grounds all engineering principles in six historical production failure-mode crises drawn from the iterative evolution of the reference autonomous market intelligence platform (migrating from its initial May 2026 monolithic batch prototype **"V1"** to its July 2026 asynchronous edge prototype **"V2"**, and finally to the hardened fail-closed Context Factory). Each case study rigorously dissects the naive architecture, silent failure mode, false solutions attempted, and permanent architectural mechanisms:
 
-1. **Crisis 1: The V1 Monolithic Cron Poller Crisis (May 2026):**  
-   *Root Cause:* Nightly batch sweeps across 1,200-LOC monolithic scripts burned \$750/month in tokens and suffered 16-hour reaction lags to intraday shocks.  
+1. **Crisis 1: The Initial Batch Architecture ("V1") Monolithic Cron Poller Crisis (May 2026):**  
+   *Root Cause:* In the initial prototype (V1), nightly batch sweeps across 1,200-LOC monolithic scripts burned \$750/month in tokens and suffered 16-hour reaction lags to intraday shocks.  
    *Permanent Fix:* Event-Driven Ingress Guardrail, 3-Tier Severity Triage Funnel Guardrail, Continuous Half-Life Decay Guardrail, and ADR-016 400-LOC ceiling.
-2. **Crisis 2: The V2 Architectural & Context Drift Crisis (July 2026):**  
-   *Root Cause:* 40+ prose markdown docs diverged from code; LLMs hallucinated non-existent database columns, crashing with SQLite locked errors.  
+2. **Crisis 2: The Asynchronous Edge Prototype ("V2") Architectural & Context Drift Crisis (July 2026):**  
+   *Root Cause:* When migrating the platform to an asynchronous edge topology (V2), 40+ prose markdown docs diverged from live code; LLMs hallucinated non-existent database columns, crashing with SQLite locked errors.  
    *Permanent Fix:* Deterministic AST State Registry (`STATE_REGISTRY.md`), Mathematical Registry, Living Context Compiler (<1,500 tokens), and pre-commit zero-drift CI sentinels.
 3. **Crisis 3: The 900,000-Row Synthetic Poison Catastrophe (Aug–Oct 2026):**  
    *Root Cause:* Fail-soft try-except blocks returned synthetic constants (`0.50` dark pool ratio, `5.25%` rate stub), poisoning 900,000 database rows and triggering panic liquidations directly before a +35% rally.  

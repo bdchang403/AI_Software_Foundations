@@ -104,8 +104,8 @@ Architecture and implementation do not occur in isolation. Within the cross-func
 
 To understand why these five pillars are non-negotiable, software engineers and architects must examine the forensic failure modes that emerge when autonomous AI agents operate without structural guardrails.
 
-### Forensic Case Study 1: The V1 Monolithic Cron Poller Crisis (May 2026)
-* **The Naive Initial Architecture**: A daily batch cron job running at 8:00 PM ET executing monolithic procedural Python scripts (`daily_runner.py` / `fundamentals_fetcher.py`, 600–1,200+ LOC). The script iterated through a static watchlist of 35 equities in a synchronous for-loop, scraping external web endpoints (Yahoo Finance, Finnhub, SEC EDGAR) and invoking frontier LLMs with unconstrained 8,000-token prompts.
+### Forensic Case Study 1: The Initial Batch Architecture ("V1") Monolithic Cron Poller Crisis (May 2026)
+* **The Naive Initial Architecture**: In the initial prototype (V1) of the reference market analysis platform, a daily batch cron job ran at 8:00 PM ET executing monolithic procedural Python scripts (`daily_runner.py` / `fundamentals_fetcher.py`, 600–1,200+ LOC). The script iterated through a static watchlist of 35 equities in a synchronous for-loop, scraping external web endpoints (Yahoo Finance, Finnhub, SEC EDGAR) and invoking frontier LLMs with unconstrained 8,000-token prompts.
 * **The Silent Catastrophe**:
   1. *Runaway Token Burn (\$500+/Month Debating Flat Stocks)*: The poller unconditionally deliberated on low-beta, flat assets with zero material news, burning 92% of tokens on redundant, identical analyses.
   2. *16-Hour Reaction Lag*: A morning guidance cut (-18% plunge at 9:30 AM ET) went completely undetected until the 8:00 PM cron, with recommendations delivered at 7:00 AM the next day—16 hours after capital was destroyed.
@@ -118,8 +118,8 @@ To understand why these five pillars are non-negotiable, software engineers and 
   - **Micro-USD Daily Spend Quota Guardrail (ADR-011)**: Integer micro-USD daily spend quota ($Q_{\text{limit}} = \$0.40$/day, $Q_{\text{ticker}} \le \$0.08$/day).
   - **Architectural Modularity Ceiling Guardrail (ADR-016)**: 400-LOC modular hard ceiling and Rule 14 Anti-Feature-Erasure.
 
-### Forensic Case Study 2: The V2 Architectural & Context Drift Crisis (July 2026)
-* **The Naive Initial Architecture**: Migration to asynchronous edge workers (Cloudflare Workers, Queues, and D1 SQLite) documented across 40+ prose Markdown blueprints (`docs/specs/01_Foundation.md` through `07_Debate_Logic_Matrix.md`). Autonomous AI agents were instructed to "read the documentation before implementing code."
+### Forensic Case Study 2: The Asynchronous Edge Prototype ("V2") Architectural & Context Drift Crisis (July 2026)
+* **The Naive Initial Architecture**: Migration of the platform to an asynchronous edge topology (V2) using Cloudflare Workers, Queues, and D1 SQLite, documented across 40+ prose Markdown blueprints (`docs/specs/01_Foundation.md` through `07_Debate_Logic_Matrix.md`). Autonomous AI agents were instructed to "read the documentation before implementing code."
 * **The Silent Catastrophe**:
   1. *Code-Doc Divergence*: Modifying Python function signatures left markdown specs stale. Subsequent AI agents read outdated specs, generated calls to deprecated signatures, and committed broken code. Over 60% of specs contradicted live code within 3 weeks.
   2. *Database Schema Hallucination*: Lacking machine-readable schema contracts, LLMs hallucinated non-existent tables (`SELECT * FROM historical_sentiment`) and columns (`market_sentiment_score`), crashing queries with `sqlite3.OperationalError: no such column`. Silenced `try/except` blocks returned empty dictionaries, leading agents to assume the system had zero historical state.

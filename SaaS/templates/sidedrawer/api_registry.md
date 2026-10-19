@@ -20,3 +20,7 @@ metadata.put("department", "wealth_management");
 
 String jsonString = mapper.writeValueAsString(payload);
 ```
+
+
+## Mock Bootstrap Test Harness Symbols
+- `setupWireMock()`: Test bootstrap mock implementation.

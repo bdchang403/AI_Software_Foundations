@@ -15,3 +15,7 @@ StrCat(VariableA, VariableB)
 GetDate()
 // Do NOT use: Date.now() or new Date()
 ```
+
+
+## Mock Bootstrap Test Harness Symbols
+- `mockGetDate()`: Test bootstrap mock implementation.

@@ -36,7 +36,7 @@ $$\mathcal{H}(A_i) = -\sum_{j=1}^N A_{ij} \ln(A_{ij} + \epsilon), \quad A_{ij} \
 
 Where $\epsilon = 10^{-12}$ provides an $\epsilon$-floor preventing numerical underflow and division-by-zero traps (with $0 \ln 0 \equiv 0$ by continuity). Because the natural logarithm is used, entropy is measured in nats ($\mathcal{H} \ge 0$). As sequence length $N \to \infty$, uniform dispersion yields maximum entropy $\mathcal{H}_{\max} = \ln N$, diluting negative constraints, system instructions, and type invariants.
 *   **Operational Guardrail**: Hard prompt ceiling of $\le 2,500$ tokens per task.
-*   **Deep Implementation**: [Strategic Decomposition (01_03)](./01_strategy_and_vision/03_epic_decomposition_and_blast_radius.md) and [Context Engineering (03_04)](./03_building_and_coding/04_ast_registries_and_living_context.md).
+*   **Deep Implementation**: [Strategic Decomposition (01_03)](./01_strategy_and_vision/04_epic_decomposition_and_blast_radius.md) and [Context Engineering (03_04)](./03_building_and_coding/04_ast_registries_and_living_context.md).
 
 ---
 
@@ -177,7 +177,7 @@ Where $\mathrm{SR}_0 = \mathbb{E}[\max_K \{\mathrm{SR}\}]$ is the expected maxim
 $$\mathrm{SR}_0 \approx \sigma_{\text{trials}} \left( (1 - \gamma_{\text{EM}}) \Phi^{-1}\left(1 - \frac{1}{K}\right) + \gamma_{\text{EM}} \Phi^{-1}\left(1 - \frac{1}{K \cdot e}\right) \right)$$
 With $\sigma_{\text{trials}}$ representing the empirical standard deviation across all $K$ trials, $\gamma_{\text{EM}} \approx 0.5772156649$ being the Euler-Mascheroni constant, and sample size $T > 1$.
 *   **Operational Guardrail**: Only models or rules satisfying $\mathrm{DSR} \ge 0.95$ are approved for production.
-*   **Deep Implementation**: [Testing Architecture (04_TEST_ARCHITECTURE)](./04_testing_and_validation/TEST_ARCHITECTURE.md) and [Regulatory Red-Teaming (06_02)](./06_security_and_compliance/02_regulatory_red_teaming.md).
+*   **Deep Implementation**: [Testing Architecture (04_TEST_ARCHITECTURE)](./04_testing_and_validation/TEST_ARCHITECTURE.md) and [Regulatory Red-Teaming (06_02)](./06_security_and_compliance/03_regulatory_red_teaming.md).
 
 ---
 
@@ -198,7 +198,7 @@ $$\mathbf{X}_{\text{decorrelated}} = (\mathbf{X} - \bar{\mathbf{X}}) \mathbf{W}_
 
 As proven by Kessy et al. (2018), symmetrical ZCA whitening $\mathbf{W}_{\text{ZCA}} = \mathbf{\Sigma}^{-1/2}$ is the unique transformation that minimizes expected squared reconstruction error $\mathbb{E}[\|\mathbf{W} \mathbf{X} - \mathbf{X}\|^2]$ subject to $\mathrm{Cov}(\mathbf{W} \mathbf{X}) = \mathbf{I}$, preserving maximal cross-covariance with the original input channels. The upper clamp $\max(1.0, \mu)$ resolves the ZCA Agreement Paradox by preventing unanimous multi-pillar co-movement from being artificially penalized.
 *   **Operational Guardrail**: Decorrelates multi-sensor inputs while preserving original spatial coordinate identities and avoiding penalization of unanimous consensus.
-*   **Deep Implementation**: [Epistemic Governance (09_05)](./09_ai_agent_orchestration/05_epistemic_governance.md).
+*   **Deep Implementation**: [Epistemic Governance (09_05)](./09_ai_agent_orchestration/06_epistemic_governance.md).
 
 ---
 

@@ -169,5 +169,5 @@ To contain blast radius and eliminate deployment paralysis, teams must institute
 
 ---
 
-[**Next: Module 4 — Infrastructure Context Engineering & The Resource Map →**](./04_cloud_resource_maps_and_staging_airgaps.md) | [**Return to Deployment Lead Hub →**](./README.md)
+[**Next: Module 4 — Infrastructure Context Engineering & The Resource Map →**](./05_cloud_resource_maps_and_staging_airgaps.md) | [**Return to Deployment Lead Hub →**](./README.md)
 

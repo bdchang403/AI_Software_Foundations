@@ -108,7 +108,7 @@ Follow these modules to master regulatory compliance, red-teaming, and model ris
 
 1. [**Module 1: Root Epistemic Governance & Proxy Variable Risk Auditing**](./01_epistemic_governance_and_proxy_risk_auditing.md)
    * Detecting proxy variable discrimination, enforcing the 80% commercial discount, and auditing immutable quarantine migrations.
-2. [**Module 2: Regulatory Red-Teaming, Plausibility Envelopes & Model Risk**](./02_regulatory_red_teaming.md)
+2. [**Module 2: Regulatory Red-Teaming, Plausibility Envelopes & Model Risk**](./03_regulatory_red_teaming.md)
    * Red-teaming against prompt injections, mathematical implementation of pre-action plausibility bands, and nightly reconciliation loops.
 3. [**Lab Workbook: The AI Audit, Plausibility Bands & Quarantine Ledger**](./LAB_WORKBOOK.md)
    * Practical hands-on auditing exercises with executable python test harnesses.

@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PR_Logic_Audit_Record",
+  "description": "Write one immutable file per PR (.audit/PR-<id>.jsonl) to prevent Git merge conflicts.",
+  "type": "object",
+  "required": ["timestamp", "story_id", "ast_symbol_id", "rationale", "model_tier", "reproduction_test_path", "engineer_approval"],
+  "properties": {
+    "timestamp": { "type": "string", "format": "date-time" },
+    "story_id": { "type": "string" },
+    "ast_symbol_id": { "type": "string" },
+    "rationale": { "type": "string" },
+    "model_tier": { "type": "string", "enum": ["audit", "verify", "patch"] },
+    "reproduction_test_path": { "type": "string" },
+    "engineer_approval": { "type": "string" }
+  }
+}

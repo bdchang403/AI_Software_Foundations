@@ -122,7 +122,7 @@ To eliminate the +9\% defect escape rate:
 ## 📚 Navigation & Canonical Verification
 
 - **Executive Directives**: [Module 1: Executive Intent, Investment Thesis & Governance Boundaries](./01_executive_intent_and_investment_thesis.md)
-- **Strategic Red-Teaming**: [Module 2: Strategic Red-Teaming & Executive Moat Protection](./02_strategic_red_teaming.md)
+- **Strategic Red-Teaming**: [Module 2: Strategic Red-Teaming & Executive Moat Protection](./03_strategic_red_teaming.md)
 - **Empirical Reference Guide**: [Empirical AI Telemetry, Repository Economics & Governance Benchmark](../templates_and_resources/EMPIRICAL_AI_TELEMETRY_AND_GOVERNANCE_BENCHMARK.md)
 
 ---

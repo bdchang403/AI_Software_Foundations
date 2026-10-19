@@ -124,8 +124,8 @@ Executive intent must enforce strict resource caps to prevent agent infinite loo
 
 ## 📚 Navigation & Canonical Verification
 
-- **Next Strategic Module**: [Module 2: Strategic Red-Teaming & Executive Moat Protection](./02_strategic_red_teaming.md)
-- **Measuring Leadership KPIs**: [Module 4: Measuring Success, KPIs & The Illusion of Velocity](./04_measuring_success_and_kpis.md)
+- **Next Strategic Module**: [Module 2: Strategic Red-Teaming & Executive Moat Protection](./03_strategic_red_teaming.md)
+- **Measuring Leadership KPIs**: [Module 4: Measuring Success, KPIs & The Illusion of Velocity](./06_measuring_success_and_kpis.md)
 - **Empirical Reference Guide**: [Empirical AI Telemetry, Repository Economics & Governance Benchmark](../templates_and_resources/EMPIRICAL_AI_TELEMETRY_AND_GOVERNANCE_BENCHMARK.md)
 
 ---

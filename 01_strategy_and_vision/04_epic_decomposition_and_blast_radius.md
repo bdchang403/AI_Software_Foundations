@@ -176,7 +176,7 @@ flowchart TD
 
 Strategic decomposition is an inviolable mathematical requirement. By enforcing Bounded Task Units (BTUs), Strategy Leads maintain model attention in the $>95\%$ precision zone, eliminate code bloat, and protect organizational capital.
 
-[**Proceed to Module 4: Context Engineering & Registry Maps →**](./04_epistemic_firewalls_and_market_airgaps.md)
+[**Proceed to Module 4: Context Engineering & Registry Maps →**](./05_epistemic_firewalls_and_market_airgaps.md)
 
 ---
 

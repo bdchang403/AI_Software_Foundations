@@ -93,13 +93,13 @@ The directive explicitly binds to Invariant $I_{03}$ (Fatal-Contagion Veto), gua
 
 Product Owners and Strategy Leads should complete these foundational modules in sequence:
 
-1. [**Module 1: Strategic Intent Directives & Invariant Governance**](./01_strategic_intent_and_invariants.md)  
+1. [**Module 1: Strategic Intent Directives & Invariant Governance**](./02_strategic_intent_and_invariants.md)  
    *Authoring deterministic directives (Role, Task, Constraint) with mathematical invariant links.*
-2. [**Module 2: Strategic Red-Teaming & Executive Moat Protection**](./02_strategic_red_teaming.md)  
+2. [**Module 2: Strategic Red-Teaming & Executive Moat Protection**](./03_strategic_red_teaming.md)  
    *Identifying implicit assumptions, closing agentic loopholes, and mitigating cognitive priming.*
-3. [**Module 3: Epic Decomposition Mathematics & Organizational Blast Radius**](./03_epic_decomposition_and_blast_radius.md)  
+3. [**Module 3: Epic Decomposition Mathematics & Organizational Blast Radius**](./04_epic_decomposition_and_blast_radius.md)  
    *Decomposing complex enterprise initiatives into token-bounded sandbox domains ($< 50\text{k}$ tokens).*
-4. [**Module 4: Strategic Epistemic Firewalls & Market Air-Gaps**](./04_epistemic_firewalls_and_market_airgaps.md)  
+4. [**Module 4: Strategic Epistemic Firewalls & Market Air-Gaps**](./05_epistemic_firewalls_and_market_airgaps.md)  
    *Building the Epic Semantic Blueprint and enforcing the Unidirectional Epistemic Air-Gap Guardrail.*
 5. [**Lab Workbook: Practical Strategy Exercises**](./LAB_WORKBOOK.md)  
    *Hands-on labs: Decomposing high-stakes Epics, applying the 80% commercial discount, and authoring blueprint contracts.*

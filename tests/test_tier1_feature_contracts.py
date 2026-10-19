@@ -175,7 +175,7 @@ def test_latex_formula_delimiter_and_brace_balance_in_specs():
     md_files = glob.glob(os.path.join(REPO_ROOT, "0[0-9]_*/**/*.md"), recursive=True)
     md_files.extend(glob.glob(os.path.join(REPO_ROOT, "00_*.md")))
     md_files.append(os.path.join(REPO_ROOT, "README.md"))
-    md_files.append(os.path.join(REPO_ROOT, "templates_and_resources", "stories", "autonomous_agentic_quant_engineering_master_guide.md"))
+    md_files.append(os.path.join(REPO_ROOT, "templates_and_resources", "stories", "autonomous_event_stream_and_quant_architecture.md"))
     
     total_formulas = 0
     failures = []

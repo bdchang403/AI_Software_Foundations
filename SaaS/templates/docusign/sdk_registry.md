@@ -19,3 +19,7 @@ OAuth.OAuthToken oAuthToken = apiClient.requestJWTUserToken(
 
 apiClient.addDefaultHeader("Authorization", "Bearer " + oAuthToken.getAccessToken());
 ```
+
+
+## Mock Bootstrap Test Harness Symbols
+- `setupMock()`: Test bootstrap mock implementation.

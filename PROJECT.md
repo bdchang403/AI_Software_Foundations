@@ -179,10 +179,10 @@ AI_Software_Foundations/
 ├── TEST_READY.md (published upon test suite completion)
 ├── 01_strategy_and_vision/
 │   ├── README.md
-│   ├── 01_strategic_intent_and_invariants.md
-│   ├── 02_strategic_red_teaming.md
-│   ├── 03_epic_decomposition_and_blast_radius.md
-│   ├── 04_epistemic_firewalls_and_market_airgaps.md
+│   ├── 02_strategic_intent_and_invariants.md
+│   ├── 03_strategic_red_teaming.md
+│   ├── 04_epic_decomposition_and_blast_radius.md
+│   ├── 05_epistemic_firewalls_and_market_airgaps.md
 │   └── LAB_WORKBOOK.md
 ├── 02_requirements_and_design/
 │   ├── README.md
@@ -219,16 +219,16 @@ AI_Software_Foundations/
 ├── 05_deployment_and_operations/
 │   ├── README.md
 │   ├── 01_iac_traceability_and_state_contracts.md
-│   ├── 02_infrastructure_red_teaming_and_least_privilege.md
-│   ├── 03_pipeline_modularity_and_canary_rollouts.md
-│   ├── 04_cloud_resource_maps_and_staging_airgaps.md
-│   ├── 05_automated_traceability.md
+│   ├── 03_infrastructure_red_teaming_and_least_privilege.md
+│   ├── 04_pipeline_modularity_and_canary_rollouts.md
+│   ├── 05_cloud_resource_maps_and_staging_airgaps.md
+│   ├── 06_automated_traceability.md
 │   ├── github_action_trace_example.yml
 │   └── LAB_WORKBOOK.md
 ├── 06_security_and_compliance/
 │   ├── README.md
 │   ├── 01_epistemic_governance_and_proxy_risk_auditing.md
-│   ├── 02_regulatory_red_teaming.md
+│   ├── 03_regulatory_red_teaming.md
 │   └── LAB_WORKBOOK.md
 ├── 07_team_process_and_flow/
 │   ├── README.md

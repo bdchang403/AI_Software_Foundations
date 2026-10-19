@@ -152,5 +152,5 @@ To ensure absolute network isolation and prevent resource hallucination, organiz
 
 ---
 
-[**Next: Module 5 — Automated Traceability, CI Drift Monitors & AI-SBOM Standards →**](./05_automated_traceability.md) | [**Return to Deployment Lead Hub →**](./README.md)
+[**Next: Module 5 — Automated Traceability, CI Drift Monitors & AI-SBOM Standards →**](./06_automated_traceability.md) | [**Return to Deployment Lead Hub →**](./README.md)
 

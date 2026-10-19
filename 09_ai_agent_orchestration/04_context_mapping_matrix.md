@@ -198,4 +198,4 @@ When engineering teams bypass surgical context slicing and dump raw files into a
 
 ---
 
-[**Proceed to Module 5: Epistemic Governance & Multi-Pillar Evidence Fusion →**](./05_epistemic_governance.md)
+[**Proceed to Module 5: Epistemic Governance & Multi-Pillar Evidence Fusion →**](./06_epistemic_governance.md)

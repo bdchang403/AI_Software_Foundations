@@ -12,6 +12,16 @@ This curriculum is engineered for cross-functional teams—**Product Owners, Reg
 
 ---
 
+## Progressive Onboarding Tracks (Role-Based Curriculum)
+
+| Track | Target Persona | Required Modules | Primary Outcome |
+| :--- | :--- | :--- | :--- |
+| **Track 1: Practitioner (Day 1)** | SWEs / Feature Squads | `00_THE_CONTEXT_PIPELINE.md` $\rightarrow$ `03_building_and_coding/` $\rightarrow$ `SaaS/templates/` | Eliminate context blindness; use AST registries & scoped skills. |
+| **Track 2: Systems & QA Lead** | Tech Leads / SDETs / Staff | `02_requirements_and_design/` $\rightarrow$ `04_testing_and_validation/` $\rightarrow$ `09_ai_agent_orchestration/` | Enforce zero-mock AST scanning, socket sandboxes & tiered routing. |
+| **Track 3: Executive & Governance** | Directors / Principals / Risk | `00_THE_MATHEMATICS_OF_AI_RISK.md` $\rightarrow$ `01_strategy_and_vision/` $\rightarrow$ `06_security_and_compliance/` | Implement NIST RMF / EU AI Act runtime controls & FinOps tiering. |
+
+---
+
 ## 🏗️ The Problem: The 75% Median Ad-Hoc Trap & The AI Productivity Cliff
 
 While over 76% of professional software engineers have integrated AI coding assistants into their daily workflows (Stack Overflow 2024–2025 Developer Surveys), **75% of enterprise engineering teams remain trapped at Level 1 and Level 2 Ad-Hoc Context Maturity**. In this median ad-hoc paradigm, developers treat frontier Large Language Models (LLMs) as conversational chatbots: copying snippets into prompt windows, dumping unstructured repository directories into context windows, or relying on naive semantic vector RAG.

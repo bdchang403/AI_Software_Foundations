@@ -110,7 +110,7 @@ sequenceDiagram
     ```bash
     python3 scripts/update_state_registry.py &&     python3 scripts/update_math_registry.py &&     python3 scripts/generate_living_context.py &&     git diff --exit-code
     ```
-*   **Deep Implementation**: [Automated Traceability (05_05)](./05_deployment_and_operations/05_automated_traceability.md).
+*   **Deep Implementation**: [Automated Traceability (05_05)](./05_deployment_and_operations/06_automated_traceability.md).
 
 ---
 

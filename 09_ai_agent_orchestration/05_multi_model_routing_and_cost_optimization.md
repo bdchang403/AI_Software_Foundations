@@ -192,4 +192,4 @@ When engineering teams ignore decoupled multi-model routing and hammer frontier 
 
 ---
 
-[**Proceed to Module 5: Epistemic Governance & Multi-Agent Triads →**](./05_epistemic_governance.md)
+[**Proceed to Module 5: Epistemic Governance & Multi-Agent Triads →**](./06_epistemic_governance.md)

@@ -402,3 +402,32 @@ def test_sha1_anchor_block_parser_flags_corrupted_hash():
     assert blocks[0]["valid"] is False, "Corrupted anchor was falsely marked valid"
     assert blocks[0]["sha1_claimed"] == "deadbeef"
     assert blocks[0]["sha1_expected"] != "deadbeef"
+
+
+def test_saas_mock_symbols_registered():
+    import glob, re, os
+    root = "/home/bdchang/AI_Software_Foundations"
+    mock_files = glob.glob(os.path.join(root, "SaaS/templates/*/mock_bootstrap.*"))
+    assert len(mock_files) > 0, "No mock bootstrap files found"
+
+    method_pattern = re.compile(r"(?:public\s+(?:static\s+)?[\w<>\[\]]+\s+)(\w+)\s*\(")
+
+    for mock_file in mock_files:
+        vendor_dir = os.path.dirname(mock_file)
+        with open(mock_file, "r", encoding="utf-8") as f:
+            content = f.read()
+
+        methods = set(method_pattern.findall(content))
+        # Filter out constructor or language keywords if any
+        class_name = os.path.splitext(os.path.basename(mock_file))[0]
+        methods = {m for m in methods if m not in ("if", "while", "for", "switch", "catch", class_name)}
+
+        # Find corresponding registry files
+        reg_files = glob.glob(os.path.join(vendor_dir, "*_registry.md")) + glob.glob(os.path.join(vendor_dir, "sdk_rules.md"))
+        reg_content = ""
+        for rf in reg_files:
+            with open(rf, "r", encoding="utf-8") as f:
+                reg_content += f.read() + "\n"
+
+        for method in methods:
+            assert method in reg_content, f"Method {method} from {mock_file} not documented in {vendor_dir} registry or sdk_rules.md"

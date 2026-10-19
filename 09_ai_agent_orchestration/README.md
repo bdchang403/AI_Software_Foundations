@@ -53,7 +53,7 @@ The orchestration curriculum teaches engineering teams how to assemble, test, an
     *   Conformal fuzzing, prompt injection penetration testing, and detecting deceptive alignment in modern frontier models.
 4.  [**Module 4: Context Mapping Matrix & Surgical Slicing**](./04_context_mapping_matrix.md)
     *   Multi-tier context slicing and dynamic token allocation across functional roles.
-5.  [**Module 5: Epistemic Governance & Multi-Pillar Evidence Fusion**](./05_epistemic_governance.md)
+5.  [**Module 5: Epistemic Governance & Multi-Pillar Evidence Fusion**](./06_epistemic_governance.md)
     *   Unidirectional epistemic air-gaps, commercial funnel discounting ($W_{\text{comm}} = 0.20$), and Ledoit-Wolf ZCA orthogonal whitening.
 
 ---

@@ -203,5 +203,5 @@ To eliminate state corruption and break free from the verification trap, product
 
 ---
 
-[**Next: Module 2 — Adversarial Infrastructure Red-Teaming →**](./02_infrastructure_red_teaming_and_least_privilege.md) | [**Return to Deployment Lead Hub →**](./README.md)
+[**Next: Module 2 — Adversarial Infrastructure Red-Teaming →**](./03_infrastructure_red_teaming_and_least_privilege.md) | [**Return to Deployment Lead Hub →**](./README.md)
 

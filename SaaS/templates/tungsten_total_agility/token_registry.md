@@ -7,3 +7,7 @@ Use this registry to map environment-specific variables. GitHub Copilot will use
 | `BASE_URL` | `https://dev.tungsten.com` | `https://api.tungsten.com` | API Gateway |
 | `DB_SCHEMA` | `DEV_SCHEMA` | `PROD_SCHEMA` | Database owner |
 | `LOG_LEVEL` | `DEBUG` | `WARN` | Logging verbosity |
+
+
+## Mock Bootstrap Test Harness Symbols
+- `TestJobCreation()`: Test bootstrap mock implementation.

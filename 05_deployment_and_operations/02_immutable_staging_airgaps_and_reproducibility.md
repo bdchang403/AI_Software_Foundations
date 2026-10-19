@@ -175,5 +175,5 @@ To ensure true staging reproducibility and prevent environmental contamination, 
 4. **Isolate OIDC Permission Boundaries**: Ensure CI runner tokens in staging have mathematically scoped IAM boundaries that deny any write access to production S3 buckets, databases, or VPC routing tables.
 
 ---
-[**Proceed to Module 3: Pipeline Modularity & Canary Rollouts →**](./03_pipeline_modularity_and_canary_rollouts.md)
+[**Proceed to Module 3: Pipeline Modularity & Canary Rollouts →**](./04_pipeline_modularity_and_canary_rollouts.md)
 

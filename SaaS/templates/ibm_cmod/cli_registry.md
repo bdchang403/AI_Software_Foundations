@@ -25,3 +25,7 @@ ODFolder folder = odServer.openFolder("Invoices");
 folder.setSearchValue("Account Number", "1234567890");
 Vector<ODHit> hits = folder.search();
 ```
+
+
+## Mock Bootstrap Test Harness Symbols
+- `simulateODWEKSearch()`: Test bootstrap mock implementation.

@@ -57,7 +57,7 @@ Because you set up the 2-Tier Precision Routing, the engineer does not have to m
 2.  **Prompt Copilot Chat:** 
     > *"@workspace I need to implement the BA's story linked here: [Story Link]. Please generate the configuration changes."*
 3.  **The Deterministic Automation:** The AI follows the Global Router pointers to the Domain Constraints and SDK Registry to generate logic.
-4. **Update Logic Audit:** Open `docs/context/[saas_name]/logic_audit.csv` and ask Copilot: *"Summarize the reasoning for these changes and append a new line to the logic_audit.csv following the format: Date, StoryID, Component, Rationale, AI_Model."*
+4. **Update Logic Audit:** Open `docs/context/[saas_name]/.audit/PR-<id>.jsonl` and ask Copilot: *"Summarize the reasoning for these changes and append a new line to the .audit/PR-<id>.jsonl following the format: Date, StoryID, Component, Rationale, AI_Model."*
 
 ---
 
@@ -87,5 +87,5 @@ SaaS logic is difficult to test without the live server. To speed up development
 - [The Domain Constraint](./templates/saas_factory/[saas_name]_business_rules.md)
 - [The Function Registry](./templates/saas_factory/[saas_name]_api_registry.md)
 - [The Token Registry](./templates/saas_factory/token_registry.md)
-- [The Logic Audit Trail](./templates/saas_factory/logic_audit.csv)
+- [The Logic Audit Trail](./templates/saas_factory/.audit/PR-<id>.jsonl)
 - [The Mock Bootstrap](./templates/saas_factory/mock_bootstrap.java)

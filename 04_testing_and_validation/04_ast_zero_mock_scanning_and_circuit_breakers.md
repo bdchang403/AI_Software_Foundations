@@ -416,7 +416,7 @@ Because modern reasoning models generate highly persuasive, authoritative natura
 - Operational Invariants: [The Enterprise Constitution](../00_ENTERPRISE_CONSTITUTION.md) (Invariants $I_{01}, I_{03}, I_{15}, I_{16}, I_{20}, I_{22}$)
 
 ---
-[**Proceed to Module 5: Automated Traceability & CI Sentinels →**](../05_deployment_and_operations/05_automated_traceability.md)
+[**Proceed to Module 5: Automated Traceability & CI Sentinels →**](../05_deployment_and_operations/06_automated_traceability.md)
 
 ---
 

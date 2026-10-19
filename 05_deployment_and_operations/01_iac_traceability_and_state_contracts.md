@@ -11,27 +11,32 @@ To prevent infrastructure drift and security breaches, BuilderOps teams write **
 2. **Task Instruction**: The explicit resource declarations, lifecycle policies, and backup configurations.
 3. **Format & Safety Constraints**: Mandatory encryption, private subnet isolation, zero hardcoded credentials, and automated rollback tags.
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│              ANATOMY OF A DEFENSIVE INFRASTRUCTURE DIRECTIVE                                     │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   1. CONTEXT BOUNDARY                                                                            │
-│   • Infrastructure Specification: docs/infra/VPC_TOPOLOGY_SPEC.md                                │
-│   • Permitted Network: module.vpc.private_subnets (No direct internet routes)                    │
-│   • Governing Guardrails: Architectural Modularity Ceiling & Least Privilege Security            │
-│                                                                                                  │
-│   2. TASK INSTRUCTION                                                                            │
-│   • Declare aws_db_instance with PostgreSQL engine version 16.2.                                 │
-│   • Configure automated multi-AZ replication with 7-day backup retention.                        │
-│   • Link database security group strictly to application cluster security group.                 │
-│                                                                                                  │
-│   3. FORMAT & SAFETY CONSTRAINTS                                                                 │
-│   • Mandatory Encryption: storage_encrypted = true with customer-managed KMS key.                │
-│   • Zero Hardcoded Secrets: password = var.db_master_password (pulled from HashiCorp Vault).      │
-│   • Access Constraint: publicly_accessible = false (Fail-closed network boundary).               │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+classDiagram
+    class DefensiveDirective {
+        +1. Context Boundary
+        +2. Task Instruction
+        +3. Format & Safety Constraints
+    }
+    class ContextBoundary {
+        +Specification: docs/infra/VPC_TOPOLOGY_SPEC.md
+        +Permitted Network: module.vpc.private_subnets
+        +Guardrails: Modularity Ceiling & Least Privilege
+    }
+    class TaskInstruction {
+        +Resource: aws_db_instance (PostgreSQL 16.2)
+        +Replication: Multi-AZ with 7-day backup
+        +Link: Link DB SG strictly to App Cluster SG
+    }
+    class SafetyConstraints {
+        +Encryption: storage_encrypted = true (Customer KMS)
+        +Zero Secrets: var.db_master_password (Vault)
+        +Access: publicly_accessible = false (Fail-closed)
+    }
+
+    DefensiveDirective *-- ContextBoundary
+    DefensiveDirective *-- TaskInstruction
+    DefensiveDirective *-- SafetyConstraints
 ```
 
 ---
@@ -172,7 +177,16 @@ resource "aws_s3_bucket_public_access_block" "clinical_s3_block" {
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the median mid-2026 engineering pod, infrastructure automation means a developer opens an IDE sidebar or web prompt and types: *"Write Terraform for an S3 bucket and an ECS Fargate worker."* The model emits 120 lines of plausible HCL. The developer glances at it, notices no syntax red squiggles, and pastes it into `main.tf`. The module uses unpinned provider blocks, floating GitHub action tags (`@v1`), unmanaged remote state without locking, and wide-open egress security groups (`0.0.0.0/0`). When asked about traceability, the team points to the Git commit message (*"add infra"*). Pull requests are reviewed under the Faros AI review tax—senior engineers skim the 400-line diff in under two minutes because "Terraform is boilerplate," walking directly into the DORA Verification Trap. When state drift crashes the staging environment on a Thursday afternoon, nobody knows whether the drift came from an unversioned AI suggestion, an untracked local `terraform apply`, or a manual AWS console hotfix.
+
+> [!WARNING]
+> **Ad-Hoc IaC Generation Trap**: Generating cloud infrastructure through conversational natural language prompts produces unpinned modules, open security groups, and untracked state drift.
+
+In the median mid-2026 engineering pod, infrastructure automation relies on conversational prompts. A developer opens an IDE sidebar and requests Terraform configurations without context bounds. The model generates 120 lines of plausible HCL containing floating provider tags and unrestricted egress (`0.0.0.0/0`).
+
+This pattern introduces acute context debt:
+* **Missing State Locks**: Teams use unmanaged remote state without concurrency locks.
+* **Review Tax**: Senior engineers skim 400-line diffs in under two minutes, triggering the DORA Verification Trap.
+* **Untraceable State Drift**: When staging crashes, teams cannot identify whether the root cause was an unpinned model output, a local `terraform apply`, or a manual console modification.
 
 ### Ungoverned Production Failure Modes
 Operating with unverified, ad-hoc AI-generated infrastructure produces acute operational risks:

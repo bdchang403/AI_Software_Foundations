@@ -8,22 +8,18 @@ In enterprise software engineering across safety-critical and regulated sectors�
 
 This document establishes the **Executive Mathematical Foundations** of the Context Factory. Rather than treating AI engineering as empirical prompt trial-and-error, our architecture is bounded by eight deterministic mathematical pillars.
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                      THE 8 MATHEMATICAL PILLARS OF ENTERPRISE AI RISK                            │
-├────┬─────────────────────────────┬────────────────────────────────────┬─────────────────────────┤
-│ #  │ Mathematical Pillar         │ Governing Mathematical Invariant   │ Deep Implementation     │
-├────┼─────────────────────────────┼────────────────────────────────────┼─────────────────────────┤
-│ 1  │ Quadratic Attention Scaling │ $O(N^2)$ FLOPs & $\mathcal{H}(A_i)$│ Phase 01 & Phase 03     │
-│ 2  │ Attention Dilution Cliff    │ Context Boundedness ($<20\text{k}$) │ Phase 03 (Decomposition)│
-│ 3  │ Positional Attention Curve  │ U-Shaped Retention $F(x)$          │ Phase 01 & Phase 03     │
-│ 4  │ Temporal Telemetry Decay    │ Half-Life Decay $w(\Delta t)$       │ Phase 02 & Phase 03     │
-│ 5  │ Compensatory Confluence     │ $M$-of-$N$ Orthogonal Confluence   │ Phase 02 & Phase 04     │
-│ 6  │ Multi-Agent Log-Odds Solver │ Convex $\mathrm{logit}(P)$ Fusion │ Phase 09 (Orchestration)│
-│ 7  │ Multiple-Testing Deflation  │ Deflated Sharpe Ratio (DSR)        │ Phase 04 & Phase 06     │
-│ 8  │ Analytical Covariance Bound │ Symmetrical ZCA Whitening          │ Phase 09 (Governance)   │
-└────┴─────────────────────────────┴────────────────────────────────────┴─────────────────────────┘
-```
+### The 8 Mathematical Pillars of Enterprise AI Risk
+
+| # | Mathematical Pillar | Governing Mathematical Formulation | Primary Operational Guardrail | Deep Implementation |
+|---| :--- | :--- | :--- | :--- |
+| **1** | Quadratic Attention Scaling | $\text{FLOPs} \propto N^2, \quad \mathcal{H}(A_i) = -\sum A_{ij} \ln A_{ij}$ | Prompt ceiling $\le 2,500$ tokens | Phase 01 & Phase 03 |
+| **2** | Attention Dilution Cliff | Cross-module retention drops $< 60\%$ for $> 20\text{k}$ LOC | ADR-016 400-LOC modular ceiling heuristic | Phase 03 (Decomposition) |
+| **3** | Positional Attention Curve | U-Shaped retention $F(x)$: Primacy & Recency peaks | Pin invariants at $x \le 0.15$ and $x \ge 0.85$ | Phase 01 & Phase 03 |
+| **4** | Temporal Telemetry Decay | Exponential half-life $w(\Delta t) = w_0 \cdot 2^{-\Delta t / t_{1/2}}$ | Hard demotion to `EXPIRED` at $\Delta t > 2 t_{1/2}$ | Phase 02 & Phase 03 |
+| **5** | Compensatory Confluence | $P_{\text{joint}} = \prod p_k = 0.243\%$ vs Confluence $\ge 2$ of 4 | Confluence scoring ($I_{09}$) + Fatal Veto ($I_{03}$) | Phase 02 & Phase 04 |
+| **6** | Multi-Agent Log-Odds Solver | Closed-form $\mathrm{logit}(P)$ with JSD discounting | Fast bypass if $\text{JSD} \le 0.12$; else convex fusion | Phase 09 (Orchestration) |
+| **7** | Multiple-Testing Deflation | Deflated Sharpe Ratio: $\mathrm{DSR} \equiv \Phi\left(\frac{(\widehat{\mathrm{SR}} - \mathrm{SR}_0)\sqrt{T-1}}{\dots}\right)$ | Require $\mathrm{DSR} \ge 0.95$ for production approval | Phase 04 & Phase 06 |
+| **8** | Covariance Shrinkage & ZCA | Ledoit-Wolf $\mathrm{cond}(\mathbf{\Sigma}_{\text{LW}}) \le 10^{12}$ & ZCA Whitening | Regularize covariance before matrix inversion | Phase 09 (Governance) |
 
 ---
 
@@ -63,6 +59,33 @@ $$F(x) = \begin{cases}
 *   **Operational Guardrail**: Critical invariants and tool schemas must be pinned strictly to prompt inception ($x \le 0.15$) and prompt termination ($x \ge 0.85$).
 *   **Deep Implementation**: [Context Engineering (03_04)](./03_building_and_coding/04_ast_registries_and_living_context.md) and [Context Mapping Matrix (09_04)](./09_ai_agent_orchestration/04_context_mapping_matrix.md).
 
+```mermaid
+flowchart LR
+    subgraph Primacy ["Primacy Zone (x in [0.0, 0.15])"]
+        P1["High Retention: F(x) = 1.0 - 4.33x<br>Retention: 35% - 100%"]
+        P2["MANDATORY CONTENT:<br>• Bedrock Invariants (I01-I22)<br>• Closed-World Pydantic Schemas"]
+        P1 --- P2
+    end
+
+    subgraph Valley ["Degradation Valley (x in (0.15, 0.85))"]
+        V1["Amnesia Zone: F(x) = 0.35 +/- eps(x)<br>Severe Loss: 20% - 50% Retention"]
+        V2["ALLOWED CONTENT ONLY:<br>• Stateless Intermediate AST Nodes<br>• Local Caller Context Snippets"]
+        V1 --- V2
+    end
+
+    subgraph Recency ["Recency Zone (x in [0.85, 1.0])"]
+        R1["High Retention: F(x) = 1.0 - 4.33(1.0 - x)<br>Retention: 35% - 100%"]
+        R2["MANDATORY CONTENT:<br>• Exact 3-Part Directive Task<br>• Red Reproduction Test Contract"]
+        R1 --- R2
+    end
+
+    Primacy --> Valley --> Recency
+
+    style Primacy fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
+    style Valley fill:#ffebee,stroke:#c62828,stroke-width:2px;
+    style Recency fill:#e1f5fe,stroke:#0277bd,stroke-width:2px;
+```
+
 ---
 
 ### Pillar 4: Temporal Telemetry Decay & Four-Horizon Taxonomy
@@ -93,6 +116,35 @@ $$P_{\text{confluence}} = \mathbb{P}\left(\sum_{j=1}^4 \mathbb{I}(S_j \ge 0.35) 
 
 *   **Operational Guardrail**: Requires positive confirmation across $\ge 2$ of 4 orthogonal pillars with isolated fatal contagion veto ($I_{03}$).
 *   **Deep Implementation**: [Requirements Decomposition (02_03)](./02_requirements_and_design/03_feature_slicing_and_confluence.md) and [Testing Architecture (04_TEST_ARCHITECTURE)](./04_testing_and_validation/TEST_ARCHITECTURE.md).
+
+```mermaid
+flowchart TD
+    subgraph Conjunctive ["Naive Architecture: Conjunctive Boolean AND Stacking"]
+        C1["Input Signal"] --> G1{"Gate 1 (p=0.30)"}
+        G1 -- Pass --> G2{"Gate 2 (p=0.30)"}
+        G2 -- Pass --> G3{"Gate 3 (p=0.30)"}
+        G3 -- Pass --> G4{"Gate 4 (p=0.30)"}
+        G4 -- Pass --> G5{"Gate 5 (p=0.30)"}
+        G5 -- Pass --> CPASS["Joint Survival: P = (0.30)^5 = 0.243%<br>FALSE REJECTION: 99.757% (PARALYSIS)"]
+        G1 -- Fail --> CFAIL["System Halt / Cash Lockup"]
+        G2 -- Fail --> CFAIL
+        G3 -- Fail --> CFAIL
+        G4 -- Fail --> CFAIL
+        G5 -- Fail --> CFAIL
+    end
+
+    subgraph Compensatory ["Context Factory: Compensatory Orthogonal Confluence (I09)"]
+        K1["Input Signal"] --> PILS["4 Independent Orthogonal Pillars<br>(Valuation, Sentiment, Quality, Momentum)"]
+        PILS --> CONF{"Evaluate Confluence Score:<br>Sum(I(S_j >= 0.35)) >= 2?"}
+        CONF -- Yes --> VETO{"Isolated Fatal Contagion<br>Veto (I03) Triggered?"}
+        VETO -- No --> OPASS["Execute Action: P_confluence = 34.83%<br>(High-Signal, Fail-Closed)"]
+        VETO -- Yes --> OFAIL["Immediate Safety Halt"]
+        CONF -- No --> OFAIL
+    end
+
+    style Conjunctive fill:#ffebee,stroke:#c62828,stroke-width:2px;
+    style Compensatory fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
+```
 
 ---
 
@@ -179,7 +231,14 @@ As proven by Kessy et al. (2018), symmetrical ZCA whitening $\mathbf{W}_{\text{Z
 ## Production Reality & Mathematical Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Heuristic Intuition Trap)
-In mid-2026, 75\%-84\% of software engineering teams treat artificial intelligence as a black box of mystical heuristics. They do not model transformer attention entropy ($\mathcal{H}(A_i)$), they do not calculate positional attention loss ($F(x)$), and they build safety architectures by stacking dozens of rigid conjunctive boolean `if` statements. Stacking five independent filter gates with 30\% pass rates collapses joint survival probability to $P_{\text{joint}} = (0.30)^5 \approx 0.243\%$, inducing total system paralysis (Crisis 4: 99\% Gate Paralysis). Teams treat 4-week-old cached data as if it were real-time truth, completely ignoring signal half-life decay kinetics. When agents hallucinate or lock up, engineers resort to ad-hoc prompt tweaking instead of applying closed-form statistical bounds.
+
+> [!WARNING]
+> **The 75% Enterprise Ad-Hoc Trap**: Between 75% and 84% of software engineering teams treat artificial intelligence as a black box of mystical heuristics. Teams ignore attention entropy ($\mathcal{H}(A_i)$), overlook positional attention decay ($F(x)$), and construct safety architectures by stacking rigid boolean checks.
+
+#### Observed Empirical Failure Cycle:
+1. **The Context Wall**: Stacking five boolean filter gates with 30% pass rates collapses joint survival probability to $P_{\text{joint}} = (0.30)^5 \approx 0.243\%$, inducing 99% gate paralysis.
+2. **The Verification Tax**: Teams treat stale 4-week-old cached telemetry as real-time truth, ignoring continuous half-life decay kinetics and causing reviewers to spend 91% more time debugging downstream hallucinations (Faros AI).
+3. **The Churn Inversion**: When systems lock up or hallucinate, engineers resort to ad-hoc prompt tweaking instead of applying closed-form statistical and mathematical bounds.
 
 ### Ungoverned Production Failure Modes
 Ignoring the mathematical foundations of AI risk triggers critical failure cascades in production:

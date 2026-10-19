@@ -154,9 +154,20 @@ You are operating under the Zero-Drift Quality Gate contract.
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), system prompts read as generic motivational instructions: *"You are an expert software engineer. Write clean, modular, maintainable, and idiomatic code."*
 
-These generic stylistic prompts supply zero deterministic guardrails. When an agent is tasked with modifying a complex legacy module containing 150 lines of rate limiters, fallback retries, and assertion handlers, the model interprets those lines as syntactic clutter and replaces them with a 20-line method that appears concise but lacks fault tolerance. The model invents positive numeric defaults (`timeout = 30.0`), returns empty dictionaries in catch blocks to suppress crashes, and hallucinates external libraries. Engineering organizations rely on prompt vibes rather than deterministic behavioral overrides.
+In the mid-2026 median engineering baseline (75%–84% ad-hoc adoption), system prompts read as generic motivational instructions: *"You are an expert software engineer. Write clean, modular, maintainable, and idiomatic code."*
+
+These generic stylistic prompts supply zero deterministic guardrails:
+
+> [!WARNING]
+> **Prompt Vibes vs Deterministic Behavioral Overrides**
+> - **Defensive Logic Stripping**: When tasked with modifying legacy modules, models interpret rate limiters and retries as syntactic clutter, replacing them with fragile 20-line methods.
+> - **Synthetic Constant Injection**: Models invent positive numeric defaults (`timeout = 30.0`) and return empty dictionaries in catch blocks to suppress crashes.
+> - **Hallucinated Dependencies**: Models pull unvetted external libraries rather than following architectural invariants.
+
+When an agent is tasked with modifying a complex legacy module, the model replaces essential retry loops with concise but fragile methods.
+
+The model invents positive numeric defaults and suppresses crashes with empty catch blocks, relying on prompt vibes rather than deterministic behavioral overrides.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Deploying autonomous models with conversational prompts lacking injectable behavioral skills produces three severe failure modes:

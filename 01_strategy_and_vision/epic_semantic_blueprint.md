@@ -51,7 +51,15 @@
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In median mid-2026 organizations, epics are delivered to autonomous coding agents via free-form text descriptions or unstructured Jira cards. When an engineer connects an agent (e.g., Devin, Claude Code, or an IDE agent) to implement an epic, the agent begins by crawling the entire repository root. It ingests thousands of irrelevant lines, pollutes its context window with test mocks and configuration scripts, and modifies files across multiple unrelated modules. Lacking machine-readable sandbox boundaries and explicit negative assertions, the agent generates sprawling changes that pass local unit tests while breaking latent cross-system contracts.
+
+In median mid-2026 organizations, epics are delivered to autonomous coding agents via free-form text descriptions or unstructured Jira cards.
+
+When an engineer connects an agent to implement an epic, the agent crawls the entire repository root, polluting its context window with test mocks and configuration scripts.
+
+> [!WARNING]
+> **Unbounded Traversal Risks**:
+> - **Cross-Module Breakage**: Modifying files across multiple unrelated modules breaks latent cross-system contracts.
+> - **Context Smearing**: Lacking machine-readable sandbox boundaries, agents generate sprawling diffs that pass local unit tests but degrade production stability.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Operating without formalized Epic Semantic Blueprints triggers three severe operational breakdown modes:

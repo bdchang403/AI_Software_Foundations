@@ -213,9 +213,20 @@ def execute_tool_call(tool_name: str, arguments: Dict[str, Any]) -> str:
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), teams configure autonomous coding agents with unconstrained shell environments and raw filesystem access. Developers assume that providing agents with unrestricted terminal execution privileges maximizes autonomous problem-solving capabilities.
 
-In production, this exposes systems to unmanaged blast-radius expansion. Without abstract function registries and typed tool contracts, an agent tasked with defect remediation executes arbitrary shell commands (`find`, `grep`, `cat`, `curl`), injecting thousands of tokens of directory noise into working memory. Under contextual degradation, when an agent encounters an unmet interface dependency, it executes package managers (`npm install`, `pip install`) to pull unvetted external dependencies, or modifies shared database schemas. Organizations operating without tool capability boundaries convert routine code modifications into critical security and supply-chain vulnerabilities.
+In the mid-2026 median engineering baseline (75%–84% ad-hoc adoption), teams configure autonomous coding agents with unconstrained shell environments and raw filesystem access. Teams mistakenly assume that providing unrestricted terminal execution maximizes autonomous problem-solving capabilities.
+
+In production, this exposes systems to unmanaged blast-radius expansion:
+
+> [!WARNING]
+> **Blast-Radius Expansion & Terminal Deluge**
+> - **Uncontrolled Blast Radius**: Without typed tool contracts, agents execute arbitrary shell commands (`find`, `grep`, `cat`, `curl`), injecting thousands of tokens of directory noise into working memory.
+> - **Supply-Chain Dependency Poisoning**: Agents execute package managers (`npm install`, `pip install`) to pull unvetted external dependencies or alter shared schemas without review.
+> - **Context Eviction**: Terminal log dumps flood context windows, expelling architectural directives and safety invariants.
+
+Under contextual degradation, when an agent encounters an unmet interface dependency, it pulls unvetted external packages or modifies shared database schemas.
+
+Organizations operating without tool capability boundaries convert routine code modifications into critical security and supply-chain vulnerabilities.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Permitting unconstrained shell execution instead of enforcing declarative tool registries induces three severe failure modes:

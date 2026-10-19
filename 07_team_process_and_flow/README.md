@@ -11,20 +11,33 @@ The Agile Leader does not write system instructions or review pull request diffs
 2. How much **Context Debt** is accumulating across user stories and registries?
 3. Are team deployment pipelines accelerating actual customer value or amplifying regression rework?
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                      THE AGILE LEADER FLOW TELEMETRY HANDSHAKE                                   │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   INBOUND TELEMETRY                        AGILE LEADER ACTIONS                OUTBOUND GOVERNANCE│
-│  ┌─────────────────────────┐              ┌───────────────────────────┐        ┌────────────────┐│
-│  │ DORA & CI Failure Rates │              │ • Context Debt Triage     │        │ High-Velocity, ││
-│  │ Token Budget Burn Rates │ ───────────► │ • Story Decomposition     │ ─────► │ Low-Rework     ││
-│  │ PR Review Iteration Cyc │              │ • Role Bottleneck Coaching│        │ Delivery Flow  ││
-│  │ Registry Drift Alerts   │              │ • Micro-Budget Governance │        │ (Zero Backlog) ││
-│  └─────────────────────────┘              └───────────────────────────┘        └────────────────┘│
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph Inbound ["1. Inbound Telemetry"]
+        direction TB
+        A1["DORA & CI Failure Rates"]
+        A2["Token Budget Burn Rates"]
+        A3["PR Review Iteration Cycles"]
+        A4["Registry Drift Alerts"]
+    end
+
+    subgraph Actions ["2. Agile Leader Actions"]
+        direction TB
+        B1["Context Debt Triage"]
+        B2["Story Decomposition (BTUs)"]
+        B3["Role Bottleneck Coaching"]
+        B4["Micro-Budget Governance"]
+    end
+
+    subgraph Outbound ["3. Outbound Governance"]
+        C1["High-Velocity, Low-Rework<br/>Delivery Flow (Zero Backlog)"]
+    end
+
+    Inbound --> Actions --> Outbound
+
+    style Inbound fill:#e8f4f8,stroke:#17a2b8,stroke-width:1px
+    style Actions fill:#fef9e7,stroke:#ffc107,stroke-width:1px
+    style Outbound fill:#eafaf1,stroke:#28a745,stroke-width:1px
 ```
 
 ---
@@ -35,21 +48,13 @@ In traditional Agile software engineering, teams measure capacity in abstract **
 
 Agile Leaders transition organizations to **Bounded Task Units and Token Budgets**:
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                   TRADITIONAL AGILE VS. CONTEXT FACTORY DELIVERY                                 │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   TRADITIONAL AGILE METHODOLOGY                       CONTEXT FACTORY METHODOLOGY                │
-│   ─────────────────────────────                       ───────────────────────────                │
-│   • Planning Unit: Story Points (Fibonacci)           • Planning Unit: Bounded Task Units (BTUs) │
-│   • Sizing Metric: Human Time & Effort                • Sizing Metric: Context Scope (<= 80 LOC) │
-│   • Sprint Cadence: 2-Week Iteration Batches          • Flow Cadence: Continuous Atomic Releases │
-│   • Failure Metric: Unfinished Sprint Backlog         • Failure Metric: Prompt Regression / Drift│
-│   • Estimation Risk: Underestimated Engineering Work  • Estimation Risk: Context Window Dilution │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
+| Dimension | Traditional Agile Methodology | Context Factory Methodology |
+| :--- | :--- | :--- |
+| **Planning Unit** | Story Points (Fibonacci Estimation) | Bounded Task Units (BTUs $\le 25\text{k}$ tokens) |
+| **Sizing Metric** | Human Time & Effort Hours | Context Scope & Focus Window ($\le 80$ LOC) |
+| **Flow Cadence** | 2-Week Iteration Batches | Continuous Atomic Invariant Delivery |
+| **Primary Failure Metric** | Unfinished Sprint Backlog | Prompt Regression Index (PRI) & Context Debt |
+| **Estimation Risk** | Underestimated Engineering Complexity | Context Window Dilution & Hallucinated API Drift |
 
 ### The Sizing Rules for Bounded Task Units:
 1. **The Semantic Slice & Focus Window Rule**: A task is appropriately sized if the necessary code change can be contained within a cohesive AST scope (e.g., single function or class definition, typically $\le 80$ lines focus window).
@@ -153,7 +158,16 @@ Process coaching, task sizing, and flow telemetry in this chapter are calibrated
 ## Production Reality & Flow Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Delivery Bottleneck)
-In the median mid-2026 engineering organization, leadership views AI adoption as an individual tooling perk—like buying mechanical keyboards or larger monitors—rather than a fundamental restructuring of the software factory. Developers use AI in silos, generating code at 5x speed while testing, architecture, and code review remain stuck at 1x speed. The resulting inventory buildup of unverified code causes catastrophic traffic jams in PR review queues (Faros AI +91\% review bloat). Senior engineers spend half their week untangling "almost right" code while executives wonder why overall feature delivery has slowed down despite spending millions on AI tooling licenses. The organization operates at Level 1 maturity, mistaking code generation speed for software delivery velocity.
+
+> [!WARNING]
+> **The AI Delivery Bottleneck**: Accelerating generation without scaling review capacity floods pipelines with unverified code and paralyzes delivery.
+
+In the median mid-2026 engineering organization, leadership views AI adoption as an individual tooling perk. Developers use AI in isolated silos, generating code at 5x speed while testing, architecture, and code review remain stuck at 1x speed.
+
+This unmanaged velocity causes severe delivery bottlenecks:
+* **PR Review Queues Collapse**: Unverified code inventory causes catastrophic traffic jams (+91\% review bloat, Faros AI).
+* **Review Tax Explosion**: Senior engineers spend half their week untangling "almost right" code while overall feature delivery slows.
+* **Level 1 Ad-Hoc Trap**: The organization mistakes raw code generation speed for true software delivery velocity.
 
 ### Ungoverned Production Failure Modes
 Failing to balance generation velocity with factory verification constraints triggers systemic operational friction:

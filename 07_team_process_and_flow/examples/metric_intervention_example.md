@@ -33,7 +33,12 @@ The Coach identified exactly where the factory assembly line was dropping the co
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Unmonitored Agent Retry Trap)
-In the median mid-2026 team, when an engineer watches an autonomous agent run through 7 consecutive rejection loops, nobody walks over to coach them. In fact, nobody even notices. The engineer sits silently watching the terminal or IDE window spin, burning through corporate API credits. When attempt 4 fails because the model used `moment.js` instead of internal `<DateUtil>`, the engineer doesn't update an AST registry or prompt schema—they just type natural language in the chat: *"Don't use moment.js, use our internal DateUtil!"* When attempt 5 uses `axios`, they type: *"Stop using axios, use HttpClient!"* After 10 failed loops and \$20 of wasted tokens, the developer either manually writes the 15 lines of code in disgust or commits code with bypassed linter rules. The median team lacks any automated tracking of retry loops, viewing prompt thrashing as normal "developer tinkering."
+In the median mid-2026 team, when an engineer watches an autonomous agent run through 7 consecutive rejection loops, nobody walks over to coach them. In fact, nobody even notices. The engineer sits silently watching the terminal spin while burning through corporate API credits.
+
+> [!WARNING]
+> **The Prompt Thrashing Trap**: When attempt 4 fails because the model used `moment.js` instead of internal `<DateUtil>`, the engineer doesn't update an AST registry—they just type natural language in chat. After 10 failed loops and \$20 of wasted tokens, the developer either writes the code in disgust or commits code with bypassed linter rules.
+
+The median team lacks automated tracking of retry loops, viewing prompt thrashing as normal developer tinkering.
 
 ### Ungoverned Production Failure Modes
 Ignoring agent retry telemetry and failing to intervene triggers operational and financial waste:

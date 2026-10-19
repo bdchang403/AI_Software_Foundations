@@ -8,23 +8,32 @@ If an engineering team does not supply a formal, bounded map of existing cloud i
 
 **Infrastructure Context Engineering** is the discipline of extracting, minifying, and injecting the **Approved Cloud Surface** into deployment agent prompts, mathematically preventing resource guessing.
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│              GREENFIELD HALLUCINATION VS. BOUNDED RESOURCE GRAPH INJECTION                       │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   ❌ GREENFIELD HALLUCINATION (UNBOUNDED PROMPT)                                                 │
-│   "Deploy an ECS cluster and database for our new payment service."                              │
-│   ──► Model assumes no infrastructure exists.                                                    │
-│   ──► Creates duplicate VPC (10.0.0.0/16), new Internet Gateway, unmanaged IAM User.             │
-│   ──► Outcome: Network route collisions, broken VPC peering, and \$450/month in ghost resources.   │
-│                                                                                                  │
-│   ✅ BOUNDED RESOURCE GRAPH INJECTION (INFRASTRUCTURE REGISTRY)                                  │
-│   Injects minified infra_registry.json (<800 tokens) defining existing VPC and subnets.          │
-│   ──► Model references existing module.vpc.private_subnets and existing IAM execution role.     │
-│   ──► Outcome: Bit-exact infrastructure attachment, zero duplicate resources, zero drift.        │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph Hallucination ["❌ Greenfield Hallucination (Unbounded Prompt)"]
+        direction TB
+        H1["Prompt: 'Deploy ECS & DB for payment service'"] --> H2["Model Assumes Greenfield"]
+        H2 --> H3["Creates Duplicate VPC (10.0.0.0/16) & Internet Gateway"]
+        H3 --> H4["💥 Result: Network collisions, broken peering, $450/mo ghost cost"]
+    end
+
+    subgraph BoundedInjection ["✅ Bounded Resource Graph Injection (infra_registry.json)"]
+        direction TB
+        B1["Prompt Injects infra_registry.json (<800 tokens)"] --> B2["Model Attaches to Existing VPC Graph"]
+        subgraph SubnetGraph ["3-Tier Isolated VPC Subnets"]
+            direction LR
+            T1["Tier 1: Ingress Subnet<br/>WAF / ALB Only"]
+            T2["Tier 2: Private App Subnets<br/>module.vpc.private_subnets"]
+            T3["Tier 3: Air-Gapped Data Subnets<br/>KMS Encrypted Storage"]
+            T1 --> T2 --> T3
+        end
+        B2 --> SubnetGraph
+        SubnetGraph --> B4["🛡️ Outcome: Bit-exact attachment, zero duplicate resources"]
+    end
+
+    style Hallucination fill:#fce8e6,stroke:#d93025,stroke-width:2px
+    style BoundedInjection fill:#eafaf1,stroke:#28a745,stroke-width:2px
+    style SubnetGraph fill:#f8f9fa,stroke:#6c757d,stroke-width:1px
 ```
 
 ---
@@ -117,7 +126,16 @@ Instead of relying on ambiguous architectural references, deployment systems enf
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the median mid-2026 engineering organization, cloud infrastructure is a patchwork of tribal knowledge and undocumented resource IDs. When developers ask an AI tool to "deploy a Redis cache" or "spin up an asynchronous worker," the model has zero awareness of company VPC topology, subnet allocation strategies, or security group hierarchies. Instead, the AI hallucinates plausible resource names (e.g., `prod-redis-cache`, `vpc-default-subnet-1`), generates new security groups with open internal ingress, and binds services to whatever default VPC exists in the account. Over 80% of teams maintain no machine-readable topology map. Infrastructure reviews are conducted by eyeballing raw HCL diffs, completely missing subnet misconfigurations and cross-environment route leaks.
+
+> [!WARNING]
+> **Undocumented Cloud Topography**: Lacking a machine-readable infrastructure registry causes AI agents to hallucinate arbitrary subnet IDs and open security groups.
+
+In the median mid-2026 engineering organization, cloud infrastructure relies on tribal knowledge. AI assistants operate with zero awareness of VPC topology, subnet allocation, or security group hierarchies.
+
+This greenfield assumption causes widespread operational debt:
+* **Hallucinated Resource Names**: The model synthesizes plausible names (`prod-redis-cache`, `vpc-default-subnet-1`) and binds services to the default VPC.
+* **Unbounded Internal Ingress**: New security groups are generated with open internal ingress rules.
+* **Eyeball Reviews**: Over 80% of teams maintain no machine-readable resource map, missing critical subnet misconfigurations during hasty PR reviews.
 
 ### Ungoverned Production Failure Modes
 Generating cloud resources without an authoritative, machine-readable resource map creates severe infrastructure failure modes:

@@ -172,7 +172,16 @@ def reconcile_portfolio_nav(cash_balance: float, open_positions: list, cached_na
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the median mid-2026 team, security and compliance workbook exercises are often viewed as academic busywork. Developers skim code snippets, assume external security operations handle runtime circuit breakers, and continue writing production code where `.get()` defaults and empty `except: pass` handlers mask data corruption. When external APIs fail or return partial payloads, model-generated code falls back to synthetic dummy data (`mock_price = 100.0` or `patient_heart_rate = 72`) to keep pipelines from crashing. Over 80% of teams maintain zero automated nightly reconciliation scripts, zero append-only quarantine ledgers, and zero automated checks for boolean or float smuggling in production.
+
+> [!WARNING]
+> **Permissive Fallbacks vs. Fail-Closed Breakers**: Relying on synthetic fallbacks and skipping runtime circuit breakers leads to silent data corruption in production.
+
+In the median mid-2026 team, security workbook exercises are viewed as academic busywork. Developers assume external security handles runtime protection.
+
+They continue writing permissive code:
+* **Silent Error Masking**: Code uses `.get()` defaults and empty `except: pass` blocks that mask corruption.
+* **Synthetic Fallback Data**: When APIs fail, code falls back to dummy defaults (`mock_price = 100.0` or `patient_heart_rate = 72`) to keep pipelines running.
+* **Missing Operational Sentinels**: Over 80% of teams maintain zero automated nightly reconciliation scripts, zero append-only quarantine ledgers, and zero automated checks for boolean smuggling.
 
 ### Ungoverned Production Failure Modes
 Treating runtime circuit breakers and state reconciliation as optional features produces severe production vulnerabilities:

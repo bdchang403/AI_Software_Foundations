@@ -13,27 +13,23 @@ To eliminate these failure modes, BuilderOps engineers enforce the **Architectur
 * **Refactoring Trigger at 350 Lines**.
 * **Strict Separation of Concerns**: Isolate pipeline logic into atomic, reusable workflow blocks.
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                   MONOLITHIC PIPELINE VS. MODULAR REUSABLE ARCHITECTURE                          │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   ❌ MONOLITHIC DEPLOYMENT PIPELINE (HIGH BLAST RADIUS)                                          │
-│   ┌────────────────────────────────────────────────────────────────────────────────────────┐     │
-│   │ .github/workflows/deploy.yml (1,850 lines)                                            │     │
-│   │ [Lint] ──► [Test] ──► [Security] ──► [Docker Build] ──► [K8s Deploy] ──► [Smoke Test] │     │
-│   │ • Attention dilution in LLM edits                                                      │     │
-│   │ • A typo in smoke testing triggers unwanted redeployments                              │     │
-│   └────────────────────────────────────────────────────────────────────────────────────────┘     │
-│                                                                                                  │
-│   ✅ MODULAR REUSABLE PIPELINE ARCHITECTURE (CEILING <= 400 LOC)                                │
-│   ┌───────────────────────┐  ┌───────────────────────┐  ┌───────────────────────┐                │
-│   │ verify_integrity.yml  │  │ build_container.yml   │  │ deploy_canary.yml     │                │
-│   │ (AST Zero-Drift & CI) │  │ (Trivy Scan & ECR)    │  │ (Wave Rollouts)       │                │
-│   │ • Length: 120 LOC     │  │ • Length: 160 LOC     │  │ • Length: 210 LOC     │                │
-│   └───────────────────────┘  └───────────────────────┘  └───────────────────────┘                │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph Monolith ["❌ Monolithic Deployment Pipeline (High Blast Radius — 1,850 LOC)"]
+        direction LR
+        M1["Lint"] --> M2["Test"] --> M3["Security"] --> M4["Docker Build"] --> M5["K8s Deploy"] --> M6["Smoke Test"]
+    end
+
+    subgraph Modular ["✅ Modular Reusable Architecture (Ceiling <= 400 LOC per Action)"]
+        direction LR
+        W1["<b>verify_integrity.yml</b><br/>AST Zero-Drift & CI<br/>120 LOC"]
+        W2["<b>build_container.yml</b><br/>Trivy Scan & ECR<br/>160 LOC"]
+        W3["<b>deploy_canary.yml</b><br/>Progressive Waves<br/>210 LOC"]
+        W1 --> W2 --> W3
+    end
+
+    style Monolith fill:#fce8e6,stroke:#d93025,stroke-width:2px
+    style Modular fill:#eafaf1,stroke:#28a745,stroke-width:2px
 ```
 
 ---
@@ -147,7 +143,16 @@ runs:
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the median mid-2026 enterprise, CI/CD is a terrifying 1,200-line monolithic YAML file that nobody fully understands. When engineers need to add a step (e.g., running an AI-assisted security scan or deploying a new microservice), they ask an AI assistant to "add a deployment step to my GitHub Actions workflow." The model appends 80 lines of nested bash, hardcoded environment variables, and loose conditional logic into the middle of the monolith. Deployment is an all-or-nothing "big bang" push to 100% of production traffic. Canary deployments and automated rollbacks are perpetually pushed to "next sprint" because the deployment pipeline is too brittle to support progressive traffic shifting. When a build breaks, the entire engineering organization waits 45 minutes for the monolithic workflow to rerun from line 1.
+
+> [!WARNING]
+> **Monolithic CI/CD Fragility**: Giant workflow files cause attention dilution in AI assistants and prevent progressive canary rollouts.
+
+In the median mid-2026 enterprise, CI/CD is a 1,200-line monolithic YAML file. When engineers add steps, they prompt AI assistants to edit the monolith directly.
+
+This monolithic pattern causes critical delivery failures:
+* **Attention Dilution & Injected Bugs**: The model appends nested bash and loose conditionals, corrupting indentation and breaking unrelated steps.
+* **All-or-Nothing 'Big Bang' Releases**: Deployments route 100% traffic immediately, because the brittle pipeline cannot support progressive traffic shifts.
+* **45-Minute Feedback Loops**: When a build fails, the team waits 45 minutes for the entire monolith to rerun from line 1.
 
 ### Ungoverned Production Failure Modes
 Deploying all-or-nothing releases via monolithic, unsegmented pipelines creates severe operational exposure:

@@ -8,19 +8,13 @@ In a traditional software factory, engineering throughput is measured using velo
 
 Agile Leaders (Scrum Masters, Agile Coaches, Engineering Managers, and Delivery Leads) must shift focus from line-count velocity to **Epistemic Accuracy, Context Health, and Traceable Value**.
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                           THE TRADITIONAL VS. AI METRIC DIVERGENCE                               │
-├────────────────────────────────┬─────────────────────────────────────────────────────────────────┤
-│ Traditional Metric (Flawed)    │ Context Factory Counterpart (Deterministic)                     │
-├────────────────────────────────┼─────────────────────────────────────────────────────────────────┤
-│ Velocity (Story Points / Iter) │ Bounded Task Units (BTU Throughput)                             │
-│ Lines of Code (LOC Added)      │ Net AST Delta (Zero Code Bloat Ceiling <= 400 LOC)              │
-│ Code Review Turnaround Time    │ Reviewer Epistemic Friction (Comments per Invariant Breach)      │
-│ Deployment Frequency           │ Deterministic Canary Convergence (Wave 0-3 Zero-Rollback Rate)  │
-│ Change Failure Rate (CFR)      │ Post-Release Quality Decay Factor (QDF)                         │
-└────────────────────────────────┴─────────────────────────────────────────────────────────────────┘
-```
+| Traditional Metric (Flawed) | Context Factory Counterpart (Deterministic) |
+| :--- | :--- |
+| **Velocity (Story Points / Iter)** | Bounded Task Units (BTU Throughput) |
+| **Lines of Code (LOC Added)** | Net AST Delta (Zero Code Bloat Ceiling $\le 400$ LOC) |
+| **Code Review Turnaround Time** | Reviewer Epistemic Friction (Comments per Invariant Breach) |
+| **Deployment Frequency** | Deterministic Canary Convergence (Wave 0-3 Zero-Rollback Rate) |
+| **Change Failure Rate (CFR)** | Post-Release Quality Decay Factor (QDF) |
 
 ---
 
@@ -132,27 +126,10 @@ flowchart TD
 
 ## 🏥 Dual-Use Industry Case Studies
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                   INDUSTRY TELEMETRY CASE STUDY: RECOVERY COMPARISON                             │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   CASE 1: REGULATED HEALTHCARE (FDA Class III Closed-Loop Infusion Device)                       │
-│   • Problem: Change Failure Rate rose 22% following adoption of autonomous code agents.          │
-│   • Diagnostic: Context Debt Ratio (CDR) was 0.38; developers were re-generating code 8x per PR.  │
-│   • Root Cause: Agent was hallucinating insulin calibration constants due to unpinned context.   │
-│   • Intervention: Enforced Invariant I02 (Physiological Bolus Clamp) and AST Living Context.     │
-│   • Result: CDR dropped from 0.38 to 0.09; zero calibration defects in pre-clinical trials.     │
-│                                                                                                  │
-│   CASE 2: CORE BANKING & FINANCIAL INFRASTRUCTURE (Cross-Border Wire Settlement)                 │
-│   • Problem: Lead time for foreign exchange settlement updates expanded from 2 days to 9 days.  │
-│   • Diagnostic: Review comments averaged 42 per PR; senior architects were reviewing line-by-line│
-│   • Root Cause: Agent introduced unapproved third-party cryptographic hashing libraries.         │
-│   • Intervention: Implemented Architectural Dependency Whitelist and AI-SBOM SPDX 3.0 headers.   │
-│   • Result: Review turnaround time reduced by 74%; verified model dependency inventory and governance auditability in alignment with Federal Reserve SR 11-7 principles. │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
+| Industry Sector | Baseline Telemetry Problem | Diagnostic Indicator | Root Cause | Engineering Intervention | Verified Operational Outcome |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **FDA Class III Infusion (SaMD)** | Change Failure Rate rose 22\% following AI adoption | Context Debt Ratio (CDR) spiked to 0.38 (8x re-generation per PR) | Agent hallucinated insulin constants due to unpinned context | Enforced Invariant $I_{02}$ (Bolus Clamp) & AST Living Context | CDR dropped to 0.09; zero calibration defects in pre-clinical trials |
+| **Core Banking Wire Settlement** | Lead time for FX settlement expanded from 2 to 9 days | Review comments averaged 42 per PR; senior review bottleneck | Agent introduced unapproved third-party hashing libraries | Implemented Dependency Allowlist & SPDX 3.0 AI-SBOM headers | Review turnaround reduced by 74\%; verified SR 11-7 model compliance |
 
 ---
 
@@ -163,7 +140,16 @@ flowchart TD
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the median mid-2026 enterprise, engineering leaders often manage by vanity dashboards. Management proudly reports to executive leadership that AI assistant adoption is at 82%, pull request volume is up 35%, and lines of code committed grew by 40%. Meanwhile, on the ground, engineering flow is grinding to a halt. According to Faros AI's telemetry across over 100,000 pull requests, PR review time has surged by +91%, and defect rates have climbed by +9%. Senior engineers spend their afternoons reviewing 600-line, machine-generated diffs containing subtle invariant drift. GitClear's 211M LOC research reveals a +39% surge in code churn and a 10x collapse in code refactoring relative to duplication. Teams walk head-first into the 2026 DORA Verification Trap: generation is cheap, but human verification has become an unsustainable operational bottleneck.
+
+> [!WARNING]
+> **The Vanity Dashboard Trap**: High assistant adoption and increased commit volume often conceal severe engineering gridlock and review friction.
+
+In the median mid-2026 enterprise, engineering leaders manage by vanity metrics. Management proudly reports 82% AI adoption, +35% PR volume, and +40% lines of code committed.
+
+Meanwhile, engineering flow grinds to a halt under severe operational friction:
+* **Faros AI Telemetry**: PR review time surges by +91%, and defect rates climb by +9% across 100,000+ pull requests.
+* **GitClear Code Churn**: Code churn surges by +39%, while refactoring collapses by 10x relative to duplicate code.
+* **The 2026 DORA Verification Trap**: Generation is virtually free, but human verification becomes an unsustainable bottleneck as senior architects review 600-line machine-generated diffs.
 
 ### Ungoverned Production Failure Modes
 Managing engineering teams by raw AI commit velocity without tracking flow telemetry introduces severe organizational pathologies:

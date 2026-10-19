@@ -111,9 +111,20 @@ Emit output as a C unified diff.
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), developers interact with frontier models through unstructured conversational prompts: *"Hey, look at our repo and add the order execution plausibility check from ticket FEAT-101."*
 
-This conversational anti-pattern triggers immediate operational failure. The agent consumes 45,000 tokens traversing irrelevant directories, inspects outdated markdown documents, and hallucinates non-existent database columns (`SELECT * FROM historical_sentiment`). Because the prompt lacks explicit fail-closed boundaries, the model encounters a missing quote and writes `spot = quote.price or 100.0`, smuggling synthetic constants straight past duck-typed interfaces. Developers spend disproportionate engineering hours rectifying hallucinated imports and corrupted line diffs, negating purported AI velocity gains.
+In the mid-2026 median engineering baseline (75%–84% ad-hoc adoption), developers interact with frontier models through unstructured conversational prompts: *"Hey, look at our repo and add the order execution plausibility check from ticket FEAT-101."*
+
+This conversational anti-pattern triggers immediate operational failure:
+
+> [!WARNING]
+> **42% Diff Failure Rate Under Conversational Prompting**
+> - **Diff Rejection**: Unstructured conversational prompting produces broken, malformed unified diffs in over half of execution attempts (42% failure rate).
+> - **Schema Hallucinations**: Agents consume 45,000 tokens traversing directories and hallucinate non-existent database columns.
+> - **Synthetic Contamination**: Lacking explicit fail-closed boundaries, models write synthetic fallback numbers (`spot = quote.price or 100.0`), smuggling fabricated constants past duck-typed interfaces.
+
+The agent consumes 45,000 tokens traversing irrelevant directories and hallucinates non-existent database columns.
+
+Developers spend disproportionate engineering hours rectifying hallucinated imports and corrupted line diffs, negating purported AI velocity gains.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Relying on open-ended conversational prompts instead of pre-assembled context payloads precipitates three severe production failure modes:

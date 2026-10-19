@@ -8,19 +8,13 @@ When an AI-assisted engineering team struggles with degraded quality, ballooning
 
 In the **Context Factory**, process failures are structural, not individual. An autonomous agent is a deterministic mirror of the context it receives. When an agent produces broken code, the failure occurred at an upstream hand-off. The Agile Leader acts as an **Industrial Quality Inspector**, intervening precisely at the point of context breakdown using structured, role-specific coaching protocols.
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                      THE 5-ROLE CONTEXT FACTORY INTERVENTION MATRIX                              │
-├────────────────────┬───────────────────────────────┬─────────────────────────────────────────────┤
-│ Role in Breach     │ Observable Failure Symptom    │ Structural Root Cause & Immediate Action    │
-├────────────────────┼───────────────────────────────┼─────────────────────────────────────────────┤
-│ Strategy Lead      │ Scope creep; dead code bloat  │ Epic lacks value thesis & bounded scope.    │
-│ Requirements Lead  │ Agent prompt loops (High CDR) │ Semantic Blueprint missing edge cases.      │
-│ Software Builder   │ PRs > 400 LOC; CI timeouts    │ Modularity Ceiling violated; unbounded task.│
-│ Validation Lead    │ Production bugs (High QDF)    │ AST Zero-Mock bypassed; synthetic stubs.   │
-│ BuilderOps Lead    │ Unverified provenance in prod │ AI-SBOM omitted; drift checks disabled.     │
-└────────────────────┴───────────────────────────────┴─────────────────────────────────────────────┘
-```
+| Factory Role | Observable Failure Symptom | Structural Root Cause & Immediate Action |
+| :--- | :--- | :--- |
+| **Strategy Lead** | Scope creep; dead code bloat | Epic lacks value thesis & bounded scope; enforce business invariants. |
+| **Requirements Lead** | Agent prompt loops (High CDR) | Semantic Blueprint missing edge cases; mandate 20-edge-case matrix. |
+| **Software Builder** | PRs $> 400$ LOC; CI timeouts | Modularity Ceiling violated; decompose into Bounded Task Units (BTUs). |
+| **Validation Lead** | Production bugs (High QDF) | AST Zero-Mock bypassed; enforce real recorded telemetry (ZM001–ZM009). |
+| **BuilderOps Lead** | Unverified provenance in prod | AI-SBOM omitted; enforce zero-drift pre-commit check (`git diff --exit-code`). |
 
 ---
 
@@ -93,25 +87,10 @@ flowchart TD
 
 ## 🏥 Dual-Use Industry Case Studies
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                   INDUSTRY INTERVENTION CASE STUDY: LEADERSHIP IN ACTION                         │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   HEALTHCARE INFUSION CONTROLLER (FDA 21 CFR Part 820.30)                                        │
-│   • Problem: Agent was generating unit tests that passed by asserting True on mocked sensor data.│
-│   • Intervention: Agile Leader intervened with Validation Lead. Implemented rule ZM001           │
-│     (Zero Synthetic Data). Tests were rewritten to assert against real recorded clinical streams. │
-│   • Outcome: Caught an edge-case insulin overdose bug before pre-market clinical validation.     │
-│                                                                                                  │
-│   FINANCIAL CORE WIRE ROUTER (Federal Reserve SR 11-7 / Model Risk Management)                   │
-│   • Problem: Builder submitted a 2,200 LOC pull request implementing foreign currency settlement.│
-│   • Intervention: Agile Leader rejected the PR citing Architectural Modularity Ceiling.         │
-│     Coached the team to slice into: (1) Schema definition, (2) Solvency gate, (3) Wire execution. │
-│   • Outcome: Review cycle dropped from 4 days to 45 minutes; zero regressions in production.     │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
+| Regulated Sector | Operational Problem | Agile Leader Intervention | Verified Business Outcome |
+| :--- | :--- | :--- | :--- |
+| **Healthcare Infusion Controller (FDA 21 CFR 820.30)** | Agent generated unit tests passing on mocked synthetic sensor data | Intervened with Validation Lead; enforced rule ZM001 (Zero Synthetic Data) against recorded clinical streams | Detected insulin overdose edge-case prior to pre-market clinical validation |
+| **Financial Core Wire Router (Fed SR 11-7)** | Builder submitted oversized 2,200 LOC pull request for FX settlement | Rejected PR citing Modularity Ceiling; sliced into (1) Schema, (2) Solvency gate, (3) Wire execution | Review cycle dropped from 4 days to 45 minutes; zero production regressions |
 
 ---
 
@@ -122,7 +101,16 @@ flowchart TD
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the median mid-2026 pod, when an AI-generated implementation fails or gets rejected in code review, teams frequently treat it as an individual developer failure: *"The engineer doesn't know how to prompt the model,"* or *"AI tools just hallucinate too much."* Developers sit alone at their desks engaging in unstructured prompt hacking—iterating with an IDE chat assistant 8 to 12 times, arguing over library imports, copy-pasting compiler errors back into prompts, and consuming thousands of tokens without progress. Teams rarely step back to analyze the context assembly line. There is no concept of upstream context failure; nobody audits whether the Product Owner supplied an unconstrained directive, the Business Analyst failed to specify edge-case matrices, or the Architect omitted the JSON schema contract.
+
+> [!WARNING]
+> **Individual Blame vs. Assembly Line Failure**: Treating failed model generations as individual developer errors obscures structural upstream context defects.
+
+In the median mid-2026 pod, failed AI implementations are blamed on individual developers. Leadership assumes engineers lack prompting skills or that models hallucinate unpredictably.
+
+This misunderstanding leads to solitary prompt hacking:
+* **Prompt Death Loops**: Developers iterate 8 to 12 times with IDE chat assistants, copy-pasting errors and consuming thousands of tokens without forward progress.
+* **Ignored Assembly Lines**: Teams rarely analyze the context pipeline or recognize upstream failures.
+* **Missing Root-Cause Audits**: Nobody inspects whether the Product Owner provided an unconstrained directive, the Analyst omitted the edge-case matrix, or the Architect forgot schema contracts.
 
 ### Ungoverned Production Failure Modes
 Treating AI generation errors as random stochastic accidents rather than systemic upstream pipeline failures causes severe operational damage:

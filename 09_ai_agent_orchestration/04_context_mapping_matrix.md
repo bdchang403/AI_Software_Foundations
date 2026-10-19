@@ -10,20 +10,13 @@ Dumping an entire codebase into an agent prompt triggers the **"20,000-Line Clif
 
 To guarantee deterministic, high-accuracy execution, the orchestrator implements **Surgical Context Slicing**: a structured 4-tier memory hierarchy that dynamically compiles only the exact AST signatures, domain invariants, and schemas required for a specific Bounded Task Unit (BTU).
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                      THE 4-TIER SURGICAL CONTEXT HIERARCHY                                       │
-├────────────────────┬───────────────────────────────────┬─────────────────────────────────────────┤
-│ Context Tier       │ Scope & Content                   │ Token Budget Allocation                 │
-├────────────────────┼───────────────────────────────────┼─────────────────────────────────────────┤
-│ Tier 0: Global     │ Enterprise Constitution & Rules   │ 200 – 400 tokens (Immutable / Pinned)   │
-│ Tier 1: Structural │ AST Living Context JSON           │ 800 – 1,200 tokens (Dynamic AST Cache)  │
-│ Tier 2: Domain     │ Semantic AST Scope (<1,000 tokens)│ 400 – 800 tokens (Cohesive Node Scope)  │
-│ Tier 3: Actuation  │ OpenAPI 3.1 / MCP Tool Schemas    │ 200 – 300 tokens (On-Demand Tools)      │
-├────────────────────┴───────────────────────────────────┴─────────────────────────────────────────┤
-│ TOTAL COMBINED PROMPT PAYLOAD CEILING:                 │ <= 2,500 TOKENS (95%+ Attention Zone)   │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
+| Context Tier | Scope & Content | Token Budget Allocation |
+| :--- | :--- | :--- |
+| **Tier 0: Global** | Enterprise Constitution & Core Invariants | 200 – 400 tokens (Immutable / Pinned) |
+| **Tier 1: Structural** | AST Living Context JSON | 800 – 1,200 tokens (Dynamic AST Cache) |
+| **Tier 2: Domain** | Semantic AST Scope (<1,000 tokens) | 400 – 800 tokens (Cohesive Node Scope) |
+| **Tier 3: Actuation** | OpenAPI 3.1 / MCP Tool Schemas | 200 – 300 tokens (On-Demand Tools) |
+| **Total Ceiling** | **Combined Prompt Payload Ceiling** | **$\le 2,500$ tokens (95%+ Attention Zone)** |
 
 ---
 
@@ -173,34 +166,23 @@ if __name__ == "__main__":
 
 ## 🏥 Dual-Use Regulated Industry Case Studies
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                   CONTEXT SLICING IN MISSION-CRITICAL ENVIRONMENTS                               │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   HEALTHCARE: FDA Class III Closed-Loop Infusion Controller                                      │
-│   • Problem: Agent was failing unit tests because feeding the whole 45,000 LOC firmware caused   │
-│     the model to forget the maximum safe bolus constant defined at the top of the file.          │
-│   • Solution: Sliced context into Tier 0 (Physiological Invariants) + Tier 2 (Semantic AST scope  │
-│     titration loop). Total prompt reduced from 52,000 tokens to 1,420 tokens.                    │
-│   • Result: 100% adherence to insulin dosing clamps; zero clinical regressions.                  │
-│                                                                                                  │
-│   FINANCE: Core Banking High-Frequency Settlement Gateway                                        │
-│   • Problem: Ingestion of full multi-currency accounting codebase caused agent to confuse ISO    │
-│     20022 wire fees with domestic ACH fees.                                                      │
-│   • Solution: Enforced Tier 1 AST Registry slicing + Semantic AST Structural Scoping on the wire│
-│     routing calculation module.                                                                  │
-│   • Result: Elimination of currency fee calculation errors; 85x token cost reduction.            │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
+| Dimension | Healthcare (FDA Class III Closed-Loop Infusion) | Finance (Core Banking High-Frequency Settlement) |
+| :--- | :--- | :--- |
+| **Baseline Breakdown** | Feeding 45,000 LOC firmware caused model to forget maximum safe bolus constant defined at file top. | Ingestion of full multi-currency codebase caused agent to confuse ISO 20022 wire fees with domestic ACH fees. |
+| **Surgical Slicing Defense** | Sliced into Tier 0 (Physiological Invariants) + Tier 2 (Semantic AST scope). Prompt dropped from 52,000 to 1,420 tokens. | Enforced Tier 1 AST Registry slicing + Semantic AST Structural Scoping on wire routing module. |
+| **Empirical Shift** | 100% adherence to insulin dosing clamps; zero clinical regressions. | Elimination of currency fee calculation errors; $85\times$ token cost reduction. |
 
 ---
 
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In mid-2026, 75\%-84\% of engineering teams believe that 1-million-token context windows eliminate the need for context engineering. They pipe entire 2,000-line source files, plus documentation and terminal outputs, into agent prompts. This triggers the Stack Overflow 63.3\% codebase context bottleneck and massive attention dilution. Because attention entropy disperses across thousands of irrelevant tokens ($\mathcal{H} \approx 10.60\text{ nats}$), retrieval accuracy in the central 70\% of the prompt drops to 35\% (the U-shaped "Lost in the Middle" curve). The model produces syntactically valid code that silently drops error handling, forgets global constants, and invents phantom arguments, creating the 2026 DORA Verification Trap where developers spend hours reviewing deceptive code.
+In mid-2026, 75\%–84\% of engineering teams believe that 1-million-token context windows eliminate the need for context engineering. They pipe entire 2,000-line source files, documentation, and terminal outputs into agent prompts, triggering the Stack Overflow 63.3\% codebase context bottleneck.
+
+> [!WARNING]
+> **The Attention Dilution Trap**: Because attention entropy disperses across thousands of irrelevant tokens ($\mathcal{H} \approx 10.60\text{ nats}$), retrieval accuracy in the central 70\% of the prompt drops to 35\% (the U-shaped "Lost in the Middle" curve). The model produces syntactically valid code that silently drops error handling, forgets global constants, and invents phantom arguments.
+
+This creates the 2026 DORA Verification Trap where developers spend hours reviewing deceptive code.
 
 ### Ungoverned Production Failure Modes
 When engineering teams bypass surgical context slicing and dump raw files into agent prompts:

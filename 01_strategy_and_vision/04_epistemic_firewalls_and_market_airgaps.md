@@ -150,7 +150,15 @@ The primary strategic artifact emitted by the Strategy Lead / Product Owner is t
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In median mid-2026 teams constructing autonomous retrieval and ingestion pipelines, context management is commonly reduced to piping live social streams, RSS feeds, raw web scrapes, and internal databases into a single RAG vector database. Teams treat all data sources as equally authoritative and permanently valid. External promotional noise is ingested with the same epistemic weight as immutable internal ledger transactions. When upstream schemas mutate or vendor APIs time out, developers introduce ad-hoc try/except fallbacks with static numbers (`except: price = last_price`), silently corrupting production data stores with unverified synthetic values.
+
+In median mid-2026 teams constructing autonomous retrieval and ingestion pipelines, context management is commonly reduced to piping live social streams, RSS feeds, raw web scrapes, and internal databases into a single RAG vector database.
+
+Teams treat all data sources as equally authoritative and permanently valid, ingesting external promotional noise with the same weight as immutable internal ledger transactions.
+
+> [!WARNING]
+> **Ingestion Degradation Hazards**:
+> - **Synthetic Contamination**: When vendor APIs time out, developers introduce static fallbacks (`except: price = last_price`), corrupting production data stores with unverified synthetic values.
+> - **Epistemic Market Poisoning**: Unfiltered promotional hype primes reasoning agents to execute unauthorized transactions or alter clinical treatment pathways.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Operating without epistemic firewalls and temporal decay kinetics leads to three critical production failures:

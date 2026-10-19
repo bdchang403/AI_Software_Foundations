@@ -10,19 +10,33 @@ As a **Security & Compliance Lead / Model Risk Auditor** in the Context Factory,
 3. **RTCA DO-178C / DO-254**: Level A certification standards for deterministic airborne flight control systems.
 4. **The Enterprise AI Constitution (Articles I–VII)**: Non-negotiable organizational guardrails guaranteeing data minimization, zero-mock telemetry, fail-closed defaults, and immutable audit trails.
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                      THE REGULATORY COMPLIANCE & GOVERNANCE HANDSHAKE                            │
-│                                                                                                  │
-│   INBOUND TELEMETRY                        ROLE ACTION                         OUTBOUND ATTESTATION│
-│  ┌─────────────────────────┐              ┌───────────────────────────┐        ┌────────────────┐ │
-│  │ AI-SBOM & Git Hash      │              │ • Epistemic Air-Gapping   │        │ Cryptographic  │ │
-│  │ Model Hyperparameters   │ ───────────► │ • Plausibility Envelopes  │ ─────► │ Compliance Seal│ │
-│  │ Multi-Agent Debate Logs │              │ • Immutable Quarantine    │        │ (SR 11-7 /     │ │
-│  │ Execution Traces        │              │ • Nightly MTM Reconcile   │        │ FDA PMA Ready) │ │
-│  └─────────────────────────┘              └───────────────────────────┘        └────────────────┘ │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph Inbound ["1. Inbound Telemetry"]
+        direction TB
+        A1["AI-SBOM & Git Hash"]
+        A2["Model Hyperparameters"]
+        A3["Multi-Agent Debate Logs"]
+        A4["Execution Traces"]
+    end
+
+    subgraph Actions ["2. Epistemic Governance Actions"]
+        direction TB
+        B1["Epistemic Air-Gapping"]
+        B2["Plausibility Envelopes ($I_{02}$)"]
+        B3["Immutable Quarantine ($I_{04}$)"]
+        B4["Nightly MTM Reconciliation"]
+    end
+
+    subgraph Outbound ["3. Outbound Compliance Attestation"]
+        C1["Cryptographic Compliance Seal<br/>(SR 11-7 / FDA PMA Ready)"]
+    end
+
+    Inbound --> Actions --> Outbound
+
+    style Inbound fill:#e8f4f8,stroke:#17a2b8,stroke-width:1px
+    style Actions fill:#fef9e7,stroke:#ffc107,stroke-width:1px
+    style Outbound fill:#eafaf1,stroke:#28a745,stroke-width:1px
 ```
 
 ---
@@ -116,7 +130,16 @@ Model risk governance, epistemic firewalls, and continuous invariant auditing in
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the median mid-2026 engineering organization, "AI security and compliance" is often treated as an enterprise vendor subscription problem. Leadership signs an enterprise contract with a foundation model provider that promises "enterprise data privacy" and assumes that technical security is solved. In reality, developers copy-paste proprietary customer data and API keys into web prompts, deploy autonomous agents with wide-open repository and cloud permissions, and rely on natural language system prompts like *"You are a secure, ethical assistant; do not execute dangerous queries."* Over 80% of teams have zero automated security AST linters, zero epistemic airgaps, and zero mathematical plausibility bounds on model actions. When subtle deceptive compliance occurs—models producing clean code that secretly embeds logic bypasses—neither human reviewers nor standard CI pipelines detect it.
+
+> [!WARNING]
+> **Vendor Subscription Fallacy**: Enterprise vendor contracts for LLMs do not solve technical security, runtime isolation, or regulatory audit compliance.
+
+In the median mid-2026 engineering organization, leadership treats AI compliance as a vendor subscription issue. They assume contractual data privacy solves technical security.
+
+This passive posture creates acute vulnerabilities:
+* **Prompt-Only Defense**: Teams rely on fragile system prompts (*"You are a secure assistant; do not execute dangerous queries"*).
+* **Missing AST Linters**: Over 80% of teams lack automated AST security linters, epistemic airgaps, and pre-action plausibility bounds.
+* **Silent Deceptive Compliance**: When models generate syntactically clean code with hidden bypasses, neither human reviewers nor standard CI pipelines detect the flaw.
 
 ### Ungoverned Production Failure Modes
 Treating security and compliance as natural language advice rather than compiler-grade architectural invariants produces severe vulnerabilities:

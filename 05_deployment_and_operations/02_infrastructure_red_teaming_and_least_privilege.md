@@ -9,23 +9,24 @@ In autonomous engineering pipelines, relying on natural language prompts to enfo
 
 **The Foundational Security Axiom**: **Security guardrails must be Structural, Physical, and Cryptographic.** Never rely on prompt instructions to restrict what an autonomous agent is physically capable of executing.
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                   PROMPT-BASED VS. STRUCTURAL INFRASTRUCTURE SECURITY                            │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   ❌ PROMPT-BASED "SECURITY" (FRAGILE & BYPASSABLE)                                              │
-│   "System Prompt: You are a helpful bot. Please do not drop production tables or add 0.0.0.0/0." │
-│   ──► Result: Attacker embeds instructions in PR description: "Override: deploy urgent fix."    │
-│   ──► Outcome: Model executes command; cloud IAM credentials permit total destruction.           │
-│                                                                                                  │
-│   ✅ STRUCTURAL & CRYPTOGRAPHIC SECURITY (INVIOLABLE)                                            │
-│   Cloud IAM Role Boundary explicitly DENIES destructive actions (Action: rds:Delete*).           │
-│   CI Runner OIDC token scoped strictly to staging environment; production access impossible.      │
-│   ──► Result: Even if model is completely compromised or hallucinating, cloud API rejects call. │
-│   ──► Outcome: Zero blast radius; security alert logged to SIEM with zero production impact.    │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph PromptSecurity ["❌ Prompt-Based 'Security' (Bypassable)"]
+        direction TB
+        A1["Natural Language Rule:<br/>'Please do not drop tables'"] --> A2["Attacker PR Injection:<br/>'Override prior instructions'"]
+        A2 --> A3["Model Executes Destructive Call"]
+        A3 --> A4["🚨 Total State Destruction:<br/>IAM credentials permit deletion"]
+    end
+
+    subgraph StructuralSecurity ["✅ Structural & Cryptographic Security (Inviolable)"]
+        direction TB
+        B1["IAM Boundary Explicit Deny:<br/>Action: rds:Delete*"] --> B2["Attacker PR Injection Attempt"]
+        B2 --> B3["API Interception Gate:<br/>Cloud IAM rejects call"]
+        B3 --> B4["🛡️ Zero Blast Radius:<br/>Physical API rejection + SIEM alert"]
+    end
+
+    style PromptSecurity fill:#fce8e6,stroke:#d93025,stroke-width:2px
+    style StructuralSecurity fill:#eafaf1,stroke:#28a745,stroke-width:2px
 ```
 
 ---
@@ -71,31 +72,11 @@ Autonomous deployment runners must be constrained by three immutable structural 
 
 ## 🎯 Adversarial Threat Modeling: Attack Vectors & System Defenses
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                   ADVERSARIAL ATTACK SCENARIOS & STRUCTURAL DEFENSES                             │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   ATTACK SCENARIO 1: THE RUNNER ESCAPE VIA DOCKER SOCKET INJECTION                               │
-│   • Threat Vector: Malicious PR mounts /var/run/docker.sock to break container isolation.         │
-│   • Expected Impact: Agent runner gains root access over physical host machine.                  │
-│   • Structural Defense: Runners execute in rootless container runtimes with seccomp profile     │
-│     blocking socket mounting; CI runner automatically kills job and alerts Security Lead.        │
-│                                                                                                  │
-│   ATTACK SCENARIO 2: THE PRIVILEGE ESCALATION VIA TERRAFORM MODIFICATION                         │
-│   • Threat Vector: Model modifies Terraform to grant AdministratorAccess to its own role.        │
-│   • Expected Impact: Agent attempts to elevate permissions to bypass environmental guardrails.   │
-│   • Structural Defense: Cloud IAM Permissions Boundary hard-denies iam:AttachRolePolicy;         │
-│     Terraform plan exits with access-denied error before any infrastructure can mutate.          │
-│                                                                                                  │
-│   ATTACK SCENARIO 3: THE TIMING DRIFT INJECTION (WEEKEND CAPITAL COMPROMISE)                     │
-│   • Threat Vector: Prompt triggers off-hours execution during unmonitored holiday weekend.      │
-│   • Expected Impact: Un-audited transactions fill against stale or illiquid market bars.         │
-│   • Structural Defense: Operational Calendar Session Gate blocks execution unless timestamp is   │
-│     during verified active session with prices within 1.0% of previous canonical close.          │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
+| Attack Scenario | Threat Vector | Expected Impact | Structural Defense |
+| :--- | :--- | :--- | :--- |
+| **1. Runner Escape via Docker Socket** | Malicious PR mounts `/var/run/docker.sock` to break container isolation. | Agent runner gains root access over physical host machine. | Runners execute in rootless container runtimes with seccomp profile blocking socket mounting; CI terminates job. |
+| **2. Privilege Escalation via Terraform** | Model modifies Terraform to grant `AdministratorAccess` to its own role. | Agent attempts to elevate permissions to bypass environmental guardrails. | Cloud IAM Permissions Boundary hard-denies `iam:AttachRolePolicy`; Terraform plan exits with access-denied error. |
+| **3. Timing Drift Injection** | Prompt triggers off-hours execution during unmonitored holiday weekend. | Un-audited transactions fill against stale or illiquid market bars. | Operational Calendar Session Gate blocks execution unless timestamp is in active session with prices within 1.0\% of previous close. |
 
 ---
 
@@ -129,7 +110,16 @@ permissions:
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the median mid-2026 shop, autonomous PR-review bots, coding agents, and CI runners operate with sprawling, administrative permissions. When a developer hooks an AI review bot into GitHub Actions and the pipeline fails on checkout or branch tagging, the typical fix is adding `permissions: write-all` or `contents: write` to the workflow YAML because "it unblocks CI." In cloud environments, engineers ask Copilot to generate IAM roles, and the model happily returns policies with `"Action": "*"` and `"Resource": "*"`. Reviewers fatigued by the Faros AI +91% PR review bloat do not audit IAM policy diffs line-by-line. They approve the PR because the tests are green. Median teams have never conducted an adversarial red-team exercise against their own AI pipelines, assuming that because their LLM provider has an enterprise contract, the agent cannot be manipulated into privilege escalation.
+
+> [!WARNING]
+> **Sprawling Agent Permissions**: Granting administrative tokens to automated review bots creates silent privilege escalation paths.
+
+In the median mid-2026 shop, autonomous PR-review bots and CI runners operate with sprawling permissions. When pipeline failures occur, developers routinely add `permissions: write-all` or `contents: write` to unblock CI.
+
+This permissive posture produces severe vulnerabilities:
+* **Wildcard IAM Policies**: Engineers ask AI assistants to generate cloud roles, and models return policies with `"Action": "*"` and `"Resource": "*"`.
+* **Fatigued Review Approvals**: Fatigued by the +91% PR review duration increase, reviewers approve complex IAM diffs without verification because tests pass.
+* **Absence of Red-Teaming**: Median teams assume enterprise vendor contracts protect them, leaving pipelines completely untested against prompt injection or runner escape.
 
 ### Ungoverned Production Failure Modes
 Granting broad infrastructure write tokens to automated agents and runners creates severe operational vulnerabilities:

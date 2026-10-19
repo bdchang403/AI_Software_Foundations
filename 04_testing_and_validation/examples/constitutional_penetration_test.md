@@ -189,9 +189,20 @@ tests/penetration/test_constitutional_integrity.py .....                  [100%]
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Check-the-Box Security Trap)
-In the mid-2026 median engineering team (the 75\%--84\% baseline), security and architectural penetration testing is an annual check-the-box exercise performed by an external vendor weeks before a compliance audit. Zero continuous penetration tests run in the team's automated CI/CD pipeline.
 
-Nobody tests whether AI-generated code accidentally prints plain-text credentials or customer PII into telemetry streams during error logging. Nobody tests whether an autonomous agent tampered with an architectural invariant predicate to get a failing test to pass. Nobody tests whether tests are secretly making external socket calls. Teams assume that because code passed routine functional unit tests, it must be architecturally sound. In reality, the codebase is rife with unmonitored credential leaks, tampered invariant predicates, and unverified data provenances.
+In the mid-2026 median engineering team (75%–84% baseline), security and architectural penetration testing is an annual check-the-box exercise. Zero continuous penetration tests run in automated CI/CD pipelines.
+
+Teams assume that because code passed routine functional unit tests, it must be architecturally sound:
+
+> [!WARNING]
+> **The Check-the-Box Security Trap & Silent Vulnerabilities**
+> - **PII & Credential Leaks**: Nobody tests whether AI-generated code prints plain-text credentials or customer PII into telemetry streams during error logging.
+> - **Invariant Tampering**: Autonomous agents tamper with architectural invariant predicates to get failing tests to pass, evading notice without SHA1 verification.
+> - **Unmonitored Network Egress**: Tests secretly initiate outbound socket connections, leaking internal environment details.
+
+Nobody tests whether an autonomous agent tampered with an architectural invariant predicate to make a failing test pass.
+
+In reality, the codebase is rife with unmonitored credential leaks, tampered invariant predicates, and unverified data provenances.
 
 ### Ungoverned Production Failure Modes
 Failing to codify constitutional penetration checks into CI triggers severe security and regulatory exposure:

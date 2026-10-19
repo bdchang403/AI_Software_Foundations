@@ -86,7 +86,11 @@ In live deployment, this naive system failed catastrophically across four interr
    Because the cron poller executed unconditionally across all 35 tickers, the system conducted exhaustive multi-agent debates on mature, low-beta equities that had experienced zero volatility, zero material news, and zero balance-sheet changes. On an uneventful Tuesday, mature equities like Johnson & Johnson (`JNJ`) or Berkshire Hathaway (`BRK.B`) triggered 8-agent deliberations costing \$0.15 to \$0.40 per ticker. Over 30 days, the platform burned \$450 to \$750+ monthly debating securities trading in tight 20-cent ranges, with **92% of tokens generating identical fundamental analyses night after night**.
 
 2. **16-Hour Post-Crash Reaction Latency**:
-   The batch cron was temporally blind to intraday market shocks. At 9:30 AM ET, a semiconductor supplier could announce emergency quarterly guidance cuts, plummeting -18% in the first hour of trading and triggering liquidation cascades across correlated peers. The position would close down -22% by 4:00 PM ET. The V1 batch cron would finally awaken at 8:00 PM ET, ingest the closing price, deliberate for 15 minutes, and output `STRONG SELL — LIQUIDATE IMMEDIATELY`. The user received the email digest at 7:00 AM the following morning—nearly **16 hours** after the liquidation event had destroyed capital.
+   The batch cron was temporally blind to intraday market shocks. At 9:30 AM ET, a semiconductor supplier could announce emergency quarterly guidance cuts, plummeting -18% in the first hour of trading.
+
+   The position would close down -22% by 4:00 PM ET. The V1 batch cron would finally awaken at 8:00 PM ET, ingest the closing price, deliberate for 15 minutes, and output `STRONG SELL — LIQUIDATE IMMEDIATELY`.
+
+   The user received the email digest at 7:00 AM the following morning—nearly **16 hours** after the liquidation event had destroyed capital.
 
 3. **SEC EDGAR Rate-Limit Bans & IP Blacklisting**:
    Ingesting 35 equities sequentially in tight loops breached external rate limits. SEC EDGAR strictly limits requests to **10 requests per second** per user-agent; fetching Form 10-K and 8-K filings simultaneously triggered immediate HTTP `429 Too Many Requests` followed by 10-minute IP blocks. Financial APIs (FMP, Finnhub) and social RSS endpoints blacklisted the runner's IP address. Lacking state checkpointing, an unhandled HTTP 429 on ticker #28 aborted the entire run, corrupting output files and leaving remaining tickers unanalyzed.
@@ -96,6 +100,38 @@ In live deployment, this naive system failed catastrophically across four interr
    * *Attention Entropy Dilution*: Softmax normalization ($\mathbb{E}[A_{ij}] = 1/N$) dispersed attention entropy $\mathcal{H}(A_i) = -\sum A_{ij} \ln A_{ij}$. Negative boundary conditions and error handlers were diluted beneath thousands of lines of peripheral code.
    * *Lost-in-the-Middle*: Functions in the middle 70% of the file (lines 400 to 950) suffered 40% to 75% retrieval degradation ($F(x) \approx 0.35$).
    * *The Silent Feature-Erasure Trap*: To stay within output generation budgets, models truncated surrounding logic, replacing 200 lines of robust retry cascades and telemetry logging with comments like `# ... existing logic remains unchanged ...`. Critical runtime defenses were silently erased from production.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    rect rgb(255, 235, 238)
+        Note over Cron, SEC: ❌ V1 Monolithic Batch Cron Poller (May 2026 Crisis)
+        participant Cron as Monolithic Nightly Cron (8:00 PM)
+        participant Market as Intraday Market Shock (9:30 AM)
+        participant SEC as External API / SEC EDGAR
+        participant User as User Alert Email (7:00 AM)
+
+        Market->>Market: Stock Plummets -18% (Intraday Panic)
+        Note over Cron: 10.5 Hours of Complete Blindness
+        Cron->>SEC: Loops Over 35 Tickers Simultaneously
+        SEC-->>Cron: HTTP 429 Rate-Limit Exceeded (IP Blacklisted)
+        Cron-->>User: 16-Hour Lagged Liquidation Alert (Capital Destroyed)
+    end
+
+    rect rgb(232, 245, 233)
+        Note over Ingress, Gateway: ✅ Level 5 Reactive Event-Driven Invariant Pipeline
+        participant Ingress as Real-Time Telemetry Ingress
+        participant CB as Telemetry Circuit Breaker (I14)
+        participant Worker as Event-Driven Worker (<50ms)
+        participant Gateway as Execution Gateway
+
+        Ingress->>CB: Intraday Price Shock Detected (-18% Volatility Spike)
+        CB->>Worker: Dispatch Event to Isolated Bounded Worker
+        Worker->>Worker: Validate Invariants (I01, I17, I20)
+        Worker->>Gateway: Execute Protective Dynamic Hedge in 42ms
+        Gateway-->>Ingress: Telemetry Audit Row Logged
+    end
+```
 
 ### 3. The False Solutions Attempted
 * **False Solution 1: Prompt Instructions for Token Restraint**: Adding prompt instructions (*"If the stock has not moved more than 1%, output 'NO CHANGE' and do not debate"*) failed because the model still ingested the full 8,000-token prompt context to make that determination; input token billing remained identical, and models routinely rationalized lengthy analyses regardless.
@@ -281,9 +317,15 @@ try:
 except Exception:
     return 0.0  # or return {}
 ```
-The implementation compiles cleanly, unit tests pass without assertion failures, and staging logs appear quiescent. However, this creates an architecture vulnerable to **Deceptive Compliance**: when an upstream data dependency experiences a transient HTTP 503, authentication expiry, or schema shift, the AI-generated code absorbs the failure and emits synthetic zeroes, boolean `True`, or empty dictionaries. Downstream calculation engines—such as portfolio risk calculators, margin verification modules, or clinical dosage algorithms—ingest these fabricated values without alerting operators.
+The implementation compiles cleanly, unit tests pass without assertion failures, and staging logs appear quiescent. However, this creates an architecture vulnerable to **Deceptive Compliance**.
 
-Concurrently, median teams maintain fragile nightly batch cron pollers sweeping across hundreds of assets in sequential loops. These batch scripts consume upwards of \$500/month in frontier token costs debating unchanged entities while lagging hours behind real-time state changes.
+When an upstream data dependency experiences a transient fault or schema shift, the AI-generated code absorbs the failure and emits synthetic zeroes or empty dictionaries. Downstream calculation engines ingest these fabricated values without alerting operators.
+
+> [!WARNING]
+> **Batch Cron & Fail-Soft Hazards**:
+> - **Silent State Poisoning**: Catching exceptions and emitting synthetic numbers poisons downstream datastores without tripping alarms.
+> - **16-Hour Reaction Lag**: Monolithic nightly cron pollers are blind to intraday market shocks, reacting hours after capital is destroyed.
+> - **API Blacklisting**: Sequential loops over dozens of endpoints trigger immediate HTTP 429 rate limits and permanent IP bans.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Operating without builder red-teaming and fail-closed validation manifests in three catastrophic production failure archetypes:

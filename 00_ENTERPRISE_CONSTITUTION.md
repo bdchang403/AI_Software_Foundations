@@ -8,18 +8,50 @@ Autonomous AI systems operating in high-stakes enterprise environments cannot re
 
 The **Enterprise AI Constitution** establishes the non-negotiable legal and architectural bedrock of the Context Factory. It codifies the **10 Inviolable Commandments** and the **22 Canonical Invariants ($I_{01}$–$I_{22}$)** that govern every autonomous agent across all functional modules.
 
+```mermaid
+flowchart TD
+    CONST["Enterprise AI Constitution"]
+    
+    CONST --> C1["1. HARD-SAFETY<br>(I01 - I05)<br>Biological & Capital Preservation"]
+    CONST --> C2["2. MATH-BOUND<br>(I06 - I12)<br>Statistical & Numerical Bounds"]
+    CONST --> C3["3. SCHEMA-PARITY<br>(I13 - I15)<br>Database & DTO Parity"]
+    CONST --> C4["4. CONTEXT-ISOL<br>(I16 - I18)<br>Attention Defense & 400 LOC"]
+    CONST --> C5["5. CODE-HYGIENE<br>(I19 - I22)<br>AST Zero-Mock & SHA1 Anchors"]
+
+    style CONST fill:#f8f9fa,stroke:#343a40,stroke-width:2px;
+    style C1 fill:#ffcdd2,stroke:#b71c1c,stroke-width:2px;
+    style C2 fill:#fff9c4,stroke:#f57f17,stroke-width:2px;
+    style C3 fill:#e1f5fe,stroke:#0277bd,stroke-width:2px;
+    style C4 fill:#ede7f6,stroke:#512da8,stroke-width:2px;
+    style C5 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
 ```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                      THE 5 INVARIANT CLASSES OF THE CONSTITUTION                                 │
-├────────────────────┬───────────────────────────────────┬─────────────────────────────────────────┤
-│ Invariant Class    │ Scope & Objective                 │ Enforcement Mechanism                   │
-├────────────────────┼───────────────────────────────────┼─────────────────────────────────────────┤
-│ 1. HARD-SAFETY     │ Biological & capital preservation │ Pre-Action Plausibility Bands ($I_{02}$) │
-│ 2. MATH-BOUND      │ Statistical & domain bounds       │ Condition numbers, DSR, and decay ($I_{11}$)│
-│ 3. SCHEMA-PARITY   │ Database & DTO integrity          │ Dual-Schema Parity & WAL Mode ($I_{13}$)│
-│ 4. CONTEXT-ISOLATE │ Blast radius & attention defense  │ 400 LOC ceiling & AST scoped views ($I_{16}$)│
-│ 5. CODE-HYGIENE    │ Anti-deception & zero-drift       │ AST Zero-Mock Rules ZM001-ZM009 ($I_{22}$)│
-└────────────────────┴───────────────────────────────────┴─────────────────────────────────────────┘
+
+### The 5 Invariant Classes of the Constitution
+
+| Invariant Class | Scope & Objective | Governing Invariants | Enforcement Mechanism |
+| :--- | :--- | :--- | :--- |
+| **1. HARD-SAFETY** | Biological and capital preservation | $I_{01}, I_{02}, I_{03}, I_{04}, I_{05}$ | Pre-Action Plausibility Bands ($I_{02}$), Fatal Contagion Veto ($I_{03}$) |
+| **2. MATH-BOUND** | Statistical and domain bounds | $I_{06}, I_{07}, I_{08}, I_{09}, I_{10}, I_{11}, I_{12}$ | Ledoit-Wolf Condition Bounds ($I_{11}$), Compensatory Confluence ($I_{09}$) |
+| **3. SCHEMA-PARITY**| Database and DTO integrity | $I_{13}, I_{14}, I_{15}$ | Dual-Schema Parity ($I_{13}$) & SQLite WAL Mode ($I_{14}$) |
+| **4. CONTEXT-ISOL** | Blast radius and attention defense | $I_{16}, I_{17}, I_{18}$ | 400-LOC Ceiling ($I_{16}$), Surgical Context ($I_{18}$), Horizon Decay ($I_{17}$) |
+| **5. CODE-HYGIENE** | Anti-deception and zero-drift | $I_{19}, I_{20}, I_{21}, I_{22}$ | AST Zero-Mock Rules ZM001–ZM009 ($I_{01}$), SHA1 Anchors ($I_{22}$) |
+
+```mermaid
+stateDiagram-v2
+    [*] --> IngressPayload: Agent Mutation Proposal
+    IngressPayload --> StaticCheck: AST Scanner (ZM001-ZM009)
+    StaticCheck --> PlausibilityGate: Pass Static Rules
+    StaticCheck --> Quarantined: Violates Invariant (Mock Detected)
+    
+    PlausibilityGate --> CommitState: Within Envelope (abs(V - Base) <= Band)
+    PlausibilityGate --> Quarantined: Out of Bounds
+
+    CommitState --> LineageAttestation: Write to DB / Emit Event
+    LineageAttestation --> [*]: Append AI-SBOM Header (I15)
+
+    Quarantined --> TombstoneRecord: Soft-Tag Mutation (DELETE Forbidden)
+    TombstoneRecord --> QuarantineLedger: Append to consensus_quarantine
+    QuarantineLedger --> [*]: Raise Typed Exception / Alert Executive
 ```
 
 ---
@@ -129,7 +161,14 @@ Before proceeding to tactical domain chapters (`01_` through `09_`), cross-funct
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In mid-2026, 75\%-84\% of software engineering pods have zero architectural constitution. They adopt AI through ad-hoc IDE autocomplete and browser chat sidebars without defining non-negotiable boundaries. Developers commit AI-generated code that contains silent try-except fallbacks, unverified mock fixtures, and arbitrary hardcoded constants. Because there are no formalized invariants, senior engineers bear the brunt of the 2026 DORA Verification Trap: spending 91\% more time during code reviews (Faros AI) trying to manually detect whether an AI change quietly broke cross-subsystem invariants. Without programmatic invariant anchoring, code quality degrades rapidly into GitClear's +39\% code churn spiral.
+
+> [!WARNING]
+> **The 75% Enterprise Ad-Hoc Trap**: Between 75% and 84% of software engineering pods have zero architectural constitution. Developers adopt AI through ad-hoc IDE autocomplete and browser chat sidebars without defining non-negotiable boundaries.
+
+#### Observed Empirical Failure Cycle:
+1. **The Context Wall**: Engineers commit AI-generated code containing silent try-except fallbacks, unverified mock fixtures, and arbitrary hardcoded constants.
+2. **The Verification Tax**: Senior engineers spend 91% more time in code reviews (Faros AI) trying to manually detect whether an AI change quietly broke cross-subsystem invariants.
+3. **The Churn Inversion**: Without programmatic invariant anchoring, code quality degrades rapidly into GitClear's +39% code churn spiral.
 
 ### Ungoverned Production Failure Modes
 When engineering organizations ignore constitutional invariants and rely on informal conventions:

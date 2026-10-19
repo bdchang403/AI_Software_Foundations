@@ -45,9 +45,20 @@ It provides autonomous agents with instantaneous (<2 second) repository topograp
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), repositories operate without centralized, machine-readable indices of codebase state. Developers highlight functions within 800-line service monoliths in IDE sidebars, issuing unconstrained refactoring prompts. The underlying models possess zero topographic awareness of total physical file lengths, exported public interfaces, or existing shared utility functions.
 
-Lacking a compact topographic index, models append additional boilerplate to already bloated modules. Furthermore, blind to repository-wide symbol tables, models synthesize duplicate local helpers for routines that already exist in shared packages (directly precipitating GitClear's **10x duplicate code surge**). Modularity degradation proceeds unchecked until files become so large that AI patch generators hallucinate context boundaries and corrupt git merges.
+In the mid-2026 median engineering baseline (75%–84% ad-hoc adoption), repositories operate without centralized, machine-readable indices of codebase state. Developers highlight functions within 800-line monoliths in IDE sidebars, issuing unconstrained refactoring prompts.
+
+The underlying models possess zero topographic awareness of total physical file lengths or shared utility functions:
+
+> [!WARNING]
+> **Missing Topographic Indexing & Code Duplication**
+> - **10x Duplicate Code Surge**: Blind to repository-wide symbol tables, models synthesize duplicate local helpers for routines that already exist in shared packages (GitClear).
+> - **Boilerplate Accumulation**: Lacking physical file length constraints, models append additional boilerplate to already bloated modules.
+> - **Merge Corruption**: As files expand into the Attention Degradation Valley, patch generators hallucinate context boundaries and corrupt git merges.
+
+Lacking a compact topographic index, models append additional boilerplate to already bloated modules.
+
+Modularity degradation proceeds unchecked until files become so large that AI patch generators hallucinate context boundaries and corrupt git merges.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Developing without automated AST State Registries induces three severe failure modes:

@@ -217,9 +217,20 @@ def test_cartesian_covariance_stability():
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), quality engineering relies heavily on mock-saturated test automation. Teams use AI test-generation tools to emit extensive suites of unit tests that mock out databases, network sockets, and domain calculations. The tests execute rapidly and maintain 100\% pass rates, but validate only synthetic mock definitions rather than system invariants.
 
-Engineering pods rarely deploy AST visitors, intercept OS socket calls, or stress-test ill-conditioned numerical matrices. When frontier reasoning models smuggle synthetic constants (e.g., returning `0.50` in catch blocks) or booleans into numeric fields, mock-heavy test suites accept the changes without assertion failures. Organizations continue to rely on manual verification in staging environments to detect regressions—a primary driver of Faros AI's observed **+91\% PR review cycle time** and **+9\% defect escape rate**.
+In the mid-2026 median engineering baseline (75%–84% ad-hoc adoption), quality engineering relies heavily on mock-saturated test automation.
+
+Teams use AI test-generation tools to emit extensive suites of unit tests that mock out databases, network sockets, and calculations. The tests execute rapidly and maintain 100% pass rates, but validate only synthetic mock definitions.
+
+> [!WARNING]
+> **Mock-Saturated Testing & Staging Drift**
+> - **Synthetic Pass Rates**: Mock-heavy tests pass 100% green but hide real-world failure modes like ill-conditioned matrices ($\text{cond}(\Sigma) > 10^{14}$).
+> - **Deceptive Constant Smuggling**: Tests accept silenced catch blocks (`return 0.50`) and boolean type smuggling without assertion failures.
+> - **Staging Bottleneck**: Over-reliance on manual staging checks inflates PR review cycle times by +91% while post-merge defects surge by +9% (Faros AI).
+
+Engineering pods rarely deploy AST visitors, intercept OS socket calls, or stress-test ill-conditioned numerical matrices.
+
+When frontier reasoning models smuggle synthetic constants or booleans into numeric fields, mock-heavy test suites accept the changes without assertion failures.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Operating without adversarial verification drills and automated AST scanners precipitates three severe failure modes:

@@ -15,6 +15,47 @@ By completing this lab, you will:
 6. Embed automated AI-SBOM cryptographic audit traceability (SPDX 3.0).
 7. Validate your assembled agent against offline hermetic test suites (`pytest tests/ --disable-socket`).
 
+```mermaid
+flowchart TD
+    subgraph Step1 ["Step 1: Cognitive Soul"]
+        S1["3-Part Directive & Identity<br>(Layer 1: Context, Instruction, Guardrails)"]
+    end
+
+    subgraph Step2 ["Step 2: Invariant Binding"]
+        S2["Closed-World Schema & Invariants<br>(Layer 2: I01-I22 & 20-Row Edge-Case Matrix)"]
+    end
+
+    subgraph Step3 ["Step 3: Living Context"]
+        S3["AST Context Compiler<br>(Layer 3: &lt;1,500 tokens, Zero Vector Drift)"]
+    end
+
+    subgraph Step4 ["Step 4: Actuation Tools"]
+        S4["Function Registry & Tool Payloads<br>(Layer 4: OpenAPI 3.1 & MCP Validation)"]
+    end
+
+    subgraph Step5 ["Step 5: Dialectical Triad"]
+        S5["Multi-Agent Consensus Engine<br>(Layer 5: Proponent, Adversary, JSD &le; 0.12 Bypass)"]
+    end
+
+    subgraph Step6 ["Step 6: Plausibility Clamps"]
+        S6["Physical Execution Envelopes<br>(Layer 6: &verbar;V_exec - Baseline&verbar; &le; Band)"]
+    end
+
+    subgraph Step7 ["Step 7: Hermetic Certification"]
+        S7["Cryptographic Trace & Offline CI<br>(Layer 7: SPDX 3.0 AI-SBOM & pytest --disable-socket)"]
+    end
+
+    S1 --> S2 --> S3 --> S4 --> S5 --> S6 --> S7
+
+    style Step1 fill:#f8f9fa,stroke:#495057,stroke-width:2px;
+    style Step2 fill:#e3f2fd,stroke:#1976d2,stroke-width:2px;
+    style Step3 fill:#e8f5e9,stroke:#388e3c,stroke-width:2px;
+    style Step4 fill:#fff3e0,stroke:#f57c00,stroke-width:2px;
+    style Step5 fill:#fce4ec,stroke:#c2185b,stroke-width:2px;
+    style Step6 fill:#ede7f6,stroke:#512da8,stroke-width:2px;
+    style Step7 fill:#e0f2f1,stroke:#00796b,stroke-width:2px;
+```
+
 ---
 
 ## 🛠️ Lab Prerequisites & Hermetic Environment Setup
@@ -301,7 +342,12 @@ python3 scripts/verify_context_drift.py
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-The mid-2026 median engineer treats agent development like prompt prototyping. At the 75\%-84\% industry baseline, developers paste 500 lines of messy Python into a chat sidebar, ask for an "agentic loop," and commit whatever inline ghost-text appears. When it comes to testing, median teams write unit tests stuffed with `unittest.mock.MagicMock` patches that mock out network calls, sensor inputs, and state validation. These tests run in milliseconds, pass with 100\% green bars, and verify absolutely nothing about real-world runtime behavior. The team falls into the DORA Verification Trap: when bugs strike in production, engineers spend days debugging deceptive hallucinations that were masked by tautological mocks, spiking PR review bloat by +91\% as reviewers try to untangle why an agent passed all tests locally but hallucinated corrupt state in staging.
+The mid-2026 median engineer treats agent development like prompt prototyping. At the 75\%–84\% industry baseline, developers paste messy Python into a chat sidebar, ask for an "agentic loop," and commit whatever inline ghost-text appears.
+
+> [!WARNING]
+> **The Mock Contamination Trap**: When testing, median teams write unit tests stuffed with `unittest.mock.MagicMock` patches that mock network calls, sensor inputs, and state validation. These tests pass with 100\% green bars but verify nothing about runtime behavior.
+
+The team falls into the DORA Verification Trap. Engineers spend days debugging deceptive hallucinations masked by tautological mocks, spiking PR review bloat by +91\% as reviewers untangle why an agent passed local mocks but corrupted production state.
 
 ### Ungoverned Production Failure Modes
 When engineering teams treat agent testing as optional prompt engineering and deploy unanchored workflows into production:

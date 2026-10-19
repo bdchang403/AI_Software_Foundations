@@ -22,44 +22,74 @@ To resolve these failure modes, the curriculum is structured around the **Enterp
 For the complete longitudinal telemetry data, economic formulas, and citation register, see the canonical reference guide:  
 👉 [**templates_and_resources/EMPIRICAL_AI_TELEMETRY_AND_GOVERNANCE_BENCHMARK.md**](./templates_and_resources/EMPIRICAL_AI_TELEMETRY_AND_GOVERNANCE_BENCHMARK.md).
 
+```mermaid
+flowchart TD
+    subgraph Governance ["Phase 00 & M1: Executive & Regulatory Governance"]
+        PO["Product Owners & Regulated Executives"]
+        CONST["Enterprise AI Constitution & 22 Invariants (I01-I22)"]
+        PO --> CONST
+    end
+
+    subgraph Requirements ["Phase 01-02 & M2: Specifications & Design"]
+        BA["Business Analysts & Requirements Leads"]
+        SPEC["3-Part Directives & 20 Pre-Condition Edge Cases"]
+        AIR["Epistemic Air-Gap & 80% Commercial Discount"]
+        CONST --> BA
+        BA --> SPEC --> AIR
+    end
+
+    subgraph Engineering ["Phase 03 & M3: Architecture & Living Context"]
+        DEV["Software Engineers & System Architects"]
+        AST["AST Registries (State & Math) & Living Context (<1.5k Tokens)"]
+        MOD["ADR-016 Modularity Ceiling (400 LOC) & SHA1 Anchors"]
+        AIR --> DEV
+        DEV --> AST --> MOD
+    end
+
+    subgraph Quality ["Phase 04 & M4: Verification & Security"]
+        QE["Validation Leads & Quality Engineers"]
+        ZM["AST Zero-Mock Scanning (ZM001-ZM009)"]
+        SOCK["Hermetic Socket Isolation (pytest-socket)"]
+        MOD --> QE
+        QE --> ZM --> SOCK
+    end
+
+    subgraph Operations ["Phase 05 & M5: Operations & Multi-Agent"]
+        OPS["BuilderOps & Agile Coaches"]
+        TRIAD["Dialectical Debate Triad & Convex Solver"]
+        SBOM["AI-SBOM Lineage & CI Drift Sentinels"]
+        SOCK --> OPS
+        OPS --> TRIAD --> SBOM
+    end
+
+    style Governance fill:#ede7f6,stroke:#512da8,stroke-width:2px;
+    style Requirements fill:#e1f5fe,stroke:#0277bd,stroke-width:2px;
+    style Engineering fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
+    style Quality fill:#fff3e0,stroke:#e65100,stroke-width:2px;
+    style Operations fill:#fce4ec,stroke:#c2185b,stroke-width:2px;
 ```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                      THE ENTERPRISE CROSS-FUNCTIONAL CONTEXT PIPELINE                            │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   [Product Owners & Regulated Executives]  ──► 00_ Foundations & 08_ Governance                  │
-│   • Enterprise Constitution (Articles I–VII)                                                    │
-│   • 22 Bedrock Invariants (I01–I22) & 10 Commandments                                            │
-│   • AI-SBOM & Model Risk Governance (FDA Pre-Market / ISO 13485 / SR 11-7)                       │
-│                                                                                                  │
-│   [Business Analysts / Requirements Leads] ──► 01_ Strategy & 02_ Requirements                   │
-│   • 3-Part Directives with Invariant Bindings                                                    │
-│   • Epistemic Air-Gap (ADR-030) & 80% Commercial Funnel Discount                                 │
-│   • Semantic Blueprints with 20 Edge-Case Pre-conditions                                         │
-│                                                                                                  │
-│   [Software Engineers & Architects]        ──► 03_ Building & Coding                             │
-│   • ADR-016 400-LOC Hard Ceiling & AST-Scoped Surgical Slices                                    │
-│   • AST State & Math Registries (`STATE_REGISTRY.md`, `MATHEMATICAL_REGISTRY.md`)               │
-│   • Living Context Compiler (<1,500 tokens) & Invariant SHA1 Anchors                             │
-│                                                                                                  │
-│   [Validation Leads & Quality Engineers]   ──► 04_ Testing & 06_ Security                        │
-│   • AST Zero-Mock Code Scanner Rules (ZM001–ZM009)                                               │
-│   • Hermetic Socket Isolation (`pytest-socket`, `SocketBlockedError`)                            │
-│   • Compensatory 4-Pillar Orthogonal Confluence vs Conjunctive Gate Collapse                     │
-│   • Cartesian Fault-Injection & Conformal Fuzzing                                                │
-│                                                                                                  │
-│   [Scrum Masters & Agile Coaches]          ──► 07_ Team Process & Flow                           │
-│   • Bounded Task Decomposition & Context Debt Tracking                                          │
-│   • AI-Assisted DORA & SPACE Blast Radius Metrics                                                │
-│   • 90-Day 4-Phase Organizational Rollout Roadmap                                                │
-│                                                                                                  │
-│   [Autonomous Agent Orchestrators]         ──► 09_ Agent Orchestration                           │
-│   • Dialectical Adversarial Triad (Bull / Bear / Forensic Auditor)                               │
-│   • Deterministic Convex Solver Evidence Fusion & Level-2 \$0-Compute JSD Bypass                 │
-│   • Runtime Execution Plausibility Bands & Nightly Reconciliation                                │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
+
+### The Enterprise Cross-Functional Context Pipeline
+
+| Enterprise Discipline | Curriculum Milestones | Core Capabilities & Deliverables |
+| :--- | :--- | :--- |
+| **Product Owners & Regulated Executives** | `00_` Foundations & `08_` Governance | Enterprise Constitution (Articles I–VII), 22 Bedrock Invariants ($I_{01}$–$I_{22}$), AI-SBOM & Model Risk Governance (FDA Pre-Market / ISO 13485 / SR 11-7) |
+| **Business Analysts / Requirements Leads** | `01_` Strategy & `02_` Requirements | 3-Part Directives with Invariant Bindings, Epistemic Air-Gap (ADR-030) & 80% Commercial Funnel Discount, Semantic Blueprints with 20 Edge-Case Pre-conditions |
+| **Software Engineers & Architects** | `03_` Building & Coding | ADR-016 400-LOC Hard Ceiling & AST-Scoped Surgical Slices, AST State & Math Registries, Living Context Compiler (<1,500 tokens) & Invariant SHA1 Anchors |
+| **Validation Leads & Quality Engineers** | `04_` Testing & `06_` Security | AST Zero-Mock Code Scanner Rules (ZM001–ZM009), Hermetic Socket Isolation (`pytest-socket`), Compensatory 4-Pillar Orthogonal Confluence vs Conjunctive Gate Collapse, Cartesian Fault-Injection & Conformal Fuzzing |
+| **Scrum Masters & Agile Coaches** | `07_` Team Process & Flow | Bounded Task Decomposition & Context Debt Tracking, AI-Assisted DORA & SPACE Blast Radius Metrics, 90-Day 4-Phase Organizational Rollout Roadmap |
+| **Autonomous Agent Orchestrators** | `09_` Agent Orchestration | Dialectical Adversarial Triad (Bull / Bear / Forensic Auditor), Deterministic Convex Solver Evidence Fusion & Level-2 \$0-Compute JSD Bypass, Runtime Execution Plausibility Bands & Nightly Reconciliation |
+
+### Architectural Comparison: Mid-2026 Ad-Hoc Baseline vs. Enterprise Level 5 Context Factory
+
+| Dimension | Mid-2026 Ad-Hoc Baseline | Enterprise Level 5 Context Factory |
+| :--- | :--- | :--- |
+| **Context Strategy** | Unstructured prompts / 40k raw token dumps | Compiled Living Context (<1,500 tokens) |
+| **Verification Gate** | Manual human code review / Prompt retry | Zero-Trust automated red test before code generation |
+| **Test Sandboxing** | Live network calls & fake mock objects | Hermetic socket isolation (`pytest-socket`) & AST Zero-Mock |
+| **Token Economics** | Monolithic frontier model ($157.50 / 1k tasks) | Decoupled 3-tier routing ($25.50 / 1k tasks — 83.8% savings) |
+| **Code Modularity** | Sprawling monolithic files (>1,200 LOC) | ADR-016 modular ceiling ($\le 400$ LOC, trigger at 350) |
+| **Audit Provenance** | Zero provenance; informal git commits | Machine-readable SPDX 3.0 AI-SBOM & UUIDv4 lineage |
 
 ## Feature Inventory
 Every feature extracted during the Survey phase is mapped to an assigned milestone:
@@ -241,7 +271,14 @@ AI_Software_Foundations/
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In mid-2026, 75\%-84\% of engineering leadership teams believe that modernizing an engineering organization for the AI era simply means purchasing enterprise AI assistant seats and telling developers to "use AI to go faster." They leave their repository structures completely unchanged: sprawling 2,500-LOC files, ad-hoc unit tests with mock stubs, and zero machine-readable architecture manifests. This triggers the 2026 DORA Verification Trap at an organizational scale. While raw commit volume increases by 30\%, delivery stability drops by 7.2\% per 25\% AI adoption, and PR review duration increases by +91\% (Faros AI). Tech leads and senior engineers spend their entire working week reviewing low-quality AI-generated code bloat instead of designing scalable systems.
+
+> [!WARNING]
+> **The 75% Enterprise Ad-Hoc Trap**: Between 75% and 84% of engineering leadership teams believe modernizing an engineering organization for the AI era simply means purchasing enterprise AI assistant seats. They leave repository structures unchanged: sprawling 2,500-LOC files, ad-hoc unit tests with mock stubs, and zero machine-readable architecture manifests.
+
+#### Observed Empirical Failure Cycle:
+1. **The Context Wall**: Engineers spend over 63% of their day manually searching and compiling codebase context (Stack Overflow).
+2. **The Verification Tax**: Raw commit volume increases by 30%, but delivery stability drops by 7.2% per 25% AI adoption (DORA), and PR review duration increases by +91% (Faros AI).
+3. **The Churn Inversion**: Tech leads and senior engineers spend their entire working week reviewing low-quality AI-generated code bloat instead of designing scalable systems.
 
 ### Ungoverned Production Failure Modes
 When engineering organizations deploy AI agents across legacy, unanchored codebases without formal architectural contracts:

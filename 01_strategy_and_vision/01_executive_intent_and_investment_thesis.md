@@ -6,9 +6,11 @@
 
 ## 🎯 Executive Overview: The Strategic Intent Mandate
 
-In enterprise software engineering, executive leadership often views generative AI as an autonomous productivity panacea. However, deploying autonomous coding agents without explicit strategic boundaries creates acute operational debt. Large Language Models (LLMs) optimize strictly for local token plausibility rather than global architectural invariants or long-term total cost of ownership.
+In enterprise software engineering, executive leadership often views generative AI as an autonomous productivity panacea. However, deploying autonomous coding agents without explicit strategic boundaries creates acute operational debt.
 
-When an autonomous system operates in an unconstrained environment, it translates high-level executive ambition (*"Modernize our payment rails"*) through stochastic next-token generation. Without mathematically verified guardrails and executive ROI boundaries, autonomous agents introduce unvetted third-party dependencies, clone redundant logic, and silently bypass compliance mandates.
+Large Language Models (LLMs) optimize strictly for local token plausibility rather than global architectural invariants or long-term total cost of ownership.
+
+When an autonomous system operates in an unconstrained environment, it translates high-level executive ambition through stochastic next-token generation. Without mathematically verified guardrails and executive ROI boundaries, autonomous agents introduce unvetted third-party dependencies, clone redundant logic, and silently bypass compliance mandates.
 
 To achieve sustainable enterprise velocity, the Strategy Lead and Technical Product Owner must establish the **Constitutional Investment Thesis**. Every generative AI initiative must be bounded by:
 1. **Economic ROI Guardrails**: Explicit token OpEx allocations and bounded task blast radii.
@@ -131,7 +133,16 @@ Executive intent must enforce strict resource caps to prevent agent infinite loo
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In median mid-2026 enterprise environments—where 75% to 84% of developers rely on inline autocomplete ghost-text and ad-hoc chat sidebars—strategic intent is routinely divorced from architectural reality. Product management drafts high-level, narrative epics ("Deploy generative agents to optimize order routing slippage"), and engineering pods pipe 40,000-token un-indexed repository context blocks into monolithic frontier models at \$157.50 per 1,000 queries. The absence of compiler-grade context engineering creates the classic Gartner post-POC abandonment cycle (over 30% cancellation rate): ballooning cloud inference bills, zero mechanical boundaries, and unconstrained agent loops that burn operational capital while leaving system invariants unverified.
+
+In median mid-2026 enterprise environments, strategic intent is routinely divorced from architectural reality. Product management drafts high-level narrative epics, while engineering pods pipe 40,000-token un-indexed repository context into monolithic frontier models at \$157.50 per 1,000 queries.
+
+The absence of compiler-grade context engineering creates the classic Gartner post-POC abandonment cycle. Unconstrained agent loops burn operational capital while leaving system invariants unverified.
+
+> [!WARNING]
+> **Executive Investment Hazard**:
+> - **Post-POC Abandonment**: Over 30% of enterprise generative AI software initiatives are cancelled post-POC (Gartner).
+> - **Monolithic Token Waste**: Un-indexed 40,000-token context queries cost \$157.50 per 1,000 queries versus \$25.50 for decoupled architectures (83.8% OpEx penalty).
+> - **Review Paralysis**: Monolithic prompts trigger +91% PR review cycle time expansion (Faros AI).
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Operating without formal token economics and mathematical blast-radius limits triggers three predictable production failure modes:

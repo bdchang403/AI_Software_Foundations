@@ -12,21 +12,13 @@ In autonomous, agentic software engineering, third-party libraries represent onl
 
 If an engineering team deploys autonomous code without machine-readable cognitive provenance, the organization cannot audit its systems. If a model provider updates an API checkpoint that introduces subtle reward-hacking bugs, engineering teams without an **AI Software Bill of Materials (AI-SBOM)** must manually inspect thousands of files. With an AI-SBOM, the team can locate and quarantine every affected module with a single query.
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                      TRADITIONAL SBOM VS. COGNITIVE AI-SBOM                                      │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   TRADITIONAL SOFTWARE BOM (SPDX 2.3 / CycloneDX)     COGNITIVE AI-SBOM (SPDX 3.0 AI Profile)    │
-│   ───────────────────────────────────────────────     ────────────────────────────────────────   │
-│   • Library Names & Semantic Versions                 • Foundation Model Slug & Checkpoint Hash  │
-│   • Package Manager Hashes (SHA256)                   • Inference Parameters (Temperature=0.0)   │
-│   • Open-Source Licenses (MIT, Apache 2.0)            • System Prompt Digest & Context Digests   │
-│   • Static Vulnerability CVEs                         • Governing Invariant Rules & ADRs         │
-│   • Binary Dependency Graph                           • Human Authorizing Epic UUID & Trace ID   │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
+| Dimension | Traditional Software BOM (SPDX 2.3 / CycloneDX) | Cognitive AI-SBOM (SPDX 3.0 AI Profile) |
+| :--- | :--- | :--- |
+| **Component Identity** | Library Names & Semantic Versions (`package@1.2.3`) | Foundation Model Slug & Checkpoint Hash (`claude-3.5-sonnet:exact`) |
+| **Cryptographic Hash** | Package Manager Hashes (`SHA256` of tarball) | Inference Parameters (`temperature = 0.0`, `seed = 42`) |
+| **Legal & Compliance** | Open-Source Licenses (MIT, Apache 2.0) | System Prompt Digest & Context Registry Digests (`sha256`) |
+| **Vulnerability Vectors** | Static Vulnerability CVEs (Known Library Bugs) | Governing Invariant Rules & ADR References ($I_{01}-I_{17}$) |
+| **Dependency Lineage** | Binary & Source Dependency Graph | Human Authorizing Epic UUID & End-to-End Trace ID |
 
 ---
 
@@ -177,34 +169,53 @@ The table below explains three critical deployment failures, their architectural
 
 ## 🌐 Dual-Use Industry Comparison: Automated Traceability Across Sectors
 
+```mermaid
+flowchart LR
+    subgraph Provenance ["AI-SBOM Cryptographic Provenance Chain"]
+        direction TB
+        G1["Git Commit SHA"]
+        G2["Model Slug & Digest"]
+        G3["Prompt & Context Digest"]
+        G4["Invariant Verification Hash"]
+        G1 & G2 & G3 & G4 --> S1["SPDX 3.0 AI-SBOM Attestation"]
+        S1 --> S2["Sigstore / Cosign Cryptographic Seal"]
+    end
+
+    subgraph Enforce ["Domain Gating Enforcement"]
+        direction TB
+        E1["<b>FDA SaMD Gate</b><br/>21 CFR §820.30(f)<br/>Unpinned model or temp > 0.0<br/>──► Regulatory Hold"]
+        E2["<b>Core Banking Gate</b><br/>Fed SR 11-7 / SEC 17a-4<br/>Unapproved model or missing weights<br/>──► Gateway Block"]
+    end
+
+    S2 --> Enforce
+
+    style Provenance fill:#e8f4f8,stroke:#17a2b8,stroke-width:1px
+    style Enforce fill:#fef9e7,stroke:#ffc107,stroke-width:1px
+    style S1 fill:#eafaf1,stroke:#28a745,stroke-width:1px
+    style S2 fill:#d4edda,stroke:#155724,stroke-width:2px
 ```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│              CROSS-DOMAIN AI-SBOM & TRACEABILITY IMPLEMENTATION                                  │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   USE CASE A: FDA CLASS III MEDICAL DEVICE (Closed-Loop Pancreas / Infusion)                     │
-│   • Regulatory Clause: FDA 21 CFR §820.30(f) Design Verification & 21 CFR Part 11 Audit Trail.   │
-│   • AI-SBOM Traceability: Links every algorithmic insulin dosage change to the exact patient     │
-│     risk assessment model version and human clinical protocol approval signature.                │
-│   • Gating Rule: Any unpinned model checkpoint or non-zero temperature triggers an immediate     │
-│     Premarket Approval (PMA) regulatory compliance hold.                                         │
-│                                                                                                  │
-│   USE CASE B: HIGH-THROUGHPUT CORE BANKING & ASSET ALLOCATION                                    │
-│   • Regulatory Clause: Federal Reserve SR 11-7 Model Risk Management & SEC Rule 17a-4 Records.  │
-│   • AI-SBOM Traceability: Records the exact mathematical weights, risk multiplier bounds, and    │
-│     training dataset timestamps for every automated order routing decision.                      │
-│   • Gating Rule: If an unapproved open-source local model is detected in the AI-SBOM header,      │
-│     the banking gateway blocks the deployment and routes the release to internal audit.          │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
+
+| Dimension | Use Case A: FDA Class III Medical Device (SaMD) | Use Case B: High-Throughput Core Banking & Allocation |
+| :--- | :--- | :--- |
+| **Regulatory Mandate** | FDA 21 CFR §820.30(f) Design Verification & 21 CFR Part 11 Audit Trail | Federal Reserve SR 11-7 Model Risk Management & SEC Rule 17a-4 |
+| **AI-SBOM Traceability** | Links algorithmic insulin dosage changes to exact risk assessment model version and clinical approval | Records exact mathematical weights, risk multiplier bounds, and training dataset timestamps |
+| **Release Gating Rule** | Unpinned model checkpoint or non-zero temperature triggers Premarket Approval (PMA) hold | Unapproved open-source local model blocks banking gateway and routes release to internal audit |
 
 ---
 
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the median mid-2026 enterprise, "software traceability" ends at standard Git commits and npm/pip lockfiles. Teams have zero automated mechanisms to record whether a chunk of code was written by an engineer, autocomplete ghost-text, or an autonomous agent. When an AI model generates code or infrastructure configurations, the prompt, temperature, model version (e.g., Claude 3.5 Sonnet vs. GPT-4o vs. DeepSeek V3), and context boundary are lost to ephemeral chat history. Over 80% of teams generate zero machine-readable SBOMs for cognitive assets. When an auditor or customer asks: *"Which model version generated this security validation routine, and was it tested with deterministic temperature?"* the engineering pod has no answer other than pointing to a generic PR description.
+
+> [!WARNING]
+> **Ephemeral Cognitive Provenance**: Losing AI model hyperparameters and prompt digests creates un-auditable releases and catastrophic regulatory exposure.
+
+In the median mid-2026 enterprise, "software traceability" ends at standard Git commits and lockfiles. Teams have zero automated records identifying code provenance.
+
+This lack of provenance creates severe operational blind spots:
+* **Vanishing Context**: Prompts, temperatures, and model versions (Claude 3.5 Sonnet vs GPT-4o vs DeepSeek V3) remain trapped in ephemeral chat history.
+* **Missing Cognitive SBOMs**: Over 80% of organizations generate zero machine-readable SBOMs for cognitive assets.
+* **Audit Blindness**: When regulators ask which model checkpoint generated a clinical or financial algorithm, pods can only point to generic pull request text.
 
 ### Ungoverned Production Failure Modes
 Lacking automated AI-SBOM traceability in deployment pipelines exposes enterprises to existential operational and legal risks:

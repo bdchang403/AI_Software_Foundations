@@ -115,9 +115,20 @@ $$\text{Checksum} = \mathrm{SHA1}\left(\text{INV-ID} \;\|\; \text{ADR-ID.strip()
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), Architecture Decision Records (ADRs) are either entirely absent or languish as unmaintained markdown documents in wikis or abandoned `docs/decisions/` repositories. They contain ambiguous conversational prose ("We selected Redis for caching") lacking formal mathematical predicates, invariant bindings, or machine-executable constraints.
 
-When developers prompt AI coding assistants to implement features or refactor modules, the models operate with zero awareness of historical architectural determinations. Models default to the path of least token resistance, re-proposing the exact naive anti-patterns (such as unconstrained cron sweeps, sign-blind vector queries, or synthetic fail-soft defaults) that precipitated earlier production incidents. Because ADRs lack cryptographic anchors in source code, fatigued human reviewers approve pull requests that silently violate enterprise architectural invariants.
+In the mid-2026 median engineering baseline (75%–84% ad-hoc adoption), Architecture Decision Records (ADRs) languish as unmaintained markdown documents in wikis. They contain ambiguous conversational prose lacking formal mathematical predicates or invariant bindings.
+
+When developers prompt AI coding assistants, the models operate with zero awareness of historical architectural decisions:
+
+> [!WARNING]
+> **Resurfacing of Banned Anti-Patterns in Unanchored Codebases**
+> - **Path of Least Resistance**: Models default to naive anti-patterns (such as unconstrained cron sweeps or synthetic fail-soft defaults) previously forbidden in offline wikis.
+> - **Zero Cryptographic Tracing**: Because ADRs lack cryptographic anchors in source code, fatigued human reviewers approve PRs that silently violate safety invariants.
+> - **Regulatory Non-Compliance**: Organizations fail regulatory audits (FDA, FAA, EU AI Act) due to missing bidirectional traceability from architecture to code.
+
+Models default to the path of least token resistance, re-proposing invalidated patterns that precipitated earlier incidents.
+
+Because ADRs lack cryptographic anchors in source code, fatigued human reviewers approve pull requests that silently violate enterprise architectural invariants.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Maintaining conversational, un-anchored ADRs disconnected from automated verification leads to three severe failure modes:

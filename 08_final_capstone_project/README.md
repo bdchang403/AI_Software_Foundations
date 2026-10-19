@@ -6,40 +6,45 @@ The Final Capstone Project represents the complete operational synthesis of the 
 
 An autonomous agent is not an open-ended conversational chatbot. An enterprise autonomous agent is an **Audited, Stateful Software Pipeline** governed by explicit constraints, deterministic tool registries, and physical invariant guardrails.
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                      THE 7-LAYER ENTERPRISE AGENT ARCHITECTURE                                    │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   LAYER 1: IDENTITY & MISSION (COGNITIVE SOUL)                                                   │
-│   • Authored by Strategy Lead (Epic Strategic Blueprint & Value Thesis).                         │
-│   • Defines deterministic operational purpose, bounded goals, and anti-bias invariants.          │
-│                                                                                                  │
-│   LAYER 2: REQUIREMENTS & LOGIC CONSTRAINTS                                                      │
-│   • Authored by Requirements Lead (3-Part Directives & 20-Row Edge-Case Matrices).               │
-│   • Enforces explicit input boundaries, closed-world fallbacks, and data minimization.           │
-│                                                                                                  │
-│   LAYER 3: AST STRUCTURAL MEMORY (LIVING CONTEXT)                                                │
-│   • Authored by Software Architects (AST State & Mathematical Registries).                       │
-│   • Deterministic Living Context (<1,500 tokens) with zero vector drift and zero hallucination.  │
-│                                                                                                  │
-│   LAYER 4: TOOLS & OPERATIONAL ACTUATORS (THE HANDS)                                             │
-│   • Authored by Software Builders (Function Registry / OpenAPI 3.1 & Model Context Protocol).    │
-│   • Strongly-typed tool interfaces with strict schema validation on all argument payloads.       │
-│                                                                                                  │
-│   LAYER 5: ADVERSARIAL BOUNDS & ZERO-MOCK GATING (THE SENTRY)                                    │
-│   • Authored by Validation Leads & QEs (Rules ZM001–ZM009 & Socket Isolation).                   │
-│   • Eliminates synthetic fallbacks, unanchored mocks, and deceptive boolean smuggling.           │
-│                                                                                                  │
-│   LAYER 6: PHYSICAL EXECUTION CLAMPS (THE GUARDIAN)                                              │
-│   • Authored by Security Officers (Invariants I01-I22 & Pre-Action Plausibility Bands).          │
-│   • Intercepts every proposed action with mathematical clamps (|V_exec - Baseline| <= Band).     │
-│                                                                                                  │
-│   LAYER 7: AUDIT CUSTODY & ATTESTATION (THE CUSTODIAN)                                           │
-│   • Authored by BuilderOps & Release Engineers (Machine-Readable SPDX 3.0 AI-SBOM Headers).      │
-│   • Embeds immutable UUIDv4 traces, git commit digests, and zero-temperature audit records.      │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph Layer1 ["Layer 1: Cognitive Soul (Identity & Mission)"]
+        L1["Strategy Lead • Epic Strategic Blueprint & Value Thesis<br>Bounded goals • Operational invariants • Article VI fairness"]
+    end
+
+    subgraph Layer2 ["Layer 2: Requirements Constraints (Logic & Guards)"]
+        L2["Requirements Lead • 3-Part Directives & 20-Row Edge-Case Matrices<br>Strict input bounds • Closed-world fallbacks • Article I data minimization"]
+    end
+
+    subgraph Layer3 ["Layer 3: AST Living Context (Structural Memory)"]
+        L3["Software Architect • AST State & Mathematical Registries<br>Living Context (&lt;1,500 tokens) • Zero vector drift • Deterministic schemas"]
+    end
+
+    subgraph Layer4 ["Layer 4: Actuation Tools (The Hands)"]
+        L4["Software Builder • Function Registry & OpenAPI 3.1 / MCP Tools<br>Strongly typed tool interfaces • Argument schema validation • &le;400 LOC ceiling"]
+    end
+
+    subgraph Layer5 ["Layer 5: Adversarial Bounds (The Sentry)"]
+        L5["Validation Lead / QE • Programmatic AST Rules ZM001–ZM009<br>Zero-mock enforcement • Hermetic socket isolation • Deception testing"]
+    end
+
+    subgraph Layer6 ["Layer 6: Physical Execution Clamps (The Guardian)"]
+        L6["Security Officer • Invariants I01–I22 & Plausibility Bands<br>Mathematical clamping: &verbar;V_exec - Baseline&verbar; &le; Band • Circuit breakers"]
+    end
+
+    subgraph Layer7 ["Layer 7: Audit Custody (The Custodian)"]
+        L7["BuilderOps Engineer • Machine-Readable SPDX 3.0 AI-SBOM Headers<br>Immutable UUIDv4 traces • Git commit digests • Zero-temperature audit records"]
+    end
+
+    L1 --> L2 --> L3 --> L4 --> L5 --> L6 --> L7
+
+    style Layer1 fill:#f8f9fa,stroke:#495057,stroke-width:2px;
+    style Layer2 fill:#e3f2fd,stroke:#1976d2,stroke-width:2px;
+    style Layer3 fill:#e8f5e9,stroke:#388e3c,stroke-width:2px;
+    style Layer4 fill:#fff3e0,stroke:#f57c00,stroke-width:2px;
+    style Layer5 fill:#fce4ec,stroke:#c2185b,stroke-width:2px;
+    style Layer6 fill:#ede7f6,stroke:#512da8,stroke-width:2px;
+    style Layer7 fill:#e0f2f1,stroke:#00796b,stroke-width:2px;
 ```
 
 ---
@@ -159,7 +164,12 @@ The capstone project requires assembling an agent pipeline that survives adversa
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In mid-2026, 75\%-84\% of enterprise engineering pods approach "agentic capstones" by wrapping a commercial frontier model in an ad-hoc loop with a vague system prompt ("You are an expert financial router" or "You are a clinical dosing assistant"). They pipe unvalidated production JSON into chat sidebars, rely on inline autocomplete ghost-text for glue code, and test against 3-5 cherry-picked happy-path prompts. The result is catastrophic: monolithic frontier queries burn \$157.50 per 1,000 tasks, while the team suffers from the 2026 DORA Verification Trap. Reviewers face a +91\% Faros AI PR review bloat because they are forced to manually inspect non-deterministic agent outputs that look syntactically pristine but suffer from subtle deceptive compliance—quietly violating cross-file invariants and regulatory audit mandates.
+In mid-2026, 75\%–84\% of enterprise engineering pods approach "agentic capstones" by wrapping a commercial frontier model in an ad-hoc loop with a vague system prompt. They pipe unvalidated production JSON into chat sidebars, rely on inline autocomplete ghost-text for glue code, and test against 3–5 cherry-picked happy-path prompts.
+
+> [!WARNING]
+> **The Verification Trap & Deceptive Compliance**: Monolithic frontier queries burn \$157.50 per 1,000 tasks, triggering the 2026 DORA Verification Trap. Reviewers face a +91\% Faros AI PR review bloat because they must manually inspect non-deterministic agent outputs that look syntactically pristine but quietly violate cross-file invariants and regulatory audit mandates.
+
+This operational drag destroys developer velocity and creates unmonitored regulatory exposure.
 
 ### Ungoverned Production Failure Modes
 When engineering pods bypass capstone architecture and ship ad-hoc LLM glue code into production environments:

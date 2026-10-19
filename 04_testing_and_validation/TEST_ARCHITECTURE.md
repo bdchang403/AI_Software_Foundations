@@ -29,6 +29,39 @@ flowchart TD
 
 ## 🔬 The 4-Tier Testing Methodology
 
+```mermaid
+sequenceDiagram
+    autonumber
+    actor CI as CI Pipeline Runner
+    participant T1 as Tier 1: Feature Contracts & AST Syntax
+    participant T2 as Tier 2: Boundary Invariants & Math Bounds
+    participant T3 as Tier 3: Cross-Chapter & Channel Parity
+    participant T4 as Tier 4: Real-World Workloads & Forensic Replays
+    participant Gate as Release Gate Attestation
+
+    CI->>T1: Run Markdown AST, Code Fences & Table Column Verifier
+    alt T1 Passes
+        T1->>T2: Run 22 Canonical Invariants & Mathematical Formulations
+        alt T2 Passes
+            T2->>T3: Run Cross-Functional Role Handoff Contracts & Schema Parity
+            alt T3 Passes
+                T3->>T4: Run Forensic Crisis Replays & Deceptive Compliance Attacks
+                alt T4 Passes
+                    T4->>Gate: Issue Attestation Token (Release Approved)
+                else T4 Fails
+                    T4-->>CI: Fail-Closed: Forensic Anomaly Detected
+                end
+            else T3 Fails
+                T3-->>CI: Fail-Closed: Cross-Subsystem Schema Mismatch
+            end
+        else T2 Fails
+            T2-->>CI: Fail-Closed: Mathematical Invariant Breach
+        end
+    else T1 Fails
+        T1-->>CI: Fail-Closed: Syntax / Table Formatting Error
+    end
+```
+
 ### Tier 1: Feature Contracts & AST Syntax
 * **Objective**: Verifies that documentation, specifications, mathematical formulas, and static code structures strictly adhere to architectural contracts.
 * **Key Assertions**:
@@ -181,9 +214,20 @@ The advent of modern frontier reasoning models (OpenAI o1/o3, Claude 3.5/3.7, Ge
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), test architecture remains unstructured and monolithic. Codebases maintain flat `tests/` directories filled with an unorganized mix of unit tests, slow database integration tests, and flaky end-to-end tests requiring 40+ minutes per CI execution.
 
-Organizations fail to distinguish between static contract verification, mathematical boundary assertions, and multi-channel parity tests. When autonomous coding tools introduce numerical instabilities (such as matrix condition number explosions or division-by-zero leaks) or channel desynchronization, flat test suites fail to intercept them because assertions validate only happy-path strings. When flakiness occurs, developers increase timeout thresholds or comment out assertions, degrading automated verification into slow, expensive security theater.
+In the mid-2026 median engineering baseline (75%–84% ad-hoc adoption), test architecture remains unstructured and monolithic. Codebases maintain flat `tests/` directories filled with mixed unit tests, slow database queries, and flaky end-to-end jobs requiring 40+ minutes.
+
+Organizations fail to distinguish between static contract verification, mathematical boundary assertions, and multi-channel parity tests:
+
+> [!WARNING]
+> **Monolithic Test Sprawl & CI Delivery Stoppage**
+> - **45-Minute CI Freeze**: Slow, monolithic test suites create acute delivery friction, compelling developers to batch changes into massive speculative PRs.
+> - **Happy-Path Blindness**: Flat test suites validate only happy-path strings, allowing matrix condition number explosions and division-by-zero leaks to escape into production.
+> - **Security Theater Degradation**: When flakiness occurs, developers increase timeout thresholds or comment out assertions, degrading verification into security theater.
+
+When autonomous coding tools introduce numerical instabilities or channel desynchronization, flat test suites fail to intercept them.
+
+When flakiness occurs, developers increase timeout thresholds or comment out assertions, degrading automated verification into slow, expensive security theater.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Failing to deploy a structured, tiered test architecture induces three severe production failure modes:

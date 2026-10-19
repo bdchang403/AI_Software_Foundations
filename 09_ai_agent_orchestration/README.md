@@ -8,32 +8,35 @@ Enterprise software engineering in regulated, mission-critical environments requ
 
 In the **Context Factory**, autonomous execution is achieved through **Structured Agent Orchestration**: an audited, stateful multi-agent pipeline governed by the **Dialectical Adversarial Triad** (Proponent, Adversary, Auditor) and bounded by non-negotiable physical invariants.
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                      THE 5-LAYER ENTERPRISE AGENT ARCHITECTURE                                    │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   LAYER 1: IDENTITY & COGNITIVE SOUL                                                             │
-│   • Grounded in the 3-Part Directive & Semantic Blueprint (Requirements Lead).                   │
-│   • Enforces deterministic scope, bounded inputs, and typed output schemas.                      │
-│                                                                                                  │
-│   LAYER 2: EPISODIC & STRUCTURAL AST MEMORY                                                      │
-│   • Grounded in AST State & Mathematical Registries (Software Architect).                        │
-│   • Compiles deterministic Living Context (<1,500 tokens) with zero vector drift.               │
-│                                                                                                  │
-│   LAYER 3: TOOLS & OPERATIONAL ACTUATORS (THE HANDS)                                             │
-│   • Grounded in OpenAPI 3.1 & Model Context Protocol (MCP) Schemas (Software Builder).           │
-│   • Strongly-typed tool interfaces with strict runtime argument validation.                      │
-│                                                                                                  │
-│   LAYER 4: PHYSICAL INVARIANT BOUNDARIES (THE GUARDIAN)                                         │
-│   • Grounded in Invariants I01-I22 & Pre-Action Plausibility Bands (Validation Lead).            │
-│   • Mechanically clamps proposed actions before physical state commitment.                       │
-│                                                                                                  │
-│   LAYER 5: AUDIT TRACEABILITY & ATTESTATION (THE CUSTODIAN)                                      │
-│   • Grounded in SPDX 3.0 AI-SBOM & UUIDv4 Traces (BuilderOps Engineer).                          │
-│   • Generates cryptographically verifiable audit logs for model risk governance.                 │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph Layer1 ["Layer 1: Identity & Cognitive Soul"]
+        L1["Requirements Lead • 3-Part Directive & Semantic Blueprint<br>Deterministic scope • Bounded inputs • Typed output schemas"]
+    end
+
+    subgraph Layer2 ["Layer 2: Episodic & Structural AST Memory"]
+        L2["Software Architect • AST State & Mathematical Registries<br>Living Context (&lt;1,500 tokens) • Zero vector drift • Explicit schemas"]
+    end
+
+    subgraph Layer3 ["Layer 3: Tools & Operational Actuators"]
+        L3["Software Builder • OpenAPI 3.1 & MCP Tool Schemas<br>Strongly typed interfaces • Runtime argument validation • Zero hallucinated tools"]
+    end
+
+    subgraph Layer4 ["Layer 4: Physical Invariant Boundaries"]
+        L4["Validation Lead • Invariants I01–I22 & Plausibility Bands<br>Mechanically clamped actions: &verbar;V_exec - Baseline&verbar; &le; Band"]
+    end
+
+    subgraph Layer5 ["Layer 5: Audit Traceability & Attestation"]
+        L5["BuilderOps Engineer • SPDX 3.0 AI-SBOM & UUIDv4 Traces<br>Cryptographically verifiable audit logs • Model risk governance"]
+    end
+
+    L1 --> L2 --> L3 --> L4 --> L5
+
+    style Layer1 fill:#f8f9fa,stroke:#495057,stroke-width:2px;
+    style Layer2 fill:#e3f2fd,stroke:#1976d2,stroke-width:2px;
+    style Layer3 fill:#fff3e0,stroke:#f57c00,stroke-width:2px;
+    style Layer4 fill:#ede7f6,stroke:#512da8,stroke-width:2px;
+    style Layer5 fill:#e0f2f1,stroke:#00796b,stroke-width:2px;
 ```
 
 ---
@@ -102,22 +105,16 @@ flowchart TD
 
 ## 🏥 Dual-Use Regulated Industry Comparison
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│              MULTI-AGENT ORCHESTRATION IN MISSION-CRITICAL DOMAINS                               │
-├────────────────────────────────┬─────────────────────────────────────────────────────────────────┤
-│ Architectural Subsystem        │ Healthcare (FDA Class III SaMD) │ Finance (Core Banking / Wire) │
-├────────────────────────────────┼─────────────────────────────────┼───────────────────────────────┤
-│ Governing Regulatory Framework │ FDA 21 CFR 820.30 & ISO 13485   │ Federal Reserve SR 11-7 & SOX │
-│ Proponent Agent Role           │ Clinical Titration Adjuster     │ Interbank Liquidity Router    │
-│ Adversary Agent Role           │ Hypoglycemic Shock Simulator    │ Counterparty Default Stresser │
-│ Auditor Agent Role             │ Sensor Provenance & Age Verifier│ Solvency & KYC Sanction Gate  │
-│ Plausibility Band Clamp (I02)  │ Max Dose Delta <= 2.0 Units     │ Max Volatility Band <= 3.5σ   │
-│ Fast-Path Consensus Bypass     │ Proponent/Adversary JSD <= 0.12 │ Routing Gate JSD <= 0.12      │
-│ Zero-Simulated-Data (I01)      │ Rejects corrupt CGM streams     │ Rejects simulated FX rates    │
-│ Immutable Audit Blotter        │ Clinical EHR Infusion Log (D1)  │ Double-Entry Swift Blotter(D1)│
-└────────────────────────────────┴─────────────────────────────────┴───────────────────────────────┘
-```
+| Architectural Subsystem | Healthcare (FDA Class III SaMD) | Finance (Core Banking / Wire) |
+| :--- | :--- | :--- |
+| **Governing Regulatory Framework** | FDA 21 CFR 820.30 & ISO 13485 | Federal Reserve SR 11-7 & SOX |
+| **Proponent Agent Role** | Clinical Titration Adjuster | Interbank Liquidity Router |
+| **Adversary Agent Role** | Hypoglycemic Shock Simulator | Counterparty Default Stresser |
+| **Auditor Agent Role** | Sensor Provenance & Age Verifier | Solvency & KYC Sanction Gate |
+| **Plausibility Band Clamp ($I_{02}$)** | Max Dose Delta $\le 2.0$ Units | Max Volatility Band $\le 3.5\sigma$ |
+| **Fast-Path Consensus Bypass** | Proponent/Adversary $\text{JSD} \le 0.12$ | Routing Gate $\text{JSD} \le 0.12$ |
+| **Zero-Simulated-Data ($I_{01}$)** | Rejects corrupt CGM streams | Rejects simulated FX rates |
+| **Immutable Audit Blotter** | Clinical EHR Infusion Log (D1) | Double-Entry Swift Blotter (D1) |
 
 ---
 
@@ -142,7 +139,12 @@ Multi-agent dialectical debate, \$0-compute consensus bypasses, and decoupled mo
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In mid-2026, 75\%-84\% of engineering teams construct "multi-agent systems" by daisy-chaining three or four prompt templates in an ad-hoc Python script, passing unconstrained natural language between them. They query monolithic frontier models for every step, burning \$157.50 per 1,000 tasks. Because modern frontier models optimize for conversational fluency and agreeable tone, these multi-agent pipelines quickly succumb to epistemic collusion: Agent B politely rubber-stamps Agent A's subtle hallucinations, inventing plausible-sounding rationalizations for flawed upstream premises. Human engineers, already suffering from the 2026 DORA Verification Trap, spend hours wading through logs of multi-agent chatter during review, driving Faros AI PR review bloat past +91\% while defect escape rates continue to climb.
+In mid-2026, 75\%–84\% of engineering teams construct "multi-agent systems" by daisy-chaining three or four prompt templates in an ad-hoc Python script, passing unconstrained natural language between them. They query monolithic frontier models for every step, burning \$157.50 per 1,000 tasks.
+
+> [!WARNING]
+> **The Epistemic Collusion Trap**: Modern frontier models optimize for conversational fluency and agreeable tone. Unanchored multi-agent pipelines quickly succumb to epistemic collusion: Agent B politely rubber-stamps Agent A's subtle hallucinations, inventing plausible-sounding rationalizations for flawed upstream premises.
+
+Human engineers, already suffering from the 2026 DORA Verification Trap, spend hours wading through logs of multi-agent chatter during review. This drives Faros AI PR review bloat past +91\% while defect escape rates continue to climb.
 
 ### Ungoverned Production Failure Modes
 When engineering teams bypass structured 7-layer agent assembly and deploy free-form agent loops:

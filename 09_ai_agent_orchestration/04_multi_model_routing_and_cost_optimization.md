@@ -171,7 +171,12 @@ Monolithic models fed 40,000 tokens of raw file dumps experience severe informat
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In mid-2026, 75\%-84\% of software organizations route every single developer prompt, autocomplete request, and agent step to a single top-tier frontier model. They pay \$3.00 per million input tokens and \$15.00 per million output tokens for tasks as trivial as file indexing, boilerplate stub generation, and docstring linting. This monolithic approach burns \$157.50 per 1,000 tasks. Because the model is fed raw 40k-token repository dumps, its attention is diluted ($\mathcal{H} \approx 10.60\text{ nats}$), leading to subtle hallucinated imports and broken method signatures. When executive leadership reviews the quarterly cloud invoice, the initiative is killed—joining Gartner's 30\% post-POC abandonment statistic.
+In mid-2026, 75\%–84\% of software organizations route every developer prompt, autocomplete request, and agent step to a single top-tier frontier model. They pay \$3.00 per million input tokens and \$15.00 per million output tokens for tasks as trivial as file indexing, boilerplate stub generation, and docstring linting.
+
+> [!WARNING]
+> **The Monolithic Inefficiency Trap**: This monolithic approach burns \$157.50 per 1,000 tasks. Because the model consumes raw 40k-token repository dumps, attention dilutes ($\mathcal{H} \approx 10.60\text{ nats}$), producing subtle hallucinated imports and broken method signatures.
+
+When executive leadership reviews the quarterly cloud invoice, the initiative is killed—joining Gartner's 30\% post-POC abandonment statistic.
 
 ### Ungoverned Production Failure Modes
 When engineering teams ignore decoupled multi-model routing and hammer frontier models for all operations:

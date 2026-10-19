@@ -25,23 +25,37 @@ Before establishing standardized context pipelines, organizations must identify 
 
 Organizations must evaluate a representative sample of 50 recent AI interactions (from IDE telemetry, chat histories, or PR descriptions) and classify them into three distinct maturity tiers:
 
+```mermaid
+flowchart LR
+    subgraph Tier1 ["Tier 1: The Magic Wand (Low Maturity)"]
+        T1A["Single-Line Prompt: 'Fix this bug'"] --> T1B["Unconstrained Hallucination"]
+        T1B --> T1C["API Inventions & Missing Errors"]
+    end
+
+    subgraph Tier2 ["Tier 2: The Monolithic Dump (Medium Maturity)"]
+        T2A["Paste 10k-40k Tokens Raw Code"] --> T2B["Attention Entropy Dilution"]
+        T2B --> T2C["Lost in the Middle & 10x Code Churn"]
+    end
+
+    subgraph Tier3 ["Tier 3: The Context Factory (High Maturity)"]
+        T3A["3-Part Directives + AST Living Context"] --> T3B["Deterministic Slices (<1,500 Tokens)"]
+        T3B --> T3C["Zero-Mock CI & SHA1 Verified Parity"]
+    end
+
+    Tier1 --> Tier2 --> Tier3
+
+    style Tier1 fill:#ffcdd2,stroke:#b71c1c,stroke-width:2px;
+    style Tier2 fill:#fff9c4,stroke:#f57f17,stroke-width:2px;
+    style Tier3 fill:#c8e6c9,stroke:#1b5e20,stroke-width:2px;
 ```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                            THE AI INTERACTION MATURITY TIERS                                     │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│  Tier 1: The "Magic Wand" Pattern (Low Maturity — High Hallucination Risk)                       │
-│  • Single-line prompts: "Fix this bug", "Add authentication to this service".                    │
-│  • Outcome: Model invents non-existent APIs, drops error handling, and violates architecture.   │
-│                                                                                                  │
-│  Tier 2: The "Monolithic Dump" Pattern (Medium Maturity — High Token OpEx)                       │
-│  • Pasting 10,000+ lines of raw code and documentation into prompt context.                     │
-│  • Outcome: Attention dilution, "Lost in the Middle" degradation, and diff corruption.           │
-│                                                                                                  │
-│  Tier 3: The "Context Factory" Pattern (High Maturity — Deterministic Precision)                 │
-│  • 3-Part Directives (Role, Task, Format) bound to AST Registries and Semantic Blueprints.       │
-│  • Outcome: Surgical AST scoped edits, zero AST drift, SHA1 invariant verification, fail-closed. │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
+
+### The AI Interaction Maturity Tiers
+
+| Interaction Tier | Core Operational Pattern | Typical Ingress Prompt | Failure Mode & Architectural Outcome |
+| :--- | :--- | :--- | :--- |
+| **Tier 1: The Magic Wand** | Low Maturity / Conversational | Single-line prompts: `"Fix this bug"` | Model invents non-existent APIs, drops error handling, violates architecture |
+| **Tier 2: The Monolithic Dump** | Medium Maturity / Prompt Bloat | Pasting 10k–40k tokens of raw code | Attention entropy dispersion, "Lost in the Middle" loss, 10x code churn |
+| **Tier 3: The Context Factory** | High Maturity / Deterministic | 3-Part Directives + AST Living Context | Surgical AST-scoped edits (<1,500 tokens), zero drift, SHA1 anchors, fail-closed |
 
 ### 1.3 Identifying the "AI Productivity Cliff"
 
@@ -54,6 +68,25 @@ Through structured interviews with principal architects and senior builders, lea
 ## 2. Track II: DORA & SPACE Metrics Extraction (The Performance Baseline)
 
 To mathematically prove the ROI of the Context Factory, BuilderOps teams must extract the previous 90 days of engineering performance data directly from the GitHub REST/GraphQL APIs and CI/CD logging systems.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Lead as Engineering Lead
+    participant GH as GitHub API / CLI (gh)
+    participant CI as CI/CD Pipeline Telemetry
+    participant Report as Day Zero Baseline Report
+
+    Lead->>GH: Extract 90-Day Merged PRs (additions, deletions, comments)
+    GH-->>Lead: S_PR (PR Size) & C_PR (Review Comments)
+    Lead->>GH: Extract Lead Time: T_deploy - T_first_commit
+    GH-->>Lead: Baseline Lead Time (Hours)
+    Lead->>CI: Extract Incident Hotfixes vs Total Deployments
+    CI-->>Lead: Baseline Change Failure Rate (CFR %)
+    Lead->>GH: Calculate Delta(Test LOC) / Delta(Prod LOC)
+    GH-->>Lead: Test Code Ratio (rho_test)
+    Lead->>Report: Synthesize Baseline Radar & Target 60% Lead Time Reduction
+```
 
 ### 2.1 DORA Metric 1: Lead Time for Changes ($T_{\text{lead}}$)
 
@@ -162,7 +195,14 @@ Prior to launching Phase 1 of the 120-Day Rollout Roadmap, every squad member mu
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In mid-2026, 75\%-84\% of engineering pods dive headfirst into AI tools without establishing baseline telemetry or hermetic environments. Developers paste code snippets into personal browser accounts (shadow AI) because corporate tooling feels clunky. Teams lack historical 90-day baselines for DORA and SPACE metrics, leaving engineering managers unable to answer whether AI adoption is genuinely accelerating delivery or merely inflating LOC churn. Tests are riddled with live socket calls and flaky mocks that pass locally but fail intermittently in CI. When PR review bloat climbs by +91\% (Faros AI) and deployment stability degrades by 7.2\% (DORA), the pod has no diagnostic data to identify that un-anchored AI code generation is the root cause.
+
+> [!WARNING]
+> **The 75% Enterprise Ad-Hoc Trap**: Between 75% and 84% of engineering pods dive headfirst into AI tools without establishing baseline telemetry or hermetic environments. Developers paste code snippets into personal accounts (shadow AI) because corporate tooling feels clunky.
+
+#### Observed Empirical Failure Cycle:
+1. **The Context Wall**: Teams lack historical 90-day baselines for DORA and SPACE metrics, leaving engineering managers unable to measure whether AI adoption accelerates delivery or merely inflates LOC churn.
+2. **The Verification Tax**: Tests are riddled with live socket calls and flaky mocks that pass locally but fail in CI; PR review bloat climbs by +91% (Faros AI) and delivery stability degrades by 7.2% per 25% AI adoption (DORA).
+3. **The Churn Inversion**: Without diagnostic baselines, pods cannot isolate unanchored AI code generation as the root cause of systemic delivery degradation.
 
 ### Ungoverned Production Failure Modes
 When engineering teams ignore Day Zero prerequisites and generate code without baseline guardrails:

@@ -56,6 +56,33 @@ Under a uniform distribution over token sequence length $N$, maximal entropy is 
    $$\Delta \mathcal{H} = \mathcal{H}_{\text{RAG}} - \mathcal{H}_{\text{AST}} = 10.60 - 7.31 = \mathbf{+3.29\text{ nats}}$$
    This $+3.29\text{ nats}$ entropy dispersion in naive Vector RAG directly measures the dilution of model focus. Under AST registries, the model operates with focused, low-entropy attention concentrated entirely on active invariant contracts and verified function signatures ($>95\%$ fidelity zone).
 
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Dev as Developer / AI Agent
+    participant Query as Code Query ("Order Execution Handler")
+    participant VectorDB as Vector Database (Cosine Similarity)
+    participant MockStub as Obsolete Test Mock Stub
+    participant ASTVisitor as Static AST Parser
+    participant LivingAST as STATE_REGISTRY.md (Symbol Table)
+
+    rect rgb(255, 235, 238)
+        Note over Query, VectorDB: ❌ Naive Vector RAG (83% Non-Source Noise & Sign Blindness)
+        Query->>VectorDB: Query Semantic Embeddings
+        VectorDB-->>Dev: Injects tests/fixtures/mock_order.py (cos = 0.96)
+        Dev->>Dev: Synthesizes Production Code against Mock API
+        Note over Dev: Runtime Crash (AttributeError) in Production
+    end
+
+    rect rgb(232, 245, 233)
+        Note over Query, LivingAST: ✅ Compiler-Grade AST Code Registry (Symbolic Ground Truth)
+        ASTVisitor->>LivingAST: Parses Concrete Syntax Tree on Git Commit
+        Query->>LivingAST: Query Exact Class & Function Symbol Table
+        LivingAST-->>Dev: Injects Canonical Interface & Active Invariant Anchors
+        Dev->>Dev: Synthesizes Verified Implementation (0% Mock Contamination)
+    end
+```
+
 ### 3. Synthetic Poisoning & The Mock Hallucination Hazard
 Because 37.0\% of the codebase consists of test fixtures and mock objects, vector search engines frequently retrieve test stubs when an agent queries for service interfaces.
 - The model ingests `MockOrderGateway` or `DummyPatientMonitor`, assuming their simplified responses represent live production behavior.
@@ -358,9 +385,20 @@ flowchart TD
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), teams attempt to solve codebase context by deploying a naive vector database (Pinecone, Chroma, Qdrant) or relying on off-the-shelf IDE code search that blindly chunks repository files into dense vector embeddings. Teams operate under the assumption that semantic embeddings "understand" their codebase.
 
-In production, this approach collapses under two mathematical realities. First, in a typical 500,000-LOC mixed enterprise repository, **83.0\% of the tokens represent non-source noise** (test fixtures, test mocks, Dockerfiles, YAML workflows, and legacy migrations). Over 4 out of 5 vector-retrieved chunks originate from test fixtures or configuration boilerplate. Second, cosine similarity is mathematically **sign-blind**: code blocks performing opposite operations (such as credit vs debit, or positive clamp vs negative clamp) share identical technical vocabulary, producing collinear vector representations ($\cos \ge 0.94$). When an autonomous agent queries how to interact with a core domain service, the vector retriever frequently injects an obsolete test mock stub. The model writes production code against the mock's API, passes unit tests that also use that mock, and commits code that blows up at runtime against the real service.
+In the mid-2026 median engineering baseline (75%–84% ad-hoc adoption), teams deploy naive vector databases (Pinecone, Chroma, Qdrant) or rely on off-the-shelf IDE code search that blindly chunks repository files. Teams mistakenly assume that semantic embeddings understand code semantics.
+
+In production, naive vector chunking collapses under two mathematical realities:
+
+> [!WARNING]
+> **Mathematical Failure Modes of Naive Codebase Vector RAG**
+> - **83.0% Non-Source Clutter**: In an enterprise repository, 83.0% of tokens represent non-source noise (fixtures, mocks, Dockerfiles, and YAML workflows). Over 4 out of 5 vector-retrieved chunks originate from test fixtures or boilerplate.
+> - **Mathematical Sign-Blindness**: Code blocks performing opposite operations (such as credit vs debit) share identical technical vocabulary, producing collinear representations ($\cos \ge 0.94$).
+> - **Mock Poisoning**: Autonomous agents frequently retrieve obsolete test mocks instead of production services, writing code against phantom APIs that fail at runtime.
+
+When an autonomous agent queries how to interact with a core domain service, the vector retriever frequently injects an obsolete test mock stub.
+
+The model writes production code against the mock's API, passes unit tests that also use that mock, and commits code that crashes at runtime against live services.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Operating with naive vector chunking or un-indexed codebases triggers three severe production failure modes:

@@ -146,7 +146,15 @@ By replacing brittle conjunctive filters with Compensatory Confluence and boundi
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In median mid-2026 engineering organizations, system architects frequently specify brittle boolean decision pipelines: *"To authorize an action, condition A AND condition B AND condition C AND condition D must all evaluate to TRUE."* As proven by joint probability theory ($P_{\text{joint}} = \prod_{k=1}^K p_k$), multiplying 5 or 6 independent 80% filters collapses system availability to under 25%, producing total operational paralysis (Crisis 4). When systems repeatedly freeze in staging or production, developers use inline AI autocomplete and sidebar chat agents to inject ad-hoc, un-governed bypasses (`if override_flag or env == "prod": proceed`), creating critical security and compliance vulnerabilities.
+
+In median mid-2026 engineering organizations, system architects frequently specify brittle boolean decision pipelines: *"To authorize an action, condition A AND condition B AND condition C must all evaluate to TRUE."*
+
+As proven by joint probability theory ($P_{\text{joint}} = \prod_{k=1}^K p_k$), multiplying 5 or 6 independent 80% filters collapses system availability to under 25%, producing total operational paralysis.
+
+> [!WARNING]
+> **Operational Paralysis & Ad-Hoc Bypasses**:
+> - **Conjunctive Collapse**: Requiring all conditions simultaneously collapses throughput to near zero.
+> - **Unvetted Hotfixes**: Paralyzed systems prompt developers to inject ad-hoc bypasses (`if override_flag or env == "prod": proceed`), creating critical security and compliance vulnerabilities.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Operating with rigid conjunctive filters and unbounded feature scopes introduces three recurring production failures:

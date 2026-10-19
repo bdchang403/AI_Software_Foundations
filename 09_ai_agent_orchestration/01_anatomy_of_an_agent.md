@@ -8,47 +8,45 @@ In consumer-grade AI applications, an "agent" is frequently described as an LLM 
 
 An enterprise autonomous agent is an **audited, stateful software pipeline**. It is formally decomposed into seven deterministic architectural layers, harmonized directly with Chapter 08's canonical Enterprise Agent Architecture, where each layer is contributed by a specific engineering role in the Context Factory:
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                      THE 7-LAYER ENTERPRISE AGENT ARCHITECTURE                                    │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   LAYER 1: IDENTITY & CONSTITUTION (COGNITIVE SOUL)                                              │
-│   • Authored by: Strategy Lead & Product Owner                                                   │
-│   • Core Artifact: Epic Strategic Blueprint, Ethical Principles, and Operational Purpose         │
-│   • Role: Defines deterministic mission boundaries, temperature 0.0 determinism, and anti-bias.  │
-│                                                                                                  │
-│   LAYER 2: REQUIREMENTS & BLUEPRINTS (LOGIC BOUNDS)                                              │
-│   • Authored by: Requirements Lead & Business Analyst                                            │
-│   • Core Artifact: 3-Part Directive & 20-Row Negative Edge-Case Matrix                           │
-│   • Role: Enforces explicit input bounds, closed-world fallbacks, and typed schemas.             │
-│                                                                                                  │
-│   LAYER 3: AST MEMORY & REGISTRIES (LIVING CONTEXT)                                              │
-│   • Authored by: Software Architect & Systems Engineer                                           │
-│   • Core Artifact: AST State & Mathematical Registries (Living Context <1,500 tokens)            │
-│   • Role: Provides zero-drift code coordinates without vector hallucination or repository dumps.  │
-│                                                                                                  │
-│   LAYER 4: ACTUATION TOOLS & SANDBOX (THE HANDS)                                                 │
-│   • Authored by: Software Builder (Software Engineer)                                            │
-│   • Core Artifact: OpenAPI 3.1 & Model Context Protocol (MCP) Manifests                          │
-│   • Role: Provides strictly-typed execution tools with runtime schema validation & socket jail. │
-│                                                                                                  │
-│   LAYER 5: ADVERSARIAL BOUNDS & PLAUSIBILITY BANDS (THE SENTRY)                                  │
-│   • Authored by: Validation Lead (Quality Engineer) & Adversarial Critic                         │
-│   • Core Artifact: Programmatic AST Zero-Mock Rules (ZM001–ZM009) & Conformal Fuzz Tests          │
-│   • Role: Eliminates synthetic stubs, deceptive boolean smuggling, and unanchored mocks.         │
-│                                                                                                  │
-│   LAYER 6: PHYSICAL CLAMPS & CIRCUIT BREAKERS (THE GUARDIAN)                                     │
-│   • Authored by: Security Auditor & Systems Safety Engineer                                      │
-│   • Core Artifact: Bedrock Invariants I01-I22 & Mathematical Plausibility Bands (|V - B| <= Δ)   │
-│   • Role: Intercepts and mechanically clamps every proposed mutation before execution.           │
-│                                                                                                  │
-│   LAYER 7: AUDIT CUSTODY & PROVENANCE ATTESTATION (THE CUSTODIAN)                                │
-│   • Authored by: BuilderOps Engineer & Compliance Officer                                        │
-│   • Core Artifact: Machine-Readable SPDX 3.0 AI-SBOM Headers & Immutable D1 Execution Blotter    │
-│   • Role: Embeds cryptographically signed provenance, model digests, and UUIDv4 audit traces.    │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph Layer1 ["Layer 1: Identity & Constitution (Cognitive Soul)"]
+        L1["Strategy Lead & Product Owner • Epic Strategic Blueprint & Value Thesis<br>Deterministic mission boundaries • Temperature 0.0 • Article VI Anti-Bias"]
+    end
+
+    subgraph Layer2 ["Layer 2: Requirements & Blueprints (Logic Bounds)"]
+        L2["Requirements Lead & Business Analyst • 3-Part Directive & 20-Row Matrix<br>Explicit input bounds • Closed-world fallbacks • Article I Data Minimization"]
+    end
+
+    subgraph Layer3 ["Layer 3: AST Memory & Registries (Living Context)"]
+        L3["Software Architect & Systems Engineer • AST State & Math Registries<br>Living Context (&lt;1,500 tokens) • Zero vector drift • Explicit coordinates"]
+    end
+
+    subgraph Layer4 ["Layer 4: Actuation Tools & Sandbox (The Hands)"]
+        L4["Software Builder • OpenAPI 3.1 & MCP Tool Manifests<br>Strictly typed tools • Runtime schema validation • Hermetic socket jail"]
+    end
+
+    subgraph Layer5 ["Layer 5: Adversarial Bounds & Plausibility Bands (The Sentry)"]
+        L5["Validation Lead & Adversarial Critic • Programmatic Rules ZM001–ZM009<br>Zero-mock enforcement • Conformal fuzz testing • No boolean smuggling"]
+    end
+
+    subgraph Layer6 ["Layer 6: Physical Clamps & Circuit Breakers (The Guardian)"]
+        L6["Security Auditor & Safety Engineer • Invariants I01–I22 & Plausibility Bands<br>Mechanical clamping: &verbar;V - B&verbar; &le; &Delta; • Pre-action circuit breakers"]
+    end
+
+    subgraph Layer7 ["Layer 7: Audit Custody & Provenance (The Custodian)"]
+        L7["BuilderOps Engineer & Compliance Officer • SPDX 3.0 AI-SBOM & D1 Blotter<br>Cryptographically signed provenance • Model weight digests • UUIDv4 traces"]
+    end
+
+    L1 --> L2 --> L3 --> L4 --> L5 --> L6 --> L7
+
+    style Layer1 fill:#f8f9fa,stroke:#495057,stroke-width:2px;
+    style Layer2 fill:#e3f2fd,stroke:#1976d2,stroke-width:2px;
+    style Layer3 fill:#e8f5e9,stroke:#388e3c,stroke-width:2px;
+    style Layer4 fill:#fff3e0,stroke:#f57c00,stroke-width:2px;
+    style Layer5 fill:#fce4ec,stroke:#c2185b,stroke-width:2px;
+    style Layer6 fill:#ede7f6,stroke:#512da8,stroke-width:2px;
+    style Layer7 fill:#e0f2f1,stroke:#00796b,stroke-width:2px;
 ```
 
 ---
@@ -218,38 +216,27 @@ To generate the objective compliance evidence demanded by Federal Reserve SR 11-
 
 ## 🏥 Dual-Use Industry Case Studies
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                   INDUSTRY 7-LAYER AGENT ARCHITECTURE COMPARISON                                 │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   HEALTHCARE: FDA Class III Closed-Loop Clinical Titration Agent                                 │
-│   • L1 (Identity): "You are the Clinical Decision-Support Titration Agent."                      │
-│   • L2 (Requirements): 3-Part Directive bounded to basal adjustments; 20 sensor fault cases.    │
-│   • L3 (AST Memory): AST Medical Registry containing pharmacokinetics and decay formulas.       │
-│   • L4 (Actuation): MCP tools querying calibrated blood glucose sensors and insulin pump driver. │
-│   • L5 (Adversarial): ZM001-ZM009 scanner rejecting simulated glucose; socket isolation active.  │
-│   • L6 (Clamps): Invariant I02 clamps dose: |Dose - Baseline| <= 2.0 Units; fails closed on NaN. │
-│   • L7 (Audit Custody): Emits HIPAA-compliant, encrypted EHR audit logs with Part 11 signatures. │
-│                                                                                                  │
-│   FINANCE: Core Banking High-Frequency Wire Routing Agent                                        │
-│   • L1 (Identity): "You are the Interbank Settlement Routing Agent."                             │
-│   • L2 (Requirements): 3-Part Directive bounded to ISO 20022 wire advice; 20 insolvency cases.  │
-│   • L3 (AST Memory): AST Financial Registry containing BIC directory and central bank liquidity. │
-│   • L4 (Actuation): MCP tools querying SWIFT messaging gateways and RTGS interfaces.             │
-│   • L5 (Adversarial): ZM001-ZM009 scanner catching synthetic mock spreads and float smuggling.   │
-│   • L6 (Clamps): Invariant I02 clamps wire size: |Transfer - Mean| <= 3.5σ; fails closed on mock.│
-│   • L7 (Audit Custody): Emits SOX-compliant D1 SQLite blotter records with 7-year retention.     │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
+| Layer | Healthcare (FDA Class III Titration Agent) | Finance (Core Banking Wire Routing Agent) |
+| :--- | :--- | :--- |
+| **Layer 1: Identity** | "You are the Clinical Decision-Support Titration Agent." | "You are the Interbank Settlement Routing Agent." |
+| **Layer 2: Requirements** | 3-Part Directive bounded to basal adjustments; 20 sensor fault cases. | 3-Part Directive bounded to ISO 20022 wire advice; 20 insolvency cases. |
+| **Layer 3: AST Memory** | AST Medical Registry containing pharmacokinetics and decay formulas. | AST Financial Registry containing BIC directory and liquidity rules. |
+| **Layer 4: Actuation** | MCP tools querying calibrated glucose sensors and insulin pump driver. | MCP tools querying SWIFT messaging gateways and RTGS interfaces. |
+| **Layer 5: Adversarial** | ZM001–ZM009 scanner rejecting simulated glucose; socket isolation active. | ZM001–ZM009 scanner catching synthetic mock spreads and float smuggling. |
+| **Layer 6: Clamps** | Invariant $I_{02}$ clamps dose: $\lvert\text{Dose} - \text{Baseline}\rvert \le 2.0$ Units; fails closed on NaN. | Invariant $I_{02}$ clamps wire: $\lvert\text{Transfer} - \mu\rvert \le 3.5\sigma$; fails closed on mock. |
+| **Layer 7: Audit** | Emits HIPAA-compliant, encrypted EHR audit logs with Part 11 signatures. | Emits SOX-compliant D1 SQLite blotter records with 7-year retention. |
 
 ---
 
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In mid-2026, the median engineering team defines an "agent" as a monolithic 2,500-token prompt string stuffed into an OpenAI or Anthropic API client. At the 75\%-84\% baseline, teams mix identity, business rules, tool definitions, and few-shot examples into one prose block. They grant the model raw access to actuation tools without parameter boundary validation, relying on inline autocomplete to write the tool wrappers. When the agent acts erratically, engineers attempt "prompt engineering"—adding more angry capitalized sentences like "DO NOT MAKE MISTAKES"—which only dilutes attention entropy ($\mathcal{H} \approx 10.60\text{ nats}$) and exacerbates the lost-in-the-middle degradation. Reviewers spend 91\% longer reviewing PRs because there is no architectural boundary between instructions, data, and execution gates.
+In mid-2026, the median engineering team defines an "agent" as a monolithic 2,500-token prompt string stuffed into an OpenAI or Anthropic API client. At the 75\%–84\% baseline, teams mix identity, business rules, tool definitions, and few-shot examples into one prose block. They grant the model raw access to actuation tools without parameter boundary validation, relying on inline autocomplete to write the tool wrappers.
+
+> [!WARNING]
+> **The Attention Dilution Trap**: When the agent acts erratically, engineers attempt "prompt engineering"—adding more angry capitalized sentences—which dilutes attention entropy ($\mathcal{H} \approx 10.60\text{ nats}$) and exacerbates lost-in-the-middle degradation.
+
+Reviewers spend 91\% longer reviewing PRs because there is no architectural boundary between instructions, data, and execution gates.
 
 ### Ungoverned Production Failure Modes
 When engineering teams bypass this 7-layer architecture and deploy monolithic agent prompts without deterministic gates:

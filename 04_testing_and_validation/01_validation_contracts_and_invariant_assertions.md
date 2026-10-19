@@ -36,6 +36,38 @@ To eliminate this circular failure mode, Quality Engineers must enforce **Episte
 └──────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
+```mermaid
+sequenceDiagram
+    autonumber
+    participant AI as Unified Coding Assistant
+    participant Code as Buggy Feature Code (returns 0.50 default)
+    participant Tests as Synthesized Unit Tests (assert result == 0.50)
+    participant CI as 100% Green CI Pipeline (Zero Fault Detection)
+    participant BA_Spec as BA Semantic Blueprint (Contract)
+    participant QE_Agent as Isolated Validation Agent
+    participant IsolatedTest as Hermetic Invariant Test Suite
+    participant Dev_Agent as Independent Builder Agent
+    participant Prod as Production Execution Gate
+
+    rect rgb(255, 235, 238)
+        Note over AI, CI: ❌ Circular AI Self-Grading Anti-Pattern (High-Coverage Mirage)
+        AI->>Code: Synthesizes Implementation with Swallowed Exception
+        AI->>Tests: Author Tests by Inspecting Its Own Code
+        Tests->>CI: Codifies Buggy Default into CI Assertions
+        Note over CI: Green Mirage! Outage Occurs in Production
+    end
+
+    rect rgb(232, 245, 233)
+        Note over BA_Spec, Prod: ✅ Epistemically Isolated Contract-First Validation Pipeline
+        BA_Spec->>QE_Agent: Dispatch Blueprint with 20 Edge Cases
+        QE_Agent->>IsolatedTest: Author Blind Boundary Tests (Hermetic Socket Mock)
+        BA_Spec->>Dev_Agent: Dispatch Implementation Task (No Access to Tests)
+        Dev_Agent->>Prod: Submits Implementation Candidate
+        IsolatedTest->>Prod: Evaluates Candidate against Blind Assertion Suite
+        Note over Prod: Catches 100% of Subtle Mock Smuggling & Defaults
+    end
+```
+
 ---
 
 ## 📐 Anatomy of the Quality Engineering 3-Part Directive
@@ -156,9 +188,20 @@ Draft the complete 3-Part Directive instructing an AI agent to author the test s
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), automated testing functions as an exercise in **Circular Verification** (the 2026 Google DORA Verification Trap). After prompting an AI assistant to generate a feature implementation, developers issue unstructured test requests: *"Write unit tests for `execution_gateway.py` to get code coverage above 85\%."*
 
-The model inspects the implementation code it just synthesized, reverse-engineers assertions to match whatever the code currently emits, and generates tests that pass immediately. If the implementation silently swallowed an exception and returned `0.50`, the generated test asserts `assert calculate_risk() == 0.50`. Test pipelines report 100\% pass rates and SonarQube dashboards display elevated line coverage, but the system has merely codified self-reinforcing tautologies. The AI grades its own implementation without reference to independent architectural specifications. No invariants are validated, negative boundary conditions remain unexercised, and catastrophic logic flaws are codified into regression suites.
+In the mid-2026 median engineering baseline (75%–84% ad-hoc adoption), automated testing functions as an exercise in **Circular Verification** (the 2026 Google DORA Verification Trap).
+
+After prompting an AI assistant to generate code, developers issue unstructured test requests: *"Write unit tests for `execution_gateway.py` to get code coverage above 85%."*
+
+> [!WARNING]
+> **The Circular Verification Trap & Tautological Testing**
+> - **Self-Grading Tautologies**: The model reverse-engineers assertions to match whatever the code currently emits. If the code silently returns `0.50` on error, the generated test asserts `assert calculate_risk() == 0.50`.
+> - **100% Green Mirage**: Test pipelines report 100% pass rates and SonarQube displays elevated coverage, but no domain invariants are validated.
+> - **Regression Codification**: Negative boundary conditions remain unexercised, and catastrophic logic flaws become codified into regression suites.
+
+The model inspects the implementation code it just synthesized, reverse-engineering assertions to match whatever the code currently emits.
+
+Test pipelines report 100% pass rates and elevated line coverage, but the system has merely codified self-reinforcing tautologies.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Operating under circular test generation without contract-first validation leads to three severe production failure modes:

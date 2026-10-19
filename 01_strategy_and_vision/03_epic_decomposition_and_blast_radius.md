@@ -78,6 +78,30 @@ When an unpartitioned 500,000 LOC codebase is dumped into a prompt:
 1. **Middle Zone Collapse**: Rules, schemas, and invariants placed in the middle 70% of the prompt suffer a $40\%$ to $75\%$ probability of omission.
 2. **Feature Erasure & Truncation**: Under context fatigue, models hallucinate missing functions or replace complex error handlers with placeholders like `# ... existing logic remains ...`.
 
+```mermaid
+flowchart TD
+    subgraph Monolithic["❌ Monolithic Ad-Hoc Prompting (Unbounded)"]
+        direction TB
+        M_In["Monolithic Task Ingress<br/>(40,000 Tokens: Code + Tests + Mocks + Docs)"] --> M_LLM["Transformer Attention Core"]
+        M_LLM --> M_Entropy["Attention Entropy Dilution H(A_i) -> ln(N)<br/>U-Shaped Lost-in-the-Middle Degradation"]
+        M_Entropy --> M_Fail["Silent Code Amputation<br/>Placeholder Injections ('# ... existing logic ...')<br/>39% Code Churn Surge"]
+    end
+
+    subgraph Governed["✅ Level 5 Bounded Decomposition Pipeline"]
+        direction TB
+        G_Epic["Strategic Epic<br/>(Decomposed into 4 Bounded Stories)"] --> G_Router{"AST Scope Router"}
+        G_Router --> G_S1["Subsystem 1<br/>(<=2,500 Tokens)"]
+        G_Router --> G_S2["Subsystem 2<br/>(<=2,500 Tokens)"]
+        G_Router --> G_S3["Subsystem 3<br/>(<=2,500 Tokens)"]
+        G_Router --> G_S4["Subsystem 4<br/>(<=2,500 Tokens)"]
+        G_S1 & G_S2 & G_S3 & G_S4 --> G_Gate["Independent Invariant Gates (I11 Quota)"]
+        G_Gate --> G_Done["Deterministic Synthesis (0% Cross-Contamination)"]
+    end
+
+    style Monolithic fill:#ffebee,stroke:#c62828,stroke-width:2px
+    style Governed fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+```
+
 ### 4. Token Spend Ceilings & Micro-USD Quotas ($I_{11}$)
 Unconstrained prompting is economically unsustainable. Executing an unpartitioned 200,000-token prompt across 30 iterative agent cycles costs hundreds of dollars per minor bug fix.
 
@@ -159,7 +183,16 @@ Strategic decomposition is an inviolable mathematical requirement. By enforcing 
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In median mid-2026 engineering pods, developers and technical leads treat LLMs as full-stack architects with unbounded context retention. Teams feed massive monolithic epics ("Migrate authorization to OAuth2, implement distributed telemetry, and re-index the customer data model") in 35,000-token prompts. Due to $O(N^2)$ transformer attention dilution and the U-shaped "Lost in the Middle" degradation curve ($F(x) \approx 0.35$ at midpoint), the model forgets middle constraints, hallucinates deprecated library APIs, and outputs a 900-line monolithic diff. Senior engineers then face the Faros AI review bottleneck (+91% PR cycle time), struggling to verify subtle boundary omissions across dozens of files.
+
+In median mid-2026 engineering pods, developers and technical leads treat LLMs as full-stack architects with unbounded context retention. Teams feed massive monolithic epics in 35,000-token prompts.
+
+Due to $O(N^2)$ transformer attention dilution, the model forgets middle constraints and hallucinates deprecated APIs. It outputs a 900-line monolithic diff that breaks cross-module invariants.
+
+> [!WARNING]
+> **Monolithic Context Failure Metrics**:
+> - **Lost-in-the-Middle Degradation**: Mid-prompt retrieval fidelity drops to $F(x) \approx 0.35$ (40% to 75% retrieval loss).
+> - **GitClear Churn Spiral**: Unbounded scoping induces a +39% surge in code churn and 10x cloned code duplication.
+> - **Review Bottleneck**: Reviewers encounter +91% PR cycle time bloat attempting to verify monolithic diffs.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Failing to enforce mathematical Bounded Task Units (BTUs) and attention budgeting leads to three severe failure patterns:

@@ -8,18 +8,47 @@ In safety-critical and regulated enterprise environments, autonomous artificial 
 
 This document establishes the **Executive Regulatory Compliance Matrix**. It maps formal legal mandates to the engineering patterns implemented throughout the Context Factory.
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                      REGULATORY FRAMEWORK TO ENGINEERING MAPPING                                 │
-├────────────────────┬───────────────────────────────────┬─────────────────────────────────────────┤
-│ Statutory Standard │ Core Legal Mandate                │ Context Factory Implementation Pattern  │
-├────────────────────┼───────────────────────────────────┼─────────────────────────────────────────┤
-│ FDA 21 CFR 820.30  │ Design Controls & Verification    │ AST Zero-Mock Rules (ZM001-ZM009)       │
-│ FDA 21 CFR Part 11 │ Electronic Records & Audit Trails │ SPDX 3.0 AI-SBOM & UUIDv4 Traces        │
-│ Fed Reserve SR 11-7│ Model Risk Governance & Outcomes  │ Dialectical Adversarial Triad & DSR     │
-│ EU AI Act (High)   │ Continuous Risk Management        │ Pre-Action Plausibility Bands (I02)     │
-│ FAA DO-178C DAL A  │ Software Verification & MC/DC     │ Hermetic Isolation & Modularity Bounds  │
-└────────────────────┴───────────────────────────────────┴─────────────────────────────────────────┘
+### Regulatory Framework to Engineering Mapping
+
+| Statutory Standard | Regulatory Scope & Mandate | Context Factory Implementation Pattern | Automated CI Verification Gate |
+| :--- | :--- | :--- | :--- |
+| **FDA 21 CFR §820.30** | Design Controls, Verification & Validation | AST Zero-Mock Circuit Breaker ($I_{01}$) | `scripts/scan_mock_data.py` (ZM001–ZM009) |
+| **FDA 21 CFR Part 11** | Electronic Records & Immutable Audit Trails | Machine-Readable SPDX 3.0 AI-SBOM & UUIDv4 | `verify_ai_sbom.py` ($I_{15}$) |
+| **Federal Reserve SR 11-7** | Model Risk Management & Independent Challenge | Dialectical Triad & Deflated Sharpe Ratio ($\mathrm{DSR} \ge 0.95$) | `solve_convex_debate_verdict()` |
+| **EU AI Act (High-Risk)** | Continuous Risk Governance & Robustness (Arts. 9–15) | Pre-Action Plausibility Bands ($I_{02}$) & WAL Mode ($I_{14}$) | `plausibility_band_clamp` ($I_{02}$) |
+| **FAA DO-178C Level A** | Deterministic Execution & Structural Verification | Hermetic Socket Isolation & 400-LOC Ceilings ($I_{16}, I_{19}$) | `pytest --disable-socket` |
+
+```mermaid
+flowchart TD
+    subgraph Regulations ["Statutory Requirements (What the Law Mandates)"]
+        R1["FDA 21 CFR 820 / ISO 13485: Design Controls"]
+        R2["Fed SR 11-7 / OCC: Conceptual Soundness & Independent Challenge"]
+        R3["EU AI Act Arts 9-15 / NIST AI RMF: Risk Management & Robustness"]
+        R4["21 CFR Part 11 / SOX 404 / ISO 42001: Electronic Audit Trails"]
+    end
+
+    subgraph Controls ["Context Factory Architectural Safeguards"]
+        C1["AST Zero-Mock Circuit Breakers (ZM001-ZM009)"]
+        C2["Dialectical Triad Arbitrated by Convex Log-Odds Solver"]
+        C3["Pre-Action Plausibility Bands (abs(V - Base) <= Band)"]
+        C4["SPDX 3.0 AI-SBOM Headers with Git Digests & UUIDv4"]
+    end
+
+    subgraph CI ["Automated Continuous Compliance Gates"]
+        G1["pytest-socket Hermetic Isolation Gate"]
+        G2["DSR >= 0.95 Statistical Deflation Gate"]
+        G3["Immutable Append-Only Quarantine Table (Zero Hard Deletes)"]
+        G4["Pre-Commit Zero-Drift Registry Gate (git diff --exit-code)"]
+    end
+
+    R1 --> C1 --> G1
+    R2 --> C2 --> G2
+    R3 --> C3 --> G3
+    R4 --> C4 --> G4
+
+    style Regulations fill:#ede7f6,stroke:#512da8,stroke-width:2px;
+    style Controls fill:#e1f5fe,stroke:#0277bd,stroke-width:2px;
+    style CI fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
 ```
 
 ---
@@ -71,7 +100,14 @@ Regulators mandate **outcomes, verification evidence, and auditability**; they d
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In mid-2026, 75\%-84\% of engineering teams in regulated industries (healthcare, banking, defense) treat AI governance as an afterthought. Developers use autocomplete and chat sidebars to generate safety-critical code without documenting provenance. When audit time arrives, teams either claim that "AI is just a text editor" (which regulatory inspectors reject outright) or fabricate manual compliance paperwork after the fact. Meanwhile, the team suffers from the DORA Verification Trap: because AI code contains subtle deceptive compliance—passing superficial syntax checks while failing latent statutory requirements—reviewers spend 91\% more time in PR review without actually verifying regulatory invariants.
+
+> [!WARNING]
+> **The 75% Enterprise Ad-Hoc Trap**: Between 75% and 84% of engineering teams in regulated industries treat AI governance as an afterthought. Developers use autocomplete and chat sidebars to generate safety-critical code without documenting provenance.
+
+#### Observed Empirical Failure Cycle:
+1. **The Context Wall**: When audit time arrives, teams either claim AI is a text editor or fabricate manual compliance paperwork retrospectively.
+2. **The Verification Tax**: AI code contains subtle deceptive compliance, causing reviewers to spend 91% more time in PR review (Faros AI) without actually verifying statutory invariants.
+3. **The Churn Inversion**: Without deterministic verification gates, teams remain exposed to severe regulatory fines and mandatory operational shutdowns.
 
 ### Ungoverned Production Failure Modes
 When engineering teams ignore structured regulatory engineering patterns and ship ungoverned AI-generated code:

@@ -107,7 +107,15 @@ Draft a complete, machine-ingestible **Epic Semantic Blueprint** including:
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In median mid-2026 engineering organizations, developers treat hands-on architectural exercises as academic theory that can be bypassed. In their daily workflow, 75% to 84% of developers rely on inline ghost-text suggestions and conversational chat sidebars. When tasked with implementing an epic, they copy a one-line bullet point from Jira, paste it into an AI chat window, and accept the first syntactically valid code block that compiles. Developers rarely formulate formal 3-Part Directives, calculate epistemic commercial discounts, or embed invariant anchor blocks. The result is rapid architectural decay and fragile prompt-and-pray implementations.
+
+In median mid-2026 engineering organizations, developers treat hands-on architectural exercises as academic theory that can be bypassed. Between 75% and 84% of developers rely on inline ghost-text suggestions and conversational chat sidebars without formal bounds.
+
+When tasked with implementing an epic, engineers copy one-line tickets from Jira, paste them into chat sidebars, and accept the first syntactically valid code block that compiles. Developers rarely formulate formal 3-Part Directives, calculate epistemic commercial discounts, or embed invariant anchor blocks.
+
+> [!WARNING]
+> **Ad-Hoc Prompt-and-Pray Decay**:
+> - **Specification Vacuum**: Copy-pasting unstructured Jira tickets delegates critical boundary decisions to stochastic model priors.
+> - **Architectural Drift**: Omission of formal 3-Part Directives and invariant anchors causes rapid degradation into fragile prompt-and-pray implementations.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Skipping practical specification and verification exercises leads to severe production vulnerabilities:

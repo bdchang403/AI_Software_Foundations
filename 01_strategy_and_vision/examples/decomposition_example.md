@@ -83,7 +83,15 @@ Strategy Leads frequently fail AI initiatives by providing monolithic scopes tha
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In median mid-2026 engineering teams, initiatives are groomed and dispatched in monolithic blocks: *"Implement the end-to-end multi-asset algorithmic execution platform"* or *"Build the complete implantable cardiac monitoring and rhythm detection system."* Developers paste this open-ended scope into Copilot Workspace or autonomous agents, expecting the model to concurrently synthesize protocol parsers, risk limiters, state machines, and hardware drivers. Trapped under a 250,000-token context burden, the model suffers severe attention degradation, hallucinating protocol tags, dropping sequence validations, and generating thousands of lines of unmaintainable pasta code that resists verification.
+
+In median mid-2026 engineering teams, initiatives are groomed and dispatched in monolithic blocks without architectural boundaries.
+
+Developers paste open-ended scopes into autonomous agents, expecting models to concurrently synthesize protocol parsers, risk limiters, state machines, and hardware drivers.
+
+> [!WARNING]
+> **Monolithic Degradation Traps**:
+> - **Context Fatigue**: Trapped under a 250,000-token context burden, models suffer severe attention degradation.
+> - **Protocol Hallucinations**: Models drop sequence validations and hallucinate protocol tags, generating pasta code that resists verification.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Operating without bounded decomposition in mission-critical environments triggers three catastrophic failure modes:

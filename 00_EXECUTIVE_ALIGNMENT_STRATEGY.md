@@ -16,12 +16,22 @@ The **Context Factory** provides the executive blueprint to industrialize AI-ass
 
 In autonomous enterprise software engineering, **Context is Currency**. Inefficient context management directly inflates cloud infrastructure OpEx while degrading model reasoning.
 
-```
-Monolithic Prompting (Dump the Whole Repo):
-   Tokens:  [ 500,000 Raw Context Tokens ] ──► Cost: $$$$ (High OpEx) ──► Accuracy: 35% (Diluted)
+```mermaid
+flowchart TD
+    subgraph Monolithic ["Monolithic Approach: Dump the Whole Repo ($157.50 / 1,000 Tasks)"]
+        M1["Developer Query + 40,000 Raw Repo Tokens"] --> M2["Monolithic Frontier Model ($3.00/M in, $15.00/M out)"]
+        M2 --> M3["High Attention Entropy (H = 10.60 nats)<br>40%-75% Retrieval Amnesia<br>Cost: $157.50 per 1,000 Tasks"]
+    end
 
-The Context Factory (2-Tier Precision Routing):
-   Tokens:  [ 1,500 Minified AST Tokens ]  ──► Cost: $    (85% Savings) ──► Accuracy: 98% (Surgical)
+    subgraph Decoupled ["Context Factory 3-Tier Pipeline ($25.50 / 1,000 Tasks — 83.8% OpEx Savings)"]
+        D1["Task Request"] --> T1["Tier 1: High-Throughput Router<br>1.5k Tokens @ $0.80/M ($1.20)"]
+        T1 --> T2["Tier 2: Cost-Efficient Reasoner<br>2.5k In ($0.27/M) / 800 Out ($1.10/M) ($1.56)"]
+        T2 --> T3["Tier 3: Frontier Forensic Auditor<br>1.2k Tokens @ $3.00/M ($3.60)"]
+        T3 --> D4["Base Cost: $6.36 | With 4.0x Retry Overhead: $25.42<br>Surgical Focus (H = 7.31 nats) | OpEx Savings: 83.8%"]
+    end
+
+    style Monolithic fill:#ffebee,stroke:#c62828,stroke-width:2px;
+    style Decoupled fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
 ```
 
 ### 1.1 Financial Comparison: Monolithic vs. Context Factory
@@ -89,21 +99,16 @@ Industrializing software engineering with AI requires structured alignment acros
 
 Measuring developer productivity in an AI-augmented organization requires updating standard DORA and SPACE metrics to account for code generation volume, review load, and epistemic drift.
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                             EXECUTIVE AI TELEMETRY DASHBOARD                                     │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│  DORA Metrics:                                                                                   │
-│  • Lead Time for Changes: Commit-to-merge velocity (<4 hrs target)                              │
-│  • Change Failure Rate (CFR): Monitored post-AI code generation (assert CFR <= 5%)              │
-│  • Mean Time to Recovery (MTTR): Automated rollback via git drift monitor (<15 min)              │
-│                                                                                                  │
-│  SPACE Metrics:                                                                                  │
-│  • Review Cognitive Load: PR line size (<200 LOC) & review comments per PR (<3 comments)        │
-│  • Test Code Ratio: Delta(Test LOC) / Delta(Prod LOC) >= 1.50                                    │
-│  • Context Freshness Index: 100% byte parity between AST registries and code                     │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
+### Executive AI Telemetry Dashboard
+
+| Metric Category | Target Indicator | Operational Threshold | Architectural Assurance |
+| :--- | :--- | :--- | :--- |
+| **DORA: Lead Time for Changes** | Commit-to-merge velocity | $< 4$ hours target | 60% lead-time reduction via Semantic Blueprints |
+| **DORA: Change Failure Rate** | Post-AI deployment stability | $\text{CFR} \le 5\%$ | AST zero-mock enforcement and adversarial red-teaming |
+| **DORA: Mean Time to Recovery** | Automated rollback duration | $< 15$ minutes | Automated git drift monitor and zero-drift rollbacks |
+| **SPACE: Review Cognitive Load**| PR diff size & review count | $\le 200$ LOC & $< 3$ comments | Invariant $I_{20}$ small-batch PR slicing ceiling |
+| **SPACE: Test Code Ratio** | Verification investment ratio | $\Delta\text{Test} / \Delta\text{Prod} \ge 1.50$ | Hermetic socket-isolated test expansion |
+| **SPACE: Context Freshness** | Registry synchronization | 100% byte parity | Automated pre-commit `git diff --exit-code` check |
 
 ### 4.1 Detailed Metric Formulations:
 
@@ -170,7 +175,14 @@ gantt
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In mid-2026, 75\%-84\% of technology executives believe AI transformation is achieved by issuing corporate credit cards for LLM subscriptions and demanding that developers "code 50\% faster." Executives look at vanity metrics—PR count and raw lines of code—while remaining blind to the operational friction on the ground. Teams are caught in the 2026 DORA Verification Trap: lines of code increase, but PR review duration expands by +91\% (Faros AI), deployment stability drops by 7.2\% per 25\% AI adoption (DORA), and code churn surges by +39\% (GitClear). Furthermore, organizations hemorrhage cash on monolithic frontier models burning \$157.50 per 1,000 tasks, driving 30\% of enterprise generative AI projects to post-POC abandonment (Gartner).
+
+> [!WARNING]
+> **The 75% Enterprise Ad-Hoc Trap**: Between 75% and 84% of technology executives believe AI transformation is achieved by issuing corporate credit cards for LLM subscriptions and demanding that developers code 50% faster. Executives monitor vanity metrics—commit counts and raw LOC—while remaining blind to operational friction.
+
+#### Observed Empirical Failure Cycle:
+1. **The Context Wall**: Engineers spend over 63% of their day manually searching and compiling codebase context (Stack Overflow).
+2. **The Verification Tax**: Lines of code increase, but PR review duration expands by +91% (Faros AI) and deployment stability drops by 7.2% per 25% AI adoption (DORA).
+3. **The Churn Inversion**: Monolithic prompts burn $157.50 per 1,000 tasks and churn jumps by +39% (GitClear), driving 30% of generative AI projects to post-POC abandonment (Gartner).
 
 ### Ungoverned Production Failure Modes
 When executive leadership measures AI adoption by raw code throughput without architectural boundaries:

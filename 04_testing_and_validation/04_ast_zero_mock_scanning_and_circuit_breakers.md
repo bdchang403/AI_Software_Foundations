@@ -136,6 +136,46 @@ The GitClear analysis of 211 million lines of enterprise code directly confirms 
 
 The static AST scanner operates via `ast.NodeVisitor`, inspecting Python syntax trees without executing code:
 
+```mermaid
+classDiagram
+    class NodeVisitor {
+        +visit(node)
+        +generic_visit(node)
+    }
+    class ASTZeroMockScanner {
+        +List~RuleViolation~ violations
+        +Set~String~ active_rules
+        +visit_FunctionDef(node)
+        +visit_Try(node)
+        +visit_ExceptHandler(node)
+        +visit_Return(node)
+        +visit_Assign(node)
+        +assert_zero_violations()
+    }
+    class ZM001_ExceptNumericReturn {
+        +check_handler(node)
+    }
+    class ZM002_UnconstrainedTryExcept {
+        +check_bare_except(node)
+    }
+    class ZM003_HardcodedMockReturn {
+        +check_mock_literals(node)
+    }
+    class ZM004_MonkeyPatchAssignment {
+        +check_attribute_mutation(node)
+    }
+    class ZM005_NonDeterministicTime {
+        +check_unmocked_wallclock(node)
+    }
+
+    NodeVisitor <|-- ASTZeroMockScanner
+    ASTZeroMockScanner o-- ZM001_ExceptNumericReturn
+    ASTZeroMockScanner o-- ZM002_UnconstrainedTryExcept
+    ASTZeroMockScanner o-- ZM003_HardcodedMockReturn
+    ASTZeroMockScanner o-- ZM004_MonkeyPatchAssignment
+    ASTZeroMockScanner o-- ZM005_NonDeterministicTime
+```
+
 ### 1. `ZM001_EXCEPT_NUMERIC_RETURN`
 * **AST Pattern**: `ast.ExceptHandler` containing an `ast.Return` node where `node.value` is an `ast.Constant` integer or float $> 0$ (excluding booleans).
 * **Banned Syntax**:
@@ -235,6 +275,36 @@ The static AST scanner operates via `ast.NodeVisitor`, inspecting Python syntax 
 ## ⚡ The Runtime Zero-Mock Circuit Breaker
 
 Static scanning protects source code, but runtime pipelines must protect against unverified external data payloads.
+
+```mermaid
+stateDiagram-v2
+    [*] --> CLOSED: System Boot & Healthy Ingress
+    
+    state CLOSED {
+        [*] --> NormalOperation
+        NormalOperation --> EvaluateTelemetry: Invariant Check
+        EvaluateTelemetry --> NormalOperation: Invariants Verified Clean
+    }
+    
+    CLOSED --> OPEN: consecutive_failures >= 3 OR anomaly_score > 0.85
+    
+    state OPEN {
+        [*] --> FailClosedProtection
+        FailClosedProtection --> ConsensusQuarantineLedger: Route Tainted Payloads
+        ConsensusQuarantineLedger --> EmitExecutiveAlert: Slack / PagerDuty Alert
+        EmitExecutiveAlert --> AwaitResetTimeout: timer >= 300 seconds
+    }
+    
+    OPEN --> HALF_OPEN: Reset Timeout Reached (Probe Canary Allowed)
+    
+    state HALF_OPEN {
+        [*] --> DispatchCanaryProbe: Route 1% Production Traffic
+        DispatchCanaryProbe --> EvaluateProbeResults
+    }
+    
+    HALF_OPEN --> CLOSED: consecutive_canary_successes >= 5 (Recovery Confirmed)
+    HALF_OPEN --> OPEN: single_probe_failure == True (Re-trip Immediately)
+```
 
 ### The 15 Verified Immutable Provenances
 Every incoming data payload must carry an explicit `data_source` tag verified against the **15 Canonical Provenances**:
@@ -353,9 +423,20 @@ Because modern reasoning models generate highly persuasive, authoritative natura
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), developers approach defect remediation and feature authoring as an un-anchored trial-and-error process. Upon receiving an incident or defect report, engineers prompt conversational AI sidebars directly: *"Fix the null pointer exception in the trade settlement service."*
 
-The model modifies production source files directly without establishing a deterministic failure reproduction boundary. Lacking a failing test harness to constrain synthesis, the model improvises edge-case behavior, resolving the immediate symptom while injecting multiple latent regressions. This un-anchored iteration represents the primary driver of GitClear's **+39\% code churn surge** and Google DORA's **7.2\% delivery stability degradation**. Furthermore, when the model encounters missing telemetry, it inserts synthetic defaults like `.get("fee", 0.0)` or `except Exception: pass` (violating ZM006 and ZM008). Fatigued reviewers inspect syntactically clean diffs, miss the synthetic fallbacks, and merge corrupting logic into production branches.
+In the mid-2026 median engineering baseline (75%–84% ad-hoc adoption), developers approach defect remediation as an un-anchored trial-and-error process. Upon receiving an incident report, engineers prompt conversational AI sidebars: *"Fix the null pointer exception in the trade settlement service."*
+
+The model modifies production source files directly without establishing a deterministic failure reproduction boundary:
+
+> [!WARNING]
+> **Speculative Churn & Synthetic Poisoning**
+> - **Code Churn Surge**: Un-anchored synthesis drives a **+39% code churn surge** within two weeks of merge (GitClear).
+> - **Delivery Stability Degradation**: For every 25% increase in ungoverned AI coding adoption, delivery stability drops by **7.2%** (Google Cloud DORA).
+> - **Synthetic Poisoning**: Models insert synthetic defaults (`.get("fee", 0.0)`) or silenced catch blocks (`except Exception: pass`), violating rules ZM006 and ZM008.
+
+Lacking a failing test harness to constrain synthesis, the model improvises edge-case behavior, resolving the immediate symptom while injecting multiple latent regressions.
+
+Fatigued reviewers inspect syntactically clean diffs, miss the synthetic fallbacks, and merge corrupting logic into production branches.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Developing without automated AST scanners and reproduction gates induces three severe production failure modes:

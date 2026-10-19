@@ -8,17 +8,40 @@ When an enterprise relies on a single autonomous agent to write, evaluate, and c
 
 To eliminate single-point epistemic failure, the Context Factory employs the **Dialectical Adversarial Triad**: three specialized autonomous sub-agents with opposing objective functions that rigorously debate every proposed state change before it reaches physical systems.
 
+```mermaid
+flowchart TD
+    subgraph Triad_Ingress ["1. Hypothesis Generation & Stress Testing"]
+        P["The Proponent<br>Maximize feature throughput & ROI<br>Proposes candidate action"]
+        A["The Adversary<br>Maximize failure mode exposure<br>Stress-tests edge cases & bounds"]
+    end
+
+    subgraph Consensus_Gating ["2. Level-2 Mathematical Gating"]
+        Calc["Evaluate Jensen-Shannon Divergence<br>D_JS(P_prop || P_adv)"]
+        Decision{"JSD &le; 0.12?"}
+    end
+
+    subgraph Execution_Paths ["3. Execution & Evidence Fusion"]
+        FastPath["Fast-Path Consensus Bypass<br>Zero Additional Token Cost<br>Commit Decision Immediately"]
+        Auditor["Forensic Auditor Arbitration<br>Convex Log-Odds Evidence Fusion<br>Enforce Invariants I01–I22"]
+    end
+
+    P & A --> Calc
+    Calc --> Decision
+    Decision -- "JSD &le; 0.12 (High Agreement)" --> FastPath
+    Decision -- "JSD > 0.12 (Divergence)" --> Auditor
+
+    style Triad_Ingress fill:#f8f9fa,stroke:#495057,stroke-width:2px;
+    style Consensus_Gating fill:#e8f4f8,stroke:#17a2b8,stroke-width:2px;
+    style Execution_Paths fill:#fef9e7,stroke:#ffc107,stroke-width:2px;
+    style FastPath fill:#d4edda,stroke:#28a745,stroke-width:2px;
+    style Auditor fill:#fff3e0,stroke:#f57c00,stroke-width:2px;
 ```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                      THE 3-STAGE DIALECTICAL ADVERSARIAL TRIAD                                   │
-├────────────────────┬───────────────────────────────────┬─────────────────────────────────────────┤
-│ Agent Persona      │ Objective Function                │ Core Heuristic                          │
-├────────────────────┼───────────────────────────────────┼─────────────────────────────────────────┤
-│ 1. The Proponent   │ Maximize feature throughput & ROI │ Proposes candidate action/code delta.   │
-│ 2. The Adversary   │ Maximize failure mode exposure    │ Attacks edge cases, stress-tests bounds.│
-│ 3. Forensic Auditor│ Maximize invariant compliance     │ Verifies data provenance & regulations. │
-└────────────────────┴───────────────────────────────────┴─────────────────────────────────────────┘
-```
+
+| Agent Persona | Objective Function | Core Heuristic |
+| :--- | :--- | :--- |
+| **1. The Proponent** | Maximize feature throughput & ROI | Proposes candidate action/code delta. |
+| **2. The Adversary** | Maximize failure mode exposure | Attacks edge cases, stress-tests bounds. |
+| **3. Forensic Auditor** | Maximize invariant compliance | Verifies data provenance & regulations. |
 
 ---
 
@@ -182,34 +205,25 @@ if __name__ == "__main__":
 
 ## 🏥 Dual-Use Regulated Industry Case Studies
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                   DIALECTICAL MULTI-AGENT CONSENSUS CASE STUDIES                                 │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   HEALTHCARE: FDA Class III Closed-Loop Titration Dialectic                                      │
-│   • Proponent: Proposes +1.5 Unit insulin bolus based on rapid meal intake telemetry.            │
-│   • Adversary: Identifies declining physical activity telemetry and predicts hypoglycemia.       │
-│   • Divergence: JSD = 0.38 (> 0.12). Triggers full log-odds arbitration.                         │
-│   • Forensic Auditor: Enforces Invariant I02 (Physiological Clamp) and limits bolus to +0.4 Units│
-│   • Outcome: Patient protected from severe hypoglycemic shock; decision logged to tamper-evident audit trail in compliance with 21 CFR Part 11.│
-│                                                                                                  │
-│   FINANCE: Core Banking High-Frequency Settlement Dialectic                                      │
-│   • Proponent: Recommends routing \$15,000,000 wire through Gateway B for lower transaction fee. │
-│   • Adversary: Flags sudden volatility spike in counterparty credit default swap (CDS) spreads.  │
-│   • Divergence: JSD = 0.42 (> 0.12). Triggers full log-odds arbitration.                         │
-│   • Forensic Auditor: Weighted log-odds fuses CDS spread and solvency, routing through Fedwire.  │
-│   • Outcome: Bank avoids counterparty freeze during sudden liquidity dislocation.                │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
+| Dimension | Healthcare (FDA Class III Titration Dialectic) | Finance (Core Banking Settlement Dialectic) |
+| :--- | :--- | :--- |
+| **Proponent Stance** | Proposes +1.5 Unit insulin bolus based on rapid meal intake telemetry. | Recommends routing \$15,000,000 wire through Gateway B for lower transaction fee. |
+| **Adversary Stance** | Identifies declining physical activity telemetry and predicts hypoglycemia. | Flags sudden volatility spike in counterparty credit default swap (CDS) spreads. |
+| **Mathematical Divergence** | $\text{JSD} = 0.38 > 0.12 \to$ Triggers full log-odds arbitration. | $\text{JSD} = 0.42 > 0.12 \to$ Triggers full log-odds arbitration. |
+| **Forensic Auditor Gate** | Enforces Invariant $I_{02}$ (Physiological Clamp) and limits bolus to +0.4 Units. | Weighted log-odds fuses CDS spread and solvency, routing through Fedwire. |
+| **Production Outcome** | Patient protected from severe hypoglycemia; tamper-evident 21 CFR Part 11 audit log. | Bank avoids counterparty freeze during sudden market liquidity dislocation. |
 
 ---
 
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In mid-2026, 75\%-84\% of engineering teams handle multi-agent consensus through either naive LLM self-reflection ("Review your previous response and check for mistakes") or unstructured multi-agent chat rooms. Self-reflection fails completely against modern frontier deception: models defend their initial hypotheses with plausible rationalizations. Meanwhile, multi-agent chat rooms degenerate into polite sycophancy, where agents flatter each other and converge on the average of their mutual hallucinations. To make matters worse, these ungrounded loops rerun expensive frontier models on every turn, burning \$157.50 per 1,000 tasks even for trivial, routine operations where all models agree from the start.
+In mid-2026, 75\%–84\% of engineering teams handle multi-agent consensus through either naive LLM self-reflection or unstructured multi-agent chat rooms. Self-reflection fails completely against modern frontier deception: models defend their initial hypotheses with plausible rationalizations.
+
+> [!WARNING]
+> **The Polite Sycophancy Trap**: Multi-agent chat rooms degenerate into polite sycophancy where agents flatter each other and converge on the average of their mutual hallucinations. Ungrounded loops rerun expensive models on every turn, burning \$157.50 per 1,000 tasks even when all models agree from the start.
+
+This unchecked compute burn destroys operating margins and introduces dangerous blind spots into production deployments.
 
 ### Ungoverned Production Failure Modes
 When engineering teams ignore dialectical arbitration and deploy unanchored multi-agent chatter in production:

@@ -14,23 +14,37 @@ A fundamental principle of enterprise software engineering is maintaining a stri
 - **Statutory Legal Obligations**: What sovereign laws and international standards command (e.g., risk management, human oversight, auditable record-keeping, and cybersecurity robustness). Regulators do not prescribe specific software algorithms or code libraries.
 - **Engineering Implementation Patterns**: The concrete architectural mechanisms (e.g., Abstract Syntax Tree scanners, immutable ledgers, hermetic socket sandboxes, and convex log-odds solvers) built by engineers to produce the objective, auditable evidence required by statutory authorities.
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│              STATUTORY REGULATORY MANDATES VS. ENGINEERING IMPLEMENTATION PATTERNS                │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   STATUTORY MANDATE (THE LAW)                         ENGINEERING IMPLEMENTATION (THE SYSTEM)    │
-│   ─────────────────────────────────────────           ─────────────────────────────────────────  │
-│   • EU AI Act Art 10: Training/Testing Data Quality──► Zero-Mock Scanners & Ledoit-Wolf Shrinkage│
-│   • EU AI Act Art 12: Automated Lifetime Logging   ──► Append-Only Immutable Quarantine Ledgers  │
-│   • EU AI Act Art 14: Effective Human Oversight    ──► ADR-016 Modularity (<= 200 LOC PR Slices) │
-│   • EU AI Act Art 15: Accuracy & Cybersecurity     ──► Hermetic Socket Isolation & Pre-Action    │
-│                                                        Plausibility Envelopes ($I_{02}$)         │
-│   • ISO/IEC 42001 Cl 9/10: Continuous Performance  ──► Continuous Churn Tracking & Invariant     │
-│                                                        Anchor Hashes ($I_{01}-I_{22}$)           │
-│   • NIST AI RMF Manage: Fail-Safe Recovery         ──► Runtime Fail-Closed Circuit Breakers      │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph Statutory ["Statutory Mandates (The Law)"]
+        direction TB
+        S1["EU AI Act Art 10: Training/Testing Data Quality"]
+        S2["EU AI Act Art 12: Automated Lifetime Logging"]
+        S3["EU AI Act Art 14: Effective Human Oversight"]
+        S4["EU AI Act Art 15: Accuracy & Robustness"]
+        S5["ISO/IEC 42001 Cl 9/10: Continuous Performance"]
+        S6["NIST AI RMF Manage: Fail-Safe Recovery"]
+    end
+
+    subgraph Mechanisms ["Engineering Implementation (The System)"]
+        direction TB
+        M1["Zero-Mock Scanners & Ledoit-Wolf Shrinkage ($I_{01}, I_{11}$)"]
+        M2["Append-Only Immutable Quarantine Ledgers ($I_{04}$)"]
+        M3["ADR-016 Modularity (<= 200 LOC PR Slices)"]
+        M4["Hermetic Sockets & Plausibility Envelopes ($I_{02}, I_{15}$)"]
+        M5["Invariant Anchor Hashes ($I_{01}-I_{22}$)"]
+        M6["Runtime Fail-Closed Circuit Breakers"]
+    end
+
+    S1 --> M1
+    S2 --> M2
+    S3 --> M3
+    S4 --> M4
+    S5 --> M5
+    S6 --> M6
+
+    style Statutory fill:#e8f4f8,stroke:#17a2b8,stroke-width:1px
+    style Mechanisms fill:#eafaf1,stroke:#28a745,stroke-width:1px
 ```
 
 ---
@@ -175,7 +189,16 @@ Without continuous runtime invariant monitoring, autonomous systems undergo sile
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the median mid-2026 organization, "regulatory compliance" is an annual paper-pushing exercise handled entirely by legal and risk committees. External consultants produce 100-page slide decks citing NIST AI RMF 1.0, ISO/IEC 42001, and the EU AI Act. Meanwhile, in actual production code repositories, there is zero runtime enforcement. Developers prompt models using ad-hoc inline ghost-text, APIs fail open when sensor streams disconnect, models silently impute synthetic values to avoid throwing exceptions, and audit logs are routinely overwritten or purged by automated TTLs. Management believes that having an approved "AI Ethics Policy PDF" achieves compliance, while the engineering team has no mechanism linking lines of code to Article 10 data governance or Article 15 cyber-robustness.
+
+> [!WARNING]
+> **Static Paperwork vs. Runtime Enforcement**: Producing corporate ethics PDFs while lacking runtime code invariants fails regulatory compliance audits.
+
+In the median mid-2026 organization, "regulatory compliance" is an annual paper exercise. Legal committees produce 100-page slide decks citing NIST AI RMF and the EU AI Act.
+
+Meanwhile, production repositories maintain zero runtime enforcement:
+* **Fail-Open APIs**: Services fail open when sensor feeds disconnect, silently imputing synthetic values to suppress exceptions.
+* **Purged Audit Records**: Execution logs are overwritten by ephemeral TTL policies rather than written to immutable ledgers.
+* **Unanchored Logic**: Engineering has no mechanical linkage connecting code commits to statutory mandates (Article 10 data governance or Article 15 robustness).
 
 ### Ungoverned Production Failure Modes
 Without deterministic runtime guardrails, statutory compliance collapses under regulatory examination:

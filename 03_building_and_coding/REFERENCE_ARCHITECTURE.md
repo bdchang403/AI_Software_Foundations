@@ -125,9 +125,20 @@ When an agent enters `src/domain_billing/`, it reads this localized registry and
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), repository structure is treated purely as a human visual convention. Context configurations are scattered haphazardly: unversioned `.cursorrules` files reside in ad-hoc subdirectories, monolithic 2,000-line prompt blocks are pasted into `.github/copilot-instructions.md`, and critical domain rules remain trapped in disconnected wikis.
 
-When autonomous AI agents or IDE assistants run in such environments, they confront an un-indexed labyrinth. Without standardized Tier 1 routers or localized function registries, agents operate with unconstrained filesystem access. Agents consume thousands of tokens scanning directory trees, hallucinate external libraries, and modify files far outside assigned task boundaries. Developers using disparate AI interfaces receive contradictory code generation behaviors, producing architectural drift across the codebase.
+In the mid-2026 median engineering baseline (75%–84% ad-hoc adoption), repository structure is treated purely as a human visual convention. Context configurations are scattered across unversioned dotfiles and 2,000-line monolithic instruction prompts.
+
+When autonomous AI agents or IDE assistants run in such environments, they confront an un-indexed labyrinth:
+
+> [!WARNING]
+> **Multi-Tool Drift & Unbounded Blast Radius**
+> - **Multi-Tool Fragmentation**: Developers on Claude Code, Cursor, and Copilot receive contradictory code generation behaviors, fracturing shared domain models.
+> - **Unbounded Agentic Blast Radius**: Without localized function registries (`registry.json`), agents modify shared infrastructure while attempting narrow feature tickets.
+> - **Context Saturation**: Monolithic 2,000-line prompt files consume up to 25% of working memory before domain logic is even ingested.
+
+Without standardized Tier 1 routers, agents consume thousands of tokens scanning directory trees and modify files far outside assigned boundaries.
+
+Developers using disparate AI interfaces receive contradictory code generation behaviors, producing architectural drift across the codebase.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Operating without Context-First reference architecture and structured repo topologies precipitates three severe failure modes:

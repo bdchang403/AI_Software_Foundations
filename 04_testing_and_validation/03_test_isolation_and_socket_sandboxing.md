@@ -44,6 +44,30 @@ One of the most insidious testing failure modes in autonomous engineering is **N
 
 To guarantee 100% hermetic isolation, network egress is blocked at the operating system system call boundary using `pytest-socket`.
 
+```mermaid
+sequenceDiagram
+    autonumber
+    participant TestRunner as Pytest Test Execution
+    participant AppCode as Application Code Under Test
+    participant SocketHook as Hermetic Socket Hook (conftest.py)
+    participant TelemetryStore as Golden Recorded Telemetry Cache
+    participant ExtNet as External Real World (DNS / Financial APIs)
+
+    TestRunner->>AppCode: Execute Test Case (Order Pricing Calculation)
+    AppCode->>SocketHook: Calls socket.socket.connect(('api.nasdaq.com', 443))
+    Note over SocketHook: OS-Level Network Interception
+    SocketHook->>SocketHook: Inspect Active Test Context
+    alt Golden Telemetry Cache Exists
+        SocketHook->>TelemetryStore: Retrieve Verified Deterministic Recorded Frames
+        TelemetryStore-->>AppCode: Replay Golden Frame (Zero Flakiness)
+        AppCode-->>TestRunner: Deterministic Assertion Verified Clean
+    else Un-sandboxed Socket Attempted
+        SocketHook-->>ExtNet: BLOCKED (Zero Outbound Packets Emitted)
+        SocketHook-->>AppCode: Raise SocketBlockedError("Outbound network disabled")
+        AppCode-->>TestRunner: Test Fails Instantly with Diagnostic Trace
+    end
+```
+
 ### The Hermetic Socket Architecture
 In `tests/conftest.py`, the Python `socket.socket.connect` system call is intercepted at fixture initialization:
 
@@ -116,9 +140,20 @@ The Zero-Mock Mandate ($I_{01}$) does not mean systems cannot be tested against 
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), test suites are non-hermetic, sprawling, and chronically flaky. A typical test suite contains monolithic 1,500-line test files where pure invariant unit logic, database queries, and live HTTP requests to third-party endpoints are blended without boundary enforcement.
 
-When CI pipelines execute, test runners initiate unconstrained outbound socket connections. Transient DNS timeouts, rate-limiting (HTTP 429), or external sandbox downtime trigger random failures. Teams succumb to **Flaky Test Blindness**: developers re-run failing pipeline jobs repeatedly until non-deterministic passes occur, eroding the authority of test gates. Furthermore, when AI tools synthesize mock payloads, models generate idealized round figures (`{"price": 200.0, "ratio": 0.5}`) that conceal production pathologies such as non-standard decimal fractions, NaN values, and truncated schemas.
+In the mid-2026 median engineering baseline (75%–84% ad-hoc adoption), test suites are non-hermetic, sprawling, and chronically flaky. A typical test suite blends pure invariant unit logic with live HTTP requests to third-party endpoints.
+
+When CI pipelines execute, test runners initiate unconstrained outbound socket connections:
+
+> [!WARNING]
+> **Flaky Test Blindness & Outbound Sockets**
+> - **Flaky Test Blindness**: Transient DNS timeouts and rate-limiting (HTTP 429) trigger non-deterministic failures, leading developers to blindly re-run pipelines until green.
+> - **Idealized Synthetic Mocks**: AI tools synthesize idealized round figures (`{"price": 200.0}`) that conceal non-standard decimal fractions and NaN values.
+> - **Monolithic Test Amputation**: When modifying oversized test files (>1,200 LOC), models silently truncate earlier assertions to fit token limits.
+
+Teams succumb to **Flaky Test Blindness**, re-running failing pipeline jobs repeatedly until non-deterministic passes occur.
+
+When AI tools synthesize mock payloads, models generate idealized round figures that conceal production pathologies such as non-standard fractions and NaN values.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Operating without hermetic socket sandboxing and test modularity induces three severe failure modes:

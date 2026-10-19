@@ -13,17 +13,25 @@ If raw external telemetry is ingested directly into an agent context window with
 
 Epistemic Governance establishes strict mathematical filters to purify, decouple, and fuse external evidence before an agent can act.
 
+```mermaid
+flowchart LR
+    A["Raw External Telemetry<br>(Collinear, noisy, uncalibrated)"] --> B["1. Unidirectional Epistemic Air-Gap<br>Strip rhetoric & markup"]
+    B --> C["2. Commercial Funnel Discount<br>W_comm = 0.20 (80% deflation)"]
+    C --> D["3. Ledoit-Wolf Shrinkage & ZCA<br>Condition number bound &le; 10^12"]
+    D --> E["Decorrelated Evidence Space<br>(Symmetrical factor representation)"]
+
+    style A fill:#f8f9fa,stroke:#495057,stroke-width:2px;
+    style B fill:#e3f2fd,stroke:#1976d2,stroke-width:2px;
+    style C fill:#fff3e0,stroke:#f57c00,stroke-width:2px;
+    style D fill:#e8f5e9,stroke:#388e3c,stroke-width:2px;
+    style E fill:#e0f2f1,stroke:#00796b,stroke-width:2px;
 ```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                      THE 3 PILLARS OF EPISTEMIC GOVERNANCE                                       │
-├────────────────────┬───────────────────────────────────┬─────────────────────────────────────────┤
-│ Governance Pillar  │ Mathematical Mechanism            │ Operational Objective                   │
-├────────────────────┼───────────────────────────────────┼─────────────────────────────────────────┤
-│ 1. Epistemic Gap   │ Unidirectional Normalizer         │ Strip promotional prose & inject prompt.│
-│ 2. Funnel Discount │ $W_{\text{comm}} = 0.20$ Discount │ Deflate commercial vendor claims by 80%.│
-│ 3. Evidence Fusion │ Ledoit-Wolf ZCA Whitening         │ Decorrelate multi-stream sensor inputs. │
-└────────────────────┴───────────────────────────────────┴─────────────────────────────────────────┘
-```
+
+| Governance Pillar | Mathematical Mechanism | Operational Objective |
+| :--- | :--- | :--- |
+| **1. Epistemic Air-Gap** | Unidirectional Normalizer | Strip promotional prose & sanitize prompt injection vectors. |
+| **2. Funnel Discount** | $W_{\text{comm}} = 0.20$ Discount | Deflate commercial vendor claims and unverified metrics by 80%. |
+| **3. Evidence Fusion** | Ledoit-Wolf ZCA Whitening | Decorrelate multi-stream sensor inputs with condition bound $\le 10^{12}$. |
 
 ---
 
@@ -182,36 +190,23 @@ if __name__ == "__main__":
 
 ## 🏥 Dual-Use Regulated Industry Case Studies
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                   EPISTEMIC GOVERNANCE IN REGULATED ENVIRONMENTS                                 │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   HEALTHCARE: FDA Class III Continuous Vital Telemetry Monitor                                   │
-│   • Threat: Unfiltered telemetry from consumer smartwatches injected noise into ICU clinical     │
-│     decision systems, triggering alarm fatigue.                                                  │
-│   • Defense: Applied Epistemic Normalizer to strip consumer app metrics. Multi-pillar confluence │
-│     required positive correlation across (1) ECG rhythm, (2) Pulse oximetry, and (3) Invasive    │
-│     blood pressure before sounding high-priority alarm.                                          │
-│   • Result: False positive alarms reduced by 88%; zero clinically significant arrhythmia missed. │
-│                                                                                                  │
-│   FINANCE: High-Frequency Interbank Liquidity & Wire Router                                      │
-│   • Threat: Automated trading desks suffered losses following spoofed social media sentiment     │
-│     announcing a phantom bank run.                                                               │
-│   • Defense: Enforced Unidirectional Epistemic Air-Gap. Raw social sentiment discounted by 80%   │
-│     ($W_{\text{comm}} = 0.20$). Wire routing required confluence across central bank reserves    │
-│     and verified SWIFT settlement confirmations.                                                 │
-│   • Result: Bank infrastructure successfully ignored spoofed panic, preserving liquidity.       │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
+| Dimension | Healthcare (FDA Class III Continuous Vital Telemetry) | Finance (High-Frequency Interbank Liquidity & Wire Router) |
+| :--- | :--- | :--- |
+| **Operational Threat** | Unfiltered telemetry from consumer smartwatches injected noise into ICU systems, triggering alarm fatigue. | Automated trading desks suffered losses following spoofed social media sentiment announcing phantom runs. |
+| **Epistemic Defense** | Epistemic Normalizer stripped consumer app metrics. Multi-pillar confluence required ECG rhythm, pulse oximetry, and arterial pressure. | Unidirectional Epistemic Air-Gap discounted raw sentiment by 80% ($W_{\text{comm}} = 0.20$). Wire routing required central bank reserve confluence. |
+| **Production Outcome** | False positive alarms reduced by 88%; zero clinically significant arrhythmias missed. | Bank infrastructure successfully ignored spoofed panic, preserving liquidity reserves. |
 
 ---
 
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In mid-2026, 75\%-84\% of enterprise teams pipe unstructured external data—scraped documentation, third-party vendor claims, social media feeds, and unverified issue tickets—directly into agent prompts without epistemic sanitization. They treat all text tokens as having equal factual authority. Because frontier models optimize for token fluency and conversational alignment, they fall prey to epistemic priming: accepting exaggerated vendor benchmarks or malicious prompt injections as ground truth. Teams then suffer from the DORA Verification Trap, spending days untangling multi-agent sycophancy where an orchestrator agent accepts a flawed premise and downstream agents elaborate on it with mathematical hallucination.
+In mid-2026, 75\%–84\% of enterprise teams pipe unstructured external data—scraped documentation, vendor claims, social feeds, and unverified issue tickets—directly into agent prompts without epistemic sanitization. They treat all text tokens as having equal factual authority.
+
+> [!WARNING]
+> **The Epistemic Priming Trap**: Because frontier models optimize for token fluency and conversational alignment, they fall prey to epistemic priming: accepting exaggerated vendor benchmarks or malicious prompt injections as ground truth.
+
+Teams then suffer from the DORA Verification Trap. Engineers spend days untangling multi-agent sycophancy where an orchestrator agent accepts a flawed premise and downstream agents elaborate on it with mathematical hallucinations.
 
 ### Ungoverned Production Failure Modes
 When engineering teams ignore epistemic governance and allow agents to ingest unvetted telemetry:

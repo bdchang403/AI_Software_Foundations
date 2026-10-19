@@ -204,9 +204,20 @@ class ContextAssembler:
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), developers permit autonomous coding agents to traverse repositories without deterministic routing constraints. Developers provide broad search tooling or terminal execution privileges with open-ended prompts: *"Find where we handle invoice discounts, see how discounts are applied, and add a 15\% promotional coupon logic."*
 
-What follows is an operational and economic failure mode. The agent spends 30,000 to 50,000 tokens recursively traversing directory trees, inspecting test fixtures, and parsing obsolete migration scripts. Under the mathematics of compounded step error ($P_{\text{success}} = p^{10} = (0.95)^{10} \approx 59.8\%$), an unconstrained 10-hop exploration exhibits a 40.2\% probability of anchoring on a deprecated pattern. The agent frequently discovers an obsolete `discounts_v1_deprecated.py` file, modifies it, and emits a syntactically valid pull request while the active production service in `src/billing/` remains untouched.
+In the mid-2026 median engineering baseline (75%–84% ad-hoc adoption), developers permit autonomous agents to traverse repositories without deterministic routing constraints. Developers provide broad search tooling with open-ended prompts: *"Find where we handle invoice discounts, see how discounts are applied, and add a 15% promotional coupon logic."*
+
+What follows is an operational and economic breakdown:
+
+> [!WARNING]
+> **Compounded Step Error in Ungoverned Multi-Hop Traversal**
+> - **Compounded Step Error**: An unconstrained 10-hop exploration exhibits a 40.2% probability of anchoring on a deprecated pattern ($P_{\text{success}} = p^{10} = (0.95)^{10} \approx 59.8\%$).
+> - **Token Burnout**: Agents spend 30,000 to 50,000 tokens traversing directories and parsing obsolete migration scripts.
+> - **Phantom Fixes**: Models discover and modify deprecated files (such as `discounts_v1_deprecated.py`), emitting clean PRs while the live production service in `src/billing/` remains untouched.
+
+The agent spends tens of thousands of tokens recursively traversing directory trees, inspecting fixtures, and parsing obsolete scripts.
+
+The agent frequently modifies deprecated files and emits syntactically valid pull requests while live production services remain unpatched.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Operating without 1-hop precision context chaining precipitates three severe production failure modes:

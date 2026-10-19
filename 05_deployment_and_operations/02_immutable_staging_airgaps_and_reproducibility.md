@@ -30,30 +30,23 @@ Specifically, the staging architecture satisfies two critical NIST AI RMF MANAGE
 
 Autonomous deployment agents operate under an **Inviolable Least-Privilege Context Doctrine**:
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                         THE LEAST-PRIVILEGE CONTEXT BOUNDARY                                     │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   1. EPHEMERAL OIDC FEDERATION (ZERO STATIC KEYS)                                                │
-│      • Autonomous agents are strictly forbidden from accessing long-lived cloud credentials.     │
-│      • Runners authenticate via OpenID Connect (OIDC) exchanging short-lived (15-minute) tokens  │
-│        scoped strictly to staging branch claims (`ref:refs/heads/staging`).                      │
-│                                                                                                  │
-│   2. CONTEXT-ISOLATED ENVIRONMENT BOUNDARIES                                                     │
-│      • Deployment agents receive only the exact configuration maps required for staging.         │
-│      • Production secrets, customer PII, live broker keys, and primary database connection       │
-│        strings are physically absent from the runner's execution environment.                    │
-│                                                                                                  │
-│   3. HERMETIC SOCKET ENFORCEMENT (`pytest-socket`)                                               │
-│      • Staging verification suites execute with outbound TCP/UDP sockets disabled at the OS     │
-│        level. Any attempt to reach external IP addresses triggers an immediate `SocketBlockedError`.│
-│                                                                                                  │
-│   4. ZERO CROSS-TALK STATE ISOLATION                                                            │
-│      • Staging databases use in-memory SQLite replicas or dedicated ephemeral clusters.          │
-│      • Sharing connection pools or read replicas with production is strictly prohibited.        │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph Boundary ["The Least-Privilege Context Boundary"]
+        direction TB
+        P1["<b>1. Ephemeral OIDC Federation</b><br/>Zero static keys; 15-minute short-lived tokens scoped to staging branch claims"]
+        P2["<b>2. Context-Isolated Environments</b><br/>Production secrets, PII, and broker keys physically absent from runner environment"]
+        P3["<b>3. Hermetic Socket Enforcement</b><br/>pytest-socket blocks outbound TCP/UDP; triggers fail-closed SocketBlockedError"]
+        P4["<b>4. Zero Cross-Talk State Isolation</b><br/>In-memory SQLite replicas or dedicated ephemeral clusters; zero shared pools"]
+    end
+
+    P1 --> P2 --> P3 --> P4
+
+    style Boundary fill:#f8f9fa,stroke:#343a40,stroke-width:2px
+    style P1 fill:#e8f4f8,stroke:#17a2b8,stroke-width:1px
+    style P2 fill:#fef9e7,stroke:#ffc107,stroke-width:1px
+    style P3 fill:#fce8e6,stroke:#d93025,stroke-width:1px
+    style P4 fill:#eafaf1,stroke:#28a745,stroke-width:1px
 ```
 
 ---
@@ -157,7 +150,16 @@ According to Gartner's research on AI Trust, Risk, and Security Management (AI T
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the average mid-2026 engineering team, "staging" is a persistent, long-lived, shared cluster running in a non-production AWS account where half the services point to mock endpoints and the other half quietly share database instances with production. When developers use inline autocomplete or AI chat to write test runners, the generated tests execute real outbound HTTP requests to external APIs, sandbox LLM gateways, and third-party vendors. When tests fail due to external network latency or rate-limiting, the AI suggests adding retry loops or loose mock fallbacks (`try: ... except: return {"status": "ok"}`). Over 80% of teams treat socket errors as test flakiness rather than architectural containment failures. Staging databases become contaminated with synthetic hallucinations and test garbage that never gets cleaned up, completely destroying build reproducibility.
+
+> [!WARNING]
+> **Shared Staging Contamination**: Long-lived shared staging environments bleed test traffic into live systems and destroy build reproducibility.
+
+In the median mid-2026 engineering team, "staging" is a persistent, shared cluster. Half the services point to mock endpoints, while the other half share databases with production.
+
+This architecture causes rapid context degradation:
+* **Unbounded Outbound Network Calls**: AI-generated tests make live HTTP requests to external APIs and LLM gateways.
+* **Loose Mock Fallbacks**: When tests fail on network latency, AI assistants suggest retry loops or empty fallbacks (`try: ... except: return {"status": "ok"}`).
+* **State Contamination**: Over 80% of teams treat socket errors as test flakiness. Staging databases fill with synthetic hallucinations, eliminating test reproducibility.
 
 ### Ungoverned Production Failure Modes
 Operating staging environments without hermetic airgaps and cryptographic immutability produces severe production hazards:

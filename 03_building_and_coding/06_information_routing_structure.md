@@ -238,9 +238,20 @@ def safe_divide(numerator: float, denominator: float, fallback: float = 0.0) -> 
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), architectural constraints exist exclusively in human wikis (Notion, Confluence, Google Docs) that no AI coding tool ever reads. When an engineer tasks an AI agent with refactoring a service, the model sees only raw source code without any context regarding why defensive bounds, clamping formulas, or retry loops were implemented.
 
-The result is pervasive **Invariant Erosion**. An agent refactoring an execution service or payment processor decides that a complex clamping formula is "redundant" and simplifies it away. The change passes existing unit tests (which test happy-path inputs), gets approved by a reviewer fatigued by review bloat, and merges into main. The enterprise lacks an automated, cryptographic mechanism linking source code back to the Architectural Decision Records (ADRs) and enterprise safety invariants that govern it.
+In the mid-2026 median engineering baseline (75%–84% ad-hoc adoption), architectural constraints exist exclusively in human wikis (Notion, Confluence, Google Docs). AI coding tools never read these disconnected repositories.
+
+When an engineer tasks an AI agent with refactoring a service, the model sees only raw source code without architectural context or defensive bounds.
+
+> [!WARNING]
+> **Invariant Erosion Under Ungoverned Refactoring**
+> - **Silent Stripping**: AI agents frequently treat defensive boundary checks and clamping formulas as "redundant" boilerplate, silently stripping safety handlers.
+> - **False CI Confidence**: Modified code passes happy-path unit tests and fatigued code reviews, merging undetected into production.
+> - **Missing Cryptographic Tracing**: Codebases lack automated cryptographic mechanisms linking source code directly to Architectural Decision Records (ADRs).
+
+The result is pervasive **Invariant Erosion**. An agent refactoring an execution service or payment processor strips critical clamping logic.
+
+The change passes existing unit tests, gets approved by fatigued reviewers, and merges directly into production.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Operating with architectural governance sequestered in human wikis rather than machine-enforced sentinels produces three severe failure modes:

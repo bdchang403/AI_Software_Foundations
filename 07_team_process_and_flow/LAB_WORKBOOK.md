@@ -126,9 +126,9 @@ if __name__ == "__main__":
 ```
 
 ### Analysis:
-*   `requirements_gap: 2` $	o$ Requirements Lead intervention needed.
-*   `modularity_breach: 1` $	o$ Builder coaching on PR slicing.
-*   `mock_smuggling: 1` $	o$ Validation Lead coaching on AST Zero-Mock rules.
+*   `requirements_gap: 2` $\to$ Requirements Lead intervention needed.
+*   `modularity_breach: 1` $\to$ Builder coaching on PR slicing.
+*   `mock_smuggling: 1` $\to$ Validation Lead coaching on AST Zero-Mock rules.
 
 ---
 
@@ -179,7 +179,12 @@ if __name__ == "__main__":
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the median mid-2026 team, agile ceremonies and workbook exercises are run as rote rituals disconnected from engineering mechanics. Scrum Masters track Jira burndown charts and sprint velocity points while ignoring that half the committed code is AI boilerplate that requires 90 minutes per PR to review. When presented with quantitative calculations for Context Debt Ratio (CDR) and Token Cost Efficiency Ratio (TCER), agile leaders dismiss them as "niche DevOps metrics." Meanwhile, the pod suffers from chronic sprint rollover—stories remain blocked in review on the last day of the sprint because PR sizes exceed 500 lines and developers are caught in multi-turn hallucination loops.
+In the median mid-2026 team, agile ceremonies and workbook exercises run as rote rituals disconnected from engineering mechanics. Scrum Masters track Jira burndown charts and sprint velocity points while ignoring that half the committed code is AI boilerplate that requires 90 minutes per PR to review.
+
+> [!WARNING]
+> **The Ritualized Metric Trap**: When presented with quantitative calculations for Context Debt Ratio (CDR) and Token Cost Efficiency Ratio (TCER), agile leaders often dismiss them as "niche DevOps metrics."
+
+Meanwhile, the pod suffers from chronic sprint rollover. Stories remain blocked in review on the last day of the sprint because PR sizes exceed 500 lines and developers remain caught in multi-turn hallucination loops.
 
 ### Ungoverned Production Failure Modes
 Treating flow and context metrics as optional theory produces chronic operational friction:

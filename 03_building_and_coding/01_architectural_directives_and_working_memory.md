@@ -213,9 +213,18 @@ Inside `InvoiceSettlementService.mark_settled()`, construct and publish `Invoice
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), teams rarely author structured 3-Part Directives. Instead, developers highlight hundreds of lines of code in their IDE, open an inline autocomplete or chat sidebar, and issue unstructured conversational requests: *"Refactor this billing handler to add tax calculation and make it cleaner."*
 
-What occurs is governed by the physics of attention entropy dilution. The LLM's transformer attention disperses across hundreds of non-relevant lines, ambient imports, and peripheral structs. Under the U-shaped positional attention curve ("Lost in the Middle"), logic positioned in the middle of files suffers a 40\% to 75\% retrieval degradation. The model optimizes for token fluency and user agreeableness, producing a syntactically pristine diff that conceals severe structural regressions: transaction rollback logic is stripped, asynchronous backoffs are converted to brittle synchronous timeouts, and essential negative boundary assertions are replaced with placeholders such as `# ... existing logic remains unchanged ...`. The code compiles, passes superficial unit tests, and deposits unverified technical debt directly into main branches.
+In the mid-2026 median engineering baseline, teams rarely author structured 3-Part Directives.
+
+Instead, developers highlight hundreds of lines in their IDE, open chat sidebars, and issue unstructured conversational requests: *"Refactor this billing handler to add tax calculation and make it cleaner."*
+
+What occurs is governed by the physics of attention entropy dilution. The LLM's transformer attention disperses across hundreds of non-relevant lines, ambient imports, and peripheral structs.
+
+> [!WARNING]
+> **Attention Entropy Dilution & Structural Regressions**:
+> - **Degradation Valley**: Under the U-shaped attention curve, logic positioned in the middle of files suffers a 40% to 75% retrieval degradation.
+> - **Silent Amputation**: Models strip transaction rollbacks and convert asynchronous backoffs to brittle timeouts.
+> - **Placeholder Injections**: Essential boundary assertions are replaced with placeholders (`# ... existing logic remains unchanged ...`), depositing unverified technical debt directly into main branches.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Operating without explicit architectural directives and bounded context slices triggers severe downstream systemic failures:

@@ -2,7 +2,9 @@
 
 ## 🛡️ The Doctrine of Autonomous Vulnerability
 
-Autonomous AI agents do not possess intrinsic human skepticism, clinical intuition, or fiduciary responsibility. When presented with open-ended tasks, neural networks suffer from **Pleasing Bias** and **Cognitive Anchoring**. If an agent is exposed to internal vulnerabilities, biased prompts, or promotional external claims, it unconsciously tailors its output to confirm those priors.
+Autonomous AI agents do not possess intrinsic human skepticism, clinical intuition, or fiduciary responsibility. When presented with open-ended tasks, neural networks suffer from **Pleasing Bias** and **Cognitive Anchoring**.
+
+If an agent is exposed to internal vulnerabilities, biased prompts, or promotional external claims, it unconsciously tailors its output to confirm those priors.
 
 For the Strategy Lead and Product Owner, **Adversarial Thinking** is the discipline of proactively modeling how an AI agent will catastrophically misinterpret a strategic initiative. Before releasing an Epic to engineering, the Strategy Lead must conduct an **Epistemic Red-Team Audit** to identify unstated assumptions, circular reasoning loops, and prompt leakage.
 
@@ -43,6 +45,34 @@ Before the true architectural root cause was addressed, the team attempted sever
 - ❌ **Prompt Disclaimers**: Adding instructions like *"Evaluate all media objectively and ignore marketing hype"* failed; the model continued to anchor on fear-based terminology.
 - ❌ **Total Blackout of External Social Media**: Completely severing external media blinded the system to emerging narrative sentiment and product viral inflections, introducing an asymmetric bearish bias against secular technology compounders.
 - ❌ **Keyword Blacklists**: Banning phrases like *"Crash"*, *"Reset"*, or *"Free Course"* resulted in brittle regex cat-and-mouse games easily bypassed by synonyms.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Feed as Market Sentiment Feed
+    participant Bull as Bull Valuation Agent
+    participant Bear as Bear Risk Agent
+    participant Arb as Synthesis Arbitrator
+    participant Auditor as Invariant Auditor (I01/I20)
+    participant Ledger as Immutable Quarantine Ledger
+    participant Gateway as Execution Gateway
+
+    Feed->>Bull: Ingests Social Panic Sentiment (-18% plunge)
+    Feed->>Bear: Ingests Social Panic Sentiment (-18% plunge)
+    Bull->>Arb: Synthesizes DCF Valuation (Fair value intact)
+    Bear->>Arb: Demands Immediate Emergency Liquidation
+    Note over Arb: Cognitive Bias & Compromise
+    Arb->>Auditor: Proposed Order: SELL 100% Core Holdings
+    Note over Auditor: Invariant Assertion Gate
+    Auditor->>Auditor: Check I01 (Fiduciary Floor) & I20 (Epistemic Firewall)
+    alt Invariant Check Fails (Un-discounted Sentiment)
+        Auditor->>Ledger: Atomic Write: Quarantined Order + Audit Trace
+        Auditor-->>Gateway: HARD VETO (Order Suppressed)
+        Auditor-->>Arb: Trip Circuit Breaker & Sound Forensic Alert
+    else Invariant Check Passes
+        Auditor->>Gateway: Cryptographically Signed Order Dispatch
+    end
+```
 
 ### 3. The Permanent Architectural Mechanism
 
@@ -87,7 +117,15 @@ Before approving any Epic for engineering decomposition, the Strategy Lead must 
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In median mid-2026 enterprise teams, adversarial red-teaming of AI systems is largely absent or reduced to naive prompt-level instructions ("Act as an adversarial tester"). When constructing data pipelines, engineering pods routinely hydrate extraction prompts with rich internal operational state—current revenue shortfalls, existing portfolio allocations, clinical departmental deficits, or production incident histories—alongside untrusted external streams (social sentiment, sponsored whitepapers, commercial marketing). This architectural flaw triggers immediate epistemic priming and sycophantic bias: the model generates plausible, highly agreeable rationalizations that confirm internal organizational anxieties while mistaking affiliate marketing for empirical ground truth.
+
+In median mid-2026 enterprise teams, adversarial red-teaming of AI systems is largely absent or reduced to naive prompt-level instructions ("Act as an adversarial tester").
+
+When constructing data pipelines, engineering pods routinely hydrate extraction prompts with rich internal operational state alongside untrusted external streams.
+
+> [!WARNING]
+> **Cognitive Anchoring & Priming Dynamics**:
+> - **Internal State Leakage**: Feeding internal shortfalls or drawdown figures to external extractors primes models to hallucinate confirmation.
+> - **Sycophantic Bias**: The model generates agreeable rationalizations that confirm internal anxieties while mistaking affiliate marketing for empirical ground truth.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Failing to establish unidirectional epistemic air-gaps and commercial discounts induces critical operational breakdowns:

@@ -159,7 +159,15 @@ If electrode pad contact impedance $> 300\,\Omega$ or signal is saturated:
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In median mid-2026 engineering organizations, requirements artifacts and lab exercises are frequently treated as theoretical compliance burdens rather than binding operational contracts. Business analysts continue authoring ambiguous bullet points in Jira tickets (*"Ensure user receives an alert when sensor contact is poor"*), while developers use inline AI autocomplete to construct synthetic unit tests (`mock_sensor.get_impedance.return_value = 50.0`). In the absence of an empirical edge-case matrix and closed-world schemas, tests report nominal 100% coverage while leaving production systems entirely unprotected against real-world sensor dropouts, IEEE 754 non-finite floats, or packet corruption.
+
+In median mid-2026 engineering organizations, requirements artifacts and lab exercises are frequently treated as theoretical compliance burdens rather than binding operational contracts.
+
+Business analysts author ambiguous bullet points in Jira tickets, while developers use inline AI autocomplete to construct synthetic unit tests (`mock_sensor.get_impedance.return_value = 50.0`).
+
+> [!WARNING]
+> **Phantom Coverage Risks**:
+> - **Synthetic Mocks**: In the absence of an empirical edge-case matrix, tests report 100% line coverage while mocking away physical failure paths.
+> - **Production Blindspots**: Systems remain unprotected against real-world sensor dropouts, IEEE 754 non-finite floats, or packet corruption.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Failing to enforce structured requirements engineering and closed-world schemas in hands-on workflows triggers three severe failure patterns:

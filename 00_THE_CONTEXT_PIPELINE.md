@@ -8,19 +8,24 @@ In autonomous enterprise software engineering, large language models must never 
 
 The Context Factory solves this by enforcing the **3-Tier Context Pipeline**: a deterministic compilation chain that extracts only verified AST signatures, schema contracts, and active invariants into an audited, token-dense payload (<1,500 tokens).
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                      THE 3-TIER CONTEXT COMPILATION HIERARCHY                                    │
-├────────────────────┬───────────────────────────────────┬─────────────────────────────────────────┤
-│ Context Tier       │ Scope & Content                   │ Token Budget Allocation                 │
-├────────────────────┼───────────────────────────────────┼─────────────────────────────────────────┤
-│ Tier 1: Global     │ Enterprise Constitution & Rules   │ 200 – 400 tokens (Immutable / Pinned)   │
-│ Tier 2: Structural │ AST Living Context JSON           │ 800 – 1,200 tokens (Dynamic AST Cache)  │
-│ Tier 3: Surgical   │ Domain Blueprint & AST Node Scope │ 400 – 600 tokens (Target Scope Focus)   │
-├────────────────────┴───────────────────────────────────┴─────────────────────────────────────────┤
-│ TOTAL COMBINED PROMPT PAYLOAD CEILING:                 │ <= 2,500 TOKENS (95%+ Attention Zone)   │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
+### The 3-Tier Context Compilation Hierarchy
+
+| Context Tier | Architectural Scope & Content | Token Budget Allocation | Retention & Attention Zone |
+| :--- | :--- | :--- | :--- |
+| **Tier 1: Global Invariants** | Enterprise Constitution (Articles I–VII) & Commandments | 200 – 400 tokens (Immutable / Pinned) | Primacy Zone ($x \le 0.15$) |
+| **Tier 2: Structural AST** | AST Living Context (`STATE_REGISTRY.md`, DTO schemas) | 800 – 1,200 tokens (Dynamic AST Cache) | High-Fidelity Active Memory |
+| **Tier 3: Surgical Scope** | Target function node slice, invariants, and unit test red gate | 400 – 600 tokens (Target Slice Focus) | Recency Zone ($x \ge 0.85$) |
+| **Total Prompt Ceiling** | **Audited, Token-Dense Machine-Readable Ingress** | **$\le 2,500$ Tokens Total** | **95%+ Attention Retention Zone** |
+
+### Architectural Comparison: Monolithic Context vs. Compiled Living Context
+
+| Dimension | Monolithic Prompting (Mid-2026 Baseline) | Living Context Pipeline (Level 5 Architecture) |
+| :--- | :--- | :--- |
+| **Ingress Payload Size** | 40,000 to 500,000 raw tokens | Strictly $< 1,500$ tokens minified JSON |
+| **Attention Entropy** | High dispersion ($\mathcal{H} \approx 10.60\text{ nats}$) | Surgical focus ($\mathcal{H} \le 7.31\text{ nats}$) |
+| **Information Retention** | 40%–75% retrieval amnesia ("Lost in the Middle") | 95%+ retention across Primacy & Recency zones |
+| **Drift Detection** | None; silent drift across turns | Automated pre-commit gate (`git diff --exit-code`) |
+| **Inference Cost** | \$157.50 per 1,000 tasks (monolithic frontier) | \$25.50 per 1,000 tasks (decoupled 3-tier router) |
 
 ---
 
@@ -56,6 +61,30 @@ flowchart TD
     style L fill:#ffcdd2,stroke:#c62828,stroke-width:2px;
 ```
 
+### The Cross-Functional Context Handshake
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor BA as Business Analyst
+    actor Arch as System Architect
+    participant AST as AST Registry Compiler
+    actor Dev as Software Engineer
+    participant Gate as CI Zero-Drift Sentinel
+
+    BA->>Arch: Submit 3-Part Directive & Semantic Blueprint (docs/stories/)
+    Arch->>AST: Trigger compile_living_context.py
+    AST-->>Dev: Inject living_context.json (<1,500 Tokens)
+    Dev->>Dev: Execute Surgical Scoped Edit (<400 LOC, ADR-016)
+    Dev->>AST: Run update_state_registry.py & update_math_registry.py
+    Dev->>Gate: git pre-commit hook (git diff --exit-code)
+    alt Zero Drift Verified
+        Gate-->>Dev: Commit Accepted (Byte Parity Confirmed)
+    else Drift Detected
+        Gate-->>Dev: FAIL CLOSED: Commit Rejected (Regenerate Registries)
+    end
+```
+
 ---
 
 ## 🏛️ Context Pipeline Core Artifacts & Implementation Guide
@@ -88,7 +117,14 @@ flowchart TD
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In mid-2026, 75\%-84\% of software engineering teams have no programmatic context pipeline. Developers manually copy-paste snippets into chat windows, or rely on naive vector RAG systems that slice repositories into arbitrary 500-token chunks. The results are disastrous: vector embeddings match superficial semantic keywords rather than physical AST dependency graphs, polluting the prompt with irrelevant utility code. According to the Stack Overflow Developer Survey, 63.3\% of engineers cite codebase context fragmentation as their primary bottleneck with AI tooling. Monolithic prompts balloon to 40,000 tokens, burning \$157.50 per 1,000 tasks while suffering from attention dilution and the U-shaped "Lost in the Middle" curve. The team is mired in the DORA Verification Trap, debugging plausible hallucinations born from noisy context.
+
+> [!WARNING]
+> **The 75% Enterprise Ad-Hoc Trap**: Between 75% and 84% of software engineering teams have no programmatic context pipeline. Developers manually copy-paste snippets into chat windows or rely on naive vector RAG systems that slice repositories into arbitrary 500-token chunks.
+
+#### Observed Empirical Failure Cycle:
+1. **The Context Wall**: Vector embeddings match superficial semantic keywords rather than physical AST dependency graphs; 63.3% of engineers cite codebase context fragmentation as their primary bottleneck (Stack Overflow).
+2. **The Verification Tax**: Monolithic prompts balloon to 40,000 tokens, burning $157.50 per 1,000 tasks while suffering from attention dilution and the U-shaped "Lost in the Middle" curve.
+3. **The Churn Inversion**: Teams are mired in the DORA Verification Trap, debugging plausible hallucinations born from noisy, uncurated context.
 
 ### Ungoverned Production Failure Modes
 When engineering teams bypass compiler-grade context engineering and dump uncurated files into prompts:

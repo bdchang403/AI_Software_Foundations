@@ -67,6 +67,31 @@ The mathematical and operational countermeasure to the Verification Trap is twof
 1. **The ADR-016 400-LOC Modularity Ceiling**: Constraining every source module to $\le 400$ physical lines guarantees that the entire file resides within the high-fidelity zone of the attention curve ($<2\%$ of context capacity), preventing the $F(x) \approx 0.35$ Degradation Valley and eliminating context amputation.
 2. **Atomic PR Slicing ($\le 200$ LOC per Slice)**: Restricting autonomous pull requests to bounded, single-responsibility units ($\le 200$ LOC) breaks the cognitive review bottleneck, restores human comprehension, reduces review duration to $<2.5$ hours, and slashes two-week code churn from $4.3\%$ to $<1.5\%$.
 
+```mermaid
+stateDiagram-v2
+    [*] --> PRSubmission: Agent Submits Pull Request Diff
+    
+    state StaticChecks {
+        [*] --> PRDiffLineCountCheck
+        PRDiffLineCountCheck --> ModuleFileLengthCheck: diff_lines <= 200 LOC
+        ModuleFileLengthCheck --> ASTZeroMockScan: target_file <= 400 LOC
+        ASTZeroMockScan --> InvariantAnchorAttestation: ZM001-ZM007 Clean
+    }
+    
+    PRDiffLineCountCheck --> RejectedForSplitting: diff_lines > 200 LOC
+    ModuleFileLengthCheck --> RejectedForDecomposition: target_file > 400 LOC
+    ASTZeroMockScan --> RejectedSyntheticMocks: Mock Smuggling Detected
+    InvariantAnchorAttestation --> RejectedTamperedAnchors: SHA1 Checksum Mismatch
+    
+    RejectedForSplitting --> SplitTaskQueue: Sliced into Atomic Sub-PRs
+    RejectedForDecomposition --> SubsystemModularization: Decoupled into Helper Modules
+    SplitTaskQueue --> PRSubmission
+    SubsystemModularization --> PRSubmission
+    
+    StaticChecks --> ApprovedAndMerged: All Gated Invariants Green
+    ApprovedAndMerged --> [*]
+```
+
 | Engineering Metric | Pre-AI Baseline | Ungoverned AI Generation | Context Factory Countermeasure | Operational Invariant Linkage |
 | :--- | :--- | :--- | :--- | :--- |
 | **Two-Week Code Churn** | 3.1\% | 4.3\% (+39\% relative) | < 1.5\% | Zero-Trust Reproduction Gate ($I_{01}$) |
@@ -273,9 +298,20 @@ When an architectural epic requires substantial new functionality, do not attemp
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), developers routinely pass 1,200-line monolithic files into chat windows or accept cascading inline autocomplete ghost-text across large classes. The resulting pull requests are 800 to 1,500 LOC dumps. Because resolving shared dependencies across multi-file architectures requires deep AST traversal, frontier models systematically take the path of lowest token perplexity: they clone existing logic locally rather than importing and refactoring shared utilities. This dynamic is the primary driver of GitClear's empirical telemetry: a **10x explosion in duplicate code blocks** and the **collapse of active refactoring from 48\% down to 24\%**.
 
-Engineering organizations enter the **2026 Google DORA Verification Trap**. Generating code has become virtually free, but the cognitive and operational cost of verifying that code escalates exponentially. Tech leads spend hours wading through sprawling diffs filled with low-complexity boilerplate ("tokenmaxxing"), experiencing severe review fatigue. Under this burden (evidenced by Faros AI's +91\% review cycle telemetry), reviewers skim middle lines, missing shadowed state and amputated safety handlers.
+In the mid-2026 median engineering baseline (75%–84% ad-hoc adoption), developers routinely pass 1,200-line monolithic files into chat windows or accept cascading inline ghost-text. The resulting pull requests produce sprawling 800 to 1,500 LOC dumps.
+
+Because resolving multi-file dependencies requires deep AST traversal, frontier models take the path of lowest token perplexity. Models clone logic locally rather than importing and refactoring shared utilities.
+
+> [!WARNING]
+> **The 2026 DORA Verification Trap & Refactoring Collapse**
+> - **Duplicate Code Surge**: Telemetry reveals a **10x explosion in duplicate code blocks** across unpartitioned repositories (GitClear).
+> - **Refactoring Collapse**: Active refactoring collapses from 48% down to 24%, while code churn surges by +39% within two weeks of merge.
+> - **Review Bottleneck**: Generating code becomes virtually free, but review cycles inflate by +91% under severe cognitive fatigue (Faros AI).
+
+Engineering organizations enter the **2026 Google DORA Verification Trap**. Generating code has become virtually free, but the cognitive and operational cost of verifying that code escalates exponentially.
+
+Tech leads spend hours wading through sprawling diffs filled with low-complexity boilerplate ("tokenmaxxing"). Under this cognitive burden, reviewers skim middle lines, missing shadowed state and amputated safety handlers.
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Failing to enforce modularity ceilings and small-batch PR slicing precipitates three severe operational crises:

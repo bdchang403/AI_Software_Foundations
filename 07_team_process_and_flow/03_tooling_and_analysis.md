@@ -10,19 +10,13 @@ When engineering teams adopt AI without a structured Context Factory, the ROI is
 
 The objective of an Agile Leader is to mathematically demonstrate the **Determinism Proof**: proving that anchoring autonomous agents with explicit Semantic Blueprints, AST State Registries, and Invariant Guardrails transforms AI from an unpredictable stochastic generator into a deterministic, cost-effective engineering compiler.
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                     THE STOCHASTIC VS. DETERMINISTIC ENGINEERING SPECTRUM                        │
-├────────────────────────────────┬─────────────────────────────────────────────────────────────────┤
-│ Zero-Context / Ad-Hoc Prompting│ The Context Factory Framework                                   │
-├────────────────────────────────┼─────────────────────────────────────────────────────────────────┤
-│ Model guesses repository state │ Model consumes pre-compiled Living Context (<1,500 tokens)      │
-│ Ingests 50,000+ unbounded LOC  │ Ingests cohesive AST node scopes                                │
-│ High hallucination and drift   │ Pinned to AST State & Mathematical Registries                   │
-│ Unpredictable token burn       │ Bounded Task Units (BTU <= 25,000 tokens)                       │
-│ Synthetic mocks hide defects   │ AST Zero-Mock Rules (ZM001-ZM009) enforce truth                 │
-└────────────────────────────────┴─────────────────────────────────────────────────────────────────┘
-```
+| Dimension | Zero-Context / Ad-Hoc Prompting | The Context Factory Framework |
+| :--- | :--- | :--- |
+| **Repository State** | Model guesses repository state | Model consumes pre-compiled Living Context (<1,500 tokens) |
+| **Code Ingestion** | Ingests 50,000+ unbounded LOC | Ingests cohesive AST node scopes |
+| **Drift & Reliability** | High hallucination and epistemic drift | Pinned to AST State and Mathematical Registries |
+| **Token Consumption** | Unpredictable token burn | Bounded Task Units (BTU $\le 25,000$ tokens) |
+| **Test Verification** | Synthetic mocks hide underlying defects | AST Zero-Mock Rules (ZM001–ZM009) enforce truth |
 
 ---
 
@@ -142,25 +136,10 @@ if __name__ == "__main__":
 
 ## 🏥 Dual-Use Industry Case Studies
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                   INDUSTRY DETERMINISM CASE STUDY: ROI COMPARISON                                │
-├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                                  │
-│   HEALTHCARE MEDICAL SOFTWARE (FDA Class III Cardiac Monitor)                                   │
-│   • Before: Developers prompted general-purpose LLMs without bounded context. Token burn was    │
-│     1.4M tokens per feature. Reviewers rejected 82% of PRs due to unverified medical math.       │
-│   • After: Implemented AST Mathematical Registry and AST Zero-Mock test enforcement.            │
-│   • Metric Shift: FPCR rose from 18% to 91%; TCER reached 94x; zero FDA non-conformance flags.  │
-│                                                                                                  │
-│   CORE BANKING & FINANCIAL TRANSACTIONS (High-Value Swift Wire Gateways)                         │
-│   • Before: Teams attempted autonomous agent coding with zero-context prompting. Developers      │
-│     reported 4-day lead times and constant hallucinations around ISO 20022 message schemas.      │
-│   • After: Enforced 3-Part Directives, Living Context compiler, and AI-SBOM SPDX 3.0 headers.   │
-│   • Metric Shift: Lead time plummeted from 96 hours to 4.2 hours; 100% trace compliance.        │
-│                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
+| Industry Domain | Pre-Intervention Baseline (Zero-Context Prompting) | Post-Intervention Architecture (Context Factory) | Empirical Metric Shift |
+| :--- | :--- | :--- | :--- |
+| **Healthcare Medical Software**<br>*(FDA Class III Cardiac Monitor)* | Developers prompted general-purpose LLMs without bounded context. Token burn reached 1.4M tokens per feature; reviewers rejected 82% of PRs due to unverified medical math. | Implemented AST Mathematical Registry and AST Zero-Mock test enforcement. | FPCR rose from 18% to 91%; TCER reached $94\times$; zero FDA non-conformance flags. |
+| **Core Banking & Transactions**<br>*(High-Value Swift Wire Gateways)* | Teams attempted autonomous agent coding with zero-context prompting. Developers reported 4-day lead times and constant hallucinations around ISO 20022 schemas. | Enforced 3-Part Directives, Living Context compiler, and AI-SBOM SPDX 3.0 headers. | Lead time dropped from 96 hours to 4.2 hours; 100% trace compliance. |
 
 ---
 
@@ -171,7 +150,12 @@ if __name__ == "__main__":
 ## Production Reality & Operational Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the median mid-2026 engineering department, process tooling consists of an off-the-shelf SaaS dashboard that tracks AI code assistant seat utilization and simple "acceptance rates." Engineering leadership observes an 80% acceptance rate and assumes developers are 80% more productive. In reality, developers accept ghost-text suggestions, discover minutes later that the code fails compilation or breaks cross-file contracts, and spend substantial time debugging the regression. Teams rarely instrument First-Pass Compile Rate (FPCR), Token Cost Efficiency Ratio (TCER), or AST rule violation density. The organization operates without essential telemetry—spending tens of thousands of dollars each month on frontier model inference without measuring whether that compute produces durable software assets or throwaway churn.
+In the median mid-2026 engineering department, process tooling consists of an off-the-shelf SaaS dashboard that tracks AI code assistant seat utilization and simple "acceptance rates." Engineering leadership observes an 80% acceptance rate and assumes developers are 80% more productive.
+
+> [!WARNING]
+> **The Vanity Metric Pitfall**: In reality, developers accept ghost-text suggestions, discover minutes later that the code fails compilation or breaks cross-file contracts, and spend substantial time debugging regressions. Teams rarely instrument First-Pass Compile Rate (FPCR), Token Cost Efficiency Ratio (TCER), or AST rule violation density.
+
+The organization operates without essential telemetry—spending tens of thousands of dollars monthly on frontier model inference without measuring whether compute produces durable assets or throwaway churn.
 
 ### Ungoverned Production Failure Modes
 Operating software factories without rigorous process telemetry and deterministic tooling triggers acute operational breakdowns:

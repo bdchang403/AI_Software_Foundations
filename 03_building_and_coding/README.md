@@ -4,7 +4,9 @@
 
 The primary mandate of the Software Engineer and System Architect in the **Enterprise Context Factory** is to construct **Deterministic Software Systems using Stochastic AI Tools**.
 
-In an era where frontier Large Language Models (LLMs) operate via probabilistic next-token prediction, deploying unconstrained agents across enterprise codebases guarantees silent software degradation, context collapse, and cascading regressions. Unbounded files (>400 lines of code) induce attention dilution and catastrophic feature erasure. Stale markdown documentation causes agents to hallucinate non-existent database columns and deprecated APIs. Silenced error blocks returning synthetic constants poison mission-critical datastores.
+In an era where frontier Large Language Models (LLMs) operate via probabilistic next-token prediction, deploying unconstrained agents across enterprise codebases guarantees silent software degradation. Unbounded files (>400 lines of code) induce attention dilution and catastrophic feature erasure.
+
+Stale markdown documentation causes agents to hallucinate non-existent database columns and deprecated APIs. Silenced error blocks returning synthetic constants poison mission-critical datastores.
 
 To achieve production reliability in high-stakes regulated enterprises—such as **FDA Class III closed-loop medical devices**, **aerospace fly-by-wire avionics (DO-178C Level A)**, and **mission-critical quantitative finance engines**—Builders and System Architects construct the physical deterministic scaffolding:
 1. **The Navigational Map**: 2-Tier Precision Routing that eliminates multi-hop repository scans.
@@ -18,6 +20,32 @@ To achieve production reliability in high-stakes regulated enterprises—such as
 ## 🤝 The Cross-Functional Context Handshake
 
 Architecture and implementation do not occur in isolation. Within the cross-functional pipeline, the Builder and System Architect operate at the critical boundary between requirements specification and quality engineering verification:
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Arch as System Architect
+    participant Router as 2-Tier Context Router
+    participant AST as AST State Registry
+    participant ADR as ADR Document Index
+    participant Assembler as Living Context Assembler
+    actor Builder as Autonomous Builder Agent
+    participant Sentinel as Zero-Drift Pre-Commit Sentinel
+
+    Arch->>Router: Dispatch Task: Refactor Order Imbalance Extractor
+    Router->>AST: Query Exact AST Signatures & Dependency Call-Tree
+    AST-->>Router: Subsystem Graph (<1,500 Tokens, 0% Non-Source Noise)
+    Router->>ADR: Query Relevant Architectural Directives (ADR-016)
+    ADR-->>Router: Max LOC Constraints & Invariant I11 Anchors
+    Router->>Assembler: Compile 1-Hop Precision Payload
+    Assembler->>Builder: Dispatch Fully Assembled Payload (messages[0].content)
+    Note over Builder: 1-Hop Pure Synthesis (Zero Vector RAG Noise)
+    Builder->>Builder: Synthesize Implementation (<=400 LOC) + SHA1 Anchors
+    Builder->>Sentinel: Submit Staged Commit
+    Note over Sentinel: Pre-Commit Hook Check
+    Sentinel->>Sentinel: Validate LOC <= 400 & Verify SHA1 Checksums
+    Sentinel-->>Arch: Clean Build & Green Sentinel Attestation
+```
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
@@ -282,9 +310,16 @@ The engineering constraints enforced throughout this chapter—including the Arc
 ## Production Reality & Failure Modes in the AI Era
 
 ### The Mid-2026 Production Baseline (The Verification Trap & Context Debt)
-In the mid-2026 median engineering baseline (the 75\%--84\% ad-hoc adoption mean), enterprise leadership views AI adoption primarily as a tooling procurement exercise: purchasing AI IDE licenses, declaring teams "AI-accelerated," and evaluating throughput by PR velocity or committed lines of code.
 
-In production, engineering organizations experience severe architectural dissonance. In the absence of structured context architecture, requirements arrive as ambiguous tickets, developers copy broad directory sweeps into LLM prompts, and models generate 1,200-line monolithic diffs that duplicate existing routines rather than refactoring shared services (evidenced by GitClear's **10x duplicate code surge**). Senior engineers encounter the **2026 Google DORA Verification Trap**, spending disproportionate engineering hours forensically inspecting plausible-looking synthetic diffs while delivery stability drops 7.2\% for every 25\% increase in unconstrained AI code generation. Concurrently, organizations absorb frontier pricing (\$157.50 per 1,000 tasks) for workflows that a decoupled context architecture achieves for \$25.50 (an **83.8\% OpEx inefficiency**).
+In the mid-2026 median engineering baseline, enterprise leadership views AI adoption primarily as a tooling procurement exercise: purchasing AI IDE licenses, declaring teams "AI-accelerated," and evaluating throughput by PR velocity.
+
+In production, engineering organizations experience severe architectural dissonance. In the absence of structured context architecture, requirements arrive as ambiguous tickets, developers copy broad directory sweeps into LLM prompts, and models generate 1,200-line monolithic diffs that duplicate existing routines.
+
+> [!WARNING]
+> **Ad-Hoc Tooling Procurement Pathology**:
+> - **Code Duplication Surge**: Unconstrained generation creates a 10x surge in copy-paste blocks and a +39% increase in code churn (GitClear).
+> - **DORA Verification Trap**: Delivery stability drops by 7.2% per 25% AI adoption increase while senior engineers spend disproportionate hours reviewing plausible boilerplate.
+> - **Inference OpEx Inefficiency**: Monolithic context stuffing costs \$157.50 per 1,000 tasks versus \$25.50 for decoupled architectures (83.8% OpEx penalty).
 
 ### Failure Modes & Drift Dynamics in Ungoverned Production
 Treating systematic context architecture as optional during unconstrained AI code generation induces three critical production failure modes:

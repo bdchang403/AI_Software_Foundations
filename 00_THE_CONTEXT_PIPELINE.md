@@ -112,6 +112,11 @@ sequenceDiagram
     ```
 *   **Deep Implementation**: [Automated Traceability (05_05)](./05_deployment_and_operations/06_automated_traceability.md).
 
+### 5. COTS & SaaS Context Extraction Adapters
+*   **Purpose**: Bridges non-git SaaS and enterprise COTS databases (e.g., IBM FileNet P8, IBM CMOD, OpenText Exstream, Tungsten TotalAgility, DocuSign, SideDrawer) into version-controlled AST signatures and schemas.
+*   **Architecture**: Enforces the 2-Tier Precision Router (`.github/copilot-instructions.md`) and the Epistemic IP Airgap (Constitution Article VIII: Layer A generic loop harness vs. Layer B proprietary schemas and `.audit/` ledgers).
+*   **Deep Implementation**: [The SaaS Factory Guide](./SaaS/saas_factory.md).
+
 ---
 
 ## Production Reality & Operational Failure Modes in the AI Era

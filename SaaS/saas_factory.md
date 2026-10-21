@@ -15,13 +15,15 @@ The workflow starts with the business defining the "Why" and "What" before engin
 
 ---
 
-## 🏗️ 2. Context Extraction & Synchronization (Engineer Baseline)
-Your first job when working with *any* new SaaS tool is to figure out how to export its state so Copilot can read it.
+---
+
+## 🏗️ 2. Context Extraction & Synchronization (The Brownfield Baseline)
+As Peter Bell identifies in *Scaling AI Adoption in Engineering* (O'Reilly, 2026, Ch. 1–2), applying AI to brownfield enterprise stacks without automated test harnesses and baselines accelerates technical debt. COTS and SaaS platforms (e.g., IBM FileNet, IBM CMOD, OpenText Exstream, Tungsten TotalAgility, DocuSign, SideDrawer) represent mission-critical brownfield systems where drift can cause severe operational and regulatory non-compliance.
 
 ### 2a. The Initial Baseline
-*   **Action:** Find the "Export", "Backup", or "CLI" tool for the platform. 
+*   **Action:** Find the "Export", "Backup", or "CLI" tool for the platform (e.g., FileNet FDM, CMOD `arsdoc`, TTA `PackageService`, Exstream Design Manager export). 
 *   **Outcome:** Generate XML, JSON, YAML, or XAML files. 
-*   **Git Commit:** Commit these files to your GitHub repository (e.g., `src/[saas_name]/`). Now Copilot has a baseline!
+*   **Git Commit:** Commit these files to your GitHub repository (e.g., `src/[saas_name]/`). Now Copilot and coding agents have an immutable baseline!
 
 ### 🛡️ 2b. Managing "Split-Brain" Conflict (Anti-Drift)
 Because SaaS tools allow manual UI changes, your repository can become "stale."
@@ -42,7 +44,7 @@ Create a file named `.github/copilot-instructions.md`. This acts as the "Traffic
 These are the markdown files that contain your organizational ADRs, branding rules, and business logic boundaries.
 
 ### 3c. Tier 2: "The Hands" (Registries & IDE Setup)
-1. **Bring the SDK to the IDE:** Download the proprietary SaaS `.dll`, `.jar`, SDK, or OpenAPI Swagger spec. Put them in your repository and add them to your build path.
+1. **Bring the SDK to the IDE:** Download the proprietary SaaS `.dll`, `.jar`, SDK, or OpenAPI Swagger spec (e.g., FileNet `Jace.jar`, TTA `Agility.Sdk.Model.dll`). Put them in your repository and add them to your build path.
 2. **Create the Registry Markdown:** Create a markdown file (e.g., `api_registry.md`) showing exact examples of the allowed syntax and boilerplate.
 
 ### 🔑 3d. Tier 2: The Token Registry (`docs/context/[saas_name]/token_registry.md`)
@@ -50,22 +52,53 @@ To handle environment-specific configurations (Dev vs. Prod), create a Token Reg
 
 ---
 
-## 💻 4. AI-Assisted Implementation (Copilot Workflow)
-Because you set up the 2-Tier Precision Routing, the engineer does not have to manually explain business rules in every prompt.
+## 💻 4. AI-Assisted Implementation: The "Ralph Wiggum" Convergence Loop
+Rather than unconstrained chat loops, agentic configuration changes follow the **Ralph Wiggum Loop** (Bell, 2026, Ch. 5):
 
-1.  **Open Target File:** The engineer opens the config file they need to modify (e.g., `src/[saas_name]/config.xml`).
-2.  **Prompt Copilot Chat:** 
-    > *"@workspace I need to implement the BA's story linked here: [Story Link]. Please generate the configuration changes."*
-3.  **The Deterministic Automation:** The AI follows the Global Router pointers to the Domain Constraints and SDK Registry to generate logic.
-4. **Update Logic Audit:** Open `docs/context/[saas_name]/.audit/PR-<id>.jsonl` and ask Copilot: *"Summarize the reasoning for these changes and append a new line to the .audit/PR-<id>.jsonl following the format: Date, StoryID, Component, Rationale, AI_Model."*
+```
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                    SAAS CONFIG RALPH CONVERGENCE LOOP                        │
+│                                                                              │
+│  [BA Story + SaaS Schema / API Registry + Prior Failure Ledger]              │
+│                       │                                                      │
+│                       ▼                                                      │
+│           [Spawn Ephemeral Agent]                                            │
+│                       │                                                      │
+│                       ▼                                                      │
+│       [Execute Verifiable Reward Gate (Rv)]                                  │
+│        • XML/JSON Schema Validates against XSD                               │
+│        • Java/C# Compiles against Local Mock SDK Bootstrap                  │
+│        • Modularity & Token Invariants Satisfied                             │
+│                       │                                                      │
+│        ┌──────────────┴──────────────┐                                       │
+│        ▼ (PASS)                      ▼ (FAIL & Budget Remaining)             │
+│  [Emit .audit/PR-<id>.jsonl]     [Log Delta to Failure Ledger]               │
+│                                  [Worktree Reset & Respawn Clean Agent]      │
+└──────────────────────────────────────────────────────────────────────────────┘
+```
+
+1. **The Verifiable SaaS Reward ($R_v$):**
+   $$R_v(s) = \mathbb{I}(\text{SchemaPass}) \times \mathbb{I}(\text{MockCompiles}) \times \mathbb{I}(\text{AuditValid})$$
+2. **Deterministic Context Injection:** The AI reads the Global Router pointers to the Domain Constraints and SDK Registry to generate logic.
+3. **Structured Audit Emission:** Every PR appends a structured record to `docs/context/[saas_name]/.audit/PR-<id>.jsonl` governed by `audit_schema.json`, capturing `review_risk_tier`, `loop_iterations_burned`, `verifiable_reward_score`, and `failed_hypotheses_logged`.
 
 ---
 
-## ⚖️ 5. Audit, Validation, & Deployment
-Before you import the AI's modified configuration back into the SaaS platform:
-1. **Schema Validation:** Ask Copilot to write a Python script that validates your new config against the official **XSD/JSON Schema**.
-2. **Visual/Functional Regression:** If applicable, run a test output (e.g., PDF, Log, or Response) and compare the "Before" and "After" states to ensure no regression.
-3. **Deployment:** Commit the validated config to GitHub, then use the SaaS tool's **Import** function to bring the changes into the Dev environment.
+## ⚖️ 5. Audit, Validation, & Risk-Tiered PR Routing
+To prevent SaaS configuration PRs from congesting the engineering review queue (Bell, 2026, Ch. 5), review workflows are partitioned into **3 Risk Tiers**:
+
+1. **Tier 0: Dark Auto-Merge (0 Human Reviewers):**
+   * Scope: Environment Token Registry syncs, schema docstring updates, or isolated test fixture backfills.
+   * Gate: Automated XSD/JSON schema validation passes, zero blast radius.
+2. **Tier 1: Streamlined Single Approval (SLA < 2 hrs):**
+   * Scope: Bounded workflow routing changes, property mapping scripts, or single-form field additions.
+   * Gate: Passing local mock bootstrap (`mock_bootstrap.java` / `.cs`), passing schema checks, and $R_v \ge 0.80$.
+3. **Tier 2: Full Architectural Review (2 Human Approvers):**
+   * Scope: Cross-system schema modifications, authentication/permission models, legal retention rules (e.g. SEC 17a-4 / FINRA in CMOD/FileNet), or cryptographic key management (SideDrawer).
+   * Gate: Full human inspection of the Semantic Blueprint and CISO compliance verification.
+
+### 5b. Deployment
+Commit the validated config to GitHub, then use the SaaS tool's **Import** function or CI/CD deployment runner to bring the changes into the target environment.
 
 ---
 
@@ -77,15 +110,25 @@ To prevent version drift, you MUST establish bi-directional correlation upon dep
 ---
 
 ## 🛠️ 7. Local Simulation & Mocking
-SaaS logic is difficult to test without the live server. To speed up development, you must build **Mock/Simulation deals** using SDK mocks or API interceptors (e.g. Prism/WireMock) to verify logic *before* hitting the cloud.
+SaaS logic is difficult to test without the live server. To speed up development, you must build **Mock/Simulation deals** using SDK mocks or API interceptors (e.g., Prism, WireMock, `mock_bootstrap.java`) to verify logic *before* hitting the cloud.
 
 ---
 
-## 🚀 Appendix: Quick-Start Bootstrap Templates
+## 🚀 Appendix: Platform Guides & Templates
 
+### Dedicated Platform Implementations
+- [IBM FileNet (P8) Guide](./ibm_filenet.md)
+- [IBM CMOD Guide](./ibm_cmod.md)
+- [OpenText Exstream Guide](./opentext_exstream.md)
+- [DocuSign eSignature Guide](./docusign.md)
+- [SideDrawer Vault Guide](./sidedrawer.md)
+- [Tungsten TotalAgility Guide](./tungsten_total_agility.md)
+
+### Quick-Start Bootstrap Templates
 - [The Global Router](./templates/saas_factory/copilot-instructions.md)
 - [The Domain Constraint](./templates/saas_factory/[saas_name]_business_rules.md)
 - [The Function Registry](./templates/saas_factory/[saas_name]_api_registry.md)
 - [The Token Registry](./templates/saas_factory/token_registry.md)
+- [The Logic Audit Schema](./templates/saas_factory/.audit/audit_schema.json)
 - [The Logic Audit Trail](./templates/saas_factory/.audit/PR-<id>.jsonl)
 - [The Mock Bootstrap](./templates/saas_factory/mock_bootstrap.java)

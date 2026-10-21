@@ -328,6 +328,7 @@ The curriculum grounds all engineering principles in six historical production f
 20. **Federal Reserve Board / OCC (2011).** *"Supervisory Guidance on Model Risk Management."* Supervisory Letter SR 11-7.
 21. **Federal Aviation Administration (FAA) (2011).** *"Software Considerations in Airborne Systems and Equipment Certification."* Advisory Circular AC 20-115C / RTCA DO-178C.
 22. **European Union (2024).** *"Regulation (EU) 2024/1689 of the European Parliament and of the Council laying down harmonised rules on artificial intelligence (Artificial Intelligence Act)."*
+23. **Bell, P. (2026).** *"Scaling AI Adoption in Engineering: Organizational, Architectural, and Strategic Frameworks for the GenAI Era."* O'Reilly Media.
 
 ---
 

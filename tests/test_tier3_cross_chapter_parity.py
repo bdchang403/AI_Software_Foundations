@@ -324,3 +324,17 @@ def test_oreilly_bell_scaling_ai_invariants():
         assert "review_risk_tier" in props
         assert "loop_iterations_burned" in props
         assert "failed_hypotheses_logged" in props
+
+    # 7. Verify SaaS Factory & Context Pipeline integration of Bell frameworks
+    saas_factory = (root / "SaaS/saas_factory.md").read_text(encoding="utf-8")
+    assert "The Brownfield Baseline" in saas_factory
+    assert "Ralph Wiggum" in saas_factory and "Risk-Tiered PR Routing" in saas_factory
+    assert "IBM FileNet" in saas_factory and "Tungsten TotalAgility" in saas_factory
+
+    context_pipe = (root / "00_THE_CONTEXT_PIPELINE.md").read_text(encoding="utf-8")
+    assert "COTS & SaaS Context Extraction Adapters" in context_pipe
+    assert "Epistemic IP Airgap" in context_pipe
+
+    readme = (root / "README.md").read_text(encoding="utf-8")
+    assert "Bell, P. (2026)." in readme and "Scaling AI Adoption in Engineering" in readme
+

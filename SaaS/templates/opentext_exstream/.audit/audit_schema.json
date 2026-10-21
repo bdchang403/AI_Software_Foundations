@@ -3,7 +3,15 @@
   "title": "PR_Logic_Audit_Record",
   "description": "Write one immutable file per PR (.audit/PR-<id>.jsonl) to prevent Git merge conflicts.",
   "type": "object",
-  "required": ["timestamp", "story_id", "ast_symbol_id", "rationale", "model_tier", "reproduction_test_path", "engineer_approval"],
+  "required": [
+    "timestamp",
+    "story_id",
+    "ast_symbol_id",
+    "rationale",
+    "model_tier",
+    "reproduction_test_path",
+    "engineer_approval"
+  ],
   "properties": {
     "timestamp": { "type": "string", "format": "date-time" },
     "story_id": { "type": "string" },
@@ -11,6 +19,13 @@
     "rationale": { "type": "string" },
     "model_tier": { "type": "string", "enum": ["audit", "verify", "patch"] },
     "reproduction_test_path": { "type": "string" },
-    "engineer_approval": { "type": "string" }
+    "engineer_approval": { "type": "string" },
+    "review_risk_tier": { "type": "string", "enum": ["tier0_dark_auto_merge", "tier1_single_approver", "tier2_full_human_review"] },
+    "loop_iterations_burned": { "type": "integer", "minimum": 1 },
+    "verifiable_reward_score": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+    "failed_hypotheses_logged": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
   }
 }

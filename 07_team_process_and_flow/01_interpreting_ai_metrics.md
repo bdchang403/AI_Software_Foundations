@@ -168,3 +168,24 @@ To break free from the Verification Trap and re-establish sustainable engineerin
 
 [**Proceed to Module 2: Intervening in the Factory →**](./02_intervening_in_the_factory.md)
 
+
+---
+
+## The Leadership Competence Ladder & The "Loop-Training" Keyboard OKR
+
+In *Scaling AI Adoption in Engineering* (Ch. 4), Peter Bell demonstrates why leading an agentic transition is fundamentally different from leading an on-prem-to-cloud or microservices migration. In cloud migrations, abstractions did not leak; a leader could reason from high-level briefings. Because agentic intelligence is jagged, **leaders cannot delegate judgment calls about software factories without personal, hands-on fluency.**
+
+### 1. The 3-Level Personal Competence Ladder
+Engineering managers, directors, and staff leads are audited against three maturity stages:
+* **Level 1: Occasional Stateless Chat:** Ad-hoc prompting with zero persistent context. Because the system is stateless, the $10\text{th}$ task is no better than the $1\text{st}$.
+* **Level 2: Context & Compounding:** Persistent context wells (Markdown registries, MCP connectors to Jira/Datadog) combined with active RLHF loop tuning. Every human correction updates the underlying rules/skills so the $10\text{th}$ output is measurably closer to final spec than the $1\text{st}$.
+* **Level 3: Deterministic & Adversarial Pipelines:** Building multi-step workflows with automated quality gates to do the work rather than doing the work directly.
+
+### 2. The Loop-Allocation Keyboard OKR ($K_{\text{loop}}$)
+As Bell Formulates: *"In the future, none of us will be able to afford to work—it doesn't provide sufficient leverage. Your job is to build and tune the systems that do the work."*
+
+We track the **Loop-Training Allocation Ratio ($K_{\text{loop}}$)** across engineering leadership and senior ICs:
+
+$$K_{\text{loop}} = \frac{T_{\text{Driving\_Agents}} + T_{\text{Tuning\_Harnesses}}}{T_{\text{Total\_Keyboard\_Time}}} \times 100\%$$
+
+* **Target Trajectory:** $K_{\text{loop}}$ must trend toward $\to 100\%$ over time. When an engineer or leader manually fixes a bug, writes a boilerplate test, or formats a status report without encoding that correction into a reusable skill, AST rule, or classifier loop, it is recorded as **un-compounded labor**.

@@ -185,3 +185,17 @@ When engineering organizations ignore constitutional invariants and rely on info
 ---
 
 [**Next in Phase 00: Proceed to The 3-Tier Context Pipeline Architecture →**](./00_THE_CONTEXT_PIPELINE.md) | [**Return to Main Curriculum Hub →**](./README.md)
+
+---
+
+## Article VIII: Bring Your Own Harness (BYOH) & Epistemic IP Airgaps
+
+As identified in *Scaling AI Adoption in Engineering* (Bell, 2026, Ch. 4), elite AI-augmented engineers increasingly derive 95% of their leverage from personal, finely tuned agentic systems, orchestration loops, and meta-prompts developed over years of practice ("like Vi keybindings, but 100x more complex"). Treating these engineers like 2024 hires—handing them a locked-down laptop without access to their orchestration patterns—destroys their throughput.
+
+To unlock top-decile talent while enforcing zero intellectual property (IP) leakage:
+
+1. **Two-Way Harness Portability:** Engineers are permitted to import personal, domain-agnostic orchestration harnesses, workflow loops, and meta-skills (`skills.md` templates, AST parser scripts, verification rubrics) into the enterprise environment under a **Non-Exclusive Perpetual Usage License**.
+2. **The Epistemic IP Airgap:** All context architecture must enforce a hard physical separation between:
+   * **Layer A (Portable Meta-Harness):** Generic loop controllers, AST schema validators, and retry heuristics (portable by the engineer).
+   * **Layer B (Proprietary Domain Wells):** Enterprise business logic, customer schemas, AST symbol tables, and `.audit/` ledgers (strictly airgapped and retained by the enterprise).
+3. **Public-By-Default Internal Communications:** Because LLM effectiveness scales linearly with context completeness, non-sensitive architectural decisions, PR rationales, and project updates must move out of private DMs and water-cooler chats into persistent, machine-indexable Markdown wikis and public channels.

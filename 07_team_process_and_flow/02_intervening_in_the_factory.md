@@ -129,3 +129,40 @@ To transform the software factory into a deterministic delivery engine, engineer
 
 [**Proceed to Module 3: Tooling and Analysis (The Determinism Proof) →**](./03_tooling_and_analysis.md)
 
+
+---
+
+## Mitigating the Review Queue Crisis ("The 1,400 Open PRs" Failure Mode)
+
+As Box CTO Ben Kus and Spotify Chief Architect Niklas Gustavsson reported in mid-2026: **"Coding is no longer the constraint. The bottleneck has become reviewing it."** (Bell, 2026, Ch. 5).
+* **Faros AI Telemetry (10,000+ devs, 1,255 teams):** High-AI teams merge $+98\%$ more PRs, but **PR review time spikes by $+91\%$**.
+* **The Augment Postmortem:** When Augment allowed agents to write $100\%$ of production code without scaling automated review infrastructure, the engineering org deadlocked at **1,400+ open pull requests** and a **20-hour median time to first human comment**.
+* **The Uber "Multiplayer" Shift:** As engineers kick off parallel background agents while waiting on prompts, individual single-player work turns into high-concurrency multiplayer PR floods.
+
+### Risk-Tiered PR Triage & Auto-Merge Governance
+To prevent human review attention from collapsing under software factory output, this repository replaces uniform manual code review with **3-Tier Deterministic PR Routing**:
+
+```
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                 RISK-TIERED PR REVIEW ROUTING (HONK / MINIONS)               │
+│                                                                              │
+│  [Agent PR Submitted + .audit/PR-<id>.jsonl]                                 │
+│                       │                                                      │
+│                       ▼                                                      │
+│  ┌─────────────────────────────────────────────────────────┐                 │
+│  │ Tier 0: Dark Auto-Merge (0 Human Reviewers)             │                 │
+│  │ • Docs, AST Registry Sync, Isolated Test Backfills      │                 │
+│  │ • Gate: 100% CI + Zero-Mock AST Scan + Blast Radius = 0 │                 │
+│  ├─────────────────────────────────────────────────────────┤                 │
+│  │ Tier 1: Streamlined Self/Single Approval (SLA < 2 hrs)  │                 │
+│  │ • Bounded Single-Module Bug Fixes & Codemod Migrations  │                 │
+│  │ • Gate: Failing Repro Test Verified + Adversarial Rubric│                 │
+│  ├─────────────────────────────────────────────────────────┤                 │
+│  │ Tier 2: Full Architectural Review (2 Human Approvers)   │                 │
+│  │ • Cross-Module Schema Changes, Auth/Security, Core APIs │                 │
+│  │ • Gate: Full Human Inspection of Semantic Blueprint     │                 │
+│  └─────────────────────────────────────────────────────────┘                 │
+└──────────────────────────────────────────────────────────────────────────────┘
+```
+
+1. **Stale Agent PR Reaper:** Any agent-generated PR that fails to pass Tier 0/1 deterministic verification within 24 hours—or sits unreviewed for $>48\text{ hours}$—is automatically closed and its failure state is written back to the Ralph Loop Failure Ledger. Humans review **specifications and verification contracts**, not raw syntax diffs.

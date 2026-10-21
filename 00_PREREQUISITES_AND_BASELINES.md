@@ -219,3 +219,17 @@ When engineering teams ignore Day Zero prerequisites and generate code without b
 ---
 
 [**Next: Root Curriculum Overview →**](./README.md)
+
+---
+
+## Brownfield Maturity Prerequisite: The "Test & CI/CD First" Directive
+
+As Thoughtworks CTO Rachel Laycock and Chris Westerhold warn, **"AI is an amplifier—where your software delivery practices are solid, that multiplier compounds in your favor; where they aren't, this velocity multiplier becomes a debt accelerator and a faster way to create chaos."** (Bell, 2026, Ch. 1–2).
+
+If an engineering organization relies on manual QA, spotty test coverage, and manual deployment gates, using AI to generate features faster simply piles up unverified code in front of a broken deployment bottleneck.
+
+### The Brownfield Remediation Sequence
+Before any feature squad is permitted to use agentic pipelines for net-new feature velocity, AI compute must be directed at fixing the underlying delivery foundation:
+1. **Phase 0.1: Agentic E2E & Integration Test Backfill:** Direct coding agents to generate deterministic End-to-End (E2E) and integration test harnesses across the highest-risk, lowest-coverage legacy modules. Do not stop at unit tests; integration boundaries are where agentic regressions hide.
+2. **Phase 0.2: CI/CD & Canary Automation:** Use infrastructure agents to script and eliminate every manual deployment step, establishing red/green automated continuous deployment and feature-flagging across all services.
+3. **Phase 0.3: Baseline Telemetry Instrumentation:** Establish pre-AI baselines using DORA, SPACE, and DX Core 4 metrics alongside system/business-level anomaly alerting before opening the feature-generation throttle.

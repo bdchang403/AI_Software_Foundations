@@ -253,3 +253,29 @@ When engineering teams bypass this 7-layer architecture and deploy monolithic ag
 ---
 
 [**Proceed to Module 2: The Assembly Mechanism & Dialectical Consensus →**](./02_the_assembly_mechanism.md)
+
+---
+
+## Taming the "Jagged Edge": Watchdog Daemons ("Boot the Dog")
+
+As Peter Bell notes in *Scaling AI Adoption in Engineering* (Ch. 4–5), agentic competence is **jagged and non-deterministic**: the same frontier model that executes a 40-file architectural refactor in one hour will confidently invent a non-existent API endpoint or cheat a test assertion the next.
+
+Inspired by pioneering multi-agent orchestrators—including Steve Yegge’s **Gas Town / Gas City** (and its agentic ticket tracker **Beads**), Sam Schillace’s **Amplifier** at Microsoft (which replicated MS Word into a 1,000,000-LOC passing web suite in 30 days), and **StrongDM’s Dark Factory**—production orchestration requires separating **Worker Agents** from **Out-of-Band Watchdog Daemons**.
+
+```
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                 GAS CITY / DARK FACTORY WATCHDOG TOPOLOGY                    │
+│                                                                              │
+│  [Orchestrator / Mayor] ──► Spawns ──► [Polecat / Worker Agent Sandbox]      │
+│           ▲                                       │                          │
+│           │ (Kill / Prod / Reset)                 ▼ (Emits Telemetry Stream) │
+│  [Watchdog Daemon ("Boot the Dog")] ◄─── Monitors Tool Loops & AST Drift     │
+└──────────────────────────────────────────────────────────────────────────────┘
+```
+
+### The Watchdog Daemon Contract ("Boot the Dog")
+Worker agents must never be trusted to police their own termination or adherence to prompt instructions. An out-of-band Watchdog Daemon monitors the worker's execution stream and triggers an immediate circuit-breaker interrupt under four conditions:
+1. **Stall / Laziness Detection:** The worker agent stops early, emits truncated placeholders (`// TODO: implement rest`), or claims a task is complete without invoking the verification test runner.
+2. **Circular Tool-Call Churn:** The worker executes $\ge 3$ identical or oscillating bash/file-read operations without mutating the AST or reducing compiler error count.
+3. **Reward Hacking / Test Tampering:** The worker attempts to modify, delete, or mock out an existing test assertion inside `tests/` to force a green build.
+4. **Epistemic Drift:** The worker violates the static constraints defined in the module's Semantic Blueprint.

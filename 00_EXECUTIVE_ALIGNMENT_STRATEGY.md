@@ -199,3 +199,41 @@ When executive leadership measures AI adoption by raw code throughput without ar
 ---
 
 [**Next: Prerequisites & Baselines →**](./00_PREREQUISITES_AND_BASELINES.md) | [**Return to Root README →**](./README.md)
+
+---
+
+## Enterprise Adoption Archetypes: The "Flatline" vs. "Summit" Divergence
+
+As documented in Peter Bell’s *Scaling AI Adoption in Engineering* (O'Reilly, 2026) and Matthew Skelton’s QCon London 2026 telemetry, **80% of enterprises see zero tangible ROI from AI adoption**, while the top 5% of engineering organizations have achieved a **10x throughput multiplier** over 2024 baselines (CircleCI / Thoughtworks 2026 State of Software Delivery). Furthermore, DX’s Q2 2026 study across 500+ engineering organizations revealed that while quarterly AI spend jumped **28x year-over-year**, net feature delivery time remained flat—with only **6% of executives** able to point to organization-wide ROI.
+
+The dividing line between zero-ROI stagnation (**"Flatline Systems"**) and 5x–10x software factory acceleration (**"Summit SaaS"**) is governed by five structural executive decisions:
+
+```
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                 THE ENTERPRISE GENAI DIVIDE (BELL, 2026)                     │
+│                                                                              │
+│  FLATLINE SYSTEMS (0% ROI / High Attrition)                                  │
+│  ├── Side-Desk Leadership: Assigned as a "6th quarterly goal" to a busy Dir. │
+│  ├── Backwards Incentives: Requires +10% productivity promise for a license  │
+│  ├── Governance Gridlock: CISO/Legal blocks niche verification & review tools│
+│  └── Unabsorbed Velocity: Spotty tests + manual QA = 91% PR review bloat     │
+│                                                                              │
+│  SUMMIT SAAS (5x–10x Factory Floor)                                          │
+│  ├── Dedicated Mandate: 18-month primary focus for DevEx Dir (role backfilled│
+│  ├── J-Curve Protection: Accepts 10–15% short-term velocity dip for learning │
+│  ├── Fast-Track Sandbox: Pre-agreed CISO Red Lines + 3-Day SLA (<$10k/mo)    │
+│  └── Upstream PDLC: OKRs ──► Experiments ──► PRDs ──► Tickets ──► Dark Factor│
+└──────────────────────────────────────────────────────────────────────────────┘
+```
+
+### 1. The Protected Experimentation Charter (CISO Red Lines & 3-Day SLA)
+To prevent bureaucratic gridlock from suffocating engineering experimentation while maintaining strict enterprise security, this repository enforces the **Summit Sandbox Protocol**:
+* **Hard CISO Red Lines:** Zero tolerance for third-party cloud models training on proprietary source code, zero un-redacted PII/credentials in egress payloads, and mandatory execution inside network-isolated socket sandboxes.
+* **The 3-Business-Day Approval SLA:** The Executive, Legal, and InfoSec teams commit to a binding $\le 3\text{ business day}$ turnaround for approving or transparently denying new agentic tool or model pilot requests.
+* **The $\$10,000/\text{Month}$ No-ROI Safe Harbor:** Experiments costing under $\$10,000/\text{month}$ in token spend or seat licensing require **zero upfront ROI justification**, provided they strictly respect the CISO Red Lines.
+
+### 2. Incentivizing Learning Over Immediate ROI (Protecting the J-Curve Dip)
+Requiring engineers to commit to a $+10\%$ productivity gain *before* granting AI access guarantees organizational failure and drives away top AI-forward talent. 
+* **Explicit J-Curve Allocation:** Leadership formally budgets for a **10% to 15% short-term productivity decline** during the initial 6-to-12-week harness-building and loop-training phase.
+* **Performance Review Decoupling:** Experimental project failures are strictly decoupled from annual performance ratings, bonus pools, and promotion committees. An experiment is classified as a success if it produces a documented, verifiable architectural learning in the shared state-of-play library, even if the hypothesis is invalidated.
+* **Dedicated Enablement Staffing:** For every $100+$ engineers, the organization budgets at least one full-time Technical Enablement Lead / Trainer (DevEx/DevRel profile) focused exclusively on unblocking pods, curating AST context patterns, and running weekly demo rituals.

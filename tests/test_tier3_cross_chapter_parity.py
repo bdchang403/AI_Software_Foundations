@@ -279,3 +279,48 @@ def test_role_handoff_qe_to_ops_ai_sbom_traceability():
     assert ai_sbom_header["hermetic_socket_isolated"] is True
     assert ai_sbom_header["verification_status"] == "PASS"
     assert len(ai_sbom_header["governing_invariants_verified"]) >= 5
+
+
+def test_oreilly_bell_scaling_ai_invariants():
+    """Verify that Peter Bell (2026) Scaling AI Adoption frameworks are codified across chapters and schemas."""
+    from pathlib import Path
+    import json
+
+    root = Path(__file__).resolve().parent.parent
+
+    # 1. Verify Executive Alignment (Flatline vs Summit, 3-Day SLA, $10k Safe Harbor, 10-15% J-Curve)
+    exec_align = (root / "00_EXECUTIVE_ALIGNMENT_STRATEGY.md").read_text(encoding="utf-8")
+    assert "Flatline Systems" in exec_align and "Summit SaaS" in exec_align
+    assert "3-Business-Day Approval SLA" in exec_align
+    assert "10% to 15% short-term productivity decline" in exec_align
+
+    # 2. Verify Constitution BYOH & Epistemic IP Airgap
+    constitution = (root / "00_ENTERPRISE_CONSTITUTION.md").read_text(encoding="utf-8")
+    assert "Bring Your Own Harness (BYOH)" in constitution
+    assert "Epistemic IP Airgap" in constitution
+
+    # 3. Verify Brownfield Test-First & Adoption Lanes
+    prereq = (root / "00_PREREQUISITES_AND_BASELINES.md").read_text(encoding="utf-8")
+    assert "Brownfield Remediation Sequence" in prereq
+    strategy = (root / "01_strategy_and_vision/01_executive_intent_and_investment_thesis.md").read_text(encoding="utf-8")
+    assert "The Lütke Rule" in strategy and "4-Stage Bottleneck Migration" in strategy
+
+    # 4. Verify Watchdog ("Boot the Dog") and Ralph Loop / Dark Factory benchmarks
+    anatomy = (root / "09_ai_agent_orchestration/01_anatomy_of_an_agent.md").read_text(encoding="utf-8")
+    assert "Boot the Dog" in anatomy and "Gas City" in anatomy
+    assembly = (root / "09_ai_agent_orchestration/02_the_assembly_mechanism.md").read_text(encoding="utf-8")
+    assert "Ralph Wiggum Loop" in assembly and "StrongDM" in assembly and "Honk" in assembly
+
+    # 5. Verify Review Queue Crisis (1,400 open PRs) & Keyboard OKR
+    metrics = (root / "07_team_process_and_flow/01_interpreting_ai_metrics.md").read_text(encoding="utf-8")
+    assert "K_{\\text{loop}}" in metrics
+    factory = (root / "07_team_process_and_flow/02_intervening_in_the_factory.md").read_text(encoding="utf-8")
+    assert "1,400+ open pull requests" in factory and "Tier 0: Dark Auto-Merge" in factory
+
+    # 6. Verify updated .audit/audit_schema.json includes Ralph Loop & Risk Tier properties
+    for schema_path in (root / "SaaS/templates").glob("*/.audit/audit_schema.json"):
+        schema_data = json.loads(schema_path.read_text(encoding="utf-8"))
+        props = schema_data.get("properties", {})
+        assert "review_risk_tier" in props
+        assert "loop_iterations_burned" in props
+        assert "failed_hypotheses_logged" in props

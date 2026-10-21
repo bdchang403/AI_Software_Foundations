@@ -240,3 +240,59 @@ When engineering teams ignore dialectical arbitration and deploy unanchored mult
 ---
 
 [**Proceed to Module 3: Testing & Red-Teaming the Agent Configuration →**](./03_testing_the_agent_config.md)
+
+---
+
+## The "Ralph Wiggum Loop" & Failure-State Compounding
+
+Popularized by Geoffrey Huntley at Canva (who used it to autonomously build the `cursed` programming language compiler and ship a 50,000-LOC MCP API integration PR driven primarily by Markdown specs), a **Ralph Loop** proves that even imperfect models can solve massive engineering problems when coupled with a **verifiable reward** and **cross-attempt failure memory** (Bell, 2026, Ch. 5).
+
+```
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                     THE RALPH LOOP (CONVERGENCE ENGINE)                      │
+│                                                                              │
+│  [Spec + AST Slice + Prior Failure Ledger]                                   │
+│                     │                                                        │
+│                     ▼                                                        │
+│          [Spawn Ephemeral Agent N]                                           │
+│                     │                                                        │
+│                     ▼                                                        │
+│        [Execute Verifiable Reward Gate]                                      │
+│         (Pytest + <50ms Latency + >=80% Rubric)                              │
+│                     │                                                        │
+│        ┌────────────┴────────────┐                                           │
+│        ▼ (PASS)                  ▼ (FAIL & Budget Remaining)                 │
+│  [Emit PR Audit]      [Agent Documents Exact Failure Delta]                  │
+│                       [Append to Failure Ledger & Terminate Agent N]         │
+│                       [Respawn Clean Agent N+1 with Updated Ledger]          │
+└──────────────────────────────────────────────────────────────────────────────┘
+```
+
+### 1. Formalizing the Verifiable Reward ($R_v$)
+An agent loop cannot converge on vague instructions. Every assembly loop must define a composite, deterministic reward function $R_v$:
+
+$$R_v(s) = \mathbb{I}(\text{Tests}_{\text{Green}}) \times \mathbb{I}(L_{\text{p50}} \le 50\text{ms}) \times \mathbb{I}(S_{\text{Rubric}} \ge 0.80)$$
+
+Where:
+* $\mathbb{I}(\text{Tests}_{\text{Green}}) \in \{0, 1\}$ asserts $100\%$ passing execution of both reproduction and regression suites.
+* $L_{\text{p50}} \le 50\text{ms}$ asserts runtime performance invariants have not degraded.
+* $S_{\text{Rubric}} \ge 0.80$ is the score assigned by an independent adversarial auditor agent evaluating naming orthogonality, conciseness, and AST modularity.
+
+### 2. Cross-Attempt Failure Memory (Compounding)
+When Agent $N$ fails to achieve $R_v(s) = 1$, we do **not** let Agent $N$ loop indefinitely inside a polluted context window. Instead:
+1. Agent $N$ is forced to write a structured post-mortem entry (`attempted_diff_hash`, `Observed_Error`, `Root_Cause_Hypothesis`) into the task's **Failure Ledger**.
+2. The sandbox reverts via Copy-on-Write (`git worktree` reset) to a clean state.
+3. A fresh Agent $N+1$ is spawned with a clean context window containing the original AST slice **plus the accumulated Failure Ledger**, preventing Agent $N+1$ from repeating dead-end hypotheses.
+
+### 3. The Three Loop Termination Invariants
+Every autonomous loop is governed by three hard termination states:
+1. **Goal Convergence:** $R_v(s) = 1$ achieved within budget.
+2. **Loop Budget Exhaustion:** Cumulative token spend $C_{\text{total}} \ge B_{\text{max}}$ or iteration count $n \ge N_{\text{max}}$ (triggers immediate escalation to human architectural review with the Failure Ledger attached).
+3. **Non-Convergence Early Stop:** The error delta $\Delta E$ across 3 consecutive agents is $\ge 0$ (error count is flat or increasing), signaling an under-specified PRD or missing AST dependency.
+
+### 4. Production Dark Factory Benchmarks (2026 Industry Reference)
+This assembly mechanism mirrors the production software factories operating across top engineering organizations in 2026 (Bell, Ch. 5):
+* **StrongDM Dark Factory Charter:** *"1. Code must not be written by humans. 2. Code must not be reviewed by humans. 3. If you haven't spent at least $\$1,000$ on tokens today per human engineer, your software factory has room for improvement."*
+* **Spotify ("Honk"):** Generates $1,000+$ merged PRs every 10 days (a $9\times$ acceleration over prior 3-month baselines).
+* **Stripe ("Minions"):** Produces $1,300+$ merged PRs per week with zero human-written code, triggered directly from Slack thread tags.
+* **Ramp ("Inspect"):** Initiates over $50\%$ of all merged company PRs and is **self-reproducing** ($80\%+$ of Inspect's own codebase is written by Inspect).

@@ -158,3 +158,31 @@ To secure Level 5 compiler-grade maturity and prevent post-POC abandonment, engi
 4. **Mandatory Invariant Binding ($I_{01}, I_{02}$)**: Every strategic directive must bind explicitly to fail-closed invariants: if upstream market feeds or sensor streams fail, the pipeline must fail closed (emit `None` or raise a domain error); imputing synthetic numbers is strictly forbidden.
 
 
+
+---
+
+## Strategic Posture: The 3-Step Exposure & Adoption Lane Framework
+
+Following Peter Bell’s *Scaling AI Adoption in Engineering* (Ch. 3) and Will Larson’s *Crafting Engineering Strategy*, executive leadership must align on an explicit adoption lane rather than reacting to the loudest vendor hype. While Deloitte’s 2025/2026 enterprise telemetry shows typical AI investments require **2 to 4 years** to achieve satisfactory traditional ROI (vs. 7–12 months for legacy tech), SaaS and digital-native firms face an existential **Innovator’s Dilemma**: agents are rapidly replacing human UIs, threatening to reduce traditional SaaS applications to mere background file formats or commoditized API endpoints.
+
+### Step 1: Assess Category Exposure & Second-Order Effects
+* **Low Exposure (Physical Assets / Heavy Industry):** High flexibility; slow-rolling LLMs leaves operational efficiency on the table but poses zero existential threat.
+* **Existential Exposure (SaaS, DevTools, AdTech, Media, Workflows):** High risk of UI disintermediation as customers rebuild workflows from first principles using relational databases, deterministic state machines, and agentic steps.
+
+### Step 2: Select and Own Your Adoption Lane (Beal-Bohlen / Moore Curve)
+
+| Adoption Lane | Risk & Cost Profile | Required Engineering Infrastructure | Executive Governance Rule |
+| :--- | :--- | :--- | :--- |
+| **1. Innovator** | High token burn; frequent failed pilots; 6–9 month "skyscraper foundation" lag before visible 5x–10x output. | Shared internal skills/tools, central LLM proxy, automated token FinOps, Dark Factory harnesses. | **The Lütke Rule (Shopify):** Teams must prove AI *cannot* accomplish a goal before requesting additional human headcount. |
+| **2. Early Adopter** | Moderate churn; adopts proven patterns shortly after Innovators; replaces stack components every 6 months. | 1-week Legal/Security SLA; dedicated DevEx enablement team; multi-tool parallel trials. | Fast-follower bets informed by Innovator postmortems; aggressive legacy modernization. |
+| **3. Early Majority** | Low risk; waits for clear market winners; retains organizational stability and existing headcount wisdom. | Quarterly Tool Review Council; standardized vendor copilots; deliberate CI/CD upgrades. | Focus remains on core business OKRs; AI is treated as a measured productivity upgrade. |
+| **4. Late Majority** | Zero R&D token risk; absorbs AI passively when existing enterprise vendors bundle it into legacy tools. | Standard legacy SDLC; modest training budget; no dedicated AI platform engineering. | Appropriate *only* for low-exposure physical/regulated industries immune to AI-native disruption. |
+
+### Step 3: The 4-Stage Bottleneck Migration & Agentic PDLC
+As Dropbox’s engineering synthesis states: **"AI doesn't eliminate bottlenecks in software development, but it does move them."** (Bell, 2026, Ch. 5). When Rakuten redesigned its entire end-to-end value stream around agentic delivery rather than retrofitting tools onto legacy processes, **feature delivery time dropped from 24 days to 5 days**.
+
+Our architecture anticipates and instruments for the four predictable stages of bottleneck migration:
+1. **Stage 1: Bad Code Generation** $\rightarrow$ Solved by AST Symbol Registries, Closed-World Schemas, and Context Routing (Chapter 3).
+2. **Stage 2: Good Code Too Quickly (The Review Queue Crisis)** $\rightarrow$ Solved by Zero-Mock AST Circuit Breakers, Mutation Fuzzing, and Risk-Tiered Auto-Merge Gates (Chapters 4 & 7).
+3. **Stage 3: The Product & Specification Bottleneck** $\rightarrow$ Solved by the **Upstream Agentic PDLC**: automating the translation of **OKRs $\rightarrow$ Experiment Hypotheses $\rightarrow$ PRDs $\rightarrow$ Decomposed Tickets $\rightarrow$ Verifiable Code** via committed, schema-validated Markdown blueprints (Chapters 1 & 2).
+4. **Stage 4: Customer Adoption Bottleneck** $\rightarrow$ Solved by exposing headless, MCP-compatible API contracts so customer agents can consume new capabilities autonomously multiple times per day.
